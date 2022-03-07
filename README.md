@@ -2,17 +2,17 @@
 [Nome do projeto ou do grupo - este será seu identificador único até o final da disciplina]
 
 Ideias de projeto podem vir de: 
- * https://dados.gov.br/
- * https://play.google.com
- * https://www.apple.com/br/app-store/
- * https://gtagenda2030.org.br/ods/ (17 Objetivos de Desenvolvimento Sustentável - ODS)
+ * https://fdc.nal.usda.gov/index.html
+ * https://play.google.com/store/apps/details?id=com.buscaalimento.android&hl=pt_BR
+ * 
+ * 
 
 ## Integrantes do grupo 
-[Liste o nome completo de todos os integrantes do grupo com seus respectivos e-mails]
- * Fulano da Silva Junior - fulano@abc.com
- * Beltrano de Amorim Cardoso - beltrano@abc.com
- * Maria das Graças Nascimento - maria@abc.com
- * João da Fonseca - joao@abc.com
+ * João Victor Carvalho Gomes Cordeiro - joaovictorcordeiro00@gmail.com
+ * Julyanne Maria dos Santos Correia - julyanne.es@gmail.com
+ * Lays Carolina Madeiro Rodrigues - layscarolinam@gmail.com
+ * Matheus Noleto de Sampaio Gominho Rosa - matheusgominho@gmail.com
+ * Vinicius Augusto Andrade Albuquerque (Apolo) - vinicius.cius@gmail.com
 
 ## Descrição geral do projeto 
 Nesta descrição, apresente um texto resumido com a(s) principal(is) funcionalidade(s) do sistema. 

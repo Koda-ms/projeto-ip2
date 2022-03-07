@@ -1,4 +1,4 @@
-# Projeto ABC 
+# Projeto Fitness 
 [Nome do projeto ou do grupo - este será seu identificador único até o final da disciplina]
 
 Ideias de projeto podem vir de: 

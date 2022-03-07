@@ -25,3 +25,4 @@ A FAZER:
 - Adicionar mais referências à ideias do Projeto;
 - Adicionar mais requisitos;
 - Definir funções dos integrantes;
+- Determinar interface gráfica;

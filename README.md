@@ -34,5 +34,3 @@ se já pratica exercícios, etc);
  * **REQ5** - sugerir "plano" alimentar baseado em calorias (talvez);
  * **REQ6** - sugerir exercício físico e duração;
  * **REQ7** - listar dados do usuário (pdf);
-
-ATENÇÃO - A sua lista de requisitos não deve ultrapassar mais de 30 itens.

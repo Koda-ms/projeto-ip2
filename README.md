@@ -25,7 +25,6 @@ A partir disso, você deve detalhar as funcionalidades do sistema tentando respo
 ## Requisitos do projeto
 Liste de forma numerada e com identificadores únicos os seus requisitos de projeto. 
 A descrição de cada requisito deve ser breve, porém informativa. 
-Exemplo de requisitos para um sistema de automação comercial (A INFORMAÇÃO ABAIXO É SOMENTE UM EXEMPLO E DEVE SER ALTERADA):
  * **REQ1** - realizar login/cadastro (email/usuário [geral/adm] e senha);
  * **REQ2** - coletar dados do usuário (nome, peso, altura, dataNascimento [idade], sexo,
 se já pratica exercícios, etc);

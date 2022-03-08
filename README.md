@@ -15,21 +15,17 @@ Ideias de projeto podem vir de:
  * Vinicius Augusto Andrade Albuquerque (Apolo) - vinicius.cius@gmail.com
 
 ## Descrição geral do projeto 
-Nesta descrição, apresente um texto resumido com a(s) principal(is) funcionalidade(s) do sistema. 
-É muito importante que você consiga responder em uma única frase: qual a principal funcionalidade do seu sistema? 
-A partir disso, você deve detalhar as funcionalidades do sistema tentando responder às perguntas:
- 1. Quem vai usar o programa?
- 2. Que serviços são “necessários” (leia-se: importantes para os clientes e usuários)?
- 3. Quais serviços cada usuário pode executar?
+ O projeto é uma aplicação voltada para a saúde na busca de melhor hábitos de vida. Este será capaz de acompanhar a rotina do usuário referente à prática de exercícios e alimentação diária, conforme o registro destes no sistema, além de sugerir adequações a esses modos.
+ Os serviços como: sistema de login e cadastro dos usuários, sistema de monitoramento de objetivos (peso ideal, quantidade de água ingerida, prática de exercícios físicos, calorias consumidas), sistema de gerenciamento do Administrador, solicitação de relatório e sistema de interface, serão os serviços necessários.
+ Referente aos relatórios, tanto o usuário geral quanto o Administrador poderão solicitar. Nesse sentido, o do usuário geral conterá seus dados pessoais e seu status no cumprimento dos objetivos especificados pelo prórpio, além da disposição do seu plano alimentar  baseado na quantidade de calorias diárias. Já o do Administrador terá uma relação quantitativa de pessoas cadastradas, juntamente com a média étaria e por gênero daquelas. 
+ Em suma, na aplicação os usuários em geral utilizarão de serviços como: programar e alterar seus objetivos de saúde; visualizar o andamento destes; e adequar o plano de atividade sugerido à sua rotina real. Referindo-se ao Administrador, ele terá acesso as informações geradas pelo programa.
 
 ## Requisitos do projeto
-Liste de forma numerada e com identificadores únicos os seus requisitos de projeto. 
-A descrição de cada requisito deve ser breve, porém informativa. 
- * **REQ1** - realizar login/cadastro (email/usuário [geral/adm] e senha);
- * **REQ2** - coletar dados do usuário (nome, peso, altura, dataNascimento [idade], sexo,
-se já pratica exercícios, etc);
- * **REQ3** - determinar IMC;
- * **REQ4** - sugerir quantidade de água para beber;
- * **REQ5** - sugerir "plano" alimentar baseado em calorias (talvez);
- * **REQ6** - sugerir exercício físico e duração;
- * **REQ7** - listar dados do usuário (pdf);
+ * **REQ1** - O sistema deverá realizar login e cadastro. Este terá os usuários em geral e o Administrador.
+ * **REQ2** - O sistema coletará dados pessoais dos usuários (nome, peso, altura, data de nascimento, sexo, se já pratica exercícios).
+ * **REQ3** - O sistema poderá determinar o IMC dos usuários.
+ * **REQ4** - O sistema sugerirá quantidade de água ideal para beber.
+ * **REQ5** - O sistema deverá sugerir plano alimentar baseado em calorias diárias.
+ * **REQ6** - O sistema deverá sugerir exercícios físicos e sua duração (em horas/minutos);
+ * **REQ7** - O sistema deve gerar relatórios para o usuário e o Administrador.
+ * **REQ8** - O sistema tem que permitir ao Administrador acesso às informações geradas pelo mesmo, além de dados básicos sobre os usuários.

@@ -18,7 +18,7 @@ Ideias de projeto podem vir de:
  
  Os serviços como: sistema de login e cadastro dos usuários, sistema de monitoramento de objetivos (peso ideal, quantidade de água ingerida, prática de exercícios físicos, calorias consumidas), sistema de gerenciamento do Administrador, solicitação de relatório e sistema de interface, serão os serviços necessários.
  
- Referente aos relatórios, tanto o usuário geral quanto o administrador poderão solicitar. Nesse sentido, o relátório do usuário geral conterá seus dados pessoais e seu status no cumprimento dos objetivos especificados pelo próprio, além da disposição do seu plano alimentar  baseado na quantidade de calorias diárias. Já o do Administrador terá uma relação quantitativa de pessoas cadastradas, juntamente com a média étaria e por gênero daquelas. 
+ Referente aos relatórios, tanto o usuário geral quanto o Administrador poderão solicitar. Nesse sentido, o relátório do usuário geral conterá seus dados pessoais e seu status no cumprimento dos objetivos especificados pelo próprio, além da disposição do seu plano alimentar  baseado na quantidade de calorias diárias. Já o do Administrador terá uma relação quantitativa de pessoas cadastradas, juntamente com a média étaria e por gênero daquelas. 
  
  Em suma, na aplicação, os usuários em geral utilizarão serviços como: programar e alterar seus objetivos de saúde; visualizar o andamento destes; e adequar o plano de atividade sugerido à sua rotina real. Referindo-se ao Administrador, ele terá acesso às informações geradas pelo programa.
 

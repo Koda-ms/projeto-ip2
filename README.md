@@ -1,5 +1,4 @@
-# Projeto Fitness 
-[Nome do projeto ou do grupo - este será seu identificador único até o final da disciplina]
+# Projeto HabitAct 
 
 Ideias de projeto podem vir de: 
  * https://fdc.nal.usda.gov/index.html

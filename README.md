@@ -42,6 +42,6 @@ ele terá acesso às informações geradas pelo programa.
 * **REQ4** - O sistema sugerirá quantidade de água ideal para beber.
 * **REQ5** - O sistema deverá sugerir plano alimentar baseado em calorias diárias.
 * **REQ6** - O sistema deverá sugerir exercícios físicos e sua duração (em horas/minutos);
-* **REQ7** - O sistema deve gerar relatórios para o usuário e o Administrador.
+* **REQ7** - O sistema deve gerar relatórios para o usuário e o Administrador. 
 * **REQ8** - O sistema tem que permitir ao Administrador acesso às informações geradas pelo mesmo, além de dados básicos
   sobre os usuários.

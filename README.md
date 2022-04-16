@@ -5,6 +5,7 @@ Ideias de projeto podem vir de:
 * https://fdc.nal.usda.gov/index.html
 * https://play.google.com/store/apps/details?id=com.buscaalimento.android&hl=pt_BR
 * https://www.tuasaude.com/calculadora/imc/
+* https://www.fatsecret.com.br/
 
 ## Integrantes do grupo
 

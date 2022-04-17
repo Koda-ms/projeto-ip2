@@ -13,4 +13,10 @@ public class Exercicio {
 		this.horarioInicio = horarioInicio;
 		this.horarioTermino = horarioTermino;
 	}
+
+	public double estimarQtdDeCaloriasGastas(){
+		//TODO Para efetuar essa estimativa serão necessárias as seguines informações:
+		// - Peso, duração do exercício e o tipo do exercício
+		return 0;
+	}
 }

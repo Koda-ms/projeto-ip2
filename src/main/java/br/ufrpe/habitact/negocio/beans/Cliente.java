@@ -1,6 +1,7 @@
 package br.ufrpe.habitact.negocio.beans;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 
 public class Cliente extends Usuario {
@@ -24,11 +25,11 @@ public class Cliente extends Usuario {
 		this.imc = peso / (altura * altura);
 	}
 	
-	private int calcularIdade(LocalDate dtNascimento) {
+	private int calcularIdade() {
 		return 0;
 	}
 	
-	public double beberAgua(double peso) {
+	public double quantidadeDeAguaParaBeber(double peso) {
 		return this.peso * 0.05;
 	}
 }

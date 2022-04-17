@@ -5,14 +5,14 @@ import java.util.ArrayList;
 
 public class PlanoTreino {
 	private ArrayList<Exercicio> exercicios;
-	private LocalDate diaInicio;
-	private LocalDate diaFim;
-	private Objetivo objetivo;
+	private LocalDate dataInicio;
+	private LocalDate dataFim;
+	private Objetivo objetivoTreino;
 	
-	public PlanoTreino(LocalDate diaInicio, LocalDate diaFim, Objetivo objetivo) {
+	public PlanoTreino(LocalDate dataInicio, LocalDate dataFim, Objetivo objetivoTreino) {
 		this.exercicios = new ArrayList<Exercicio>();
-		this.diaInicio = diaInicio;
-		this.diaFim = diaFim;
-		this.objetivo = objetivo;
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
+		this.objetivoTreino = objetivoTreino;
 	}
 }

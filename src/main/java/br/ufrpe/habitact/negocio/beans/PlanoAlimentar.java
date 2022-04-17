@@ -5,14 +5,14 @@ import java.util.ArrayList;
 
 public class PlanoAlimentar {
 	private ArrayList<Alimento> alimentos;
-	private LocalDate diaInicio;
-	private LocalDate diaFim;
-	private Objetivo objetivo;
+	private LocalDate dataInicio;
+	private LocalDate dataFim;
+	private Objetivo objetivoAlimentar;
     
-    public PlanoAlimentar(LocalDate diaInicio, LocalDate diaFim, Objetivo objetivo) {
+    public PlanoAlimentar(LocalDate dataInicio, LocalDate dataFim, Objetivo objetivoAlimentar) {
     	this.alimentos = new ArrayList<Alimento>();
-    	this.diaInicio = diaInicio;
-		this.diaFim = diaFim;
-		this.objetivo = objetivo;
+    	this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
+		this.objetivoAlimentar = objetivoAlimentar;
     }
 }

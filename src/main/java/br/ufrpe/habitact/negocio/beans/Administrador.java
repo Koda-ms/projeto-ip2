@@ -9,7 +9,4 @@ public class Administrador extends Usuario{
 		super(nome, email, senha, dtNascimento);
 		this.iD = iD;
 	}
-	
-	
-	
 }

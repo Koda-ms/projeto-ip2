@@ -1,17 +1,13 @@
 package br.ufrpe.habitact.negocio.beans;
 
-import java.time.LocalDateTime;
-
 public class Exercicio {
 	private TipoExercicio nome;
-	private LocalDateTime horarioInicio;
-	private LocalDateTime horarioTermino;
+	private double duracaoExercicio;
 	private double caloriasGastas;
 	
-	public Exercicio(TipoExercicio nome, LocalDateTime horarioInicio, LocalDateTime horarioTermino) {
+	public Exercicio(TipoExercicio nome, double duracaoExercicio) {
 		this.nome = nome;
-		this.horarioInicio = horarioInicio;
-		this.horarioTermino = horarioTermino;
+		this.duracaoExercicio = duracaoExercicio;
 	}
 
 	public double estimarQtdDeCaloriasGastas(){

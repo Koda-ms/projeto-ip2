@@ -8,9 +8,9 @@ public class PlanoAlimentar {
 	private ArrayList<Alimento> alimentos;
 	private LocalDate dataInicio;
 	private LocalDate dataFim;
-	private ObjetivoTreino objetivoAlimentar;
+	private ObjetivoAlimentar objetivoAlimentar;
     
-    public PlanoAlimentar(Cliente cliente,LocalDate dataInicio, LocalDate dataFim, ObjetivoTreino objetivoAlimentar) {
+    public PlanoAlimentar(Cliente cliente,LocalDate dataInicio, LocalDate dataFim, ObjetivoAlimentar objetivoAlimentar) {
     	this.cliente = cliente;
 		this.alimentos = new ArrayList<Alimento>();
     	this.dataInicio = dataInicio;

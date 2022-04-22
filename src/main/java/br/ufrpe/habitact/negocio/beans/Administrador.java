@@ -9,4 +9,12 @@ public class Administrador extends Usuario{
 		super(nome, email, senha, dtNascimento);
 		this.iD = iD;
 	}
+
+	public String getiD() {
+		return iD;
+	}
+
+	public void setiD(String iD) {
+		this.iD = iD;
+	}
 }

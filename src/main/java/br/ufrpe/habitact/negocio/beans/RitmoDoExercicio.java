@@ -10,4 +10,8 @@ public enum RitmoDoExercicio {
     RitmoDoExercicio(int ritmo){
         this.ritmo = ritmo;
     }
+
+	public int getRitmo() {
+		return ritmo;
+	}
 }

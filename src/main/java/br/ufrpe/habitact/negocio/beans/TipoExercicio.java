@@ -15,4 +15,9 @@ public enum TipoExercicio {
 	TipoExercicio(String nome) {
         this.nome = nome;
     }
+
+	public String getNome() {
+		return nome;
+	}
+	
 }

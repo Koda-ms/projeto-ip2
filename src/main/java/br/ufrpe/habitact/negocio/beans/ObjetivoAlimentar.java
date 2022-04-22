@@ -1,13 +1,15 @@
 package br.ufrpe.habitact.negocio.beans;
 
 public enum ObjetivoAlimentar {
-    MELHORAR_ALIMENTACAO("Melhorar Alimentação"),
-    SUPLEMENTACAO_ALIMENTAR("Suplementação Alimentar"),
-    OUTROS ("");
+	MELHORAR_ALIMENTACAO("Melhorar Alimentação"), SUPLEMENTACAO_ALIMENTAR("Suplementação Alimentar"), OUTROS("");
 
-    private String objetivo;
+	private String objetivo;
 
-    ObjetivoAlimentar(String objetivo){
-        this.objetivo = objetivo;
-    }
+	ObjetivoAlimentar(String objetivo) {
+		this.objetivo = objetivo;
+	}
+
+	public String getObjetivo() {
+		return objetivo;
+	}
 }

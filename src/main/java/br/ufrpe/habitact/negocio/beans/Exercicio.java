@@ -1,7 +1,5 @@
 package br.ufrpe.habitact.negocio.beans;
 
-import java.time.LocalDateTime;
-
 public class Exercicio {
 	private TipoExercicio nome;
 	private double duracaoExercicio;
@@ -9,8 +7,7 @@ public class Exercicio {
 	private RitmoDoExercicio ritmo;
 	private int repeticoes;
 	private int series;
-	
-	
+
 	public Exercicio(TipoExercicio nome, double duracaoExercicio, double caloriasGastas, RitmoDoExercicio ritmo,
 			int repeticoes, int series) {
 		this.nome = nome;
@@ -21,8 +18,8 @@ public class Exercicio {
 		this.series = series;
 	}
 
-	public void estimarQtdDeCaloriasGastas(){
-		//TODO Para efetuar essa estimativa serão necessárias as seguines informações:
+	public void estimarQtdDeCaloriasGastas() {
+		// TODO Para efetuar essa estimativa serão necessárias as seguines informações:
 		// - Peso, duração do exercício e o tipo do exercício
 	}
 

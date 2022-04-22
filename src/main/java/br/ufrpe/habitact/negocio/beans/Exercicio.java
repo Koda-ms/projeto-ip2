@@ -7,11 +7,18 @@ public class Exercicio {
 	private double duracaoExercicio;
 	private double caloriasGastas;
 	private RitmoDoExercicio ritmo;
+	private int repeticoes;
+	private int series;
 	
-	public Exercicio(TipoExercicio nome, double duracaoExercicio, RitmoDoExercicio ritmo) {
+	
+	public Exercicio(TipoExercicio nome, double duracaoExercicio, double caloriasGastas, RitmoDoExercicio ritmo,
+			int repeticoes, int series) {
 		this.nome = nome;
 		this.duracaoExercicio = duracaoExercicio;
+		this.caloriasGastas = caloriasGastas;
 		this.ritmo = ritmo;
+		this.repeticoes = repeticoes;
+		this.series = series;
 	}
 
 	public void estimarQtdDeCaloriasGastas(){

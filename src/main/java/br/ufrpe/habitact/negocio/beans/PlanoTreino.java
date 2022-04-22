@@ -4,13 +4,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class PlanoTreino {
-	private ArrayList<Exercicio> exercicios;
+	private Cliente cliente;
 	private LocalDate dataInicio;
 	private LocalDate dataFim;
-	private Objetivo objetivoTreino;
+	private ObjetivoTreino objetivoTreino;
+	private ArrayList<Treino> Treinos;
 	
-	public PlanoTreino(LocalDate dataInicio, LocalDate dataFim, Objetivo objetivoTreino) {
-		this.exercicios = new ArrayList<Exercicio>();
+	public PlanoTreino(Cliente cliente ,LocalDate dataInicio, LocalDate dataFim, ObjetivoTreino objetivoTreino) {
+		this.cliente = cliente;
+		//this.exercicio = new ArrayList<Exercicio>();
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
 		this.objetivoTreino = objetivoTreino;

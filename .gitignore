@@ -52,3 +52,8 @@ projeto-ip2.iml
 .metadata/.plugins/org.eclipse.m2e.logback.configuration/logback.1.16.3.20211002-1029.xml
 *.setup
 .metadata/.plugins/org.eclipse.tips.ide/dialog_settings.xml
+.idea/vcs.xml
+.idea/compiler.xml
+.idea/jarRepositories.xml
+.idea/misc.xml
+.idea/encodings.xml

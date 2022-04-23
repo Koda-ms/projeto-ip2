@@ -1,4 +1,4 @@
-package br.ufrpe.habitact.negocio.beans;
+package br.ufrpe.habitact.negocio.beans.enums;
 
 public enum RitmoDoExercicio {
     BAIXO (1),

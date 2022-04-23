@@ -1,4 +1,4 @@
-package br.ufrpe.habitact.negocio.beans;
+package br.ufrpe.habitact.negocio.beans.enums;
 
 public enum CategoriaTreino {
 	AEROBICO("Aeróbico"), ANAEROBICO("Anaeróbico");

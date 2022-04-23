@@ -1,26 +1,40 @@
 package br.ufrpe.habitact.negocio.beans;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public abstract class Usuario {
 	private String nome;
 	private String email;
 	private String senha;
 	private LocalDate dtNascimento;
-	
+
 	public Usuario(String nome, String email, String senha, LocalDate dtNascimento) {
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
 		this.dtNascimento = dtNascimento;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(email);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Usuario))
+			return false;
+		Usuario other = (Usuario) obj;
+		return Objects.equals(email, other.email);
+	}
 	
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-        if (!(o instanceof Usuario)) return false;
-        Usuario usuario = (Usuario) o;
-        return this.getEmail().equals(usuario.getEmail());
+	public String toString() {
+		return "Usuario [nome=" + nome + ", email=" + email + ", senha=" + senha + ", dtNascimento=" + dtNascimento
+				+ "]";
 	}
 
 	public String getNome() {
@@ -55,5 +69,4 @@ public abstract class Usuario {
 		this.dtNascimento = dtNascimento;
 	}
 
-	
 }

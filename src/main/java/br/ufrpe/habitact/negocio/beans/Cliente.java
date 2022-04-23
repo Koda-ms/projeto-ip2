@@ -1,14 +1,14 @@
 package br.ufrpe.habitact.negocio.beans;
 
 import java.time.LocalDate;
-import java.time.Period;
-import java.util.ArrayList;
+import java.time.temporal.ChronoUnit;
 
 public class Cliente extends Usuario {
 	private String genero;
 	private double peso;
 	private double altura;
 	private double imc;
+	private long idade;
 
 	public Cliente(String nome, String email, String senha, LocalDate dtNascimento, String genero, double peso,
 			double altura, boolean jaFazExercicio) {
@@ -17,14 +17,15 @@ public class Cliente extends Usuario {
 		this.peso = peso;
 		this.altura = altura;
 		this.calcularIMC(peso, altura);
+		this.calcularIdade(dtNascimento);
 	}
 
 	private void calcularIMC(double peso, double altura) {
 		this.imc = peso / (altura * altura);
 	}
 	
-	private int calcularIdade() {
-		return 0;
+	private void calcularIdade(LocalDate dtNascimento) {
+		this.idade =  dtNascimento.until(LocalDate.now(), ChronoUnit.YEARS);
 	}
 	
 	public double quantidadeDeAguaParaBeber(double peso) {
@@ -61,6 +62,14 @@ public class Cliente extends Usuario {
 
 	public void setImc(double imc) {
 		this.imc = imc;
+	}
+
+	public long getIdade() {
+		return idade;
+	}
+
+	public void setIdade(long idade) {
+		this.idade = idade;
 	}
 	
 	

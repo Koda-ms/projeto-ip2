@@ -1,4 +1,4 @@
-package br.ufrpe.habitact.negocio.beans;
+package br.ufrpe.habitact.negocio.beans.enums;
 
 public enum ObjetivoTreino {
 	PERDER_MASSA("Perder Massa"), GANHAR_MASSA("Ganhar Massa"), FORTALECER_MUSCULOS("Fortalecer Músculos"),
@@ -8,5 +8,9 @@ public enum ObjetivoTreino {
 
 	ObjetivoTreino(String objetivo) {
 		this.objetivo = objetivo;
+	}
+
+	public String getObjetivo() {
+		return objetivo;
 	}
 }

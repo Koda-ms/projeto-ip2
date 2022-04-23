@@ -1,28 +1,67 @@
 package br.ufrpe.habitact.negocio.beans;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
+
+import br.ufrpe.habitact.negocio.beans.enums.CategoriaTreino;
 
 public class Treino {
-	private List<Exercicio> exercicios;
+	private ArrayList<Exercicio> exercicios;
 	private double duracao;
 	private CategoriaTreino modalidade;
 
-	public Treino(ArrayList<Exercicio> exercicios, double duracao, CategoriaTreino modalidade) {
+	public Treino(ArrayList<Exercicio> exercicios, CategoriaTreino modalidade) {
 		this.exercicios = new ArrayList<>();
-		this.duracao = duracao;
+		this.duracaoTotal();
 		this.modalidade = modalidade;
 	}
 
-	public void adicionar_exercicio(Exercicio exercicio) {
-		this.exercicios.add(exercicio);
+	public void duracaoTotal() {
+		double soma = 0;
+		for (Exercicio e : exercicios) {
+			soma = soma + e.getDuracaoExercicio();
+		}
+		this.duracao = soma;
 	}
 
-	public void duracao_total() {
-		double SomaTotal = 0;
-		for (int i = 0; i < this.exercicios.size(); i++) {
-			SomaTotal = SomaTotal + this.exercicios.get(i).getDuracaoExercicio();
-		}
-		this.duracao = SomaTotal;
+	@Override
+	public int hashCode() {
+		return Objects.hash(duracao, exercicios, modalidade);
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Treino))
+			return false;
+		Treino other = (Treino) obj;
+		return Double.doubleToLongBits(duracao) == Double.doubleToLongBits(other.duracao)
+				&& Objects.equals(exercicios, other.exercicios) && modalidade == other.modalidade;
+	}
+
+	public ArrayList<Exercicio> getExercicios() {
+		return exercicios;
+	}
+
+	public void setExercicios(ArrayList<Exercicio> exercicios) {
+		this.exercicios = exercicios;
+	}
+
+	public double getDuracao() {
+		return duracao;
+	}
+
+	public void setDuracao(double duracao) {
+		this.duracao = duracao;
+	}
+
+	public CategoriaTreino getModalidade() {
+		return modalidade;
+	}
+
+	public void setModalidade(CategoriaTreino modalidade) {
+		this.modalidade = modalidade;
+	}
+
 }

@@ -1,4 +1,4 @@
-package br.ufrpe.habitact.negocio.beans;
+package br.ufrpe.habitact.negocio.beans.enums;
 
 public enum ObjetivoAlimentar {
 	MELHORAR_ALIMENTACAO("Melhorar Alimentação"), SUPLEMENTACAO_ALIMENTAR("Suplementação Alimentar"), OUTROS("");

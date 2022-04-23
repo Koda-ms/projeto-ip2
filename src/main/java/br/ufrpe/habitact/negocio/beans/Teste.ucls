@@ -10,7 +10,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="2" language="java" name="br.ufrpe.habitact.negocio.beans.ObjetivoAlimentar" project="projeto-ip2" 
+  <enumeration id="2" language="java" name="br.ufrpe.habitact.negocio.beans.enums.ObjetivoAlimentar" project="projeto-ip2"
     file="/projeto-ip2/src/main/java/br/ufrpe/habitact/negocio/beans/ObjetivoAlimentar.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1619" y="491"/>    
@@ -39,7 +39,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="5" language="java" name="br.ufrpe.habitact.negocio.beans.TipoExercicio" project="projeto-ip2" 
+  <enumeration id="5" language="java" name="br.ufrpe.habitact.negocio.beans.enums.TipoExercicio" project="projeto-ip2"
     file="/projeto-ip2/src/main/java/br/ufrpe/habitact/negocio/beans/TipoExercicio.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="237" y="884"/>    
@@ -59,7 +59,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="7" language="java" name="br.ufrpe.habitact.negocio.beans.ObjetivoTreino" project="projeto-ip2" 
+  <enumeration id="7" language="java" name="br.ufrpe.habitact.negocio.beans.enums.ObjetivoTreino" project="projeto-ip2"
     file="/projeto-ip2/src/main/java/br/ufrpe/habitact/negocio/beans/ObjetivoTreino.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="367" y="265"/>    
@@ -78,7 +78,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="9" language="java" name="br.ufrpe.habitact.negocio.beans.CategoriaTreino" project="projeto-ip2" 
+  <enumeration id="9" language="java" name="br.ufrpe.habitact.negocio.beans.enums.CategoriaTreino" project="projeto-ip2"
     file="/projeto-ip2/src/main/java/br/ufrpe/habitact/negocio/beans/CategoriaTreino.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="822" y="715"/>    
@@ -107,7 +107,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="12" language="java" name="br.ufrpe.habitact.negocio.beans.RitmoDoExercicio" project="projeto-ip2" 
+  <enumeration id="12" language="java" name="br.ufrpe.habitact.negocio.beans.enums.RitmoDoExercicio" project="projeto-ip2"
     file="/projeto-ip2/src/main/java/br/ufrpe/habitact/negocio/beans/RitmoDoExercicio.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="554" y="962"/>    

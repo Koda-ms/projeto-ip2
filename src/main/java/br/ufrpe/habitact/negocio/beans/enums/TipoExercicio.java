@@ -1,23 +1,22 @@
-package br.ufrpe.habitact.negocio.beans;
+package br.ufrpe.habitact.negocio.beans.enums;
 
 public enum TipoExercicio {
 	CAMINHADA ("Caminhada"), 
 	CORRIDA ("Corrida"), 
-	NATAÇÃO ("Natação"), 
+	NATACOO ("Natação"),
 	CICLISMO ("Ciclismo"), 
 	MUSCULACAO ("Musculação"), 
 	ARTES_MARCIAIS ("Artes Marciais"), 
 	TENIS_DE_MESA ("Tenis de Mesa"), 
 	OUTROS ("");
 	
-    private String nome;
+    private String tipo;
 
 	TipoExercicio(String nome) {
-        this.nome = nome;
+        this.tipo = nome;
     }
 
 	public String getNome() {
-		return nome;
+		return tipo;
 	}
-	
 }

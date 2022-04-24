@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoAlimentar;
 
 public class PlanoAlimentar {
@@ -16,15 +17,23 @@ public class PlanoAlimentar {
 	public PlanoAlimentar(Cliente cliente, LocalDate dataInicio, LocalDate dataFim,
 			ObjetivoAlimentar objetivoAlimentar) {
 		this.cliente = cliente;
-		this.alimentos = new ArrayList<Alimento>();
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
 		this.objetivoAlimentar = objetivoAlimentar;
+		this.alimentos = new ArrayList<Alimento>();
+	}
+
+	public void cadastrarAlimentos(Alimento alimento) throws ObjetoDuplicadoException {
+		if (!alimentos.contains(alimento)) {
+			alimentos.add(alimento);
+		} else {
+			throw new ObjetoDuplicadoException("Alimento já existe no plano");
+		}
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(alimentos, cliente, dataFim, dataInicio, objetivoAlimentar);
+		return Objects.hash(cliente, dataFim, dataInicio, objetivoAlimentar);
 	}
 
 	@Override
@@ -34,9 +43,8 @@ public class PlanoAlimentar {
 		if (!(obj instanceof PlanoAlimentar))
 			return false;
 		PlanoAlimentar other = (PlanoAlimentar) obj;
-		return Objects.equals(alimentos, other.alimentos) && Objects.equals(cliente, other.cliente)
-				&& Objects.equals(dataFim, other.dataFim) && Objects.equals(dataInicio, other.dataInicio)
-				&& objetivoAlimentar == other.objetivoAlimentar;
+		return Objects.equals(cliente, other.cliente) && Objects.equals(dataFim, other.dataFim)
+				&& Objects.equals(dataInicio, other.dataInicio) && objetivoAlimentar == other.objetivoAlimentar;
 	}
 
 	public Cliente getCliente() {

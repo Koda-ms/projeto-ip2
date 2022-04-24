@@ -16,10 +16,14 @@ public class PlanoAlimentar {
 	public PlanoAlimentar(Cliente cliente, LocalDate dataInicio, LocalDate dataFim,
 			ObjetivoAlimentar objetivoAlimentar) {
 		this.cliente = cliente;
-		this.alimentos = new ArrayList<Alimento>();
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
 		this.objetivoAlimentar = objetivoAlimentar;
+		this.alimentos = new ArrayList<Alimento>();
+	}
+	
+	public void cadastrarAlimentos(Alimento alimento) {
+		alimentos.add(alimento);
 	}
 
 	@Override

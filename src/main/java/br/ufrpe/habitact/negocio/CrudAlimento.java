@@ -1,35 +1,33 @@
 package br.ufrpe.habitact.negocio;
 
 import java.util.List;
-import br.ufrpe.habitact.negocio.beans.Alimento;
-import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
-import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
+
 import br.ufrpe.habitact.dados.IRepositorio;
 import br.ufrpe.habitact.dados.Repositorio;
-import br.ufrpe.habitact.excecoes.AlimentoComMesmoNomeException;
+import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
+import br.ufrpe.habitact.negocio.beans.Alimento;
 
 public class CrudAlimento {
-	//atributos
+	// atributos
 	private IRepositorio<Alimento> repositorioAlimento;
 	private static long quantidadeAlimento;
-	
-	//constructor default
+
+	// constructor default
 	public CrudAlimento() {
 		this.repositorioAlimento = new Repositorio<>();
 	}
-	
-	//método para adicionar alimento no sistema
-	public void adicionarAlimento(Alimento alimento) throws AlimentoComMesmoNomeException{
-		
+
+	// método para adicionar alimento no sistema
+	public void adicionarAlimento(Alimento alimento) throws ObjetoDuplicadoException {
 		try {
 			this.repositorioAlimento.inserir(alimento);
 			quantidadeAlimento = quantidadeAlimento + 1;
 		} catch (ObjetoDuplicadoException e) {
-			throw new AlimentoComMesmoNomeException("Este alimento já foi cadastrado no sistema.");
+			throw new ObjetoDuplicadoException("Este alimento já foi cadastrado no sistema.");
 		}
 	}
-	
-	public List<Alimento> listarAlimento(){
+
+	public List<Alimento> listarAlimento() {
 		return repositorioAlimento.listar();
 	}
 }

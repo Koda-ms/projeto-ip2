@@ -24,20 +24,12 @@ public class CrudUsuario {
 	public void cadastrarUsuario(Usuario u) throws ObjetoDuplicadoException {
 		if (u instanceof Cliente) {
 			Cliente c = (Cliente) u;
-			try {
-				this.repositorioCliente.inserir(c);
-				qtdUsuariosCadastrados++;
-			} catch (ObjetoDuplicadoException e) {
-				throw new ObjetoDuplicadoException("Usuário já cadastrado no sistema");
-			}
+			this.repositorioCliente.inserir(c);
+			setQtdUsuariosCadastrados(getQtdUsuariosCadastrados() + 1);
 		} else if (u instanceof Administrador) {
 			Administrador a = (Administrador) u;
-			try {
-				this.repositorioAdm.inserir(a);
-				qtdUsuariosCadastrados++;
-			} catch (ObjetoDuplicadoException e) {
-				throw new ObjetoDuplicadoException("Usuário já cadastrado no sistema");
-			}
+			this.repositorioAdm.inserir(a);
+			setQtdUsuariosCadastrados(getQtdUsuariosCadastrados() + 1);
 		}
 	}
 
@@ -84,6 +76,14 @@ public class CrudUsuario {
 
 	public List<Administrador> listarAdms() {
 		return repositorioAdm.listar();
+	}
+
+	public static long getQtdUsuariosCadastrados() {
+		return qtdUsuariosCadastrados;
+	}
+
+	private static void setQtdUsuariosCadastrados(long qtdUsuariosCadastrados) {
+		CrudUsuario.qtdUsuariosCadastrados = qtdUsuariosCadastrados;
 	}
 
 }

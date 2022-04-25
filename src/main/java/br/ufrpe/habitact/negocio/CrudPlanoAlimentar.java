@@ -59,7 +59,6 @@ public class CrudPlanoAlimentar {
 	}
 
 	public void removerPlanoALimentar(PlanoAlimentar planoAlimento) throws ObjetoNaoExisteException {
-
 		this.repositorioPlanoAlimentar.remover(planoAlimento);
 
 	}

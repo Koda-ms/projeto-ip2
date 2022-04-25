@@ -76,11 +76,10 @@ public class Treino {
 		}
 	}
 
-	public void removerExercicio(Exercicio exercicio) throws ObjetoNaoExisteException{
-		if(!this.exercicios.contains(exercicio)){
+	public void removerExercicio(Exercicio exercicio) throws ObjetoNaoExisteException {
+		if (!this.exercicios.contains(exercicio)) {
 			throw new ObjetoNaoExisteException("Exercício não existe");
-		}
-		else{
+		} else {
 			this.exercicios.remove(exercicio);
 		}
 	}

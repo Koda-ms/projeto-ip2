@@ -21,12 +21,8 @@ public class CrudAlimento {
 
 	// método para adicionar alimento no sistema
 	public void adicionarAlimento(Alimento alimento) throws ObjetoDuplicadoException {
-		try {
-			this.repositorioAlimento.inserir(alimento);
-			quantidadeAlimento = quantidadeAlimento + 1;
-		} catch (ObjetoDuplicadoException e) {
-			throw new ObjetoDuplicadoException("Este alimento já foi cadastrado no sistema.");
-		}
+		this.repositorioAlimento.inserir(alimento);
+		quantidadeAlimento = quantidadeAlimento + 1;
 	}
 
 	public Alimento buscarAlimento(String nome) throws ObjetoNaoExisteException {
@@ -36,7 +32,6 @@ public class CrudAlimento {
 	}
 
 	public void removerAlimento(Alimento alimento) throws ObjetoNaoExisteException {
-
 		this.repositorioAlimento.remover(alimento);
 
 	}

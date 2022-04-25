@@ -44,17 +44,18 @@ public class CrudPlanoAlimentar {
 		repositorioPlanoAlimentar.atualizar(planoAntigo, planoAlimentar);
 	}
 
+	// método para remover alimento do plano
+	public void removerAlimentoNoPlano(PlanoAlimentar planoAlimentar, Alimento alimentoAlvo)
+			throws ObjetoNaoExisteException {
+		PlanoAlimentar planoNovo = planoAlimentar;
+		planoNovo.removerAlimento(alimentoAlvo);
+		this.repositorioPlanoAlimentar.atualizar(planoAlimentar, planoNovo);
+	}
+
 	// método para modificar o plano de alimento no sistema
 	public void alterarPlanoAlimentar(PlanoAlimentar planoAlimentarAnterior, PlanoAlimentar planoAlimentarAtual)
 			throws ObjetoNaoExisteException {
 		repositorioPlanoAlimentar.atualizar(planoAlimentarAnterior, planoAlimentarAtual);
-	}
-
-	// método para remover alimento do plano
-	public void removerAlimentoDoPlano(PlanoAlimentar alimento) throws ObjetoNaoExisteException {
-
-		this.repositorioPlanoAlimentar.remover(alimento);
-
 	}
 
 	public void removerPlanoALimentar(PlanoAlimentar planoAlimento) throws ObjetoNaoExisteException {

@@ -5,15 +5,17 @@ import br.ufrpe.habitact.dados.Repositorio;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.negocio.beans.Exercicio;
+import br.ufrpe.habitact.negocio.beans.PlanoTreino;
 import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class CrudExercicio {
+public class ControladorExercicio {
 	private IRepositorio<Exercicio> repoExercicio;
 
-	public CrudExercicio() {
+	public ControladorExercicio() {
 		this.repoExercicio = new Repositorio<>();
 	}
 
@@ -29,10 +31,11 @@ public class CrudExercicio {
 		this.repoExercicio.remover(exec);
 	}
 
-	public Exercicio buscarExercicio(TipoExercicio tipo) throws ObjetoNaoExisteException {
+	public List<Exercicio> buscarExercicio(TipoExercicio tipo) throws ObjetoNaoExisteException {
 		List<Exercicio> exercicioList = new ArrayList<>(this.repoExercicio.listar());
-		return exercicioList.stream().filter(exercicio -> exercicio.getNome().equals(tipo)).reduce((a, b) -> b)
-				.orElse(null);
+		List<Exercicio> lista = exercicioList.stream()
+				.filter(plano -> plano.getNome().equals(tipo)).collect(Collectors.toList());
+		return lista;
 	}
 
 	public List<Exercicio> listarExercicios() {

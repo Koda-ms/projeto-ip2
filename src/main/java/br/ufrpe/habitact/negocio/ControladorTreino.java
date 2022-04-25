@@ -14,18 +14,17 @@ import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class CrudTreino {
+public class ControladorTreino {
     private IRepositorio<Treino> repositorioTreino;
-    private static long qtdDeExecicios;
 
-    public CrudTreino(){
+    public ControladorTreino(){
       this.repositorioTreino = new Repositorio<>();
     }
 
     public void inserirTreino(Treino treino) throws ObjetoDuplicadoException {
         this.repositorioTreino.inserir(treino);
-        qtdDeExecicios = qtdDeExecicios + 1;
     }
 
     public void inserirExercicio(Treino treino, Exercicio novoExercicio) throws ObjetoDuplicadoException, ObjetoNaoExisteException{
@@ -38,17 +37,17 @@ public class CrudTreino {
         Treino treinoNovo = treino;
         treinoNovo.removerExercicio(exercicioAlvo);
         this.repositorioTreino.atualizar(treino, treinoNovo);
-        qtdDeExecicios = qtdDeExecicios - 1;
     }
 
     public void removerTreino(Treino treino) throws ObjetoNaoExisteException {
         this.repositorioTreino.remover(treino);
     }
 
-    public Treino buscarTreino(CategoriaTreino categoria) throws ObjetoNaoExisteException {
+    public List<Treino> buscarTreino(CategoriaTreino categoria) throws ObjetoNaoExisteException {
         List<Treino> treinoList = new ArrayList<>(this.repositorioTreino.listar());
-        return treinoList.stream().filter(treino -> treino.getModalidade().equals(categoria)).reduce((a, b) -> b)
-                .orElse(null);
+        List<Treino> lista = treinoList.stream()
+				.filter(plano -> plano.getModalidade().equals(categoria)).collect(Collectors.toList());
+		return lista;
     }
 
     public void alterarTreino(Treino treinoAntigo, Treino novoTreino) throws ObjetoNaoExisteException {

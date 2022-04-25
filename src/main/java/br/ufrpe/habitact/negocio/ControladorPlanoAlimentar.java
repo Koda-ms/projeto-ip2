@@ -2,6 +2,7 @@ package br.ufrpe.habitact.negocio;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.ufrpe.habitact.dados.IRepositorio;
 import br.ufrpe.habitact.dados.Repositorio;
@@ -12,12 +13,12 @@ import br.ufrpe.habitact.negocio.beans.Alimento;
 import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
 
-public class CrudPlanoAlimentar {
+public class ControladorPlanoAlimentar {
 	// atributos
 	private IRepositorio<PlanoAlimentar> repositorioPlanoAlimentar;
 
 	// construtor default
-	public CrudPlanoAlimentar() {
+	public ControladorPlanoAlimentar() {
 		this.repositorioPlanoAlimentar = new Repositorio<>();
 	}
 
@@ -27,8 +28,8 @@ public class CrudPlanoAlimentar {
 		for (PlanoAlimentar p : this.listarPlanoAlimentar()) {
 			if (p.getCliente().equals(planoAlimentar.getCliente())
 					&& (p.getDataInicio().equals(planoAlimentar.getDataInicio())
-							| p.getDataFim().equals(planoAlimentar.getDataFim())
-							| ((p.getDataFim().isBefore(planoAlimentar.getDataFim()))
+							|| p.getDataFim().equals(planoAlimentar.getDataFim())
+							|| ((p.getDataFim().isBefore(planoAlimentar.getDataFim()))
 									&& (p.getDataInicio().isAfter(planoAlimentar.getDataInicio()))))) {
 				throw new MaisDeUmPlanoNoMesmoPeriodoException("Cliente já tem um plano neste período");
 			}
@@ -63,10 +64,11 @@ public class CrudPlanoAlimentar {
 
 	}
 
-	public PlanoAlimentar buscarPlanoAlimentar(Cliente cliente) throws ObjetoNaoExisteException {
+	public List<PlanoAlimentar> buscarPlanoAlimentar(Cliente cliente) throws ObjetoNaoExisteException {
 		List<PlanoAlimentar> listarPlanoAlimentar = new ArrayList<>(this.repositorioPlanoAlimentar.listar());
-		return listarPlanoAlimentar.stream().filter(plano -> plano.getCliente().equals(cliente)).reduce((a, b) -> b)
-				.orElse(null);
+		List<PlanoAlimentar> lista = listarPlanoAlimentar.stream()
+				.filter(plano -> plano.getCliente().equals(cliente)).collect(Collectors.toList());
+		return lista;
 	}
 
 	// método para listar o plano de alimento no sistema

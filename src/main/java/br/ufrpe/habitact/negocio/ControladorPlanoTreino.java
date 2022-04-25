@@ -11,11 +11,12 @@ import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class CrudPlanoTreino{
+public class ControladorPlanoTreino{
     private IRepositorio<PlanoTreino> repositorioPlanoTreino;
 
-    public CrudPlanoTreino(){
+    public ControladorPlanoTreino(){
         this.repositorioPlanoTreino = new Repositorio<>();
     }
 
@@ -24,8 +25,8 @@ public class CrudPlanoTreino{
         for (PlanoTreino p : this.listarPlanoTreino()) {
             if (p.getCliente().equals(planoTreino.getCliente())
                     && (p.getDataInicio().equals(planoTreino.getDataInicio())
-                    | p.getDataFim().equals(planoTreino.getDataFim())
-                    | ((p.getDataFim().isBefore(planoTreino.getDataFim()))
+                    || p.getDataFim().equals(planoTreino.getDataFim())
+                    || ((p.getDataFim().isBefore(planoTreino.getDataFim()))
                     && (p.getDataInicio().isAfter(planoTreino.getDataInicio()))))) {
                 throw new MaisDeUmPlanoNoMesmoPeriodoException("Cliente já tem um plano neste período");
             }
@@ -59,10 +60,11 @@ public class CrudPlanoTreino{
         this.repositorioPlanoTreino.atualizar(planoAntigo, planoNovo);
     }
 
-    public PlanoTreino buscarPlanoTreino(Cliente cliente) throws ObjetoNaoExisteException {
+    public List<PlanoTreino> buscarPlanoTreino(Cliente cliente) throws ObjetoNaoExisteException {
         List<PlanoTreino> planoList = new ArrayList<>(this.repositorioPlanoTreino.listar());
-        return planoList.stream().filter(planoTreino -> planoTreino.getCliente().equals(cliente)).reduce((a, b) -> b)
-                .orElse(null);
+        List<PlanoTreino> lista = planoList.stream()
+				.filter(plano -> plano.getCliente().equals(cliente)).collect(Collectors.toList());
+		return lista;
     }
 
     public void removerPlanoTreino(PlanoTreino treino) throws ObjetoNaoExisteException {

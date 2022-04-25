@@ -40,8 +40,6 @@ public class Exercicio {
 	}
 
 	public void estimarQtdDeCaloriasGastas(RitmoDoExercicio ritmo, double duracaoExercicio) {
-		// TODO Para efetuar essa estimativa serão necessárias as seguines informações:
-		// - Peso, duração do exercício e o tipo do exercício
 		this.caloriasGastas = duracaoExercicio * ritmo.getRitmo();
 	}
 

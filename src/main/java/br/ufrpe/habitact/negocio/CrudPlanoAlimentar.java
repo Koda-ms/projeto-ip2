@@ -42,7 +42,7 @@ public class CrudPlanoAlimentar {
 	}
 
 	// método para modificar o plano de alimento no sistema
-	public void mudarPlanoAlimentar(PlanoAlimentar planoAlimentarAnterior, PlanoAlimentar planoAlimentarAtual)
+	public void alterarPlanoAlimentar(PlanoAlimentar planoAlimentarAnterior, PlanoAlimentar planoAlimentarAtual)
 			throws ObjetoNaoExisteException {
 		repositorioPlanoAlimentar.atualizar(planoAlimentarAnterior, planoAlimentarAtual);
 	}

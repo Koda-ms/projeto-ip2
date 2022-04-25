@@ -11,53 +11,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CrudExercicio {
-    private IRepositorio<Exercicio> repoExercicio;
+	private IRepositorio<Exercicio> repoExercicio;
 
-    public CrudExercicio(){
-        this.repoExercicio = new Repositorio<>();
-    }
+	public CrudExercicio() {
+		this.repoExercicio = new Repositorio<>();
+	}
 
-    public void inserirExercicios(Exercicio exec) throws ObjetoDuplicadoException {
-        try {
-            this.repoExercicio.inserir(exec);
-        } catch (ObjetoDuplicadoException error) {
-            throw new ObjetoDuplicadoException("Exercicio já cadastrado na base de dados");
-        }
-    }
+	public void inserirExercicios(Exercicio exec) throws ObjetoDuplicadoException {
+		this.repoExercicio.inserir(exec);
+	}
 
-    public void alterarExercicio(Exercicio oldExec, Exercicio newExec) throws ObjetoNaoExisteException {
-        boolean isFound = false;
+	public void alterarExercicio(Exercicio oldExec, Exercicio newExec) throws ObjetoNaoExisteException {
+		this.repoExercicio.atualizar(oldExec, newExec);
+	}
 
-        List<Exercicio> exercicioList = this.repoExercicio.listar();
-        for (int index = 0; index < exercicioList.size() && !isFound; index += 1) {
-            if (exercicioList.get(index).equals(oldExec)) {
-                try{
-                    this.repoExercicio.atualizar(oldExec, newExec);
-                } catch (ObjetoNaoExisteException error){
-                    throw new ObjetoNaoExisteException("Exercicio não encontrado na base de dados");
-                }
-                isFound = true;
-            }
-        }
-    }
+	public void removerExercicios(Exercicio exec) throws ObjetoNaoExisteException {
+		this.repoExercicio.remover(exec);
+	}
 
-    public void removerExercicios(Exercicio exec) throws ObjetoNaoExisteException {
-        try {
-            this.repoExercicio.remover(exec);
-        } catch (ObjetoNaoExisteException error){
-            throw new ObjetoNaoExisteException("Exercicio não encontrado na base de dados");
-        }
-    }
+	public Exercicio buscarExercicio(TipoExercicio tipo) throws ObjetoNaoExisteException {
+		List<Exercicio> exercicioList = new ArrayList<>(this.repoExercicio.listar());
+		return exercicioList.stream().filter(exercicio -> exercicio.getNome().equals(tipo)).reduce((a, b) -> b)
+				.orElse(null);
+	}
 
-    public Exercicio buscarExercicio(TipoExercicio tipo) throws ObjetoNaoExisteException {
-        List<Exercicio> exercicioList = new ArrayList<>(this.repoExercicio.listar());
-        return exercicioList.stream()
-                .filter(exercicio -> exercicio.getNome().equals(tipo))
-                .reduce((a, b) -> b)
-                .orElse(null);
-    }
-
-    public List<Exercicio> listarExercicios() {
-        return this.repoExercicio.listar();
-    }
+	public List<Exercicio> listarExercicios() {
+		return this.repoExercicio.listar();
+	}
 }

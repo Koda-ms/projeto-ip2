@@ -1,5 +1,6 @@
 package br.ufrpe.habitact.negocio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.ufrpe.habitact.dados.IRepositorio;
@@ -9,7 +10,9 @@ import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.excecoes.SenhaIncorretaException;
 import br.ufrpe.habitact.negocio.beans.Administrador;
 import br.ufrpe.habitact.negocio.beans.Cliente;
+import br.ufrpe.habitact.negocio.beans.Exercicio;
 import br.ufrpe.habitact.negocio.beans.Usuario;
+import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
 
 public class CrudUsuario {
 	private IRepositorio<Cliente> repositorioCliente;
@@ -68,6 +71,12 @@ public class CrudUsuario {
 				throw new SenhaIncorretaException("Senha Incorreta");
 			}
 		}
+	}
+	
+	public Cliente buscarCliente(String nome) throws ObjetoNaoExisteException {
+		List<Cliente> usuariosList = new ArrayList<>(this.listarClientes());
+		return usuariosList.stream().filter(usuario -> usuario.getNome().equals(nome)).reduce((a, b) -> b)
+				.orElse(null);
 	}
 
 	public List<Cliente> listarClientes() {

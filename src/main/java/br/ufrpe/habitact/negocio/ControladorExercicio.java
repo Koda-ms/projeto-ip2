@@ -14,10 +14,18 @@ import java.util.stream.Collectors;
 
 public class ControladorExercicio {
 	private IRepositorio<Exercicio> repoExercicio;
+	private static ControladorExercicio instance;
 
-	public ControladorExercicio() {
+	private ControladorExercicio() {
 		this.repoExercicio = new Repositorio<>();
 	}
+	
+	public static ControladorExercicio getInstance() {
+        if (instance == null) {
+            instance = new ControladorExercicio();
+        }
+        return instance;
+    }
 
 	public void inserirExercicios(Exercicio exec) throws ObjetoDuplicadoException {
 		this.repoExercicio.inserir(exec);

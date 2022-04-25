@@ -15,9 +15,17 @@ import java.util.stream.Collectors;
 
 public class ControladorPlanoTreino{
     private IRepositorio<PlanoTreino> repositorioPlanoTreino;
+    private static ControladorPlanoTreino instance;
 
-    public ControladorPlanoTreino(){
+    private ControladorPlanoTreino(){
         this.repositorioPlanoTreino = new Repositorio<>();
+    }
+    
+    public static ControladorPlanoTreino getInstance() {
+        if (instance == null) {
+            instance = new ControladorPlanoTreino();
+        }
+        return instance;
     }
 
     public void cadastrarPlanoTreino(PlanoTreino planoTreino)

@@ -14,11 +14,19 @@ import br.ufrpe.habitact.negocio.beans.PlanoTreino;
 public class ControladorAlimento {
 	// atributos
 	private IRepositorio<Alimento> repositorioAlimento;
+	private static ControladorAlimento instance;
 
 	// constructor default
-	public ControladorAlimento() {
+	private ControladorAlimento() {
 		this.repositorioAlimento = new Repositorio<>();
 	}
+	
+	public static ControladorAlimento getInstance() {
+        if (instance == null) {
+            instance = new ControladorAlimento();
+        }
+        return instance;
+    }
 
 	// método para adicionar alimento no sistema
 	public void adicionarAlimento(Alimento alimento) throws ObjetoDuplicadoException {

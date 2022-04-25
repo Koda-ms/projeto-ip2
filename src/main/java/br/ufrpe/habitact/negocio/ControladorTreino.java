@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 public class ControladorTreino {
     private IRepositorio<Treino> repositorioTreino;
+    private static ControladorTreino instance;
 
     public ControladorTreino(){
       this.repositorioTreino = new Repositorio<>();
@@ -25,6 +26,13 @@ public class ControladorTreino {
 
     public void inserirTreino(Treino treino) throws ObjetoDuplicadoException {
         this.repositorioTreino.inserir(treino);
+    }
+    
+    public static ControladorTreino getInstance() {
+        if (instance == null) {
+            instance = new ControladorTreino();
+        }
+        return instance;
     }
 
     public void inserirExercicio(Treino treino, Exercicio novoExercicio) throws ObjetoDuplicadoException, ObjetoNaoExisteException{

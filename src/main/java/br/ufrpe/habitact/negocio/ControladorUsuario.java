@@ -18,10 +18,18 @@ import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
 
 public class ControladorUsuario {
 	private IRepositorio<Usuario> repositorioUsuario;
+	private static ControladorUsuario instance;
 
-	public ControladorUsuario() {
+	private ControladorUsuario() {
 		this.repositorioUsuario = new Repositorio<>();
 	}
+	
+	public static ControladorUsuario getInstance() {
+        if (instance == null) {
+            instance = new ControladorUsuario();
+        }
+        return instance;
+    }
 
 	public void cadastrarUsuario(Usuario u) throws ObjetoDuplicadoException {
 		this.repositorioUsuario.inserir(u);

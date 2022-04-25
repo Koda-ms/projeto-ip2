@@ -13,7 +13,7 @@ import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
 
 public class FachadaTest implements IFachada {
 	
-	 ControladorPlanoAlimentar planoA;
+	ControladorPlanoAlimentar planoA;
 	ControladorExercicio exerc;
 	
 	@Override

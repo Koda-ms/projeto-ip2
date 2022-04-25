@@ -16,11 +16,19 @@ import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
 public class ControladorPlanoAlimentar {
 	// atributos
 	private IRepositorio<PlanoAlimentar> repositorioPlanoAlimentar;
+	private static ControladorPlanoAlimentar instance;
 
 	// construtor default
-	public ControladorPlanoAlimentar() {
+	private ControladorPlanoAlimentar() {
 		this.repositorioPlanoAlimentar = new Repositorio<>();
 	}
+	
+	public static ControladorPlanoAlimentar getInstance() {
+        if (instance == null) {
+            instance = new ControladorPlanoAlimentar();
+        }
+        return instance;
+    }
 
 	// método para cadastrar o plano de alimento no sistema
 	public void cadastrarPlanoAlimentar(PlanoAlimentar planoAlimentar)

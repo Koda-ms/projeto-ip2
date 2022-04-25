@@ -1,5 +1,7 @@
 package br.ufrpe.habitact.negocio.beans;
 
+import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
+import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoTreino;
 
 import java.time.LocalDate;
@@ -78,4 +80,20 @@ public class PlanoTreino {
 		this.treinos = treinos;
 	}
 
+	public void cadastrarTreino(Treino treino) throws ObjetoDuplicadoException {
+		if (!this.treinos.contains(treino)) {
+			this.treinos.add(treino);
+		} else {
+			throw new ObjetoDuplicadoException("Treino já existe no plano");
+		}
+	}
+
+	public void removerTreino(Treino treino) throws ObjetoNaoExisteException {
+		if(!this.treinos.contains(treino)){
+			throw new ObjetoNaoExisteException("Treino não existe no plano");
+		}
+		else{
+			this.treinos.remove(treino);
+		}
+	}
 }

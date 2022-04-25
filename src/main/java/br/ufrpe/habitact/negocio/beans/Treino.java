@@ -1,11 +1,15 @@
 package br.ufrpe.habitact.negocio.beans;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
+import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.negocio.beans.enums.CategoriaTreino;
 
 public class Treino {
+	private LocalDate diaFeito;
 	private ArrayList<Exercicio> exercicios;
 	private double duracao;
 	private CategoriaTreino modalidade;
@@ -64,4 +68,28 @@ public class Treino {
 		this.modalidade = modalidade;
 	}
 
+	public void inserirExercicio(Exercicio exercicio) throws ObjetoDuplicadoException {
+		if (!this.exercicios.contains(exercicio)) {
+			this.exercicios.add(exercicio);
+		} else {
+			throw new ObjetoDuplicadoException("Exercício já existe no treino");
+		}
+	}
+
+	public void removerExercicio(Exercicio exercicio) throws ObjetoNaoExisteException{
+		if(!this.exercicios.contains(exercicio)){
+			throw new ObjetoNaoExisteException("Exercício não existe");
+		}
+		else{
+			this.exercicios.remove(exercicio);
+		}
+	}
+
+	public LocalDate getDiaFeito() {
+		return diaFeito;
+	}
+
+	public void setDiaFeito(LocalDate diaFeito) {
+		this.diaFeito = diaFeito;
+	}
 }

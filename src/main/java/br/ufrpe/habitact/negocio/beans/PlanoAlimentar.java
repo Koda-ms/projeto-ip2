@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
+import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoAlimentar;
 
 public class PlanoAlimentar {
@@ -28,6 +29,14 @@ public class PlanoAlimentar {
 			alimentos.add(alimento);
 		} else {
 			throw new ObjetoDuplicadoException("Alimento já existe no plano");
+		}
+	}
+
+	public void removerAlimento(Alimento alimento) throws ObjetoNaoExisteException {
+		if (!this.alimentos.contains(alimento)) {
+			throw new ObjetoNaoExisteException("Alimento não existe no plano");
+		} else {
+			this.alimentos.remove(alimento);
 		}
 	}
 

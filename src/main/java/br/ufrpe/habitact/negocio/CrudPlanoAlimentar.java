@@ -1,5 +1,6 @@
 package br.ufrpe.habitact.negocio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.ufrpe.habitact.dados.IRepositorio;
@@ -8,6 +9,7 @@ import br.ufrpe.habitact.excecoes.MaisDeUmPlanoNoMesmoPeriodoException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.negocio.beans.Alimento;
+import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
 
 public class CrudPlanoAlimentar {
@@ -34,6 +36,7 @@ public class CrudPlanoAlimentar {
 		this.repositorioPlanoAlimentar.inserir(planoAlimentar);
 	}
 
+	// método para inserir um Alimento em um PlanoAlimentar
 	public void inserirAlimentoNoPlano(PlanoAlimentar planoAlimentar, Alimento novoAlimento)
 			throws ObjetoDuplicadoException, ObjetoNaoExisteException {
 		PlanoAlimentar planoAntigo = planoAlimentar;
@@ -42,12 +45,31 @@ public class CrudPlanoAlimentar {
 	}
 
 	// método para modificar o plano de alimento no sistema
-	public void mudarPlanoAlimentar(PlanoAlimentar planoAlimentarAnterior, PlanoAlimentar planoAlimentarAtual)
+	public void alterarPlanoAlimentar(PlanoAlimentar planoAlimentarAnterior, PlanoAlimentar planoAlimentarAtual)
 			throws ObjetoNaoExisteException {
 		repositorioPlanoAlimentar.atualizar(planoAlimentarAnterior, planoAlimentarAtual);
 	}
 
-	// método para modificar o plano de alimento no sistema
+	// método para remover alimento do plano
+	public void removerAlimentoDoPlano(PlanoAlimentar alimento) throws ObjetoNaoExisteException {
+
+		this.repositorioPlanoAlimentar.remover(alimento);
+
+	}
+
+	public void removerPlanoALimentar(PlanoAlimentar planoAlimento) throws ObjetoNaoExisteException {
+
+		this.repositorioPlanoAlimentar.remover(planoAlimento);
+
+	}
+
+	public PlanoAlimentar buscarPlanoAlimentar(Cliente cliente) throws ObjetoNaoExisteException {
+		List<PlanoAlimentar> listarPlanoAlimentar = new ArrayList<>(this.repositorioPlanoAlimentar.listar());
+		return listarPlanoAlimentar.stream().filter(plano -> plano.getCliente().equals(cliente)).reduce((a, b) -> b)
+				.orElse(null);
+	}
+
+	// método para listar o plano de alimento no sistema
 	public List<PlanoAlimentar> listarPlanoAlimentar() {
 		return repositorioPlanoAlimentar.listar();
 	}

@@ -20,7 +20,7 @@ public class ControladorUsuario {
 	private IRepositorio<Usuario> repositorioUsuario;
 	private static ControladorUsuario instance;
 
-	private ControladorUsuario() {
+	ControladorUsuario() {
 		this.repositorioUsuario = new Repositorio<>();
 	}
 	

@@ -2,9 +2,8 @@ package br.ufrpe.habitact.negocio.beans.enums;
 
 public enum Refeicao {
     CAFÉ_DA_MANHÃ ("Café da manhã"),
-    LANCHE_DA_MANHÃ ("Lanche da manhã"),
+    LANCHE ("Lanche"),
     ALMOÇO ("Almoço"),
-    LANCHE_DA_TARDE ("Lanche da tarde"),
     JANTAR ("Jantar");
 
     private String refeicao;

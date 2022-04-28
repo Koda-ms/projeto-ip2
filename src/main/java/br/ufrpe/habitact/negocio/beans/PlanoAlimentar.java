@@ -96,4 +96,14 @@ public class PlanoAlimentar {
 		this.objetivoAlimentar = objetivoAlimentar;
 	}
 
+	public ArrayList<Alimento> alimentosDoDia(LocalDate dia){
+		ArrayList<Alimento> alimentosDoDia = new ArrayList<>();
+		for(int i = 0; i < this.alimentos.size(); i++){
+			if(this.alimentos.get(i).getDiaDoAlimento().equals(dia)){
+				alimentosDoDia.add(this.alimentos.get(i));
+			}
+		}
+
+		return alimentosDoDia;
+	}
 }

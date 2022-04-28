@@ -1,12 +1,19 @@
 package br.ufrpe.habitact.negocio.beans;
 
+import br.ufrpe.habitact.negocio.beans.enums.Refeicao;
+
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Alimento {
+	private LocalDate diaDoAlimento;
+	private Refeicao refeicao;
 	private String nome;
 	private double calorias;
 
-	public Alimento(String nome, double calorias) {
+	public Alimento(String nome, double calorias, Refeicao refeicao, LocalDate diaDoAlimento) {
+		this.diaDoAlimento = diaDoAlimento;
+		this.refeicao = refeicao;
 		this.nome = nome;
 		this.calorias = calorias;
 	}
@@ -43,4 +50,11 @@ public class Alimento {
 		this.calorias = calorias;
 	}
 
+	public LocalDate getDiaDoAlimento() {
+		return diaDoAlimento;
+	}
+
+	public void setDiaDoAlimento(LocalDate diaDoAlimento) {
+		this.diaDoAlimento = diaDoAlimento;
+	}
 }

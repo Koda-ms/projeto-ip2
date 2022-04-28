@@ -20,7 +20,7 @@ public class ControladorTreino {
     private IRepositorio<Treino> repositorioTreino;
     private static ControladorTreino instance;
 
-    ControladorTreino(){
+    private ControladorTreino(){
       this.repositorioTreino = new Repositorio<>();
     }
 

@@ -17,7 +17,7 @@ public class ControladorAlimento {
 	private static ControladorAlimento instance;
 
 	// constructor default
-	ControladorAlimento() {
+	private ControladorAlimento() {
 		this.repositorioAlimento = new Repositorio<>();
 	}
 	

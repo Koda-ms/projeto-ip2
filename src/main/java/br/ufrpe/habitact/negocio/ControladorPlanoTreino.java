@@ -17,7 +17,7 @@ public class ControladorPlanoTreino{
     private IRepositorio<PlanoTreino> repositorioPlanoTreino;
     private static ControladorPlanoTreino instance;
 
-    ControladorPlanoTreino(){
+    private ControladorPlanoTreino(){
         this.repositorioPlanoTreino = new Repositorio<>();
     }
     

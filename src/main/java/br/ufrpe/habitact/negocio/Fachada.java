@@ -28,13 +28,14 @@ public class Fachada implements IFachada {
 
 	private static Fachada instance;
 
+	@SuppressWarnings("static-access")
 	private Fachada() {
-		this.alimentos = new ControladorAlimento();
-		this.exercicios = new ControladorExercicio();
-		this.planosAlimentares = new ControladorPlanoAlimentar();
-		this.planosTreinos = new ControladorPlanoTreino();
-		this.treinos = new ControladorTreino();
-		this.usuarios = new ControladorUsuario();
+		this.alimentos = alimentos.getInstance();
+		this.exercicios = exercicios.getInstance();
+		this.planosAlimentares = planosAlimentares.getInstance();
+		this.planosTreinos = planosTreinos.getInstance();
+		this.treinos = treinos.getInstance();
+		this.usuarios = usuarios.getInstance();
 	}
 
 	public static Fachada getInstance() {

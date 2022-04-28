@@ -16,7 +16,7 @@ public class ControladorExercicio {
 	private IRepositorio<Exercicio> repoExercicio;
 	private static ControladorExercicio instance;
 
-	ControladorExercicio() {
+	private ControladorExercicio() {
 		this.repoExercicio = new Repositorio<>();
 	}
 	

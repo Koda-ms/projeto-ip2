@@ -19,7 +19,7 @@ public class ControladorPlanoAlimentar {
 	private static ControladorPlanoAlimentar instance;
 
 	// construtor default
-	ControladorPlanoAlimentar() {
+	private ControladorPlanoAlimentar() {
 		this.repositorioPlanoAlimentar = new Repositorio<>();
 	}
 	

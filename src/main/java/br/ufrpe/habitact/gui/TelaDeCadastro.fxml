@@ -6,6 +6,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
@@ -20,24 +21,24 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="579.0">
                            <children>
-                              <PasswordField layoutX="198.0" layoutY="14.0" />
-                              <Text layoutX="198.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
-                              <PasswordField layoutX="198.0" layoutY="99.0" />
+                              <Text layoutX="157.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
                               <ChoiceBox layoutX="197.0" layoutY="57.0" prefWidth="150.0" />
-                              <PasswordField layoutX="198.0" layoutY="138.0" />
                               <PasswordField layoutX="198.0" layoutY="217.0" />
                               <PasswordField layoutX="198.0" layoutY="259.0" />
                               <PasswordField layoutX="198.0" layoutY="299.0" />
-                              <Text layoutX="197.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="gênero" />
-                              <Text layoutX="197.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Peso" />
-                              <Text layoutX="197.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Altura em metros" />
-                              <Text layoutX="197.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data de nascimento" />
+                              <Text layoutX="152.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="gênero" />
+                              <Text layoutX="160.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Peso" />
+                              <Text layoutX="98.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Altura em metros" />
+                              <Text layoutX="85.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data de nascimento" />
                               <DatePicker layoutX="197.0" layoutY="180.0" />
                               <Text layoutX="197.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                              <Text layoutX="195.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
-                              <Text layoutX="198.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha" />
-                              <Text layoutX="198.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirmação de senha" />
+                              <Text layoutX="159.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+                              <Text layoutX="157.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha" />
+                              <Text layoutX="71.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirmação de senha" />
                               <Button layoutX="498.0" layoutY="299.0" mnemonicParsing="false" text="Cadastrar" />
+                              <TextField layoutX="198.0" layoutY="17.0" />
+                              <TextField layoutX="198.0" layoutY="99.0" />
+                              <TextField layoutX="198.0" layoutY="141.0" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -49,9 +50,9 @@
                               <PasswordField layoutX="215.0" layoutY="42.0" />
                               <PasswordField layoutX="215.0" layoutY="108.0" />
                               <PasswordField layoutX="215.0" layoutY="173.0" />
-                              <Text layoutX="215.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
-                              <Text layoutX="215.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha" />
-                              <Text layoutX="215.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirmação de senha" />
+                              <Text layoutX="172.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+                              <Text layoutX="170.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha" />
+                              <Text layoutX="83.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirmação de senha" />
                               <Button layoutX="512.0" layoutY="300.0" mnemonicParsing="false" text="Cadastrar" />
                            </children>
                         </AnchorPane>

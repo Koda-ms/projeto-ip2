@@ -1,6 +1,7 @@
 package br.ufrpe.habitact.gui;
 
 import br.ufrpe.habitact.dados.IRepositorio;
+import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.negocio.beans.Usuario;
 import javafx.application.Application;
 import javafx.beans.property.StringProperty;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 
 import static javafx.application.Application.launch;
 
+
 public class TelaDeLoginControlador{
     @FXML private TitledPane principal;
     @FXML private AnchorPane telaDeCadastro;
@@ -33,17 +35,35 @@ public class TelaDeLoginControlador{
     private IRepositorio<Usuario> repositorioUsuarios;
 
 
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().class.getResource("TelaDeLogin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
+    @FXML
+    public void btnLogar(ActionEvent event) throws ObjetoNaoExisteException{
+        try{
+            boolean achou = false;
+            ArrayList<Usuario> usuarios = repositorioUsuarios.listar();
+            for(Usuario usuario : usuarios){
+                if(usuario.getEmail().equals(email.getText()) && usuario.getSenha().equals(senha.getText())){
+                    achou = true;
+                }
+            }
+        }catch (ObjetoNaoExisteException e){
+            this.gerarAlertaDeUsuario("Úsuario não existente");
+        }
     }
 
+    private void gerarAlertaDeUsuario(String justificativa){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Úsuario não cadastrado");
+        alerta.setHeaderText("Aparentemente o úsuario não existe");
+        alerta.setContentText(justificativa);
+        alerta.showAndWait();
+    }
+
+    @FXML
+    public void btnCriarConta(ActionEvent event){
+        GerenciadorTelas.getInstance().changeScreen("telaDeCadastro");
+    }
 
     public static void main(String[] args) {
         launch(args);
     }
-
 }

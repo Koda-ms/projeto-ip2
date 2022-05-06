@@ -37,14 +37,8 @@ public class TelaDeLoginControlador{
 
 
     @FXML
-    public void btnLogar(ActionEvent event) throws ObjetoNaoExisteException{
-        boolean achou = false;
-        List<Usuario> usuarios = repositorioUsuarios.listar();
-        for(Usuario usuario : usuarios){
-            if(usuario.getEmail().equals(email.getText()) && usuario.getSenha().equals(senha.getText())){
-                achou = true;
-            }
-        }
+    public void btnLogar(ActionEvent event) {
+        
     }
 
     private void gerarAlertaDeUsuario(String justificativa){

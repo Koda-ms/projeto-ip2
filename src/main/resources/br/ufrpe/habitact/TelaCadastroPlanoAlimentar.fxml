@@ -27,12 +27,12 @@
       </Label>
       <DatePicker fx:id="dtInicio" layoutX="180.0" layoutY="74.0" prefHeight="25.0" prefWidth="151.0" promptText="Inicio" />
       <DatePicker fx:id="dtFim" layoutX="366.0" layoutY="74.0" prefHeight="25.0" prefWidth="150.0" promptText="Fim" />
-      <Label layoutX="31.0" layoutY="124.0" prefHeight="20.0" prefWidth="159.0" text="Objetivo Alimentar:">
+      <Label layoutX="31.0" layoutY="124.0" prefHeight="20.0" prefWidth="159.0" text="Objetivo:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="objetivo" layoutX="180.0" layoutY="122.0" prefHeight="25.0" prefWidth="330.0" promptText="Selecione" />
+      <ComboBox fx:id="objetivo" layoutX="180.0" layoutY="122.0" onAction="#optOutrosSelecionado" prefHeight="25.0" prefWidth="330.0" promptText="Escolha uma opção" />
       <TextField fx:id="textOutro" disable="true" layoutX="180.0" layoutY="161.0" prefHeight="17.0" prefWidth="330.0" />
       <Separator layoutX="8.0" layoutY="210.0" prefHeight="5.0" prefWidth="585.0" />
       <Separator layoutX="8.0" layoutY="260.0" prefHeight="5.0" prefWidth="585.0" />

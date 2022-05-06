@@ -9,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public class TelaPrincipalDoClienteControlador extends Application {
+public class TelaPrincipalDoClienteControlador{
     @FXML AnchorPane root;
     @FXML HBox botoes;
     @FXML TabPane objetivosEAlimentacao;
@@ -37,12 +37,4 @@ public class TelaPrincipalDoClienteControlador extends Application {
     @FXML Button informacoesUsuarioBtn;
 
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-
-    }
 }

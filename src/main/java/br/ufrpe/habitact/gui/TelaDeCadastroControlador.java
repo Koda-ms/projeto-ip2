@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public class TelaDeCadastroControlador extends Application {
+public class TelaDeCadastroControlador{
     @FXML private TitledPane root;
     @FXML private AnchorPane subRoot;
     @FXML private TabPane telaDeCadastro;
@@ -39,18 +39,9 @@ public class TelaDeCadastroControlador extends Application {
 
     @FXML
     private void btnCadastrarUsuario(Event e) throws ObjetoDuplicadoException {
-        try{
-        }
-        catch(ObjetoDuplicadoException exception){
-            throw new ObjetoDuplicadoException("Usuário já cadastrado");
-        }
+        System.out.println("oi");
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
     public void start(Stage primaryStage) {
 
     }

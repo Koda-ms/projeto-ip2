@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static javafx.application.Application.launch;
 
@@ -37,16 +38,12 @@ public class TelaDeLoginControlador{
 
     @FXML
     public void btnLogar(ActionEvent event) throws ObjetoNaoExisteException{
-        try{
-            boolean achou = false;
-            ArrayList<Usuario> usuarios = repositorioUsuarios.listar();
-            for(Usuario usuario : usuarios){
-                if(usuario.getEmail().equals(email.getText()) && usuario.getSenha().equals(senha.getText())){
-                    achou = true;
-                }
+        boolean achou = false;
+        List<Usuario> usuarios = repositorioUsuarios.listar();
+        for(Usuario usuario : usuarios){
+            if(usuario.getEmail().equals(email.getText()) && usuario.getSenha().equals(senha.getText())){
+                achou = true;
             }
-        }catch (ObjetoNaoExisteException e){
-            this.gerarAlertaDeUsuario("Úsuario não existente");
         }
     }
 
@@ -60,10 +57,6 @@ public class TelaDeLoginControlador{
 
     @FXML
     public void btnCriarConta(ActionEvent event){
-        GerenciadorTelas.getInstance().changeScreen("telaDeCadastro");
-    }
 
-    public static void main(String[] args) {
-        launch(args);
     }
 }

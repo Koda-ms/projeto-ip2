@@ -8,8 +8,7 @@ import javafx.scene.control.ComboBox;
 
 public class PopupCadastroPlanosController {
 
-    @FXML
-    private ComboBox<String> combo;
+    @FXML private ComboBox<String> combo;
 
     @FXML
     private void initialize(){
@@ -19,10 +18,8 @@ public class PopupCadastroPlanosController {
     }
 
     @FXML
-    void btnOkPressed(ActionEvent event) {
+    void btnOKPressed(ActionEvent event) {
         //TODO direcionar o botão para a próxima tela escolhida pelo usuário: Plano Alimentar ou Plano de Treino
-        if(combo.getValue().equalsIgnoreCase("Plano Alimentar")){
-            GerenciadorTelas.getInstance().getCadastroPlanoAlimentarController().initialize();
-        }
+        GerenciadorTelas.getInstance().trocarTela("planoAlimentar");
     }
 }

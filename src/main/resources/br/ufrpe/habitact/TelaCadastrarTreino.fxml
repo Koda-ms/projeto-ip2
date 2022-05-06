@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="451.0" prefWidth="571.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.habitact.gui.TelaCadastrarTreinoController">
+    <children>
+        <Separator layoutX="7.0" layoutY="56.0" prefHeight="5.0" prefWidth="552.0" />
+        <Label layoutX="30.0" layoutY="25.0" prefHeight="17.0" prefWidth="224.0" text="Adicionar Treino">
+            <font>
+                <Font name="Calibri" size="20.0" />
+            </font>
+        </Label>
+        <Button layoutX="482.0" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Voltar" />
+        <Button layoutX="475.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Salvar" />
+        <Label layoutX="30.0" layoutY="88.0" prefHeight="17.0" prefWidth="114.0" text="Modalidade:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <ComboBox layoutX="218.0" layoutY="86.0" prefHeight="25.0" prefWidth="159.0" promptText="Selecione" />
+        <Label layoutX="30.0" layoutY="133.0" prefHeight="17.0" prefWidth="114.0" text="Duração:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField alignment="CENTER_RIGHT" layoutX="218.0" layoutY="131.0" prefWidth="55.0" promptText="00h" />
+        <TextField alignment="CENTER_RIGHT" layoutX="299.0" layoutY="131.0" prefWidth="55.0" promptText="00min" />
+        <Text layoutX="284.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+        <Button layoutX="28.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="159.0" text="Adicionar novo exercício" />
+        <ListView layoutX="28.0" layoutY="239.0" prefHeight="150.0" prefWidth="520.0" />
+        <Label layoutX="28.0" layoutY="194.0" prefHeight="17.0" prefWidth="224.0" text="Catálogo de Exercícios">
+            <font>
+                <Font name="Calibri" size="20.0" />
+            </font>
+        </Label>
+        <Separator layoutX="10.0" layoutY="225.0" prefHeight="5.0" prefWidth="552.0" />
+        <Separator layoutX="10.0" layoutY="184.0" prefHeight="5.0" prefWidth="552.0" />
+        <ScrollBar layoutX="534.0" layoutY="239.0" orientation="VERTICAL" prefHeight="150.0" prefWidth="14.0" />
+    </children>
+</AnchorPane>

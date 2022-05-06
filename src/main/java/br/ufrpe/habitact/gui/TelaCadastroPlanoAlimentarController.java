@@ -8,33 +8,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class TelaCadastroPlanoAlimentarController {
     //private Usuario usuario;
-    @FXML
-    private DatePicker dtFim;
-
-    @FXML
-    private DatePicker dtInicio;
-
-    @FXML
-    private ComboBox<ObjetivoAlimentar> objetivo;
-
-    @FXML
-    private TableColumn<?, ?> qtdAlimento;
-
-    @FXML
-    private TableColumn<?, ?> caloriasAlimento;
-
-    @FXML
-    private TableColumn<?, ?> nomeAlimento;
-
-    @FXML
-    private ComboBox<Refeicao> refeicao;
-
-    @FXML
-    private TextField textOutro;
+    @FXML private DatePicker dtFim;
+    @FXML private DatePicker dtInicio;
+    @FXML private ComboBox<ObjetivoAlimentar> objetivo;
+    @FXML private TableColumn<?, ?> qtdAlimento;
+    @FXML private TableColumn<?, ?> caloriasAlimento;
+    @FXML private TableColumn<?, ?> nomeAlimento;
+    @FXML private ComboBox<Refeicao> refeicao;
+    @FXML private TextField textOutro;
 
     public void initialize() {
         //Adiciona os valores dos enuns ObjetivoAlimentar e Refeicao em cada ComboBox
@@ -51,8 +39,23 @@ public class TelaCadastroPlanoAlimentarController {
     }
 
     @FXML
+    void optOutrosSelecionado(ActionEvent event) {
+        //Habilita o campo Outro para digitação
+        if(objetivo.getValue().getObjetivo().equalsIgnoreCase("")){
+            this.textOutro.setDisable(false);
+        }
+    }
+
+    @FXML
     void btnAddAlimento(ActionEvent event) {
         //TODO direcionar tela atual para Tela de Cadastrar Alimento
+        Stage dialog = new Stage();
+        dialog.setScene(GerenciadorTelas.getInstance().getAddAlimentoScene());
+        dialog.setResizable(false);
+        dialog.setTitle("Cadastrar Alimentos");
+        dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.showAndWait();
     }
 
     @FXML
@@ -64,11 +67,7 @@ public class TelaCadastroPlanoAlimentarController {
             alert.setContentText("Verifique o(s) campo(s) vazio(s) do seu cadastro");
             alert.showAndWait();
         } else {
-            //Habilita o campo Outro para digitação
-            if(objetivo.getValue().getObjetivo().equals("OUTROS")){
-                this.textOutro.setDisable(false); //ou disableProperty().set(false)
-                this.textOutro.editableProperty().set(true);
-            }
+
 
             //TODO colocação do USUARIO no Construtor abaixo. Verificar se correta
             //PlanoAlimentar cadastrarPlano = new PlanoAlimentar(usuario, dtInicio.getValue(), dtFim.getValue(),

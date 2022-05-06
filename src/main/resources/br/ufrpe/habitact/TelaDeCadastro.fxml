@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="611.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="611.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
     <Tab text="Usuário">
       <content>
@@ -21,7 +21,8 @@
                   <TextField layoutX="230.0" layoutY="239.0" promptText="Email" />
                   <Button layoutX="272.0" layoutY="385.0" mnemonicParsing="false" text="Cadastrar" />
                   <PasswordField layoutX="231.0" layoutY="281.0" promptText="Senha" />
-                  <PasswordField layoutX="231.0" layoutY="321.0" />
+                  <PasswordField layoutX="231.0" layoutY="321.0" promptText="Confirmação de senha" />
+                  <TextField layoutX="230.0" layoutY="47.0" promptText="Gênero" />
                </children></AnchorPane>
       </content>
     </Tab>

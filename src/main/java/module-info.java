@@ -8,4 +8,6 @@ module com.example.projetoip2 {
         
     opens br.ufrpe.habitact to javafx.fxml;
     exports br.ufrpe.habitact;
+    exports br.ufrpe.habitact.gui;
+    opens br.ufrpe.habitact.gui to javafx.fxml;
 }

@@ -57,4 +57,12 @@ public class Alimento {
 	public void setDiaDoAlimento(LocalDate diaDoAlimento) {
 		this.diaDoAlimento = diaDoAlimento;
 	}
+
+	public Refeicao getRefeicao() {
+		return refeicao;
+	}
+
+	public void setRefeicao(Refeicao refeicao) {
+		this.refeicao = refeicao;
+	}
 }

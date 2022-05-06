@@ -8,8 +8,8 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage primaryStage){
-        primaryStage.setScene(GerenciadorTelas.getInstance().getPopupScene()); //Esse 'get' deve ser referente à 1ª tela da aplicação
-        primaryStage.setTitle("Projeto HabitAct");
+        primaryStage.setScene(GerenciadorTelas.getInstance().getPopupScene()); //Esse 'get' deve ser referente à 1ª tela da aplicação,
+        primaryStage.setTitle("Projeto HabitAct");                             //ou seja, a de Login
 
         primaryStage.setWidth(611);
         primaryStage.setHeight(573);

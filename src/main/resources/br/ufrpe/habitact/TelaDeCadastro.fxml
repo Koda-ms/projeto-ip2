@@ -1,66 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
 
-<TitledPane fx:id="root" animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Cadastro" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.habitact.gui.TelaDeCadastroControlador">
-   <content>
-      <AnchorPane fx:id="subRoot" prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <TabPane fx:id="telaDeCadastro" layoutX="112.0" layoutY="42.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <tabs>
-                <Tab text="Usuário">
-                  <content>
-                    <AnchorPane fx:id="telaUsuario" minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="579.0">
-                           <children>
-                              <Text layoutX="157.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
-                              <ChoiceBox fx:id="genero" layoutX="197.0" layoutY="57.0" prefWidth="150.0" />
-                              <PasswordField fx:id="emailUsuario" layoutX="198.0" layoutY="217.0" />
-                              <PasswordField fx:id="senhaUsuario" layoutX="198.0" layoutY="259.0" />
-                              <PasswordField fx:id="confirmacaoDeSenhaU" layoutX="198.0" layoutY="299.0" />
-                              <Text layoutX="152.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="gênero" />
-                              <Text layoutX="160.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Peso" />
-                              <Text layoutX="98.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Altura em metros" />
-                              <Text layoutX="85.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data de nascimento" />
-                              <DatePicker fx:id="dataDeNascimento" layoutX="197.0" layoutY="180.0" />
-                              <Text layoutX="197.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                              <Text layoutX="159.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
-                              <Text layoutX="157.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha" />
-                              <Text layoutX="71.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirmação de senha" />
-                              <Button fx:id="cadastrarUsuario" layoutX="498.0" layoutY="299.0" mnemonicParsing="false" text="Cadastrar" />
-                              <TextField fx:id="nome" layoutX="198.0" layoutY="17.0" />
-                              <TextField fx:id="peso" layoutX="198.0" layoutY="99.0" />
-                              <TextField fx:id="altura" layoutX="198.0" layoutY="141.0" />
-                           </children>
-                        </AnchorPane>
-                  </content>
-                </Tab>
-                <Tab fx:id="telaAdiministrador" text="Adiministrador">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <PasswordField fx:id="emailAdiministrador" layoutX="215.0" layoutY="42.0" />
-                              <PasswordField fx:id="senhaAdiministrador" layoutX="215.0" layoutY="108.0" />
-                              <PasswordField fx:id="confirmacaoDeSenhaAdm" layoutX="215.0" layoutY="173.0" />
-                              <Text layoutX="172.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
-                              <Text layoutX="170.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha" />
-                              <Text layoutX="83.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirmação de senha" />
-                              <Button fx:id="cadastrarAdministrador" layoutX="512.0" layoutY="300.0" mnemonicParsing="false" text="Cadastrar" />
-                           </children>
-                        </AnchorPane>
-                  </content>
-                </Tab>
-              </tabs>
-            </TabPane>
-         </children>
-      </AnchorPane>
-   </content>
-</TitledPane>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="611.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
+  <tabs>
+    <Tab text="Usuário">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="573.0" prefWidth="611.0">
+               <children>
+                  <TextField layoutX="231.0" layoutY="81.0" promptText="Nome" />
+                  <TextField layoutX="231.0" layoutY="200.0" promptText="Altura em metros" />
+                  <TextField layoutX="230.0" layoutY="159.0" promptText="Peso em kg" />
+                  <DatePicker layoutX="230.0" layoutY="121.0" promptText="Data de nascimento" />
+                  <TextField layoutX="230.0" layoutY="239.0" promptText="Email" />
+                  <Button layoutX="272.0" layoutY="385.0" mnemonicParsing="false" text="Cadastrar" />
+                  <PasswordField layoutX="231.0" layoutY="281.0" promptText="Senha" />
+                  <PasswordField layoutX="231.0" layoutY="321.0" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Administrador">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Button layoutX="273.0" layoutY="260.0" mnemonicParsing="false" text="Cadastrar" />
+                  <TextField layoutX="231.0" layoutY="110.0" promptText="Email" />
+                  <PasswordField layoutX="232.0" layoutY="164.0" promptText="Senha" />
+                  <PasswordField layoutX="232.0" layoutY="207.0" promptText="Confirmação de senha" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>

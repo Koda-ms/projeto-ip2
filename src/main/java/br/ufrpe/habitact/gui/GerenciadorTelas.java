@@ -38,18 +38,15 @@ public class GerenciadorTelas {
             this.loginScene = new Scene(fxmlLoader.load());
             this.login = (TelaDeLoginControlador) fxmlLoader.getController();
 
-            //fxmlLoader = new FXMLLoader();
-            //fxmlLoader = new FXMLLoader(HelloApplication.class.
-            //        getResource("TelaDeCadastro.fxml"));
-            //this.cadastroScene = new Scene(fxmlLoader.load());
-            //this.cadastro = (TelaDeCadastroControlador) fxmlLoader.getController();
+            fxmlLoader = new FXMLLoader(HelloApplication.class.
+                    getResource("TelaDeCadastro.fxml"));
+            this.cadastroScene = new Scene(fxmlLoader.load());
+            this.cadastro = (TelaDeCadastroControlador) fxmlLoader.getController();
 
-            //fxmlLoader = new FXMLLoader();
-            //fxmlLoader = new FXMLLoader(HelloApplication.class.
-            //       getResource("TelaPrincipalDoCliente.fxml"));
-            //this.principalScene = new Scene(fxmlLoader.load());
-            //this.principal = (TelaPrincipalDoClienteControlador) fxmlLoader.getController();
-
+            fxmlLoader = new FXMLLoader(HelloApplication.class.
+                   getResource("TelaPrincipalDoCliente.fxml"));
+            this.principalScene = new Scene(fxmlLoader.load());
+            this.principal = (TelaPrincipalDoClienteControlador) fxmlLoader.getController();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -70,6 +67,10 @@ public class GerenciadorTelas {
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
     }
 
     public TelaPrincipalDoClienteControlador getTelaDoCliente() {

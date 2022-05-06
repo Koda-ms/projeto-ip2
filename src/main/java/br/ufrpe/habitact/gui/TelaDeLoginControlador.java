@@ -2,6 +2,7 @@ package br.ufrpe.habitact.gui;
 
 import br.ufrpe.habitact.dados.IRepositorio;
 import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
+import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Usuario;
 import javafx.application.Application;
 import javafx.beans.property.StringProperty;
@@ -12,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -23,29 +25,25 @@ import static javafx.application.Application.launch;
 
 
 public class TelaDeLoginControlador{
-    @FXML private TitledPane principal;
-    @FXML private AnchorPane telaDeCadastro;
-    @FXML private AnchorPane subTelaDeCadastro;
-    @FXML private PasswordField email;
-    @FXML private PasswordField senha;
-    @FXML private Text txtEmail;
-    @FXML private Text txtSenha;
-    @FXML private Button criarConta;
-    @FXML private Button logar;
-    private ArrayList<Usuario> listaUsuarios;
-    private IRepositorio<Usuario> repositorioUsuarios;
-
+    @FXML TextField emailTxtField;
+    @FXML PasswordField senhaField;
+    @FXML Button logarButton;
+    @FXML Button cadastrarButton;
 
     @FXML
     public void btnLogar(ActionEvent event) {
-        
+        Usuario u = Fachada.getInstance().autenticarUsuario(emailTxtField.getText(), senhaField.getText());
+        if (u == null){
+            this.gerarAlertaDeUsuario();
+        } else {
+            GerenciadorTelas.getInstance().getPrimaryStage().setScene(GerenciadorTelas.getInstance().getPrincipalScene());
+        }
     }
 
-    private void gerarAlertaDeUsuario(String justificativa){
+    private void gerarAlertaDeUsuario(){
         Alert alerta = new Alert(Alert.AlertType.ERROR);
-        alerta.setTitle("Úsuario não cadastrado");
-        alerta.setHeaderText("Aparentemente o úsuario não existe");
-        alerta.setContentText(justificativa);
+        alerta.setTitle("Usuário não cadastrado");
+        alerta.setHeaderText("Aparentemente o usuário não existe");
         alerta.showAndWait();
     }
 

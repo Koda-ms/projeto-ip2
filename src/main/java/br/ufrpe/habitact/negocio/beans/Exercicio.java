@@ -1,9 +1,9 @@
 package br.ufrpe.habitact.negocio.beans;
 
-import java.util.Objects;
-
 import br.ufrpe.habitact.negocio.beans.enums.RitmoDoExercicio;
 import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
+
+import java.util.Objects;
 
 public class Exercicio {
 	private TipoExercicio nome;
@@ -21,7 +21,6 @@ public class Exercicio {
 		this.repeticoes = repeticoes;
 		this.series = series;
 		this.estimarQtdDeCaloriasGastas(ritmo, duracaoExercicio);
-
 	}
 
 	@Override

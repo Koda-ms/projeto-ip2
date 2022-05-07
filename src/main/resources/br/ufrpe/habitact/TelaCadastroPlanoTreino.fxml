@@ -19,7 +19,7 @@
             <Font name="Calibri" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="521.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Voltar" />
+      <Button layoutX="521.0" layoutY="18.0" mnemonicParsing="false" onAction="#btnVoltarPressed" prefHeight="25.0" prefWidth="55.0" text="Voltar" />
       <Label layoutX="41.0" layoutY="86.0" prefHeight="17.0" prefWidth="114.0" text="Período:">
          <font>
             <Font size="14.0" />
@@ -33,17 +33,17 @@
          </font>
       </Label>
       <ComboBox fx:id="objetivo" layoutX="190.0" layoutY="132.0" prefHeight="25.0" prefWidth="330.0" promptText="Escolha uma opção" />
-      <TextField fx:id="textOutro" disable="true" layoutX="190.0" layoutY="171.0" prefHeight="17.0" prefWidth="330.0" />
+      <TextField fx:id="textOutro" disable="true" layoutX="190.0" layoutY="171.0" onAction="#optOutrosSelecionado" prefHeight="17.0" prefWidth="330.0" />
       <Separator layoutX="13.0" layoutY="220.0" prefHeight="5.0" prefWidth="585.0" />
       <Separator layoutX="13.0" layoutY="270.0" prefHeight="5.0" prefWidth="585.0" />
-      <Button layoutX="494.0" layoutY="514.0" mnemonicParsing="false" onAction="#btnCadastrarPressed" prefHeight="25.0" prefWidth="81.0" text="Cadastrar" />
+      <Button layoutX="494.0" layoutY="504.0" mnemonicParsing="false" onAction="#btnCadastrarPressed" prefHeight="25.0" prefWidth="81.0" text="Cadastrar" />
       <Label layoutX="39.0" layoutY="236.0" prefHeight="17.0" prefWidth="224.0" text="Catálogo de Treinos">
          <font>
             <Font name="Calibri" size="20.0" />
          </font>
       </Label>
       <Button layoutX="47.0" layoutY="494.0" mnemonicParsing="false" onAction="#btnAddTreino" prefHeight="25.0" prefWidth="151.0" text="Adicionar novo treino" />
-      <TableView layoutX="47.0" layoutY="306.0" prefHeight="176.0" prefWidth="528.0">
+      <TableView layoutX="42.0" layoutY="301.0" prefHeight="176.0" prefWidth="528.0">
          <columns>
             <TableColumn fx:id="nomeTreino" prefWidth="270.0" text="Nome" />
             <TableColumn fx:id="detalheExercicio" prefWidth="257.0" text="Exercício" />

@@ -13,6 +13,8 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("TelaAdm.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
+        stage.setWidth(611);
+        stage.setHeight(573);
         stage.show();
     }
 

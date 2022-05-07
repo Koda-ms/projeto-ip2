@@ -19,4 +19,5 @@ public class DiasDaSemana {
         public String getRefeicao() {
             return diaDaSemana;
         }
+    }
 }

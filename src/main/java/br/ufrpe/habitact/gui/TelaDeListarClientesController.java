@@ -1,14 +1,12 @@
 package br.ufrpe.habitact.gui;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 
 public class TelaDeListarClientesController{
+    @FXML
+    void btnVoltarPressed(ActionEvent event) {
 
+    }
 
 }

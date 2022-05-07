@@ -10,4 +10,28 @@ public class TelaDeListarDadosController {
 
     }
 
+    @FXML
+    void btnEditarPressed(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnEscolherPlanoPressed(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnPeriodoPressed(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnQuantidadeDePlanosPressed(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnVoltarPressed(ActionEvent event) {
+
+    }
 }

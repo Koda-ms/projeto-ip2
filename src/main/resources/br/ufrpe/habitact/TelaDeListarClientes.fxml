@@ -70,7 +70,7 @@
                         <Label text="Label" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
-                  <Button layoutX="364.0" layoutY="12.0" mnemonicParsing="false" text="Voltar" />
+                  <Button layoutX="364.0" layoutY="12.0" mnemonicParsing="false" onAction="#btnVoltarPressed" text="Voltar" />
                </children>
             </AnchorPane>
         </items>

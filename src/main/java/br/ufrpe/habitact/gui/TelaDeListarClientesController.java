@@ -1,16 +1,14 @@
 package br.ufrpe.habitact.gui;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class TelaDeListarClientesController extends Application {
+import java.io.IOException;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+public class TelaDeListarClientesController{
 
-    @Override
-    public void start(Stage primaryStage) {
 
-    }
 }

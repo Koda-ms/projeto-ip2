@@ -1,16 +1,4 @@
 package br.ufrpe.habitact.gui;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
-
-public class TelaDeInformacoesPessoaisController extends Application {
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-
-    }
+public class TelaDeInformacoesPessoaisController {
 }

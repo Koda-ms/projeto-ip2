@@ -1,16 +1,13 @@
 package br.ufrpe.habitact.gui;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 
-public class TelaDeListarDadosController extends Application {
+public class TelaDeListarDadosController {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
+    @FXML
+    void btnCadastrarPressed(ActionEvent event) {
 
     }
+
 }

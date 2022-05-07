@@ -15,7 +15,17 @@ public class TelaCadastrarAlimentosController {
 
     @FXML
     void btnSalvarPressed(ActionEvent event) {
-        ((Stage)this.btnCancelarSalvarPressed.getScene().getWindow()).close();
+        if (verificarCamposVazios()) {
+            GerenciadorTelas.getInstance().alertaCamposVazios();
+        } else{
+            //TODO Configurar parte para armazenar os alimentos cadastrados pelo usuário
+            ((Stage)this.btnCancelarSalvarPressed.getScene().getWindow()).close();
+        }
+    }
+
+    private boolean verificarCamposVazios() {
+        return textNome.getText().isBlank() || textQuantidade.getText().isBlank() &&
+                textCalorias.getText().isBlank();
     }
 
 }

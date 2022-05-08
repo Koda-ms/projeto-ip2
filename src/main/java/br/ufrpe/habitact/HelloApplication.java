@@ -11,8 +11,8 @@ public class HelloApplication extends Application {
         primaryStage.setScene(GerenciadorTelas.getInstance().getPopupScene()); //Esse 'get' deve ser referente à 1ª tela da aplicação,
         primaryStage.setTitle("Projeto HabitAct");                             //ou seja, a de Login
 
-        primaryStage.setWidth(611);
-        primaryStage.setHeight(573);
+        primaryStage.setWidth(640);
+        primaryStage.setHeight(600);
 
         GerenciadorTelas.getInstance().setPrimaryStage(primaryStage);
         primaryStage.show();

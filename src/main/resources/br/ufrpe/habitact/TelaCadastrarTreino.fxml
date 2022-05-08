@@ -6,33 +6,23 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <Pane prefHeight="426.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.habitact.gui.TelaCadastrarTreinoController">
    <children>
-      <Separator layoutX="17.0" layoutY="46.0" prefHeight="4.0" prefWidth="471.0" />
-      <Label layoutX="32.0" layoutY="18.0" prefHeight="17.0" prefWidth="224.0" text="Adicionar Treino">
+      <Separator layoutX="17.0" layoutY="60.0" prefHeight="4.0" prefWidth="471.0" />
+      <Label layoutX="32.0" layoutY="25.0" prefHeight="17.0" prefWidth="224.0" text="Adicionar Treino">
          <font>
             <Font name="Calibri" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="31.0" layoutY="66.0" prefHeight="17.0" prefWidth="114.0" text="Categoria:">
+      <Label layoutX="31.0" layoutY="87.0" prefHeight="17.0" prefWidth="114.0" text="Categoria:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="optCategoria" layoutX="219.0" layoutY="64.0" prefHeight="25.0" prefWidth="159.0" promptText="Selecione" />
-      <Label layoutX="31.0" layoutY="106.0" prefHeight="17.0" prefWidth="114.0" text="Duração:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <TextField alignment="CENTER_RIGHT" layoutX="219.0" layoutY="104.0" prefWidth="55.0" promptText="00h" />
-      <TextField alignment="CENTER_RIGHT" layoutX="300.0" layoutY="104.0" prefWidth="55.0" promptText="00min" />
-      <Text layoutX="285.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+      <ComboBox fx:id="optCategoria" layoutX="219.0" layoutY="85.0" prefHeight="25.0" prefWidth="159.0" promptText="Selecione" />
       <Separator layoutX="14.0" layoutY="144.0" prefHeight="4.0" prefWidth="471.0" />
       <Label layoutX="27.0" layoutY="158.0" prefHeight="17.0" prefWidth="224.0" text="Catálogo de Exercícios">
          <font>
@@ -40,7 +30,7 @@
          </font>
       </Label>
       <Separator layoutX="13.0" layoutY="190.0" prefHeight="4.0" prefWidth="471.0" />
-      <TableView layoutX="19.0" layoutY="205.0" prefHeight="158.0" prefWidth="459.0">
+      <TableView fx:id="tblExercicio" layoutX="19.0" layoutY="205.0" prefHeight="158.0" prefWidth="459.0">
          <columns>
             <TableColumn fx:id="nomeExercicio" prefWidth="238.0" text="Nome" />
             <TableColumn fx:id="ritmo" prefWidth="219.0" text="Ritmo" />

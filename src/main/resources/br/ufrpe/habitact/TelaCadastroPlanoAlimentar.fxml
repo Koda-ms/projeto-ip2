@@ -36,13 +36,13 @@
       <TextField fx:id="textOutro" disable="true" layoutX="180.0" layoutY="161.0" prefHeight="17.0" prefWidth="330.0" />
       <Separator layoutX="8.0" layoutY="210.0" prefHeight="5.0" prefWidth="585.0" />
       <Separator layoutX="8.0" layoutY="260.0" prefHeight="5.0" prefWidth="585.0" />
-      <Button layoutX="490.0" layoutY="495.0" mnemonicParsing="false" onAction="#btnCadastrarPressed" prefHeight="25.0" prefWidth="81.0" text="Cadastrar" />
+      <Button fx:id="btnCancelarCadastrarPressed" layoutX="490.0" layoutY="495.0" mnemonicParsing="false" onAction="#btnCadastrarPressed" prefHeight="25.0" prefWidth="81.0" text="Cadastrar" />
       <Label layoutX="29.0" layoutY="226.0" prefHeight="17.0" prefWidth="224.0" text="Catálogo de Alimentos">
          <font>
             <Font name="Calibri" size="20.0" />
          </font>
       </Label>
-      <ComboBox fx:id="refeicao" layoutX="227.0" layoutY="280.0" prefWidth="150.0" promptText="Selecione" />
+      <ComboBox fx:id="refeicao" layoutX="227.0" layoutY="280.0" prefHeight="25.0" prefWidth="167.0" promptText="Selecione" />
       <Label layoutX="43.0" layoutY="282.0" prefHeight="17.0" prefWidth="114.0" text="Refeição:">
          <font>
             <Font size="14.0" />
@@ -51,9 +51,9 @@
       <Button layoutX="43.0" layoutY="483.0" mnemonicParsing="false" onAction="#btnAddAlimento" prefHeight="25.0" prefWidth="151.0" text="Adicionar novo alimento" />
       <TableView fx:id="tblAlimentos" layoutX="42.0" layoutY="314.0" prefHeight="158.0" prefWidth="528.0">
          <columns>
-            <TableColumn fx:id="nomeAlimento" prefWidth="255.0" text="Nome" />
-            <TableColumn fx:id="qtdAlimento" prefWidth="132.0" text="Quantidade" />
-            <TableColumn fx:id="caloriasAlimento" prefWidth="140.0" text="Calorias" />
+            <TableColumn fx:id="colNomeAlimento" prefWidth="255.0" text="Nome" />
+            <TableColumn fx:id="colQtdAlimento" prefWidth="132.0" text="Quantidade" />
+            <TableColumn fx:id="colCaloriasAlimento" prefWidth="140.0" text="Calorias" />
          </columns>
       </TableView>
    </children>

@@ -82,6 +82,7 @@ public class GerenciadorTelas {
         FXMLLoader fxmlLoader = new FXMLLoader();
 
         switch (tela){
+            case "popupPlanos": primaryStage.setScene(popupScene); break;
             case "planoAlimentar": primaryStage.setScene(planoAlimentarScene);break;
             case "planoTreino": primaryStage.setScene(planoTreinoScene); break;
         }

@@ -9,29 +9,29 @@ public class Alimento {
 	private LocalDate diaDoAlimento;
 	private Refeicao refeicao;
 	private String nome;
-	private double calorias;
+	private String qtdGrama;
+	private String calorias;
 
-	public Alimento(String nome, double calorias, Refeicao refeicao, LocalDate diaDoAlimento) {
+	public Alimento(String nome, String qtdGrama, String calorias, Refeicao refeicao, LocalDate diaDoAlimento) {
 		this.diaDoAlimento = diaDoAlimento;
 		this.refeicao = refeicao;
 		this.nome = nome;
+		this.qtdGrama = qtdGrama;
 		this.calorias = calorias;
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(calorias, nome);
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Alimento alimento = (Alimento) o;
+		return diaDoAlimento.equals(alimento.diaDoAlimento) && refeicao == alimento.refeicao
+				&& nome.equals(alimento.nome) && qtdGrama.equals(alimento.qtdGrama) && calorias.equals(alimento.calorias);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!(obj instanceof Alimento))
-			return false;
-		Alimento other = (Alimento) obj;
-		return Double.doubleToLongBits(calorias) == Double.doubleToLongBits(other.calorias)
-				&& Objects.equals(nome, other.nome);
+	public int hashCode() {
+		return Objects.hash(diaDoAlimento, refeicao, nome, qtdGrama, calorias);
 	}
 
 	public String getNome() {
@@ -42,11 +42,19 @@ public class Alimento {
 		this.nome = nome;
 	}
 
-	public double getCalorias() {
+	public String getQtdGrama() {
+		return qtdGrama;
+	}
+
+	public void setQtdGrama(String qtdGrama) {
+		this.qtdGrama = qtdGrama;
+	}
+
+	public String getCalorias() {
 		return calorias;
 	}
 
-	public void setCalorias(double calorias) {
+	public void setCalorias(String calorias) {
 		this.calorias = calorias;
 	}
 

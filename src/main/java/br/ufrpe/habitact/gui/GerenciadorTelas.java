@@ -84,4 +84,14 @@ public class GerenciadorTelas {
     public TelaDeLoginControlador getLogin() {
         return login;
     }
+
+    public void trocarTela(String tela){
+        FXMLLoader fxmlLoader = new FXMLLoader();
+
+        switch(tela){
+            case "TelaDeLogin": primaryStage.setScene(loginScene); break;
+            case "TelaDeCadastro": primaryStage.setScene(cadastroScene); break;
+            case "TelaPrincipalDoCliente": primaryStage.setScene(principalScene); break;
+        }
+    }
 }

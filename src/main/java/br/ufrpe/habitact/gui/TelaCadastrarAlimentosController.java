@@ -32,12 +32,11 @@ public class TelaCadastrarAlimentosController {
             GerenciadorTelas.getInstance().alertaCamposVazios();
         } else{
             //TODO Configurar parte para armazenar os alimentos cadastrados pelo usuário
-            Alimento alimento = new Alimento(textNome.getText(), textQuantidade.getText(), textCalorias.getText(),
-                    selectRefeicao.getValue(), LocalDate.now());
+            Alimento alimento = new Alimento(textNome.getText(), Double.parseDouble(textQuantidade.getText()),
+                    Double.parseDouble(textCalorias.getText()), selectRefeicao.getValue(), LocalDate.now());
             Fachada.getInstance().adicionarAlimento(alimento);
-            this.planoAlimentarController.carregarTableViewAlimentos(Fachada.getInstance().listarAlimento()); //O atributo retorna null
+            //this.planoAlimentarController.updateCatalogoAlimentos(Fachada.getInstance().listarAlimento()); //O atributo retorna null
             this.limparCamposDeDados();
-
 
             //Para fechar a tela
             ((Stage)this.btnCancelarSalvarPressed.getScene().getWindow()).close();

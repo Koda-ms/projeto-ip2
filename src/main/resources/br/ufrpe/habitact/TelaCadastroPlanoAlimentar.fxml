@@ -51,13 +51,11 @@
       <Button layoutX="43.0" layoutY="483.0" mnemonicParsing="false" onAction="#btnAddAlimento" prefHeight="25.0" prefWidth="151.0" text="Adicionar novo alimento" />
       <TableView fx:id="tblAlimentos" layoutX="42.0" layoutY="314.0" prefHeight="158.0" prefWidth="528.0">
          <columns>
-            <TableColumn fx:id="colNomeAlimento" prefWidth="195.0" text="Nome" />
-            <TableColumn fx:id="colQtdAlimento" prefWidth="179.0" text="Quantidade (grama)" />
-            <TableColumn fx:id="colCaloriasAlimento" prefWidth="153.0" text="Calorias (cal)" />
+            <TableColumn fx:id="colunaCheck" prefWidth="28.0" />
+            <TableColumn fx:id="colNomeAlimento" prefWidth="178.0" text="Nome" />
+            <TableColumn fx:id="colQtdAlimento" prefWidth="163.0" text="Quantidade (grama)" />
+            <TableColumn fx:id="colCaloriasAlimento" prefWidth="158.0" text="Calorias (kcal)" />
          </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
       </TableView>
    </children>
 </Pane>

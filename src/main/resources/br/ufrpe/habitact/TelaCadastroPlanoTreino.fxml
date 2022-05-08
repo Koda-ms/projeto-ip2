@@ -42,11 +42,13 @@
          </font>
       </Label>
       <Button layoutX="47.0" layoutY="494.0" mnemonicParsing="false" onAction="#btnAddTreino" prefHeight="25.0" prefWidth="151.0" text="Adicionar novo treino" />
-      <TableView fx:id="tblTreino" layoutX="42.0" layoutY="301.0" prefHeight="176.0" prefWidth="528.0">
+      <TableView fx:id="tblTreino" editable="true" layoutX="42.0" layoutY="301.0" prefHeight="176.0" prefWidth="528.0">
          <columns>
-            <TableColumn fx:id="nomeTreino" prefWidth="191.0" text="Categoria" />
-            <TableColumn fx:id="detalheExercicio" prefWidth="161.0" text="Exercício" />
-            <TableColumn fx:id="calQueimadas" prefWidth="175.0" text="Calorias Queimadas" />
+            <TableColumn fx:id="colunaCheck" prefWidth="26.0" />
+            <TableColumn fx:id="coluanDiaTreino" prefWidth="79.0" text="Data" />
+            <TableColumn fx:id="colunaCategoriaTreino" prefWidth="138.0" text="Categoria" />
+            <TableColumn fx:id="colunaCalorias" prefWidth="149.0" text="Calorias Estimadas (cal)" />
+            <TableColumn fx:id="colunaDuracao" prefWidth="134.0" text="Duração (min)" />
          </columns>
       </TableView>
       <TextField fx:id="textOutro" disable="true" layoutX="189.0" layoutY="174.0" onAction="#optOutrosSelecionada" prefHeight="25.0" prefWidth="330.0" promptText="Outro" />

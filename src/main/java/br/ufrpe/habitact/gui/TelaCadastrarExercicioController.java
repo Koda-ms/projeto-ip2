@@ -1,5 +1,7 @@
 package br.ufrpe.habitact.gui;
 
+import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
+import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Exercicio;
 import br.ufrpe.habitact.negocio.beans.enums.RitmoDoExercicio;
 import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
@@ -12,13 +14,13 @@ import javafx.stage.Stage;
 
 public class TelaCadastrarExercicioController {
 
-    @FXML private Button btnCancelarSalvarPressed;
-    @FXML private ComboBox<TipoExercicio> selectExercicio;
-    @FXML private ComboBox<RitmoDoExercicio> selectRitmo;
     @FXML private TextField textRepeticao;
     @FXML private TextField textSerie;
     @FXML private TextField textOutro;
     @FXML private TextField textMinutos;
+    @FXML private Button btnCancelarSalvarPressed;
+    @FXML private ComboBox<TipoExercicio> selectExercicio;
+    @FXML private ComboBox<RitmoDoExercicio> selectRitmo;
 
     public void initialize(){
         this.selectExercicio.getItems().addAll(TipoExercicio.values());
@@ -40,8 +42,13 @@ public class TelaCadastrarExercicioController {
 
             Exercicio ex = new Exercicio(selectExercicio.getValue(), selectRitmo.getValue(), Integer.parseInt(textMinutos.getText()),
                     Integer.parseInt(textRepeticao.getText()),Integer.parseInt(textSerie.getText()));
+            try {
+                Fachada.getInstance().inserirExercicios(ex);
+            } catch (ObjetoDuplicadoException e) {
+                e.getMessage();
+            }
 
-            //TODO Add a Fachada para inserir o Exercicio e o try/catch
+
             this.limparCamposDeDados();
             //Para fechar a tela
             ((Stage)this.btnCancelarSalvarPressed.getScene().getWindow()).close();

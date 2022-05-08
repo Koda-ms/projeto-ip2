@@ -1,10 +1,8 @@
 package br.ufrpe.habitact.gui;
 
-import br.ufrpe.habitact.negocio.ControladorExercicio;
 import br.ufrpe.habitact.negocio.beans.Exercicio;
+import br.ufrpe.habitact.negocio.beans.Treino;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoTreino;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -14,32 +12,30 @@ import javafx.stage.Stage;
 
 public class TelaCadastroPlanoTreinoController {
 
+    @FXML private Button btnCancelarCadastrarPressed;
     @FXML private DatePicker dtFim;
     @FXML private DatePicker dtInicio;
-    @FXML private TableColumn<?, ?> nomeTreino;
-    @FXML private TableColumn<?, ?> detalheExercicio;
-    @FXML private ComboBox<ObjetivoTreino> objetivo;
+    @FXML private TableView<Treino> tblTreino;
+    @FXML private TableColumn<Treino, String> nomeTreino;
+    @FXML private TableColumn<Exercicio, String> detalheExercicio; //Apenas o nome do exercício será mostrado
+    @FXML private ComboBox<ObjetivoTreino> objetivoTreino;
     @FXML private TextField textOutro;
 
     public void initialize() {
-        //Adiciona os valores dos enuns ObjetivoAlimentar e Refeicao em cada ComboBox
-        this.objetivo.getItems().addAll(ObjetivoTreino.values());
-        //Adicionando alimentos para visualização na TableView do Catálogo
-        ListView<Exercicio> listaExercicio = new ListView<>();
-        ObservableList<Exercicio> exercicio = FXCollections.observableArrayList(ControladorExercicio.getInstance().listarExercicios());
-        listaExercicio.setItems(exercicio);
+        //Adiciona os valores do enum ObjetivoTreino no ComboBox
+        this.objetivoTreino.getItems().addAll(ObjetivoTreino.values());
     }
 
     @FXML
-    void optOutrosSelecionado(ActionEvent event) {
+    void optOutrosSelecionada(ActionEvent event) {
 
         //TODO Habilita o campo Outro para digitação. Configuração abaixo não está funcionando para essa tela
-        if(objetivo.getValue().getObjetivo().equalsIgnoreCase("")){
+        if(objetivoTreino.getValue().getObjetivo().equalsIgnoreCase("")){
             this.textOutro.setDisable(false); //TODO Como seria pra armazenar esse valor em Objetivo?
-
         }
     }
 
+    //Direcionar para uma tela de diálogo que aparecerá sobre a tela atual
     @FXML
     void btnAddTreino(ActionEvent event) {
         Stage dialog = new Stage();
@@ -56,25 +52,38 @@ public class TelaCadastroPlanoTreinoController {
         if (verificarCamposVazios()) {
             GerenciadorTelas.getInstance().alertaCamposVazios();
         } else {
-            //TODO colocação do USUARIO no Construtor abaixo. Verificar se correta
-            //PlanoAlimentar cadastrarPlano = new PlanoAlimentar(usuario, dtInicio.getValue(), dtFim.getValue(),
-            //      objetivo.getValue());
 
-            //TODO redirecionar a tela para a anterior: Tela Listar Dados do Sistema
-            //GerenciadorTelas.getInstance().trocarTela("listarDadosSistema");
+            //TODO colocação do USUARIO no Construtor abaixo. Verificar se correta
+            /*PlanoTreino p = new PlanoTreino(usuario, dtInicio.getValue(), dtFim.getValue(),
+                  objetivoTreino.getValue());
+
+            try {
+                Fachada.getInstance().cadastrarPlanoTreino(p);
+            }catch (MaisDeUmPlanoNoMesmoPeriodoException | ObjetoDuplicadoException e) {
+                e.getMessage();
+            }*/
+
+            this.limparCamposDeDados();
+            ((Stage)this.btnCancelarCadastrarPressed.getScene().getWindow()).close();
         }
     }
 
     @FXML
     void btnVoltarPressed(ActionEvent event) {
-        //TODO Configurar parte para armazenar o planoTreino cadastrado pelo usuário
-
-        //TODO Direcionar tela para a Tela Listar Dados do Sistema
         //GerenciadorTelas.getInstance().trocarTela("listarDadosSistema");
     }
+
+    private void limparCamposDeDados() {
+        this.textOutro.setText("");
+        this.dtInicio.setValue(null);
+        this.dtFim.setValue(null);
+        this.objetivoTreino.getSelectionModel().clearSelection();
+        this.tblTreino.getSelectionModel().clearSelection();
+    }
+
     private boolean verificarCamposVazios() {
         return dtInicio.getValue() == null || dtFim.getValue() == null ||
-                objetivo.getValue() == null || textOutro.getText().isBlank();
+                objetivoTreino.getValue() == null && textOutro.getText().isBlank();
     }
 }
 

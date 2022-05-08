@@ -9,10 +9,10 @@ public class Alimento {
 	private LocalDate diaDoAlimento;
 	private Refeicao refeicao;
 	private String nome;
-	private String qtdGrama;
-	private String calorias;
+	private double qtdGrama;
+	private double calorias;
 
-	public Alimento(String nome, String qtdGrama, String calorias, Refeicao refeicao, LocalDate diaDoAlimento) {
+	public Alimento(String nome, double qtdGrama, double calorias, Refeicao refeicao, LocalDate diaDoAlimento) {
 		this.diaDoAlimento = diaDoAlimento;
 		this.refeicao = refeicao;
 		this.nome = nome;
@@ -25,8 +25,8 @@ public class Alimento {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Alimento alimento = (Alimento) o;
-		return diaDoAlimento.equals(alimento.diaDoAlimento) && refeicao == alimento.refeicao
-				&& nome.equals(alimento.nome) && qtdGrama.equals(alimento.qtdGrama) && calorias.equals(alimento.calorias);
+		return Double.compare(alimento.qtdGrama, qtdGrama) == 0 && Double.compare(alimento.calorias, calorias) == 0 &&
+				diaDoAlimento.equals(alimento.diaDoAlimento) && refeicao == alimento.refeicao && nome.equals(alimento.nome);
 	}
 
 	@Override
@@ -42,19 +42,19 @@ public class Alimento {
 		this.nome = nome;
 	}
 
-	public String getQtdGrama() {
+	public double getQtdGrama() {
 		return qtdGrama;
 	}
 
-	public void setQtdGrama(String qtdGrama) {
+	public void setQtdGrama(double qtdGrama) {
 		this.qtdGrama = qtdGrama;
 	}
 
-	public String getCalorias() {
+	public double getCalorias() {
 		return calorias;
 	}
 
-	public void setCalorias(String calorias) {
+	public void setCalorias(double calorias) {
 		this.calorias = calorias;
 	}
 

@@ -16,6 +16,9 @@ public class Treino {
 	private double queimaCaloricaTotal;
 	private CategoriaTreino modalidade;
 
+	public Treino() {
+	}
+
 	public Treino(ArrayList<Exercicio> exercicios, CategoriaTreino modalidade) {
 		this.exercicios = new ArrayList<>();
 		this.duracaoTotal();
@@ -80,6 +83,10 @@ public class Treino {
 
 	public double getQueimaCaloricaTotal() {
 		return queimaCaloricaTotal;
+	}
+
+	public void setQueimaCaloricaTotal(double queimaCaloricaTotal) {
+		this.queimaCaloricaTotal = queimaCaloricaTotal;
 	}
 
 	public CategoriaTreino getModalidade() {

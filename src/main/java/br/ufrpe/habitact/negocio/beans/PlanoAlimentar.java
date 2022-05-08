@@ -3,7 +3,6 @@ package br.ufrpe.habitact.negocio.beans;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoAlimentar;
-import br.ufrpe.habitact.negocio.beans.enums.Refeicao;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -51,7 +50,7 @@ public class PlanoAlimentar {
 		return alimentosDoDia;
 	}
 
-	public double calcularCaloriasPorRefeicao(Refeicao refeicao){
+	/*public double calcularCaloriasPorRefeicao(Refeicao refeicao){
 		double totalCalorias = 0;
 		if(refeicao.equals("Café da manhã") || refeicao.equals("Lanche") ||
 				refeicao.equals("Almoço") || refeicao.equals("Jantar")){
@@ -60,7 +59,7 @@ public class PlanoAlimentar {
 			}
 		}
 		return totalCalorias;
-	}
+	}*/
 
 	@Override
 	public int hashCode() {

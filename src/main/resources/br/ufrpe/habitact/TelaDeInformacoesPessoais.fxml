@@ -36,11 +36,11 @@
             <Label text="Nome:" />
             <Label text="Email:" GridPane.rowIndex="1" />
             <Label text="Data de nascimento:" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtNome" GridPane.columnIndex="1" />
+            <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtDataNascimento" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="ID:" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtID" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Button layoutX="403.0" layoutY="525.0" mnemonicParsing="false" onAction="#btnEditarSenhaPressed" text="Editar senha" />

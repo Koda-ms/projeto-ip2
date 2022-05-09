@@ -68,6 +68,18 @@ public class GerenciadorTelas {
 
             fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
+                    getResource("TelaAdm.fxml"));
+            this.principalAdmScene = new Scene(fxmlLoader.load());
+            this.admController = (TelaAdmController) fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader();
+            fxmlLoader = new FXMLLoader(HelloApplication.class.
+                    getResource("TelaInformacaoPessoal.fxml"));
+            this.meusDadosScene = new Scene(fxmlLoader.load());
+            this.informacaoPessoalClienteController = (TelaInformacaoPessoalClienteController) fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader();
+            fxmlLoader = new FXMLLoader(HelloApplication.class.
                     getResource("TelaDeListarDados.fxml"));
             this.listarDadosScene = new Scene(fxmlLoader.load());
             this.listarDadosController = (TelaDeListarDadosController) fxmlLoader.getController();

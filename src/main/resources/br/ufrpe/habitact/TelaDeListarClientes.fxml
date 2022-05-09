@@ -22,7 +22,7 @@
                     <columns>
                       <TableColumn fx:id="colunaCheck" prefWidth="75.0" />
                       <TableColumn fx:id="colunaNome" prefWidth="75.0" text="Nome" />
-                        <TableColumn prefWidth="75.0" text="Email" />
+                        <TableColumn fx:id="colunaEmail" prefWidth="75.0" text="Email" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

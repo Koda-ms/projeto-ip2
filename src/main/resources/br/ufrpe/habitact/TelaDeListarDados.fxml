@@ -24,7 +24,7 @@
       <Label layoutX="329.0" layoutY="488.0" text="Período" />
       <Label layoutX="329.0" layoutY="419.0" text="Quantidade de planos" />
       <TextField fx:id="txtQuantidadePlanos" layoutX="329.0" layoutY="437.0" onAction="#btnQuantidadeDePlanosPressed" prefHeight="26.0" prefWidth="150.0" />
-      <TableView fx:id="tblPlanos" layoutX="14.0" layoutY="99.0" prefHeight="308.0" prefWidth="285.0">
+      <TableView fx:id="tblPlanoAlimentar" layoutX="14.0" layoutY="99.0" prefHeight="308.0" prefWidth="285.0">
         <columns>
           <TableColumn fx:id="dtInicioColuna" prefWidth="75.0" text="Data início" />
             <TableColumn fx:id="dtFimColuna" prefWidth="75.0" text="Data fim" />
@@ -34,7 +34,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TableView layoutX="321.0" layoutY="99.0" prefHeight="308.0" prefWidth="276.0">
+      <TableView fx:id="tblPlanoTreino" layoutX="321.0" layoutY="99.0" prefHeight="308.0" prefWidth="276.0">
         <columns>
           <TableColumn fx:id="dtInicioColuna" prefWidth="75.0" text="Data início" />
           <TableColumn fx:id="dtFimColuna" prefWidth="75.0" text="Data fim" />

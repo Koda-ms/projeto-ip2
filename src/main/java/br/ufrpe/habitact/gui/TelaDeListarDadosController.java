@@ -9,6 +9,7 @@ import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
 import br.ufrpe.habitact.negocio.beans.PlanoTreino;
+import br.ufrpe.habitact.negocio.beans.Usuario;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoAlimentar;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoTreino;
 import javafx.collections.FXCollections;
@@ -29,46 +30,53 @@ public class TelaDeListarDadosController {
 
     @FXML
     private TableView<ModeloListarPlanoTreino> tblPlanoTreino;
-    @FXML
-    private TableColumn<ModeloListarPlanoAlimentar, String> clientesColuna;
-
-    @FXML
-    private TableColumn<ModeloListarPlanoAlimentar, String> dtFimColuna;
-
-    @FXML
-    private TableColumn<ModeloListarPlanoAlimentar, String> dtInicioColuna;
-    @FXML
-    private TableColumn<ModeloListarPlanoAlimentar, String> objetivoColuna;
-
-    @FXML
-    private TextField txtQuantidadePlanos;
+//    @FXML
+//    private TableColumn<ModeloListarPlanoAlimentar, String> clientesColuna;
+//
+//    @FXML
+//    private TableColumn<ModeloListarPlanoAlimentar, String> dtFimColuna;
+//
+//    @FXML
+//    private TableColumn<ModeloListarPlanoAlimentar, String> dtInicioColuna;
+//    @FXML
+//    private TableColumn<ModeloListarPlanoAlimentar, String> objetivoColuna;
+//
+//    @FXML
+//    private TextField txtQuantidadePlanos;
     @FXML
     private DatePicker myDatePicker;
-    @FXML
-    private ComboBox<String> selectPlano;
 
     @FXML
     private void initialize(){
-        ObservableList<String> listaEscolha = FXCollections.observableArrayList("Plano Alimentar", "Plano De Treino");
-        selectPlano.setItems(listaEscolha);
+        updateListaPlanoAlimentar();
+        try {
+            updateListaPlanoTreino();
+        } catch (ObjetoDuplicadoException e) {
+            e.printStackTrace();
+        }
     }
 
 
     public void updateListaPlanoAlimentar(){
+        Usuario c1 = new Cliente("Apolo","apolo.com","apolo", LocalDate.of(2000,06,03),
+                "Masculine",114.00,1.79, true);
         PlanoAlimentar p1 = new PlanoAlimentar();
+        p1.setCliente((Cliente) c1);
         p1.setDataInicio(LocalDate.of(2002, 02, 3));
         p1.setDataFim(LocalDate.of(2003, 02, 3));
         p1.setObjetivoAlimentar(ObjetivoAlimentar.SUPLEMENTACAO_ALIMENTAR);
 
         PlanoAlimentar p2 = new PlanoAlimentar();
-        p1.setDataInicio(LocalDate.of(2004, 07, 22));
-        p1.setDataFim(LocalDate.of(2005, 07, 22));
-        p1.setObjetivoAlimentar(ObjetivoAlimentar.SUPLEMENTACAO_ALIMENTAR);
+        p2.setCliente((Cliente) c1);
+        p2.setDataInicio(LocalDate.of(2004, 07, 22));
+        p2.setDataFim(LocalDate.of(2005, 07, 22));
+        p2.setObjetivoAlimentar(ObjetivoAlimentar.SUPLEMENTACAO_ALIMENTAR);
 
         PlanoAlimentar p3 = new PlanoAlimentar();
-        p1.setDataInicio(LocalDate.of(2010, 05, 13));
-        p1.setDataFim(LocalDate.of(2011, 05, 13));
-        p1.setObjetivoAlimentar(ObjetivoAlimentar.SUPLEMENTACAO_ALIMENTAR);
+        p3.setCliente((Cliente) c1);
+        p3.setDataInicio(LocalDate.of(2010, 05, 13));
+        p3.setDataFim(LocalDate.of(2011, 05, 13));
+        p3.setObjetivoAlimentar(ObjetivoAlimentar.SUPLEMENTACAO_ALIMENTAR);
 
 
         try {
@@ -88,11 +96,14 @@ public class TelaDeListarDadosController {
 
     }
 
-    public void updateListaPlanoTreino(){
+    public void updateListaPlanoTreino() throws ObjetoDuplicadoException {
+        Usuario c1 = new Cliente("Apolo","apolo.com","apolo", LocalDate.of(2000,06,03),
+                "Masculine",114.00,1.79, true);
+        Fachada.getInstance().cadastrarUsuario(c1);
         PlanoTreino pt1;
         {
             try {
-                pt1 = new PlanoTreino((Cliente) Fachada.getInstance().buscarUsuario("joao").get(0), LocalDate.of(2022,3,4),
+                pt1 = new PlanoTreino((Cliente) Fachada.getInstance().buscarUsuario("Apolo").get(0), LocalDate.of(2022,3,4),
                         LocalDate.of(2022,3,9), ObjetivoTreino.GANHAR_MASSA);
             } catch (ObjetoNaoExisteException e) {
                 throw new RuntimeException(e);

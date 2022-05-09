@@ -22,7 +22,10 @@ import java.util.List;
 
 public class TelaDeListarDadosController {
     @FXML
-    private TableView<ModeloListarPlanoAlimentar> tblPlanos;
+    private TableView<ModeloListarPlanoAlimentar> tblPlanoAlimentar;
+
+    @FXML
+    private TableView<ModeloListarPlanoTreino> tblPlanoTreino;
     @FXML
     private TableColumn<ModeloListarPlanoAlimentar, String> clientesColuna;
 
@@ -78,7 +81,8 @@ public class TelaDeListarDadosController {
         for (PlanoAlimentar p: listaPlanos){
             result.add(new ModeloListarPlanoAlimentar(p));
         }
-        tblPlanos.setItems(result);
+        tblPlanoAlimentar.setItems(result);
+
     }
 
     public void updateListaPlanoTreino(){
@@ -118,7 +122,7 @@ public class TelaDeListarDadosController {
         for (PlanoTreino p: listaPlanos){
             result.add(new ModeloListarPlanoTreino(p));
         }
-        tblPlanos.setItems(result);
+        tblPlanoTreino.setItems(result);
     }
 
     @FXML

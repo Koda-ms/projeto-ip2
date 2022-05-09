@@ -1,9 +1,9 @@
 package br.ufrpe.habitact.negocio.beans;
 
-import java.util.Objects;
-
 import br.ufrpe.habitact.negocio.beans.enums.RitmoDoExercicio;
 import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
+
+import java.util.Objects;
 
 public class Exercicio {
 	private TipoExercicio nome;
@@ -11,17 +11,13 @@ public class Exercicio {
 	private double duracaoExercicio;
 	private int repeticoes;
 	private int series;
-	private double caloriasGastas;
 
-	public Exercicio(TipoExercicio nome, RitmoDoExercicio ritmo, double duracaoExercicio, int repeticoes, int series,
-			double caloriasGastas) {
+	public Exercicio(TipoExercicio nome, RitmoDoExercicio ritmo, double duracaoExercicio, int repeticoes, int series) {
 		this.nome = nome;
 		this.ritmo = ritmo;
 		this.duracaoExercicio = duracaoExercicio;
 		this.repeticoes = repeticoes;
 		this.series = series;
-		this.estimarQtdDeCaloriasGastas(ritmo, duracaoExercicio);
-
 	}
 
 	@Override
@@ -39,10 +35,6 @@ public class Exercicio {
 		return nome == other.nome;
 	}
 
-	public void estimarQtdDeCaloriasGastas(RitmoDoExercicio ritmo, double duracaoExercicio) {
-		this.caloriasGastas = duracaoExercicio * ritmo.getRitmo();
-	}
-
 	public TipoExercicio getNome() {
 		return nome;
 	}
@@ -57,14 +49,6 @@ public class Exercicio {
 
 	public void setDuracaoExercicio(double duracaoExercicio) {
 		this.duracaoExercicio = duracaoExercicio;
-	}
-
-	public double getCaloriasGastas() {
-		return caloriasGastas;
-	}
-
-	public void setCaloriasGastas(double caloriasGastas) {
-		this.caloriasGastas = caloriasGastas;
 	}
 
 	public RitmoDoExercicio getRitmo() {

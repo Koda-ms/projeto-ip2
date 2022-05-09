@@ -3,7 +3,7 @@ package br.ufrpe.habitact.negocio.beans;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public abstract class Usuario {
+public class Usuario {
 	private String nome;
 	private String email;
 	private String senha;

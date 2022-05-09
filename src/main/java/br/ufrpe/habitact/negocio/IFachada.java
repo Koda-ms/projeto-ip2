@@ -1,5 +1,20 @@
 package br.ufrpe.habitact.negocio;
 
+
+import java.util.List;
+
+import br.ufrpe.habitact.excecoes.MaisDeUmPlanoNoMesmoPeriodoException;
+import br.ufrpe.habitact.excecoes.MaisDeUmTreinoNoMesmoDiaException;
+import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
+import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
+import br.ufrpe.habitact.excecoes.SenhaIncorretaException;
+import br.ufrpe.habitact.negocio.beans.Alimento;
+import br.ufrpe.habitact.negocio.beans.Cliente;
+import br.ufrpe.habitact.negocio.beans.Exercicio;
+import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
+import br.ufrpe.habitact.negocio.beans.PlanoTreino;
+import br.ufrpe.habitact.negocio.beans.Treino;
+import br.ufrpe.habitact.negocio.beans.Usuario;
 import br.ufrpe.habitact.excecoes.*;
 import br.ufrpe.habitact.negocio.beans.*;
 import br.ufrpe.habitact.negocio.beans.enums.CategoriaTreino;

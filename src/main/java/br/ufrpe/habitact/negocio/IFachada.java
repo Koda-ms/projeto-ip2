@@ -1,5 +1,6 @@
 package br.ufrpe.habitact.negocio;
 
+
 import java.util.List;
 
 import br.ufrpe.habitact.excecoes.MaisDeUmPlanoNoMesmoPeriodoException;
@@ -14,8 +15,12 @@ import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
 import br.ufrpe.habitact.negocio.beans.PlanoTreino;
 import br.ufrpe.habitact.negocio.beans.Treino;
 import br.ufrpe.habitact.negocio.beans.Usuario;
+import br.ufrpe.habitact.excecoes.*;
+import br.ufrpe.habitact.negocio.beans.*;
 import br.ufrpe.habitact.negocio.beans.enums.CategoriaTreino;
 import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
+
+import java.util.List;
 
 public interface IFachada {
 
@@ -83,7 +88,7 @@ public interface IFachada {
 
 	void alterarTreino(Treino treinoAntigo, Treino novoTreino) throws ObjetoNaoExisteException;
 
-	List<Treino> listarTreino(Treino treinoAntigo, Treino treinoNovo);
+	List<Treino> listarTreino();
 
 	void cadastrarUsuario(Usuario u) throws ObjetoDuplicadoException;
 

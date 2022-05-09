@@ -12,12 +12,25 @@ public class GerenciadorTelas {
 
     private static GerenciadorTelas instance;
     private Stage primaryStage;
+
     private Scene cadastroScene;
     private Scene principalScene;
     private Scene loginScene;
     private TelaDeCadastroControlador cadastro;
     private TelaDeLoginControlador login;
     private TelaPrincipalDoClienteControlador principal;
+    private Scene popupScene;
+    private PopupCadastroPlanosController cadastroPlanosController;
+    private Scene planoAlimentarScene;
+    private TelaCadastroPlanoAlimentarController cadastroPlanoAlimentarController;
+    private Scene addAlimentoScene;
+    private TelaCadastrarAlimentosController cadastrarAlimentosController;
+    private Scene planoTreinoScene;
+    private TelaCadastroPlanoTreinoController cadastroPlanoTreinoController;
+    private Scene addTreino;
+    private TelaCadastrarTreinoController cadastrarTreinoController;
+    private Scene addExercicioScene;
+    private TelaCadastrarExercicioController cadastrarExercicioController;
 
     private GerenciadorTelas(){
         this.initialize();
@@ -32,7 +45,6 @@ public class GerenciadorTelas {
 
     private void initialize() {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        //Parent mainPane = null;
         try {
             fxmlLoader = new FXMLLoader(HelloApplication.class.
                     getResource("TelaDeLogin.fxml"));
@@ -48,6 +60,41 @@ public class GerenciadorTelas {
                    getResource("TelaPrincipalDoCliente.fxml"));
             this.principalScene = new Scene(fxmlLoader.load());
             this.principal = (TelaPrincipalDoClienteControlador) fxmlLoader.getController();
+          
+            fxmlLoader = new FXMLLoader(HelloApplication.class.
+                    getResource("PopupCadastroPlanos.fxml"));
+            this.popupScene = new Scene(fxmlLoader.load());
+            this.cadastroPlanosController = (PopupCadastroPlanosController) fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader();
+            fxmlLoader = new FXMLLoader(HelloApplication.class.
+                    getResource("TelaCadastroPlanoAlimentar.fxml"));
+            this.planoAlimentarScene = new Scene(fxmlLoader.load());
+            this.cadastroPlanoAlimentarController = (TelaCadastroPlanoAlimentarController) fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader();
+            fxmlLoader = new FXMLLoader(HelloApplication.class.
+                    getResource("TelaCadastrarAlimentos.fxml"));
+            this.addAlimentoScene = new Scene(fxmlLoader.load());
+            this.cadastrarAlimentosController = (TelaCadastrarAlimentosController) fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader();
+            fxmlLoader = new FXMLLoader(HelloApplication.class.
+                    getResource("TelaCadastroPlanoTreino.fxml"));
+            this.planoTreinoScene = new Scene(fxmlLoader.load());
+            this.cadastroPlanoTreinoController = (TelaCadastroPlanoTreinoController) fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader();
+            fxmlLoader = new FXMLLoader(HelloApplication.class.
+                    getResource("TelaCadastrarTreino.fxml"));
+            this.addTreino = new Scene(fxmlLoader.load());
+            this.cadastrarTreinoController = (TelaCadastrarTreinoController) fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader();
+            fxmlLoader = new FXMLLoader(HelloApplication.class.
+                    getResource("TelaCadastrarExercicio.fxml"));
+            this.addExercicioScene = new Scene(fxmlLoader.load());
+            this.cadastrarExercicioController = (TelaCadastrarExercicioController) fxmlLoader.getController();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -66,8 +113,35 @@ public class GerenciadorTelas {
         return principalScene;
     }
 
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+    public void alertaCamposVazios(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erro no Cadastro");
+        alert.setHeaderText("Campo vazio");
+        alert.setContentText("Verifique o(s) campo(s) vazio(s) do seu cadastro");
+        alert.showAndWait();
+    }
+
+    public Scene getPopupScene() {
+        return popupScene;
+    }
+
+    public Scene getPlanoAlimentarScene() {
+        return planoAlimentarScene;
+    }
+
+    public Scene getAddAlimentoScene() { return addAlimentoScene; }
+
+    public Scene getPlanoTreinoScene() {
+        return planoTreinoScene;
+    }
+
+    public Scene getAddTreino() {
+        return addTreino;
+    }
+
+    public Scene getAddExercicioScene() {
+        return addExercicioScene;
+
     }
 
     public Stage getPrimaryStage() {
@@ -93,14 +167,37 @@ public class GerenciadorTelas {
             case "TelaDeLogin": primaryStage.setScene(loginScene); break;
             case "TelaDeCadastro": primaryStage.setScene(cadastroScene); break;
             case "TelaPrincipalDoCliente": primaryStage.setScene(principalScene); break;
+            case "popupPlanos": primaryStage.setScene(popupScene); break;
+            case "planoAlimentar": primaryStage.setScene(planoAlimentarScene);break;
+            case "planoTreino": primaryStage.setScene(planoTreinoScene); break;
         }
     }
 
-    public void alertaCamposVazios(){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Erro no Cadastro");
-        alert.setHeaderText("Campo vazio");
-        alert.setContentText("Verifique o(s) campo(s) vazio(s) do seu cadastro");
-        alert.showAndWait();
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
+
+    public PopupCadastroPlanosController getCadastroPlanosController() {
+        return cadastroPlanosController;
+    }
+
+    public TelaCadastroPlanoAlimentarController getCadastroPlanoAlimentarController() {
+        return cadastroPlanoAlimentarController;
+    }
+
+    public TelaCadastrarAlimentosController getCadastrarAlimentosController() {
+        return cadastrarAlimentosController;
+    }
+
+    public TelaCadastroPlanoTreinoController getCadastroPlanoTreinoController() {
+        return cadastroPlanoTreinoController;
+    }
+
+    public TelaCadastrarTreinoController getCadastrarTreinoController() {
+        return cadastrarTreinoController;
+    }
+
+    public TelaCadastrarExercicioController getCadastrarExercicioController() {
+        return cadastrarExercicioController;
     }
 }

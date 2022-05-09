@@ -1,17 +1,17 @@
 package br.ufrpe.habitact.negocio.beans.enums;
 
 public enum RitmoDoExercicio {
-    BAIXO (1),
-    MEDIO (2),
-    ALTO (3);
+    BAIXO ("Baixo"),
+    MEDIO ("Médio"),
+    ALTO ("Alto");
 
-    private int ritmo;
+    private String ritmo;
 
-    RitmoDoExercicio(int ritmo){
+    RitmoDoExercicio(String ritmo){
         this.ritmo = ritmo;
     }
 
-	public int getRitmo() {
+	public String getRitmo() {
 		return ritmo;
 	}
 }

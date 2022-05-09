@@ -2,15 +2,11 @@ package br.ufrpe.habitact.negocio;
 
 import br.ufrpe.habitact.dados.IRepositorio;
 import br.ufrpe.habitact.dados.Repositorio;
-import br.ufrpe.habitact.excecoes.MaisDeUmTreinoNoMesmoDiaException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
-import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.Exercicio;
-import br.ufrpe.habitact.negocio.beans.PlanoTreino;
 import br.ufrpe.habitact.negocio.beans.Treino;
 import br.ufrpe.habitact.negocio.beans.enums.CategoriaTreino;
-import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +16,7 @@ public class ControladorTreino {
     private IRepositorio<Treino> repositorioTreino;
     private static ControladorTreino instance;
 
-    public ControladorTreino(){
+    private ControladorTreino(){
       this.repositorioTreino = new Repositorio<>();
     }
 
@@ -62,7 +58,7 @@ public class ControladorTreino {
         this.repositorioTreino.atualizar(treinoAntigo, novoTreino);
     }
 
-    public List<Treino> listarTreino(Treino treinoAntigo, Treino treinoNovo){
+    public List<Treino> listarTreino(){
         return repositorioTreino.listar();
     }
 }

@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -14,6 +15,17 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class TelaDeListarDadosController {
+    @FXML
+    private TableColumn<?, ?> clientesColuna;
+
+    @FXML
+    private TableColumn<?, ?> dtFimColuna;
+
+    @FXML
+    private TableColumn<?, ?> dtInicioColuna;
+    @FXML
+    private TableColumn<?, ?> objetivoColuna;
+
     @FXML
     private TextField txtQuantidadePlanos;
     @FXML
@@ -30,13 +42,10 @@ public class TelaDeListarDadosController {
 
     @FXML
     void btnCadastrarPressed(ActionEvent event) {
-
+        GerenciadorTelas.getInstance().trocarTela("popupPlanos");
     }
 
-    @FXML
-    void btnEditarPressed(ActionEvent event) {
 
-    }
 
     @FXML
     void btnEscolherPlanoPressed(ActionEvent event) {

@@ -106,4 +106,15 @@ public class GerenciadorTelas {
     public TelaDeListarDadosController getListarDadosController() {
         return listarDadosController;
     }
+
+    public void trocarTela(String tela){
+        FXMLLoader fxmlLoader = new FXMLLoader();
+
+        switch (tela){
+            case "TelaDeInformacoesPessoais": primaryStage.setScene(informacoesPessoaisScene); break;
+            case "TelaDeListarClientes": primaryStage.setScene(listaDeClientesScene); break;
+            case "TelaDeListarDados": primaryStage.setScene(listarDadosScene); break;
+            //case "telaPrincipalAdm": primaryStage.setScene(principalAdmScene);
+        }
+    }
 }

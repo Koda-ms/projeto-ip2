@@ -16,10 +16,8 @@ public class TelaDeInformacoesPessoaisController {
     private TextField txtNome;
 
     //métodos
-    @FXML
-    void btnEditarDadosPressed(ActionEvent event) {
 
-    }
+
 
     @FXML
     void btnEditarSenhaPressed(ActionEvent event) {
@@ -38,7 +36,7 @@ public class TelaDeInformacoesPessoaisController {
 
     @FXML
     void btnVoltarPressed(ActionEvent event) {
-
+      //GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
     }
 
 }

@@ -6,13 +6,10 @@ import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.gui.modelos.ModeloCliente;
 import br.ufrpe.habitact.gui.modelos.ModeloPlanoAlimentar;
 import br.ufrpe.habitact.gui.modelos.ModeloPlanoTreino;
-import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
 import br.ufrpe.habitact.negocio.beans.PlanoTreino;
 import br.ufrpe.habitact.negocio.beans.Usuario;
-import br.ufrpe.habitact.negocio.beans.enums.ObjetivoAlimentar;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,7 +19,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static br.ufrpe.habitact.negocio.beans.enums.ObjetivoAlimentar.MELHORAR_ALIMENTACAO;

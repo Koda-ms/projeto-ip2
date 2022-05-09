@@ -9,10 +9,16 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class GerenciadorTelas {
-
     private static GerenciadorTelas instance;
     private Stage primaryStage;
+    private Scene informacoesPessoaisScene;
+    private TelaDeInformacoesPessoaisController informacoesPessoaisController;
 
+    private Scene listaDeClientesScene;
+    private TelaDeListarClientesController listarClientesController;
+
+    private Scene listarDadosScene;
+    private TelaDeListarDadosController listarDadosController;
     private Scene cadastroScene;
     private Scene principalScene;
     private Scene loginScene;
@@ -46,7 +52,22 @@ public class GerenciadorTelas {
     private void initialize() {
         FXMLLoader fxmlLoader = new FXMLLoader();
         try {
+        
+                                   fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("TelaDeInformacoesPessoais.fxml"));
+            this.informacoesPessoaisScene = new Scene(fxmlLoader.load());
+            this.informacoesPessoaisController = (TelaDeInformacoesPessoaisController) fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
+                    getResource("TelaDeListarClientes.fxml"));
+            this.listaDeClientesScene = new Scene(fxmlLoader.load());
+            this.listarClientesController = (TelaDeListarClientesController) fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader();
+            fxmlLoader = new FXMLLoader(HelloApplication.class.
+                    getResource("TelaDeListarDados.fxml"));
+            this.listarDadosScene = new Scene(fxmlLoader.load());
+            this.listarDadosController = (TelaDeListarDadosController) fxmlLoader.getController();
                     getResource("TelaDeLogin.fxml"));
             this.loginScene = new Scene(fxmlLoader.load());
             this.login = (TelaDeLoginControlador) fxmlLoader.getController();
@@ -100,6 +121,16 @@ public class GerenciadorTelas {
             e.printStackTrace();
         }
     }
+    //TODO Completar método com todas as telas
+   /*public void trocarTela(String tela){
+        FXMLLoader fxmlLoader = new FXMLLoader();
+
+        switch (tela){
+
+            case "telaCadastrarPlano": primaryStage.setScene(planoTreinoScene); break;
+        }
+    }*/
+
 
     public Scene getCadastroScene() {
         return cadastroScene;
@@ -113,6 +144,7 @@ public class GerenciadorTelas {
         return principalScene;
     }
 
+
     public void alertaCamposVazios(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erro no Cadastro");
@@ -121,6 +153,28 @@ public class GerenciadorTelas {
         alert.showAndWait();
     }
 
+    public Scene getInformacoesPessoaisScene() {
+        return informacoesPessoaisScene;
+    }
+
+    public TelaDeInformacoesPessoaisController getInformacoesPessoaisController() {
+        return informacoesPessoaisController;
+    }
+
+    public Scene getListaDeClientesScene() {
+        return listaDeClientesScene;
+    }
+
+    public TelaDeListarClientesController getListarClientesController() {
+        return listarClientesController;
+    }
+
+    public Scene getListarDadosScene() {
+        return listarDadosScene;
+    }
+
+    public TelaDeListarDadosController getListarDadosController() {
+        return listarDadosController;
     public Scene getPopupScene() {
         return popupScene;
     }
@@ -164,6 +218,10 @@ public class GerenciadorTelas {
         FXMLLoader fxmlLoader = new FXMLLoader();
 
         switch(tela){
+            case "TelaDeInformacoesPessoais": primaryStage.setScene(informacoesPessoaisScene); break;
+            case "TelaDeListarClientes": primaryStage.setScene(listaDeClientesScene); break;
+            case "TelaDeListarDados": primaryStage.setScene(listarDadosScene); break;
+            case "telaPrincipalAdm": primaryStage.setScene(principalAdmScene);
             case "TelaDeLogin": primaryStage.setScene(loginScene); break;
             case "TelaDeCadastro": primaryStage.setScene(cadastroScene); break;
             case "TelaPrincipalDoCliente": primaryStage.setScene(principalScene); break;

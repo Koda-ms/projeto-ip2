@@ -10,8 +10,9 @@ public class Cliente extends Usuario {
 	private double imc;
 	private long idade;
 
+
 	public Cliente(String nome, String email, String senha, LocalDate dtNascimento, String genero, double peso,
-			double altura, boolean jaFazExercicio) {
+				   double altura, boolean jaFazExercicio) {
 		super(nome, email, senha, dtNascimento);
 		this.genero = genero;
 		this.peso = peso;
@@ -19,6 +20,10 @@ public class Cliente extends Usuario {
 		this.calcularIMC(peso, altura);
 		this.calcularIdade(dtNascimento);
 	}
+
+    public Cliente() {
+
+    }
 
 	private void calcularIMC(double peso, double altura) {
 		this.imc = peso / (altura * altura);

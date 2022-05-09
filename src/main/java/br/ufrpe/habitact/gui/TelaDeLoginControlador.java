@@ -30,7 +30,7 @@ public class TelaDeLoginControlador{
         } else {
             if(u instanceof Cliente){
                 GerenciadorTelas.getInstance().trocarTela("TelaPrincipalDoCliente");
-            } else{
+            } else if(u instanceof  Administrador){
                 GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
             }
             usuario = u;

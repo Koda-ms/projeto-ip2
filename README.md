@@ -30,7 +30,7 @@ Em suma, na aplicação, os clientes poderão acompanhar os planos criados pelos
 
 ## Requisitos do projeto
 
-* **REQ1** - O sistema deverá realizar login e cadastro. Este terá os Clientes e os Administradores.
+* **REQ1** - O sistema deverá realizar login e cadastro para Clientes e Administradores.
 * **REQ2** - O sistema coletará dados pessoais dos Clientes (nome, peso, altura, data de nascimento, gênero, se já
   pratica exercícios).
 * **REQ3** - O sistema poderá determinar o IMC dos Clientes.

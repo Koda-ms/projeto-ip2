@@ -52,8 +52,8 @@ public class GerenciadorTelas {
     private void initialize() {
         FXMLLoader fxmlLoader = new FXMLLoader();
         try {
-        
-                                   fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("TelaDeInformacoesPessoais.fxml"));
+            fxmlLoader = new FXMLLoader();
+            fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("TelaDeInformacoesPessoais.fxml"));
             this.informacoesPessoaisScene = new Scene(fxmlLoader.load());
             this.informacoesPessoaisController = (TelaDeInformacoesPessoaisController) fxmlLoader.getController();
 
@@ -68,20 +68,26 @@ public class GerenciadorTelas {
                     getResource("TelaDeListarDados.fxml"));
             this.listarDadosScene = new Scene(fxmlLoader.load());
             this.listarDadosController = (TelaDeListarDadosController) fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader();
+            fxmlLoader = new FXMLLoader(HelloApplication.class.
                     getResource("TelaDeLogin.fxml"));
             this.loginScene = new Scene(fxmlLoader.load());
             this.login = (TelaDeLoginControlador) fxmlLoader.getController();
 
+            fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
                     getResource("TelaDeCadastro.fxml"));
             this.cadastroScene = new Scene(fxmlLoader.load());
             this.cadastro = (TelaDeCadastroControlador) fxmlLoader.getController();
 
+            fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
                    getResource("TelaPrincipalDoCliente.fxml"));
             this.principalScene = new Scene(fxmlLoader.load());
             this.principal = (TelaPrincipalDoClienteControlador) fxmlLoader.getController();
-          
+
+            fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
                     getResource("PopupCadastroPlanos.fxml"));
             this.popupScene = new Scene(fxmlLoader.load());
@@ -175,6 +181,7 @@ public class GerenciadorTelas {
 
     public TelaDeListarDadosController getListarDadosController() {
         return listarDadosController;
+    }
     public Scene getPopupScene() {
         return popupScene;
     }
@@ -221,7 +228,7 @@ public class GerenciadorTelas {
             case "TelaDeInformacoesPessoais": primaryStage.setScene(informacoesPessoaisScene); break;
             case "TelaDeListarClientes": primaryStage.setScene(listaDeClientesScene); break;
             case "TelaDeListarDados": primaryStage.setScene(listarDadosScene); break;
-            case "telaPrincipalAdm": primaryStage.setScene(principalAdmScene);
+            //case "telaPrincipalAdm": primaryStage.setScene(principalAdmScene);
             case "TelaDeLogin": primaryStage.setScene(loginScene); break;
             case "TelaDeCadastro": primaryStage.setScene(cadastroScene); break;
             case "TelaPrincipalDoCliente": primaryStage.setScene(principalScene); break;
@@ -259,3 +266,4 @@ public class GerenciadorTelas {
         return cadastrarExercicioController;
     }
 }
+

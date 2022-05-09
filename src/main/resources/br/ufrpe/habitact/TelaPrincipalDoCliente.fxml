@@ -9,23 +9,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.habitact.gui.TelaPrincipalDoClienteControlador">
    <children>
-      <Label layoutX="9.0" layoutY="11.0" text="Objetivos da semana" />
-      <Circle fill="DODGERBLUE" layoutX="26.0" layoutY="44.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="52.0" layoutY="43.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="78.0" layoutY="43.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="104.0" layoutY="44.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="130.0" layoutY="44.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="156.0" layoutY="44.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="182.0" layoutY="44.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
-      <Label layoutX="23.0" layoutY="34.0" text="S" />
-      <Label layoutX="49.0" layoutY="33.0" text="T" />
-      <Label layoutX="74.0" layoutY="33.0" text="Q" />
-      <Label layoutX="100.0" layoutY="33.0" text="Q" />
-      <Label layoutX="126.0" layoutY="33.0" text="S" />
-      <Label layoutX="153.0" layoutY="35.0" text="S" />
-      <Label layoutX="179.0" layoutY="34.0" onMouseClicked="#detalhesObjetivos" text="D" />
+      <Label fx:id="objetivosDaSemanaLabel" layoutX="9.0" layoutY="11.0" text="Objetivos da semana" />
+      <Circle fx:id="segundaCircle" fill="DODGERBLUE" layoutX="26.0" layoutY="44.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="tercaCircle" fill="DODGERBLUE" layoutX="52.0" layoutY="43.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="quartaCircle" fill="DODGERBLUE" layoutX="78.0" layoutY="43.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="quintaCircle" fill="DODGERBLUE" layoutX="104.0" layoutY="44.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="sextaCircle" fill="DODGERBLUE" layoutX="130.0" layoutY="44.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="SabadoCircle" fill="DODGERBLUE" layoutX="156.0" layoutY="44.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="domingoCircle" fill="DODGERBLUE" layoutX="182.0" layoutY="44.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="segundaLabel" layoutX="23.0" layoutY="34.0" text="S" />
+      <Label fx:id="tercaLabel" layoutX="49.0" layoutY="33.0" text="T" />
+      <Label fx:id="quartaLabel" layoutX="74.0" layoutY="33.0" text="Q" />
+      <Label fx:id="quintaLabel" layoutX="100.0" layoutY="33.0" text="Q" />
+      <Label fx:id="sextaLabel" layoutX="126.0" layoutY="33.0" text="S" />
+      <Label fx:id="sabadoLabel" layoutX="153.0" layoutY="35.0" text="S" />
+      <Label fx:id="domingoLabel" layoutX="179.0" layoutY="34.0" onMouseClicked="#detalhesObjetivos" text="D" />
       <Separator layoutX="-2.0" layoutY="74.0" prefWidth="611.0" />
       <Label layoutX="9.0" layoutY="87.0" text="Cardápio" />
       <VBox layoutX="74.0" layoutY="141.0">
@@ -58,8 +58,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </content>
       </TitledPane>
-      <Button layoutX="561.0" layoutY="7.0" mnemonicParsing="false" text="Sair" />
-      <Button layoutX="497.0" layoutY="534.0" mnemonicParsing="false" text="Cadastrar planos" />
-      <Button layoutX="422.0" layoutY="7.0" mnemonicParsing="false" text="Meus dados" />
+      <Button fx:id="sairBtn" layoutX="531.0" layoutY="7.0" mnemonicParsing="false" onAction="#btnSair" text="Sair" />
+      <Button fx:id="meusDadosBtn" layoutX="422.0" layoutY="7.0" mnemonicParsing="false" onAction="#MeusDadosBtn" text="Meus dados" />
    </children>
 </Pane>

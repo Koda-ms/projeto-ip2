@@ -3,6 +3,7 @@ package br.ufrpe.habitact.gui;
 import br.ufrpe.habitact.HelloApplication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -93,5 +94,13 @@ public class GerenciadorTelas {
             case "TelaDeCadastro": primaryStage.setScene(cadastroScene); break;
             case "TelaPrincipalDoCliente": primaryStage.setScene(principalScene); break;
         }
+    }
+
+    public void alertaCamposVazios(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erro no Cadastro");
+        alert.setHeaderText("Campo vazio");
+        alert.setContentText("Verifique o(s) campo(s) vazio(s) do seu cadastro");
+        alert.showAndWait();
     }
 }

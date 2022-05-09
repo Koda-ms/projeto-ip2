@@ -36,7 +36,7 @@ public class TelaDeLoginControlador{
         if (u == null){
             this.gerarAlertaDeUsuario();
         } else {
-            GerenciadorTelas.getInstance().getPrimaryStage().setScene(GerenciadorTelas.getInstance().getPrincipalScene());
+            GerenciadorTelas.getInstance().trocarTela("TelaPrincipalDoCliente");
         }
     }
 
@@ -48,7 +48,7 @@ public class TelaDeLoginControlador{
     }
 
     @FXML
-    public void btnCriarConta(ActionEvent event){
-        
+    public void btnCadastro(ActionEvent event){
+        GerenciadorTelas.getInstance().trocarTela("TelaDeCadastro");
     }
 }

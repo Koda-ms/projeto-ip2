@@ -8,32 +8,35 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="611.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="611.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.habitact.gui.TelaDeCadastroControlador">
   <tabs>
     <Tab text="Usuário">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="573.0" prefWidth="611.0">
+        <AnchorPane fx:id="tabUsuario" minHeight="0.0" minWidth="0.0" prefHeight="573.0" prefWidth="611.0">
                <children>
-                  <TextField layoutX="231.0" layoutY="81.0" promptText="Nome" />
-                  <TextField layoutX="231.0" layoutY="200.0" promptText="Altura em metros" />
-                  <TextField layoutX="230.0" layoutY="159.0" promptText="Peso em kg" />
-                  <DatePicker layoutX="230.0" layoutY="121.0" promptText="Data de nascimento" />
-                  <TextField layoutX="230.0" layoutY="239.0" promptText="Email" />
-                  <Button layoutX="272.0" layoutY="385.0" mnemonicParsing="false" text="Cadastrar" />
-                  <PasswordField layoutX="231.0" layoutY="281.0" promptText="Senha" />
-                  <PasswordField layoutX="231.0" layoutY="321.0" promptText="Confirmação de senha" />
-                  <TextField layoutX="230.0" layoutY="47.0" promptText="Gênero" />
+                  <TextField fx:id="nomeUsuario" layoutX="231.0" layoutY="81.0" promptText="Nome" />
+                  <TextField fx:id="altura" layoutX="231.0" layoutY="200.0" promptText="Altura em metros" />
+                  <TextField fx:id="peso" layoutX="230.0" layoutY="159.0" promptText="Peso em kg" />
+                  <DatePicker fx:id="dataNascimentoUsuario" layoutX="230.0" layoutY="121.0" promptText="Data de nascimento" />
+                  <TextField fx:id="email" layoutX="230.0" layoutY="239.0" promptText="Email" />
+                  <Button fx:id="btnCadastrarUsuario" layoutX="272.0" layoutY="385.0" mnemonicParsing="false" onAction="#CadastrarUsuarioBtn" text="Cadastrar" />
+                  <PasswordField fx:id="senha" layoutX="231.0" layoutY="281.0" promptText="Senha" />
+                  <PasswordField fx:id="confirmacaoDeSenha" layoutX="231.0" layoutY="321.0" promptText="Confirmação de senha" />
+                  <TextField fx:id="genero" layoutX="230.0" layoutY="47.0" promptText="Gênero" />
+                  <Button fx:id="btnVoltar" layoutX="532.0" layoutY="438.0" mnemonicParsing="false" onAction="#voltarBtn" text="voltar" />
                </children></AnchorPane>
       </content>
     </Tab>
     <Tab text="Administrador">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+        <AnchorPane fx:id="tabAdministrador" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Button layoutX="273.0" layoutY="260.0" mnemonicParsing="false" text="Cadastrar" />
-                  <TextField layoutX="231.0" layoutY="110.0" promptText="Email" />
-                  <PasswordField layoutX="232.0" layoutY="164.0" promptText="Senha" />
-                  <PasswordField layoutX="232.0" layoutY="207.0" promptText="Confirmação de senha" />
+                  <Button fx:id="cadastrarAdministrador" layoutX="272.0" layoutY="302.0" mnemonicParsing="false" onAction="#CadastrarAdministradorBtn" text="Cadastrar" />
+                  <TextField fx:id="emailAdministrador" layoutX="231.0" layoutY="110.0" promptText="Email" />
+                  <PasswordField fx:id="senhaAdministrador" layoutX="232.0" layoutY="164.0" promptText="Senha" />
+                  <PasswordField fx:id="confirmacaoDeSenhaAdministrador" layoutX="232.0" layoutY="207.0" promptText="Confirmação de senha" />
+                  <DatePicker fx:id="dataNascimentoAdministrador" layoutX="225.0" layoutY="251.0" promptText="data de nascimento" />
+                  <TextField fx:id="nomeAdministrador" layoutX="231.0" layoutY="65.0" promptText="nome" />
                </children></AnchorPane>
       </content>
     </Tab>

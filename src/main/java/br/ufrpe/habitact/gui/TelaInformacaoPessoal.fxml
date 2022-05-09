@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="571.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+    <Pane prefHeight="572.0" prefWidth="702.0">
+        <children>
+            <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="307.0" prefWidth="640.0">
+                <children>
+                    <Label layoutX="21.0" layoutY="14.0" prefHeight="31.0" prefWidth="56.0" style="-fx-font-weight: bold;" text="Nome">
+                        <font>
+                            <Font size="18.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="21.0" layoutY="86.0" prefHeight="31.0" prefWidth="56.0" style="-fx-font-weight: bold;" text="Email">
+                        <font>
+                            <Font size="18.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="21.0" layoutY="159.0" prefHeight="31.0" prefWidth="56.0" style="-fx-font-weight: bold;" text="Senha">
+                        <font>
+                            <Font size="18.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="21.0" layoutY="224.0" prefHeight="31.0" prefWidth="142.0" style="-fx-font-weight: bold;" text="Dt. Nascimento">
+                        <font>
+                            <Font size="18.0" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="inputNome" editable="false" layoutX="49.0" layoutY="46.0" prefHeight="25.0" prefWidth="463.0" />
+                    <TextField fx:id="inputEmail" editable="false" layoutX="49.0" layoutY="119.0" prefHeight="25.0" prefWidth="258.0" />
+                    <DatePicker fx:id="inputNascimento" editable="false" layoutX="50.0" layoutY="257.0" />
+                    <PasswordField fx:id="inputSenha" editable="false" layoutX="50.0" layoutY="190.0" />
+                </children>
+            </AnchorPane>
+            <ButtonBar layoutX="20.0" layoutY="297.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="53.0" prefWidth="578.0" style="-fx-padding: 20px;">
+                <buttons>
+                    <Button fx:id="voltar" mnemonicParsing="false" onAction="#btnVoltarTelaPressed" style="margin: 10px;" text="Voltar" />
+                    <Button fx:id="salvarDados" mnemonicParsing="false" onAction="#btnSalvarDadosPressed" style="margin: 10px;" text="Salvar" />
+                    <Button fx:id="editar" mnemonicParsing="false" onAction="#btnEditarDadosPressed" style="margin: 10px;" text="Editar Dados" />
+                </buttons>
+            </ButtonBar>
+            <Label layoutX="20.0" layoutY="385.0" prefHeight="31.0" prefWidth="127.0" style="-fx-font-weight: bold;" text="Alterar Senha">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Label>
+            <Label layoutX="49.0" layoutY="416.0" prefHeight="31.0" prefWidth="127.0" style="-fx-font-weight: bold;" text="Senha Atual" />
+            <Label layoutX="49.0" layoutY="471.0" prefHeight="31.0" prefWidth="127.0" style="-fx-font-weight: bold;" text="Nova Senha" />
+            <PasswordField fx:id="btnActualPassword" layoutX="82.0" layoutY="445.0" />
+            <PasswordField fx:id="newPassword" layoutX="82.0" layoutY="498.0" />
+            <Button fx:id="salvarSenha" layoutX="261.0" layoutY="498.0" mnemonicParsing="false" onAction="#btnSalvarSenhaPressed" style="margin: 10px;" text="Salvar" />
+        </children>
+    </Pane>
+</children>
+</VBox>

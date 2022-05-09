@@ -1,18 +1,23 @@
 package br.ufrpe.habitact.negocio.beans;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Objects;
-
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.negocio.beans.enums.CategoriaTreino;
+import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class Treino {
 	private LocalDate diaFeito;
 	private ArrayList<Exercicio> exercicios;
 	private double duracao;
+	private double queimaCaloricaTotal;
 	private CategoriaTreino modalidade;
+
+	public Treino() {
+	}
 
 	public Treino(ArrayList<Exercicio> exercicios, CategoriaTreino modalidade) {
 		this.exercicios = new ArrayList<>();
@@ -26,6 +31,22 @@ public class Treino {
 			soma = soma + e.getDuracaoExercicio();
 		}
 		this.duracao = soma;
+	}
+
+	//TODO o método será usado no controller da tela de cadastro de treino
+	public void estimarQtdDeCaloriasGastas(TipoExercicio exercicio) {
+
+		//Queima calórica por MINUTO
+		switch (exercicio.getNome()){
+			case "Caminhada": this.queimaCaloricaTotal = this.duracao * 5.5; break;
+			case "Corrida": this.queimaCaloricaTotal = this.duracao * 10; break;
+			case "Natação": this.queimaCaloricaTotal = this.duracao * 9; break;
+			case "Ciclismo": this.queimaCaloricaTotal = this.duracao * 6; break;
+			case "Musculação": this.queimaCaloricaTotal = this.duracao * 5; break;
+			case "Jiu-Jitsu": this.queimaCaloricaTotal = this.duracao * 12; break;
+			case "Tenis de Mesa": this.queimaCaloricaTotal = this.duracao * 8; break;
+			default: System.out.println("Para outros tipos de treinos, por favor, procure um especialista.");
+		}
 	}
 
 	@Override
@@ -58,6 +79,14 @@ public class Treino {
 
 	public void setDuracao(double duracao) {
 		this.duracao = duracao;
+	}
+
+	public double getQueimaCaloricaTotal() {
+		return queimaCaloricaTotal;
+	}
+
+	public void setQueimaCaloricaTotal(double queimaCaloricaTotal) {
+		this.queimaCaloricaTotal = queimaCaloricaTotal;
 	}
 
 	public CategoriaTreino getModalidade() {

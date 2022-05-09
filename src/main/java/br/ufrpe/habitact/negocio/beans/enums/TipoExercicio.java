@@ -6,7 +6,7 @@ public enum TipoExercicio {
 	NATACAO ("Natação"),
 	CICLISMO ("Ciclismo"), 
 	MUSCULACAO ("Musculação"), 
-	ARTES_MARCIAIS ("Artes Marciais"), 
+	JIU_JITSU ("Jiu-Jitsu"),
 	TENIS_DE_MESA ("Tenis de Mesa"), 
 	OUTROS ("");
 	

@@ -1,21 +1,19 @@
 package br.ufrpe.habitact.negocio;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import br.ufrpe.habitact.dados.IRepositorio;
 import br.ufrpe.habitact.dados.Repositorio;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.negocio.beans.Alimento;
-import br.ufrpe.habitact.negocio.beans.PlanoTreino;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ControladorAlimento {
 	// atributos
 	private IRepositorio<Alimento> repositorioAlimento;
 	private static ControladorAlimento instance;
-
 	// constructor default
 	private ControladorAlimento() {
 		this.repositorioAlimento = new Repositorio<>();

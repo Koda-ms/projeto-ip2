@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.habitact.gui.TelaCadastroPlanoTreinoController">
+   <children>
+      <Separator layoutX="13.0" layoutY="50.0" prefHeight="5.0" prefWidth="585.0" />
+      <Label layoutX="36.0" layoutY="19.0" prefHeight="17.0" prefWidth="224.0" text="Cadastrar Plano de Treino">
+         <font>
+            <Font name="Calibri" size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="521.0" layoutY="18.0" mnemonicParsing="false" onAction="#btnVoltarPressed" prefHeight="25.0" prefWidth="55.0" text="Voltar" />
+      <Label layoutX="41.0" layoutY="86.0" prefHeight="17.0" prefWidth="114.0" text="Período:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dtInicio" layoutX="190.0" layoutY="84.0" prefHeight="25.0" prefWidth="151.0" promptText="Inicio" />
+      <DatePicker fx:id="dtFim" layoutX="376.0" layoutY="84.0" prefHeight="25.0" prefWidth="150.0" promptText="Fim" />
+      <Label layoutX="41.0" layoutY="134.0" prefHeight="20.0" prefWidth="159.0" text="Objetivo:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="objetivoTreino" layoutX="190.0" layoutY="132.0" prefHeight="25.0" prefWidth="330.0" promptText="Escolha uma opção" />
+      <Separator layoutX="13.0" layoutY="220.0" prefHeight="5.0" prefWidth="585.0" />
+      <Separator layoutX="13.0" layoutY="270.0" prefHeight="5.0" prefWidth="585.0" />
+      <Button fx:id="btnCancelarCadastrarPressed" layoutX="494.0" layoutY="504.0" mnemonicParsing="false" onAction="#btnCadastrarPressed" prefHeight="25.0" prefWidth="81.0" text="Cadastrar" />
+      <Label layoutX="39.0" layoutY="236.0" prefHeight="17.0" prefWidth="224.0" text="Catálogo de Treinos">
+         <font>
+            <Font name="Calibri" size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="47.0" layoutY="494.0" mnemonicParsing="false" onAction="#btnAddTreino" prefHeight="25.0" prefWidth="151.0" text="Adicionar novo treino" />
+      <TableView fx:id="tblTreino" editable="true" layoutX="42.0" layoutY="301.0" prefHeight="176.0" prefWidth="528.0">
+         <columns>
+            <TableColumn fx:id="colunaCheck" prefWidth="26.0" />
+            <TableColumn fx:id="coluanDiaTreino" prefWidth="79.0" text="Data" />
+            <TableColumn fx:id="colunaCategoriaTreino" prefWidth="138.0" text="Categoria" />
+            <TableColumn fx:id="colunaCalorias" prefWidth="149.0" text="Calorias Estimadas (cal)" />
+            <TableColumn fx:id="colunaDuracao" prefWidth="134.0" text="Duração (min)" />
+         </columns>
+      </TableView>
+      <TextField fx:id="textOutro" disable="true" layoutX="189.0" layoutY="174.0" onAction="#optOutrosSelecionada" prefHeight="25.0" prefWidth="330.0" promptText="Outro" />
+   </children>
+</Pane>

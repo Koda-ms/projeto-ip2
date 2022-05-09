@@ -1,12 +1,12 @@
 package br.ufrpe.habitact.negocio.beans;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Objects;
-
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoAlimentar;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class PlanoAlimentar {
 	private Cliente cliente;
@@ -39,6 +39,27 @@ public class PlanoAlimentar {
 			this.alimentos.remove(alimento);
 		}
 	}
+
+	public ArrayList<Alimento> alimentosDoDia(LocalDate dia){
+		ArrayList<Alimento> alimentosDoDia = new ArrayList<>();
+		for(int i = 0; i < this.alimentos.size(); i++){
+			if(this.alimentos.get(i).getDiaDoAlimento().equals(dia)){
+				alimentosDoDia.add(this.alimentos.get(i));
+			}
+		}
+		return alimentosDoDia;
+	}
+
+	/*public double calcularCaloriasPorRefeicao(Refeicao refeicao){
+		double totalCalorias = 0;
+		if(refeicao.equals("Café da manhã") || refeicao.equals("Lanche") ||
+				refeicao.equals("Almoço") || refeicao.equals("Jantar")){
+			for (Alimento a : this.alimentos){
+				totalCalorias += a.getCalorias();
+			}
+		}
+		return totalCalorias;
+	}*/
 
 	@Override
 	public int hashCode() {
@@ -96,14 +117,4 @@ public class PlanoAlimentar {
 		this.objetivoAlimentar = objetivoAlimentar;
 	}
 
-	public ArrayList<Alimento> alimentosDoDia(LocalDate dia){
-		ArrayList<Alimento> alimentosDoDia = new ArrayList<>();
-		for(int i = 0; i < this.alimentos.size(); i++){
-			if(this.alimentos.get(i).getDiaDoAlimento().equals(dia)){
-				alimentosDoDia.add(this.alimentos.get(i));
-			}
-		}
-
-		return alimentosDoDia;
-	}
 }

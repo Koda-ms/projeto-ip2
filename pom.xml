@@ -76,7 +76,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>com.example.projetoip2/br.ufrpe.habitact.HelloApplication</mainClass>
+              <mainClass>com.example.projetoip2/br.ufrpe.habitact.Main</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>

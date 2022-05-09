@@ -1,6 +1,8 @@
 package br.ufrpe.habitact.gui;
 
+import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.negocio.Fachada;
+import br.ufrpe.habitact.negocio.beans.Administrador;
 import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.Usuario;
 import javafx.event.ActionEvent;
@@ -9,6 +11,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import java.time.LocalDate;
 
 
 public class TelaDeLoginControlador{
@@ -20,6 +24,15 @@ public class TelaDeLoginControlador{
 
     @FXML
     public void btnLogar(ActionEvent event) {
+        Usuario c2 = new Cliente("July","july.co","apolo", LocalDate.of(2001,06,03),
+                "Feminine",114.00,1.79, true);
+        Usuario c3 = new Administrador("dd","a","123",LocalDate.of(2001,06,03), "5");
+        try {
+            Fachada.getInstance().cadastrarUsuario(c2);
+            Fachada.getInstance().cadastrarUsuario(c3);
+        } catch (ObjetoDuplicadoException e) {
+            e.printStackTrace();
+        }
         Usuario u = Fachada.getInstance().autenticarUsuario(emailTxtField.getText(), senhaField.getText());
         if (u == null){
             this.gerarAlertaDeUsuario();

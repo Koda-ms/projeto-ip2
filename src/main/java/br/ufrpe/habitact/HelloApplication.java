@@ -12,7 +12,9 @@ public class HelloApplication extends Application {
         primaryStage.setTitle("Projeto HabitAct");
         primaryStage.setWidth(640);
         primaryStage.setHeight(600);
+        GerenciadorTelas.getInstance().setPrimaryStage(primaryStage);
         primaryStage.show();
+
     }
 
     public static void main(String[] args) {

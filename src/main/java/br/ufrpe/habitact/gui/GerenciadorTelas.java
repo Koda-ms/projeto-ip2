@@ -54,9 +54,8 @@ public class GerenciadorTelas {
     }
 
     private void initialize() {
-        FXMLLoader fxmlLoader = new FXMLLoader();
         try {
-            fxmlLoader = new FXMLLoader();
+            FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("TelaDeInformacoesPessoais.fxml"));
             this.informacoesPessoaisScene = new Scene(fxmlLoader.load());
             this.informacoesPessoaisController = (TelaDeInformacoesPessoaisAdmController) fxmlLoader.getController();
@@ -226,8 +225,6 @@ public class GerenciadorTelas {
     }
 
     public void trocarTela(String tela){
-        FXMLLoader fxmlLoader = new FXMLLoader();
-
         switch(tela){
             case "TelaDeInformacoesPessoais": primaryStage.setScene(informacoesPessoaisScene); break;
             case "TelaDeListarClientes": primaryStage.setScene(listaDeClientesScene); break;

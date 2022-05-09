@@ -26,13 +26,15 @@
       <Label layoutX="446.0" layoutY="175.0" text="Período" />
       <Label layoutX="446.0" layoutY="106.0" text="Quantidade de planos" />
       <TextField fx:id="txtQuantidadePlanos" layoutX="446.0" layoutY="124.0" onAction="#btnQuantidadeDePlanosPressed" prefHeight="26.0" prefWidth="150.0" />
-      <TableView layoutX="4.0" layoutY="106.0" prefHeight="346.0" prefWidth="353.0">
+      <TableView fx:id="tblPlanos" layoutX="32.0" layoutY="113.0" prefHeight="346.0" prefWidth="294.0">
         <columns>
-          <TableColumn fx:id="clientesColuna" prefWidth="75.0" text="Cliente" />
           <TableColumn fx:id="dtInicioColuna" prefWidth="75.0" text="Data início" />
             <TableColumn fx:id="dtFimColuna" prefWidth="75.0" text="Data fim" />
             <TableColumn fx:id="objetivoColuna" prefWidth="75.0" text="Objetivo" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
    </children>
 </AnchorPane>

@@ -15,8 +15,11 @@ public class PlanoAlimentar {
 	private LocalDate dataFim;
 	private ObjetivoAlimentar objetivoAlimentar;
 
+	public PlanoAlimentar() {
+	}
+
 	public PlanoAlimentar(Cliente cliente, LocalDate dataInicio, LocalDate dataFim,
-			ObjetivoAlimentar objetivoAlimentar) {
+						  ObjetivoAlimentar objetivoAlimentar) {
 		this.cliente = cliente;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;

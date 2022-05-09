@@ -19,7 +19,6 @@ public class PopupCadastroPlanosController {
 
     @FXML
     void btnOKPressed(ActionEvent event) {
-        //TODO direcionar o botão para a próxima tela escolhida pelo usuário: Plano Alimentar ou Plano de Treino
         if(combo.getValue().equalsIgnoreCase("Plano Alimentar")){
             GerenciadorTelas.getInstance().trocarTela("planoAlimentar");
         } else{

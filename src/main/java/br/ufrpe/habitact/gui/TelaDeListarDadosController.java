@@ -5,6 +5,7 @@ import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.gui.modelos.ModeloListarPlanoAlimentar;
 import br.ufrpe.habitact.gui.modelos.ModeloListarPlanoTreino;
+import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
 import br.ufrpe.habitact.negocio.beans.PlanoTreino;
@@ -14,7 +15,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -126,14 +130,14 @@ public class TelaDeListarDadosController {
 
     @FXML
     void btnCadastrarPressed(ActionEvent event) {
-        GerenciadorTelas.getInstance().trocarTela("popupPlanos");
-    }
-
-
-
-    @FXML
-    void btnEscolherPlanoPressed(ActionEvent event) {
-
+        Stage dialog = new Stage();
+        dialog.setScene(GerenciadorTelas.getInstance().getPopupScene());
+        dialog.setResizable(false);
+        dialog.setTitle("Escolha de Plano");
+        dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.showAndWait();
+        //GerenciadorTelas.getInstance().trocarTela("popupPlanos");
     }
 
     @FXML
@@ -149,6 +153,6 @@ public class TelaDeListarDadosController {
 
     @FXML
     void btnVoltarPressed(ActionEvent event) {
-
+        GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
     }
 }

@@ -1,12 +1,10 @@
 package br.ufrpe.habitact.gui;
 
-import javafx.application.Application;
+import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
-import javafx.stage.Stage;
 
-public class TelaInformacaoPessoalController {
+public class TelaInformacaoPessoalClienteController {
     @FXML TextField nome;
     @FXML TextField email;
     @FXML PasswordField senha;
@@ -19,37 +17,37 @@ public class TelaInformacaoPessoalController {
     @FXML Button salvarSenha;
 
     private void initialize() {
-        Usuario user /* pegar instância de usuario logada no momento */;
-
-        nome.setText(user.getNome());
-        email.setText(user.getEmail());
-        nascimento.getEditor().setText(user.getDtNascimento());
+//        Usuario user /* pegar instância de usuario logada no momento */;
+//
+//        nome.setText(user.getNome());
+//        email.setText(user.getEmail());
+//        nascimento.getEditor().setText(user.getDtNascimento());
     }
 
-    @FXML
-    public void btnEditarDadosPressed() {
-        this.ativarEdicaoDados(true);
-    }
+//    @FXML
+//    public void btnEditarDadosPressed() {
+//        this.ativarEdicaoDados(true);
+//    }
 
     @FXML
     public void btnSalvarDadosPressed() throws ObjetoNaoExisteException{
-            Usuario user =  /*pegar instância de usuario logada no momento*/;
-            user.setNome(nome.getText());
-            user.setEmail(email.getText());
-            user.setDtNascimento(nascimento.getText());
-            if(!user){
-                throw new ObjetoNaoExisteException("Não foi possivel alterar os dados do usuario");
-            }
-            else {
-                this.ativarEdicaoDados(false);
-                this.senha.setText("");
-            }
+//            Usuario user =  /*pegar instância de usuario logada no momento*/;
+//            user.setNome(nome.getText());
+//            user.setEmail(email.getText());
+//            user.setDtNascimento(nascimento.getText());
+//            if(!user){
+//                throw new ObjetoNaoExisteException("Não foi possivel alterar os dados do usuario");
+//            }
+//            else {
+//                this.ativarEdicaoDados(false);
+//                this.senha.setText("");
+//            }
     }
 
     @FXML
     public void btnSalvarSenhaPressed() {
         if (senha.getText().equals(newPassword.getText())) {
-            Usuario user = /*pegar instância de usuario logada no momento*/;
+            //Usuario user = /*pegar instância de usuario logada no momento*/;
             this.newPassword.setText("");
         } else {
             this.gerarAlertaErroAutenticacao("As senhas não batem!");
@@ -59,7 +57,7 @@ public class TelaInformacaoPessoalController {
 
     @FXML
     public void btnVoltarTelaPressed() {
-       /*Ação para alteração de tela, para tela anterior*/
+       GerenciadorTelas.getInstance().trocarTela("TelaPrincipalDoCliente");
     }
 
     private void ativarEdicaoDados(boolean edicao) {

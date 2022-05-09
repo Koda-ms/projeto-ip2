@@ -2,6 +2,7 @@ package br.ufrpe.habitact.gui;
 
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.gui.modelos.ModeloPlanoAlimentarCliente;
+import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Alimento;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoAlimentar;
 import br.ufrpe.habitact.negocio.beans.enums.Refeicao;

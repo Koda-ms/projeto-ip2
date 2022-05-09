@@ -6,6 +6,7 @@ import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.gui.modelos.ModeloCliente;
 import br.ufrpe.habitact.gui.modelos.ModeloPlanoAlimentar;
 import br.ufrpe.habitact.gui.modelos.ModeloPlanoTreino;
+import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
 import br.ufrpe.habitact.negocio.beans.PlanoTreino;

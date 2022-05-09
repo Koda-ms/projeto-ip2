@@ -1,11 +1,14 @@
 package br.ufrpe.habitact.gui;
 
+import br.ufrpe.habitact.negocio.Fachada;
+import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-
-import static javafx.application.Application.launch;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 
 public class TelaDeLoginControlador{
@@ -13,6 +16,7 @@ public class TelaDeLoginControlador{
     @FXML PasswordField senhaField;
     @FXML Button logarButton;
     @FXML Button cadastrarButton;
+    private static Usuario usuario;
 
     @FXML
     public void btnLogar(ActionEvent event) {
@@ -20,7 +24,12 @@ public class TelaDeLoginControlador{
         if (u == null){
             this.gerarAlertaDeUsuario();
         } else {
-            GerenciadorTelas.getInstance().trocarTela("TelaPrincipalDoCliente");
+            if(u instanceof Cliente){
+                GerenciadorTelas.getInstance().trocarTela("TelaPrincipalDoCliente");
+            } else{
+                GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
+            }
+            usuario = u;
         }
     }
 
@@ -34,5 +43,9 @@ public class TelaDeLoginControlador{
     @FXML
     public void btnCadastro(ActionEvent event){
         GerenciadorTelas.getInstance().trocarTela("TelaDeCadastro");
+    }
+
+    public static Usuario getUsuario() {
+        return usuario;
     }
 }

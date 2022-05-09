@@ -2,6 +2,7 @@ package br.ufrpe.habitact.gui;
 
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.gui.modelos.ModeloTreino;
+import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Exercicio;
 import br.ufrpe.habitact.negocio.beans.Treino;
 import br.ufrpe.habitact.negocio.beans.enums.CategoriaTreino;

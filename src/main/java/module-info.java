@@ -1,7 +1,6 @@
-module com.example.projetoip2 {
+module com.example.projetoip {
     requires javafx.controls;
     requires javafx.fxml;
-
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;

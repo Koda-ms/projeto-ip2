@@ -2,6 +2,7 @@ package br.ufrpe.habitact.gui;
 
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.gui.modelos.ModeloListaCliente;
+import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.Usuario;
 import javafx.collections.FXCollections;

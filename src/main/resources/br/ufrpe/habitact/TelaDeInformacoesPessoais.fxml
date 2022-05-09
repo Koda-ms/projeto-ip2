@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="573.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.habitact.gui.TelaDeInformacoesPessoaisController">
+<AnchorPane prefHeight="573.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.habitact.gui.TelaDeInformacoesPessoaisAdmController">
    <children>
-      <Button layoutX="443.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnEditarDadosPressed" text="Editar dados" AnchorPane.leftAnchor="443.0" />
+      <Button layoutX="443.0" layoutY="329.0" mnemonicParsing="false" text="Editar dados" AnchorPane.leftAnchor="443.0" />
       <Button layoutX="551.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnSalvarPressed" text="Salvar" />
       <Button layoutX="542.0" layoutY="11.0" mnemonicParsing="false" onAction="#btnVoltarPressed" text="Voltar" />
       <Label layoutX="33.0" layoutY="14.0" text="Informações pessoais">

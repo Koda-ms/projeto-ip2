@@ -11,8 +11,12 @@ import java.io.IOException;
 public class GerenciadorTelas {
     private static GerenciadorTelas instance;
     private Stage primaryStage;
+    private Scene principalAdmScene;
+    private TelaAdmController admController;
+    private Scene meusDadosScene;
+    private TelaInformacaoPessoalClienteController informacaoPessoalClienteController;
     private Scene informacoesPessoaisScene;
-    private TelaDeInformacoesPessoaisController informacoesPessoaisController;
+    private TelaDeInformacoesPessoaisAdmController informacoesPessoaisController;
 
     private Scene listaDeClientesScene;
     private TelaDeListarClientesController listarClientesController;
@@ -55,7 +59,7 @@ public class GerenciadorTelas {
             fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("TelaDeInformacoesPessoais.fxml"));
             this.informacoesPessoaisScene = new Scene(fxmlLoader.load());
-            this.informacoesPessoaisController = (TelaDeInformacoesPessoaisController) fxmlLoader.getController();
+            this.informacoesPessoaisController = (TelaDeInformacoesPessoaisAdmController) fxmlLoader.getController();
 
             fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
@@ -163,7 +167,7 @@ public class GerenciadorTelas {
         return informacoesPessoaisScene;
     }
 
-    public TelaDeInformacoesPessoaisController getInformacoesPessoaisController() {
+    public TelaDeInformacoesPessoaisAdmController getInformacoesPessoaisController() {
         return informacoesPessoaisController;
     }
 
@@ -228,14 +232,23 @@ public class GerenciadorTelas {
             case "TelaDeInformacoesPessoais": primaryStage.setScene(informacoesPessoaisScene); break;
             case "TelaDeListarClientes": primaryStage.setScene(listaDeClientesScene); break;
             case "TelaDeListarDados": primaryStage.setScene(listarDadosScene); break;
-            //case "telaPrincipalAdm": primaryStage.setScene(principalAdmScene);
+            case "telaPrincipalAdm": primaryStage.setScene(principalAdmScene);
             case "TelaDeLogin": primaryStage.setScene(loginScene); break;
             case "TelaDeCadastro": primaryStage.setScene(cadastroScene); break;
             case "TelaPrincipalDoCliente": primaryStage.setScene(principalScene); break;
             case "popupPlanos": primaryStage.setScene(popupScene); break;
             case "planoAlimentar": primaryStage.setScene(planoAlimentarScene);break;
             case "planoTreino": primaryStage.setScene(planoTreinoScene); break;
+            case "MeusDadosTela": primaryStage.setScene(meusDadosScene); break;
         }
+    }
+
+    public Scene getPrincipalAdmScene() {
+        return principalAdmScene;
+    }
+
+    public TelaAdmController getAdmController() {
+        return admController;
     }
 
     public void setPrimaryStage(Stage primaryStage) {
@@ -264,6 +277,18 @@ public class GerenciadorTelas {
 
     public TelaCadastrarExercicioController getCadastrarExercicioController() {
         return cadastrarExercicioController;
+    }
+
+    public TelaPrincipalDoClienteControlador getPrincipal() {
+        return principal;
+    }
+
+    public Scene getMeusDadosScene() {
+        return meusDadosScene;
+    }
+
+    public TelaInformacaoPessoalClienteController getInformacaoPessoalClienteController() {
+        return informacaoPessoalClienteController;
     }
 }
 

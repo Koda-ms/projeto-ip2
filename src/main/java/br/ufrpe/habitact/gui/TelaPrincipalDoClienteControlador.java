@@ -73,6 +73,6 @@ public class TelaPrincipalDoClienteControlador {
     }
 
     @FXML private void MeusDadosBtn(ActionEvent event) {
-        //GerenciadorTelas.getInstance().trocarTela("MeusDadosTela");
+        GerenciadorTelas.getInstance().trocarTela("MeusDadosTela");
     }
 }

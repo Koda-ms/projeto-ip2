@@ -37,6 +37,7 @@
                   <PasswordField fx:id="confirmacaoDeSenhaAdministrador" layoutX="232.0" layoutY="207.0" promptText="Confirmação de senha" />
                   <DatePicker fx:id="dataNascimentoAdministrador" layoutX="225.0" layoutY="251.0" promptText="data de nascimento" />
                   <TextField fx:id="nomeAdministrador" layoutX="231.0" layoutY="65.0" promptText="nome" />
+                  <Button fx:id="voltarAdmBtn" layoutX="545.0" layoutY="420.0" mnemonicParsing="false" onAction="#btnVoltarAdm" text="Voltar" />
                </children></AnchorPane>
       </content>
     </Tab>

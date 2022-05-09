@@ -30,6 +30,7 @@ public class TelaDeCadastroControlador {
     @FXML private AnchorPane tabUsuario;
     @FXML private Button cadastrarAdministrador;
     @FXML private Button btnVoltar;
+    @FXML private Button voltarAdmBtn;
     private static String Id = "0";
 
 
@@ -93,5 +94,10 @@ public class TelaDeCadastroControlador {
         alerta.setTitle("Usuário cadastrado");
         alerta.setHeaderText("O usuário foi cadastrado");
         alerta.showAndWait();
+    }
+
+    @FXML
+    void btnVoltarAdm(ActionEvent event) {
+        GerenciadorTelas.getInstance().trocarTela("TelaDeLogin");
     }
 }

@@ -13,11 +13,15 @@ import br.ufrpe.habitact.negocio.beans.PlanoTreino;
 import br.ufrpe.habitact.negocio.beans.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -26,10 +30,6 @@ import static br.ufrpe.habitact.negocio.beans.enums.ObjetivoAlimentar.MELHORAR_A
 import static br.ufrpe.habitact.negocio.beans.enums.ObjetivoTreino.PERDER_MASSA;
 
 public class TelaAdmController {
-
-    @FXML private Button bottonCadastrarPlanos;
-    @FXML private Button bottonGerarRelatórios;
-    @FXML private Button bottonSair;
 
     @FXML private TableColumn<ModeloPlanoAlimentar, String> colunaClientePlanoAlimentar;
     @FXML private TableColumn<ModeloPlanoAlimentar, String> colunaDtInicioPlanoAlimentar;
@@ -172,5 +172,25 @@ public class TelaAdmController {
             result.add(new ModeloPlanoTreino(p));
         }
         tablePlanosTreinos.setItems(result);
+    }
+    @FXML
+    void btnCadastrarPressed(ActionEvent event) {
+        Stage dialog = new Stage();
+        dialog.setScene(GerenciadorTelas.getInstance().getPopupScene());
+        dialog.setResizable(false);
+        dialog.setTitle("Cadastrar Plano");
+        dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.showAndWait();
+    }
+
+    @FXML
+    void btnRelatorioPressed(ActionEvent event) {
+        GerenciadorTelas.getInstance().trocarTela("popupGraficos");
+    }
+
+    @FXML
+    void btnSairPressed(ActionEvent event) {
+        GerenciadorTelas.getInstance().trocarTela("TelaDeLogin");
     }
 }

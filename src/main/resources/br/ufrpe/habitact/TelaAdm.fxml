@@ -12,11 +12,11 @@
    <children>
       <Label layoutX="14.0" layoutY="14.0" prefHeight="45.0" prefWidth="167.0" text="Administrador">
          <font>
-            <Font size="20.0" />
+            <Font size="19.0" />
          </font>
       </Label>
       <Separator layoutX="14.0" layoutY="62.0" prefHeight="0.0" prefWidth="584.0" />
-      <Button fx:id="bottonSair" layoutX="548.0" layoutY="24.0" mnemonicParsing="false" text="Sair" />
+      <Button layoutX="548.0" layoutY="24.0" mnemonicParsing="false" onAction="#btnSairPressed" text="Sair" />
       <TableView fx:id="tablePlanosAlimentares" layoutX="38.0" layoutY="98.0" prefHeight="200.0" prefWidth="243.0">
         <columns>
           <TableColumn fx:id="colunaClientePlanoAlimentar" editable="false" prefWidth="75.0" resizable="false" text="Cliente" />
@@ -24,8 +24,8 @@
             <TableColumn fx:id="colunaDtFimPlanoAlimentar" editable="false" prefWidth="82.0" resizable="false" text="Data Fim" />
         </columns>
       </TableView>
-      <Button fx:id="bottonCadastrarPlanos" layoutX="364.0" layoutY="534.0" mnemonicParsing="false" text="Cadastrar Planos" />
-      <Button fx:id="bottonGerarRelatórios" layoutX="497.0" layoutY="534.0" mnemonicParsing="false" text="Gerar Relatórios" />
+      <Button layoutX="364.0" layoutY="534.0" mnemonicParsing="false" onAction="#btnCadastrarPressed" text="Cadastrar Planos" />
+      <Button layoutX="497.0" layoutY="534.0" mnemonicParsing="false" onAction="#btnRelatorioPressed" text="Gerar Relatórios" />
       <TableView fx:id="tableClientes" layoutX="356.0" layoutY="98.0" prefHeight="314.0" prefWidth="225.0">
          <columns>
             <TableColumn fx:id="colunaNomeClientes" editable="false" prefWidth="75.0" resizable="false" text="Nome" />

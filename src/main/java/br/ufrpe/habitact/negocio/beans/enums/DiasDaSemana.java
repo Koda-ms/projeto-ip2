@@ -19,5 +19,10 @@ public class DiasDaSemana {
         public String getRefeicao() {
             return diaDaSemana;
         }
+
+        @Override
+        public String toString() {
+            return this.diaDaSemana;
+        }
     }
 }

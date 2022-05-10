@@ -19,4 +19,9 @@ public enum TipoExercicio {
 	public String getNome() {
 		return tipo;
 	}
+
+	@Override
+	public String toString() {
+		return this.tipo;
+	}
 }

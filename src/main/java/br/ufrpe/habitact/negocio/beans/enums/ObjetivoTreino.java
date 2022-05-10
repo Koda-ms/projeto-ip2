@@ -13,4 +13,9 @@ public enum ObjetivoTreino {
 	public String getObjetivo() {
 		return objetivo;
 	}
+
+	@Override
+	public String toString() {
+		return this.objetivo;
+	}
 }

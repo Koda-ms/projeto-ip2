@@ -93,7 +93,8 @@ public class TelaCadastroPlanoAlimentarController {
 
     @FXML
     void btnVoltarTela(ActionEvent event) {
-        //GerenciadorTelas.getInstance().trocarTela("listarDadosSistema");
+        //TODO está voltando para a tela de Login
+        GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
     }
 
     private void updateCatalogoAlimentos() {

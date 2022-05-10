@@ -30,21 +30,14 @@ public class TelaDeListarDadosController {
 
     @FXML
     private TableView<ModeloListarPlanoTreino> tblPlanoTreino;
-//    @FXML
-//    private TableColumn<ModeloListarPlanoAlimentar, String> clientesColuna;
+//    @FXML private TableColumn<ModeloListarPlanoAlimentar, String> clientesColuna;
+//    @FXML private TableColumn<ModeloListarPlanoAlimentar, String> dtFimColuna;
+//    @FXML private TableColumn<ModeloListarPlanoAlimentar, String> dtInicioColuna;
+//    @FXML private TableColumn<ModeloListarPlanoAlimentar, String> objetivoColuna;
 //
-//    @FXML
-//    private TableColumn<ModeloListarPlanoAlimentar, String> dtFimColuna;
-//
-//    @FXML
-//    private TableColumn<ModeloListarPlanoAlimentar, String> dtInicioColuna;
-//    @FXML
-//    private TableColumn<ModeloListarPlanoAlimentar, String> objetivoColuna;
-//
-//    @FXML
-//    private TextField txtQuantidadePlanos;
-    @FXML
-    private DatePicker myDatePicker;
+//    @FXML private TableColumn<ModeloListarPlanoTreino, String> dtFimColunaTreino;
+//    @FXML private TableColumn<ModeloListarPlanoTreino, String> dtInicioColunaTreino;
+//    @FXML private TableColumn<ModeloListarPlanoTreino, String> objetivoTreinoColuna;
 
     @FXML
     private void initialize(){
@@ -140,30 +133,14 @@ public class TelaDeListarDadosController {
     }
 
     @FXML
-    void btnCadastrarPressed(ActionEvent event) {
-        Stage dialog = new Stage();
-        dialog.setScene(GerenciadorTelas.getInstance().getPopupScene());
-        dialog.setResizable(false);
-        dialog.setTitle("Escolha de Plano");
-        dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
-        dialog.initModality(Modality.APPLICATION_MODAL);
-        dialog.showAndWait();
-        //GerenciadorTelas.getInstance().trocarTela("popupPlanos");
-    }
-
-    @FXML
-    void btnPeriodoPressed(ActionEvent event) {
-        LocalDate minhaData = myDatePicker.getValue();
-        System.out.println(minhaData.toString());
-    }
-
-    @FXML
-    void btnQuantidadeDePlanosPressed(ActionEvent event) {
-
+    int totalDePlanos(ActionEvent event) {
+        int pA = Fachada.getInstance().listarPlanoAlimentar().size();
+        int pT = Fachada.getInstance().listarPlanoTreino().size();
+        return pA + pT;
     }
 
     @FXML
     void btnVoltarPressed(ActionEvent event) {
-        GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
+        GerenciadorTelas.getInstance().trocarTela("TelaPrincipalDoCliente");
     }
 }

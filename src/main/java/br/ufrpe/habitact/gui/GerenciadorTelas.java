@@ -24,11 +24,11 @@ public class GerenciadorTelas {
     private Scene listarDadosScene;
     private TelaDeListarDadosController listarDadosController;
     private Scene cadastroScene;
-    private Scene principalScene;
+    private Scene principalClienteScene;
     private Scene loginScene;
     private TelaDeCadastroControlador cadastro;
     private TelaDeLoginControlador login;
-    private TelaPrincipalDoClienteControlador principal;
+    private TelaPrincipalDoClienteControlador principalCliente;
     private Scene popupScene;
     private PopupCadastroPlanosController cadastroPlanosController;
     private Scene planoAlimentarScene;
@@ -58,100 +58,100 @@ public class GerenciadorTelas {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("TelaDeInformacoesPessoais.fxml"));
             this.informacoesPessoaisScene = new Scene(fxmlLoader.load());
-            this.informacoesPessoaisController = (TelaDeInformacoesPessoaisAdmController) fxmlLoader.getController();
+            this.informacoesPessoaisController = fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
                     getResource("TelaDeListarClientes.fxml"));
             this.listaDeClientesScene = new Scene(fxmlLoader.load());
-            this.listarClientesController = (TelaDeListarClientesController) fxmlLoader.getController();
+            this.listarClientesController = fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
                     getResource("TelaAdm.fxml"));
             this.principalAdmScene = new Scene(fxmlLoader.load());
-            this.admController = (TelaAdmController) fxmlLoader.getController();
+            this.admController = fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
                     getResource("TelaInformacaoPessoal.fxml"));
             this.meusDadosScene = new Scene(fxmlLoader.load());
-            this.informacaoPessoalClienteController = (TelaInformacaoPessoalClienteController) fxmlLoader.getController();
+            this.informacaoPessoalClienteController = fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
                     getResource("TelaDeListarDados.fxml"));
             this.listarDadosScene = new Scene(fxmlLoader.load());
-            this.listarDadosController = (TelaDeListarDadosController) fxmlLoader.getController();
+            this.listarDadosController = fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
                     getResource("TelaDeLogin.fxml"));
             this.loginScene = new Scene(fxmlLoader.load());
-            this.login = (TelaDeLoginControlador) fxmlLoader.getController();
+            this.login = fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
                     getResource("TelaDeCadastro.fxml"));
             this.cadastroScene = new Scene(fxmlLoader.load());
-            this.cadastro = (TelaDeCadastroControlador) fxmlLoader.getController();
+            this.cadastro = fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
                    getResource("TelaPrincipalDoCliente.fxml"));
-            this.principalScene = new Scene(fxmlLoader.load());
-            this.principal = (TelaPrincipalDoClienteControlador) fxmlLoader.getController();
+            this.principalClienteScene = new Scene(fxmlLoader.load());
+            this.principalCliente = fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
                     getResource("PopupCadastroPlanos.fxml"));
             this.popupScene = new Scene(fxmlLoader.load());
-            this.cadastroPlanosController = (PopupCadastroPlanosController) fxmlLoader.getController();
+            this.cadastroPlanosController = fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
                     getResource("TelaCadastroPlanoAlimentar.fxml"));
             this.planoAlimentarScene = new Scene(fxmlLoader.load());
-            this.cadastroPlanoAlimentarController = (TelaCadastroPlanoAlimentarController) fxmlLoader.getController();
+            this.cadastroPlanoAlimentarController = fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
                     getResource("TelaCadastrarAlimentos.fxml"));
             this.addAlimentoScene = new Scene(fxmlLoader.load());
-            this.cadastrarAlimentosController = (TelaCadastrarAlimentosController) fxmlLoader.getController();
+            this.cadastrarAlimentosController = fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
                     getResource("TelaCadastroPlanoTreino.fxml"));
             this.planoTreinoScene = new Scene(fxmlLoader.load());
-            this.cadastroPlanoTreinoController = (TelaCadastroPlanoTreinoController) fxmlLoader.getController();
+            this.cadastroPlanoTreinoController = fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
                     getResource("TelaCadastrarTreino.fxml"));
             this.addTreino = new Scene(fxmlLoader.load());
-            this.cadastrarTreinoController = (TelaCadastrarTreinoController) fxmlLoader.getController();
+            this.cadastrarTreinoController = fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader();
             fxmlLoader = new FXMLLoader(HelloApplication.class.
                     getResource("TelaCadastrarExercicio.fxml"));
             this.addExercicioScene = new Scene(fxmlLoader.load());
-            this.cadastrarExercicioController = (TelaCadastrarExercicioController) fxmlLoader.getController();
+            this.cadastrarExercicioController = fxmlLoader.getController();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    //TODO Completar método com todas as telas
-   /*public void trocarTela(String tela){
-        FXMLLoader fxmlLoader = new FXMLLoader();
 
-        switch (tela){
-
-            case "telaCadastrarPlano": primaryStage.setScene(planoTreinoScene); break;
+    public void trocarTela(String tela){
+        switch(tela){
+            case "TelaDeInformacoesPessoais": primaryStage.setScene(informacoesPessoaisScene); break;
+            case "TelaDeListarClientes": primaryStage.setScene(listaDeClientesScene); break;
+            case "TelaDeListarDados": primaryStage.setScene(listarDadosScene); break;
+            case "telaPrincipalAdm": primaryStage.setScene(principalAdmScene);
+            case "TelaDeLogin": primaryStage.setScene(loginScene); break;
+            case "TelaDeCadastro": primaryStage.setScene(cadastroScene); break;
+            case "TelaPrincipalDoCliente": primaryStage.setScene(principalClienteScene); break;
+            case "planoAlimentar": primaryStage.setScene(planoAlimentarScene);break;
+            case "planoTreino": primaryStage.setScene(planoTreinoScene); break;
+            case "MeusDadosTela": primaryStage.setScene(meusDadosScene); break;
         }
-    }*/
+    }
 
+    public void alertaCamposVazios(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erro no Cadastro");
+        alert.setHeaderText("Campo vazio");
+        alert.setContentText("Verifique o(s) campo(s) vazio(s) do seu cadastro");
+        alert.showAndWait();
+    }
 
     public Scene getCadastroScene() {
         return cadastroScene;
@@ -161,17 +161,8 @@ public class GerenciadorTelas {
         return loginScene;
     }
 
-    public Scene getPrincipalScene() {
-        return principalScene;
-    }
-
-
-    public void alertaCamposVazios(){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Erro no Cadastro");
-        alert.setHeaderText("Campo vazio");
-        alert.setContentText("Verifique o(s) campo(s) vazio(s) do seu cadastro");
-        alert.showAndWait();
+    public Scene getPrincipalClienteScene() {
+        return principalClienteScene;
     }
 
     public Scene getInformacoesPessoaisScene() {
@@ -215,17 +206,14 @@ public class GerenciadorTelas {
         return addTreino;
     }
 
-    public Scene getAddExercicioScene() {
-        return addExercicioScene;
-
-    }
+    public Scene getAddExercicioScene() { return addExercicioScene; }
 
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
     public TelaPrincipalDoClienteControlador getTelaDoCliente() {
-        return principal;
+        return principalCliente;
     }
 
     public TelaDeCadastroControlador getCadastro() {
@@ -234,22 +222,6 @@ public class GerenciadorTelas {
 
     public TelaDeLoginControlador getLogin() {
         return login;
-    }
-
-    public void trocarTela(String tela){
-        switch(tela){
-            case "TelaDeInformacoesPessoais": primaryStage.setScene(informacoesPessoaisScene); break;
-            case "TelaDeListarClientes": primaryStage.setScene(listaDeClientesScene); break;
-            case "TelaDeListarDados": primaryStage.setScene(listarDadosScene); break;
-            case "telaPrincipalAdm": primaryStage.setScene(principalAdmScene);
-            case "TelaDeLogin": primaryStage.setScene(loginScene); break;
-            case "TelaDeCadastro": primaryStage.setScene(cadastroScene); break;
-            case "TelaPrincipalDoCliente": primaryStage.setScene(principalScene); break;
-            case "popupPlanos": primaryStage.setScene(popupScene); break;
-            case "planoAlimentar": primaryStage.setScene(planoAlimentarScene);break;
-            case "planoTreino": primaryStage.setScene(planoTreinoScene); break;
-            case "MeusDadosTela": primaryStage.setScene(meusDadosScene); break;
-        }
     }
 
     public Scene getPrincipalAdmScene() {
@@ -288,8 +260,8 @@ public class GerenciadorTelas {
         return cadastrarExercicioController;
     }
 
-    public TelaPrincipalDoClienteControlador getPrincipal() {
-        return principal;
+    public TelaPrincipalDoClienteControlador getPrincipalCliente() {
+        return principalCliente;
     }
 
     public Scene getMeusDadosScene() {

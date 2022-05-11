@@ -14,15 +14,15 @@
       <content>
         <AnchorPane fx:id="tabUsuario" minHeight="0.0" minWidth="0.0" prefHeight="573.0" prefWidth="611.0">
                <children>
-                  <TextField fx:id="nomeUsuario" layoutX="231.0" layoutY="81.0" promptText="Nome" />
-                  <TextField fx:id="altura" layoutX="231.0" layoutY="200.0" promptText="Altura em metros" />
-                  <TextField fx:id="peso" layoutX="230.0" layoutY="159.0" promptText="Peso em kg" />
-                  <DatePicker fx:id="dataNascimentoUsuario" layoutX="230.0" layoutY="121.0" promptText="Data de nascimento" />
+                  <TextField fx:id="nomeUsuario" layoutX="231.0" layoutY="52.0" promptText="Nome" />
+                  <TextField fx:id="altura" layoutX="231.0" layoutY="163.0" promptText="Altura em metros" />
+                  <TextField fx:id="peso" layoutX="230.0" layoutY="127.0" promptText="Peso em kg" />
+                  <DatePicker fx:id="dataNascimentoUsuario" layoutX="220.0" layoutY="89.0" promptText="Data de nascimento" />
                   <TextField fx:id="email" layoutX="230.0" layoutY="239.0" promptText="Email" />
                   <Button fx:id="btnCadastrarUsuario" layoutX="272.0" layoutY="385.0" mnemonicParsing="false" onAction="#CadastrarUsuarioBtn" text="Cadastrar" />
                   <PasswordField fx:id="senha" layoutX="231.0" layoutY="281.0" promptText="Senha" />
                   <PasswordField fx:id="confirmacaoDeSenha" layoutX="231.0" layoutY="321.0" promptText="Confirmação de senha" />
-                  <TextField fx:id="genero" layoutX="230.0" layoutY="47.0" promptText="Gênero" />
+                  <TextField fx:id="genero" layoutX="232.0" layoutY="197.0" promptText="Gênero" />
                   <Button fx:id="btnVoltar" layoutX="532.0" layoutY="438.0" mnemonicParsing="false" onAction="#voltarBtn" text="voltar" />
                </children></AnchorPane>
       </content>

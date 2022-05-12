@@ -11,10 +11,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ControladorAlimento {
-	// atributos
 	private IRepositorio<Alimento> repositorioAlimento;
 	private static ControladorAlimento instance;
-	// constructor default
+
 	private ControladorAlimento() {
 		this.repositorioAlimento = new Repositorio<>();
 	}
@@ -26,7 +25,6 @@ public class ControladorAlimento {
         return instance;
     }
 
-	// método para adicionar alimento no sistema
 	public void adicionarAlimento(Alimento alimento) throws ObjetoDuplicadoException {
 		this.repositorioAlimento.inserir(alimento);
 	}
@@ -34,7 +32,7 @@ public class ControladorAlimento {
 	public List<Alimento> buscarAlimento(String nome) throws ObjetoNaoExisteException {
 		List<Alimento> alimentoList = new ArrayList<>(this.repositorioAlimento.listar());
 		List<Alimento> lista = alimentoList.stream()
-				.filter(plano -> plano.getNome().equals(nome)).collect(Collectors.toList());
+				.filter(alimento -> alimento.getNome().equals(nome)).collect(Collectors.toList());
 		return lista;
 	}
 

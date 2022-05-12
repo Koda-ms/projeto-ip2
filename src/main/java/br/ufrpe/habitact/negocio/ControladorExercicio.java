@@ -42,7 +42,7 @@ public class ControladorExercicio {
 	public List<Exercicio> buscarExercicio(TipoExercicio tipo) throws ObjetoNaoExisteException {
 		List<Exercicio> exercicioList = new ArrayList<>(this.repoExercicio.listar());
 		List<Exercicio> lista = exercicioList.stream()
-				.filter(plano -> plano.getNome().equals(tipo)).collect(Collectors.toList());
+				.filter(exercicio -> exercicio.getNome().equals(tipo)).collect(Collectors.toList());
 		return lista;
 	}
 

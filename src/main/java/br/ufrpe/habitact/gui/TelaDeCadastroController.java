@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
-public class TelaDeCadastroControlador {
+public class TelaDeCadastroController {
     @FXML private TextField altura;
     @FXML private PasswordField confirmacaoDeSenha;
     @FXML private PasswordField confirmacaoDeSenhaAdministrador;

@@ -8,7 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 
-public class TelaPrincipalDoClienteControlador {
+public class TelaPrincipalDoClienteController {
 
     @FXML
     private Circle SabadoCircle;

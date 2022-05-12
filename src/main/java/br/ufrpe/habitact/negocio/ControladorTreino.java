@@ -50,7 +50,7 @@ public class ControladorTreino {
     public List<Treino> buscarTreino(CategoriaTreino categoria) throws ObjetoNaoExisteException {
         List<Treino> treinoList = new ArrayList<>(this.repositorioTreino.listar());
         List<Treino> lista = treinoList.stream()
-				.filter(plano -> plano.getModalidade().equals(categoria)).collect(Collectors.toList());
+				.filter(treino -> treino.getModalidade().equals(categoria)).collect(Collectors.toList());
 		return lista;
     }
 

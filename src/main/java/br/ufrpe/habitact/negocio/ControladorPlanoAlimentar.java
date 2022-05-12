@@ -14,11 +14,9 @@ import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
 
 public class ControladorPlanoAlimentar {
-	// atributos
 	private IRepositorio<PlanoAlimentar> repositorioPlanoAlimentar;
 	private static ControladorPlanoAlimentar instance;
 
-	// construtor default
 	private ControladorPlanoAlimentar() {
 		this.repositorioPlanoAlimentar = new Repositorio<>();
 	}
@@ -30,7 +28,6 @@ public class ControladorPlanoAlimentar {
         return instance;
     }
 
-	// método para cadastrar o plano de alimento no sistema
 	public void cadastrarPlanoAlimentar(PlanoAlimentar planoAlimentar)
 			throws ObjetoDuplicadoException, MaisDeUmPlanoNoMesmoPeriodoException {
 		for (PlanoAlimentar p : this.listarPlanoAlimentar()) {
@@ -45,7 +42,6 @@ public class ControladorPlanoAlimentar {
 		this.repositorioPlanoAlimentar.inserir(planoAlimentar);
 	}
 
-	// método para inserir um Alimento em um PlanoAlimentar
 	public void inserirAlimentoNoPlano(PlanoAlimentar planoAlimentar, Alimento novoAlimento)
 			throws ObjetoDuplicadoException, ObjetoNaoExisteException {
 		PlanoAlimentar planoAntigo = planoAlimentar;
@@ -53,7 +49,6 @@ public class ControladorPlanoAlimentar {
 		repositorioPlanoAlimentar.atualizar(planoAntigo, planoAlimentar);
 	}
 
-	// método para remover alimento do plano
 	public void removerAlimentoNoPlano(PlanoAlimentar planoAlimentar, Alimento alimentoAlvo)
 			throws ObjetoNaoExisteException {
 		PlanoAlimentar planoNovo = planoAlimentar;
@@ -61,7 +56,6 @@ public class ControladorPlanoAlimentar {
 		this.repositorioPlanoAlimentar.atualizar(planoAlimentar, planoNovo);
 	}
 
-	// método para modificar o plano de alimento no sistema
 	public void alterarPlanoAlimentar(PlanoAlimentar planoAlimentarAnterior, PlanoAlimentar planoAlimentarAtual)
 			throws ObjetoNaoExisteException {
 		repositorioPlanoAlimentar.atualizar(planoAlimentarAnterior, planoAlimentarAtual);
@@ -79,7 +73,6 @@ public class ControladorPlanoAlimentar {
 		return lista;
 	}
 
-	// método para listar o plano de alimento no sistema
 	public List<PlanoAlimentar> listarPlanoAlimentar() {
 		return repositorioPlanoAlimentar.listar();
 	}

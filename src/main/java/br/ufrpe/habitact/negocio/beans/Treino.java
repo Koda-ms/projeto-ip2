@@ -16,8 +16,7 @@ public class Treino {
 	private double queimaCaloricaTotal;
 	private CategoriaTreino modalidade;
 
-	public Treino() {
-	}
+	public Treino() {}
 
 	public Treino(ArrayList<Exercicio> exercicios, CategoriaTreino modalidade) {
 		this.exercicios = new ArrayList<>();
@@ -33,9 +32,7 @@ public class Treino {
 		this.duracao = soma;
 	}
 
-	//TODO o método será usado no controller da tela de cadastro de treino
 	public void estimarQtdDeCaloriasGastas(TipoExercicio exercicio) {
-
 		//Queima calórica por MINUTO
 		switch (exercicio.getNome()){
 			case "Caminhada": this.queimaCaloricaTotal = this.duracao * 5.5; break;

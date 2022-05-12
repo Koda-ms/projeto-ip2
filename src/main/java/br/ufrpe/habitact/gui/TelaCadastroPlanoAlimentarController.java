@@ -101,11 +101,11 @@ public class TelaCadastroPlanoAlimentarController {
         //Instancia treinos para Controlador ALimento
         ArrayList<Alimento> listaAlimentos = new ArrayList<>();
 
-        Alimento a1 = new Alimento("Pão Integral", 25, 137, Refeicao.CAFÉ_DA_MANHÃ, LocalDate.of(2022, 5, 6));
-        Alimento a2 = new Alimento("Feijão", 100, 79, Refeicao.ALMOÇO, LocalDate.of(2022, 5, 8));
-        Alimento a3 = new Alimento("Arroz", 100, 129, Refeicao.ALMOÇO, LocalDate.of(2022, 5, 8));
-        Alimento a4 = new Alimento("Sorvete", 60, 95, Refeicao.LANCHE, LocalDate.of(2022, 5, 2));
-        Alimento a5 = new Alimento("Ovo", 30, 74, Refeicao.JANTAR, LocalDate.of(2022, 5, 3));
+        Alimento a1 = new Alimento(Refeicao.CAFÉ_DA_MANHÃ, "Pão Integral", 25, 137);
+        Alimento a2 = new Alimento(Refeicao.ALMOÇO, "Feijão", 100, 79);
+        Alimento a3 = new Alimento(Refeicao.ALMOÇO, "Arroz", 100, 129);
+        Alimento a4 = new Alimento(Refeicao.LANCHE, "Sorvete", 60, 95);
+        Alimento a5 = new Alimento(Refeicao.JANTAR, "Ovo", 30, 74);
         /*listaAlimentos.add(a1);
         listaAlimentos.add(a2);
         listaAlimentos.add(a3);

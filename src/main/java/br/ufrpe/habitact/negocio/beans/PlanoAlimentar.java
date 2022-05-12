@@ -15,9 +15,6 @@ public class PlanoAlimentar {
 	private LocalDate dataFim;
 	private ObjetivoAlimentar objetivoAlimentar;
 
-	public PlanoAlimentar() {
-	}
-
 	public PlanoAlimentar(Cliente cliente, LocalDate dataInicio, LocalDate dataFim,
 						  ObjetivoAlimentar objetivoAlimentar) {
 		this.cliente = cliente;
@@ -26,6 +23,8 @@ public class PlanoAlimentar {
 		this.objetivoAlimentar = objetivoAlimentar;
 		this.alimentos = new ArrayList<Alimento>();
 	}
+
+	public PlanoAlimentar(){}
 
 	public void cadastrarAlimentos(Alimento alimento) throws ObjetoDuplicadoException {
 		if (!alimentos.contains(alimento)) {
@@ -43,26 +42,13 @@ public class PlanoAlimentar {
 		}
 	}
 
-	public ArrayList<Alimento> alimentosDoDia(LocalDate dia){
-		ArrayList<Alimento> alimentosDoDia = new ArrayList<>();
-		for(int i = 0; i < this.alimentos.size(); i++){
-			if(this.alimentos.get(i).getDiaDoAlimento().equals(dia)){
-				alimentosDoDia.add(this.alimentos.get(i));
-			}
-		}
-		return alimentosDoDia;
-	}
-
-	/*public double calcularCaloriasPorRefeicao(Refeicao refeicao){
+	public double calcularCalorias(){
 		double totalCalorias = 0;
-		if(refeicao.equals("Café da manhã") || refeicao.equals("Lanche") ||
-				refeicao.equals("Almoço") || refeicao.equals("Jantar")){
-			for (Alimento a : this.alimentos){
-				totalCalorias += a.getCalorias();
-			}
+		for (Alimento a : this.alimentos){
+			totalCalorias += a.getCalorias();
 		}
 		return totalCalorias;
-	}*/
+	}
 
 	@Override
 	public int hashCode() {

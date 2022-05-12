@@ -1,6 +1,5 @@
 package br.ufrpe.habitact.gui;
 
-import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Administrador;
 import br.ufrpe.habitact.negocio.beans.Cliente;
@@ -12,10 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-import java.time.LocalDate;
 
-
-public class TelaDeLoginControlador{
+public class TelaDeLoginController {
     @FXML TextField emailTxtField;
     @FXML PasswordField senhaField;
     @FXML Button logarButton;

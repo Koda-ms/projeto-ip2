@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.habitact.gui.TelaPrincipalDoClienteControlador">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.habitact.gui.TelaPrincipalDoClienteController">
    <children>
       <Label fx:id="objetivosDaSemanaLabel" layoutX="9.0" layoutY="11.0" text="Objetivos da semana" />
       <Circle fx:id="segundaCircle" fill="DODGERBLUE" layoutX="26.0" layoutY="44.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />

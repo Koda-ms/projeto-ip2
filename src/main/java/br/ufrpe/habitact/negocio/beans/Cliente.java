@@ -21,9 +21,7 @@ public class Cliente extends Usuario {
 		this.calcularIdade(dtNascimento);
 	}
 
-    public Cliente() {
-
-    }
+	public Cliente(){}
 
 	private void calcularIMC(double peso, double altura) {
 		this.imc = peso / (altura * altura);

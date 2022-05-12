@@ -20,6 +20,8 @@ public class Exercicio {
 		this.series = series;
 	}
 
+	public Exercicio(){}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(nome);

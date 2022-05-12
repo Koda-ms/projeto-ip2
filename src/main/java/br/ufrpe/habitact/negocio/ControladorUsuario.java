@@ -57,7 +57,7 @@ public class ControladorUsuario {
 	public List<Usuario> buscarUsuario(String nome) throws ObjetoNaoExisteException {
 		List<Usuario> usuariosList = new ArrayList<>(this.listarUsuarios());
 		List<Usuario> lista = usuariosList.stream()
-				.filter(plano -> plano.getNome().equals(nome)).collect(Collectors.toList());
+				.filter(usuario -> usuario.getNome().equals(nome)).collect(Collectors.toList());
 		return lista;
 	}
 

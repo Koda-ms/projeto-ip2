@@ -56,44 +56,15 @@ public class TelaAdmController {
         colunaClientePlanoAlimentar.setCellValueFactory(new PropertyValueFactory<>("cliente"));
         colunaDtInicioPlanoAlimentar.setCellValueFactory(new PropertyValueFactory<>("dtInicio"));
         colunaDtFimPlanoAlimentar.setCellValueFactory(new PropertyValueFactory<>("dtFim"));
-        try {
-            this.updateListaPlanoAlimentar();
-        } catch (ObjetoNaoExisteException e) {
-            e.printStackTrace();
-        }
+        this.updateListaPlanoAlimentar();
 
         colunaClientePlanoTreino.setCellValueFactory(new PropertyValueFactory<>("cliente"));
         colunaDtInicioPlanoTreino.setCellValueFactory(new PropertyValueFactory<>("dtInicio"));
         colunaDtFimPlanoTreino.setCellValueFactory(new PropertyValueFactory<>("dtFim"));
-        try {
-            this.updateListaPlanoTreino();
-        } catch (ObjetoNaoExisteException e) {
-            e.printStackTrace();
-        }
-
+        this.updateListaPlanoTreino();
     }
 
     public void updateListaClientes() {
-        Usuario c1 = new Cliente("Apolo","apolo.com","apolo", LocalDate.of(2000,06,03),
-                "Masculine",114.00,1.79, true);
-        Usuario c2 = new Cliente("July","july.com","apolo", LocalDate.of(2001,06,03),
-                "Feminine",114.00,1.79, true);
-        Usuario c3 = new Cliente("Lays","lays.com","apolo", LocalDate.of(2002,06,03),
-                "Feminine",114.00,1.79, true);
-        Usuario c4 = new Cliente("Teteu","teteu.com","apolo", LocalDate.of(2003,06,03),
-                "Masculine",114.00,1.79, true);
-        Usuario c5 = new Cliente("Joao","joao.com","apolo", LocalDate.of(2004,06,03),
-                "Masculine",114.00,1.79, true);
-        try {
-            Fachada.getInstance().cadastrarUsuario(c1);
-            Fachada.getInstance().cadastrarUsuario(c2);
-            Fachada.getInstance().cadastrarUsuario(c3);
-            Fachada.getInstance().cadastrarUsuario(c4);
-            Fachada.getInstance().cadastrarUsuario(c5);
-        } catch (ObjetoDuplicadoException e) {
-            e.printStackTrace();
-        }
-
         ObservableList<ModeloCliente> result = FXCollections.observableArrayList();
         List<Usuario> listaUsuarios = Fachada.getInstance().listarUsuarios();
         for(Usuario u: listaUsuarios){
@@ -104,27 +75,7 @@ public class TelaAdmController {
         tableClientes.setItems(result);
     }
 
-    public void updateListaPlanoAlimentar() throws ObjetoNaoExisteException {
-        PlanoAlimentar p1 = new PlanoAlimentar((Cliente)Fachada.getInstance().buscarUsuario("Apolo").get(0),
-                LocalDate.of(2022,05,01), LocalDate.of(2022,05,07), MELHORAR_ALIMENTACAO);
-        PlanoAlimentar p2 = new PlanoAlimentar((Cliente)Fachada.getInstance().buscarUsuario("July").get(0),
-                LocalDate.of(2022,05,01), LocalDate.of(2022,05,07), MELHORAR_ALIMENTACAO);
-        PlanoAlimentar p3 = new PlanoAlimentar((Cliente)Fachada.getInstance().buscarUsuario("Lays").get(0),
-                LocalDate.of(2022,05,01), LocalDate.of(2022,05,07), MELHORAR_ALIMENTACAO);
-        PlanoAlimentar p4 = new PlanoAlimentar((Cliente)Fachada.getInstance().buscarUsuario("Teteu").get(0),
-                LocalDate.of(2022,05,01), LocalDate.of(2022,05,07), MELHORAR_ALIMENTACAO);
-        PlanoAlimentar p5 = new PlanoAlimentar((Cliente)Fachada.getInstance().buscarUsuario("Joao").get(0),
-                LocalDate.of(2022,05,01), LocalDate.of(2022,05,07), MELHORAR_ALIMENTACAO);
-        try {
-            Fachada.getInstance().cadastrarPlanoAlimentar(p1);
-            Fachada.getInstance().cadastrarPlanoAlimentar(p2);
-            Fachada.getInstance().cadastrarPlanoAlimentar(p3);
-            Fachada.getInstance().cadastrarPlanoAlimentar(p4);
-            Fachada.getInstance().cadastrarPlanoAlimentar(p5);
-        } catch (MaisDeUmPlanoNoMesmoPeriodoException | ObjetoDuplicadoException e) {
-            e.printStackTrace();
-        }
-
+    public void updateListaPlanoAlimentar() {
         ObservableList<ModeloPlanoAlimentar> result = FXCollections.observableArrayList();
         List<PlanoAlimentar> listaPlanos = Fachada.getInstance().listarPlanoAlimentar();
         for (PlanoAlimentar p: listaPlanos){
@@ -133,39 +84,7 @@ public class TelaAdmController {
         tablePlanosAlimentares.setItems(result);
     }
 
-    public void updateListaPlanoTreino() throws ObjetoNaoExisteException {
-        PlanoTreino p1 = new PlanoTreino((Cliente)Fachada.getInstance().buscarUsuario("Apolo").get(0),
-                LocalDate.of(2022,05,01), LocalDate.of(2022,05,07), PERDER_MASSA);
-        PlanoTreino p2 = new PlanoTreino((Cliente)Fachada.getInstance().buscarUsuario("July").get(0),
-                LocalDate.of(2022,05,01), LocalDate.of(2022,05,07), PERDER_MASSA);
-        PlanoTreino p3 = new PlanoTreino((Cliente)Fachada.getInstance().buscarUsuario("Lays").get(0),
-                LocalDate.of(2022,05,01), LocalDate.of(2022,05,07), PERDER_MASSA);
-        PlanoTreino p4 = new PlanoTreino((Cliente)Fachada.getInstance().buscarUsuario("Teteu").get(0),
-                LocalDate.of(2022,05,01), LocalDate.of(2022,05,07), PERDER_MASSA);
-        PlanoTreino p5 = new PlanoTreino((Cliente)Fachada.getInstance().buscarUsuario("Joao").get(0),
-                LocalDate.of(2022,05,01), LocalDate.of(2022,05,07), PERDER_MASSA);
-        PlanoTreino p6 = new PlanoTreino((Cliente)Fachada.getInstance().buscarUsuario("Joao").get(0),
-                LocalDate.of(2022,04,01), LocalDate.of(2022,04,07), PERDER_MASSA);
-        PlanoTreino p7 = new PlanoTreino((Cliente)Fachada.getInstance().buscarUsuario("Joao").get(0),
-                LocalDate.of(2022,03,01), LocalDate.of(2022,03,07), PERDER_MASSA);
-        PlanoTreino p8 = new PlanoTreino((Cliente)Fachada.getInstance().buscarUsuario("Joao").get(0),
-                LocalDate.of(2022,02,01), LocalDate.of(2022,02,07), PERDER_MASSA);
-        PlanoTreino p9 = new PlanoTreino((Cliente)Fachada.getInstance().buscarUsuario("Joao").get(0),
-                LocalDate.of(2022,01,01), LocalDate.of(2022,01,07), PERDER_MASSA);
-        try {
-            Fachada.getInstance().cadastrarPlanoTreino(p1);
-            Fachada.getInstance().cadastrarPlanoTreino(p2);
-            Fachada.getInstance().cadastrarPlanoTreino(p3);
-            Fachada.getInstance().cadastrarPlanoTreino(p4);
-            Fachada.getInstance().cadastrarPlanoTreino(p5);
-            Fachada.getInstance().cadastrarPlanoTreino(p6);
-            Fachada.getInstance().cadastrarPlanoTreino(p7);
-            Fachada.getInstance().cadastrarPlanoTreino(p8);
-            Fachada.getInstance().cadastrarPlanoTreino(p9);
-        } catch (MaisDeUmPlanoNoMesmoPeriodoException | ObjetoDuplicadoException e) {
-            e.printStackTrace();
-        }
-
+    public void updateListaPlanoTreino() {
         ObservableList<ModeloPlanoTreino> result = FXCollections.observableArrayList();
         List<PlanoTreino> listaPlanos = Fachada.getInstance().listarPlanoTreino();
         for (PlanoTreino p: listaPlanos){

@@ -23,7 +23,7 @@ import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
 
 import java.util.List;
 
-public class Fachada implements IFachada {
+public class Fachada {
 
 	private ControladorAlimento alimentos;
 	private ControladorExercicio exercicios;

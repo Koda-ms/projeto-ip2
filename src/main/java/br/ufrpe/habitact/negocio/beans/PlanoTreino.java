@@ -23,6 +23,8 @@ public class PlanoTreino {
 		this.treinos = new ArrayList<>();
 	}
 
+	public PlanoTreino(){}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(cliente, dataFim, dataInicio, objetivoTreino, treinos);

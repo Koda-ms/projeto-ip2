@@ -12,7 +12,6 @@ import javafx.scene.layout.AnchorPane;
 
 public class TelaDeCadastroControlador {
     @FXML private TextField altura;
-    @FXML private Button btnCadastrarUsuario;
     @FXML private PasswordField confirmacaoDeSenha;
     @FXML private PasswordField confirmacaoDeSenhaAdministrador;
     @FXML private DatePicker dataNascimentoAdministrador;
@@ -28,9 +27,6 @@ public class TelaDeCadastroControlador {
     @FXML private PasswordField senhaAdministrador;
     @FXML private AnchorPane tabAdministrador;
     @FXML private AnchorPane tabUsuario;
-    @FXML private Button cadastrarAdministrador;
-    @FXML private Button btnVoltar;
-    @FXML private Button voltarAdmBtn;
     private static String Id = "0";
 
 
@@ -41,7 +37,10 @@ public class TelaDeCadastroControlador {
         }
         else{
             try{
-                Fachada.getInstance().cadastrarUsuario(new Cliente(nomeUsuario.getText(), email.getText(), senha.getText(), dataNascimentoUsuario.getValue(), genero.getText(), Double.parseDouble(peso.getText()), Double.parseDouble(altura.getText()), false));
+                Fachada.getInstance().cadastrarUsuario(new Cliente(nomeUsuario.getText(), email.getText(),
+                        senha.getText(), dataNascimentoUsuario.getValue(), genero.getText(),
+                        Double.parseDouble(peso.getText()), Double.parseDouble(altura.getText()),
+                        false));
                 gerarAlertaDeCadastro();
                 for (Usuario u : Fachada.getInstance().listarUsuarios()){
                     System.out.println(u.getNome());
@@ -50,6 +49,7 @@ public class TelaDeCadastroControlador {
                 exception.printStackTrace();
             }
         }
+
     }
 
     @FXML
@@ -59,7 +59,8 @@ public class TelaDeCadastroControlador {
         }
         else{
             try {
-                Fachada.getInstance().cadastrarUsuario(new Administrador(nomeAdministrador.getText(), emailAdministrador.getText(), senhaAdministrador.getText(), dataNascimentoAdministrador.getValue(), Id));
+                Fachada.getInstance().cadastrarUsuario(new Administrador(nomeAdministrador.getText(), emailAdministrador.getText(),
+                        senhaAdministrador.getText(), dataNascimentoAdministrador.getValue(), Id));
                 int idSaver = Integer.parseInt(Id);
                 idSaver++;
                 Id = Integer.toString(idSaver);
@@ -89,6 +90,10 @@ public class TelaDeCadastroControlador {
         GerenciadorTelas.getInstance().trocarTela("TelaDeLogin");
     }
 
+    @FXML
+    void btnVoltarAdm(ActionEvent event) {
+        GerenciadorTelas.getInstance().trocarTela("TelaDeLogin");
+    }
     private void gerarAlertaDeCadastro(){
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("Usuário cadastrado");
@@ -96,8 +101,18 @@ public class TelaDeCadastroControlador {
         alerta.showAndWait();
     }
 
-    @FXML
-    void btnVoltarAdm(ActionEvent event) {
-        GerenciadorTelas.getInstance().trocarTela("TelaDeLogin");
+    private void limparCamposDeDados() {
+        this.email.setText("");
+        this.emailAdministrador.setText("");
+        this.senha.setText("");
+        this.senhaAdministrador.setText("");
+        this.confirmacaoDeSenha.setText("");
+        this.confirmacaoDeSenhaAdministrador.setText("");
+        this.nomeUsuario.setText("");
+        this.nomeAdministrador.setText("");
+        this.altura.setText("");
+        this.peso.setText("");
+        this.dataNascimentoUsuario.setValue(null);
+        this.dataNascimentoAdministrador.setValue(null);
     }
 }

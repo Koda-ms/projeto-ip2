@@ -14,4 +14,9 @@ public enum RitmoDoExercicio {
 	public String getRitmo() {
 		return ritmo;
 	}
+
+    @Override
+    public String toString() {
+        return this.ritmo;
+    }
 }

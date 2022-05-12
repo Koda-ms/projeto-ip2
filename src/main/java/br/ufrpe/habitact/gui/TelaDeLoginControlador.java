@@ -30,11 +30,12 @@ public class TelaDeLoginControlador{
         } else {
             if(u instanceof Cliente){
                 GerenciadorTelas.getInstance().trocarTela("TelaPrincipalDoCliente");
-            } else if(u instanceof  Administrador){
+            } else if(u instanceof Administrador){
                 GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
             }
             usuario = u;
         }
+        this.limparCamposDeDados();
     }
 
     private void gerarAlertaDeUsuario(){
@@ -51,5 +52,10 @@ public class TelaDeLoginControlador{
 
     public static Usuario getUsuario() {
         return usuario;
+    }
+
+    private void limparCamposDeDados() {
+        this.emailTxtField.setText("");
+        this.senhaField.setText("");
     }
 }

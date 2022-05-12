@@ -28,7 +28,6 @@ public class TelaCadastroPlanoTreinoController {
     @FXML private TextField textOutro;
     @FXML private Button btnCancelarCadastrarPressed;
     @FXML private ComboBox<ObjetivoTreino> objetivoTreino;
-
     @FXML private TableView<ModeloPlanoTreinoCliente> tblTreino;
     @FXML private TableColumn<ModeloPlanoTreinoCliente, Boolean> colunaCheck;
     @FXML private TableColumn<ModeloPlanoTreinoCliente, Double> colunaCalorias;
@@ -51,7 +50,6 @@ public class TelaCadastroPlanoTreinoController {
 
     @FXML
     void optOutrosSelecionada(ActionEvent event) {
-
         //TODO Habilita o campo Outro para digitação. Configuração abaixo não está funcionando para essa tela
         if(objetivoTreino.getValue().getObjetivo().equalsIgnoreCase("")){
             this.textOutro.setDisable(false); //TODO Como seria pra armazenar esse valor em Objetivo?
@@ -93,7 +91,7 @@ public class TelaCadastroPlanoTreinoController {
 
     @FXML
     void btnVoltarPressed(ActionEvent event) {
-        //GerenciadorTelas.getInstance().trocarTela("listarDadosSistema");
+        GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
     }
 
     private void updateCatalogoTreino() {

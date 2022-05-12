@@ -12,4 +12,9 @@ public enum CategoriaTreino {
 	public String getCategoria() {
 		return categoria;
 	}
+
+	@Override
+	public String toString() {
+		return this.categoria;
+	}
 }

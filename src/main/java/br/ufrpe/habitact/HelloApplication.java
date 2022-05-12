@@ -11,7 +11,7 @@ public class HelloApplication extends Application {
         primaryStage.setScene(GerenciadorTelas.getInstance().getLoginScene());
         primaryStage.setTitle("Projeto HabitAct");
         primaryStage.setWidth(640);
-        primaryStage.setHeight(600);
+        primaryStage.setHeight(610);
         GerenciadorTelas.getInstance().setPrimaryStage(primaryStage);
         primaryStage.show();
 

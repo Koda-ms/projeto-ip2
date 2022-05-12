@@ -15,4 +15,9 @@ public enum Refeicao {
     public String getRefeicao() {
         return refeicao;
     }
+
+    @Override
+    public String toString() {
+        return this.refeicao;
+    }
 }

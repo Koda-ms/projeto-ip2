@@ -23,7 +23,6 @@ import java.util.List;
 
 public class TelaCadastroPlanoAlimentarController {
 
-    @FXML private Button btnCancelarCadastrarPressed;
     @FXML private DatePicker dtFim;
     @FXML private DatePicker dtInicio;
     @FXML private TextField textOutro;
@@ -86,8 +85,13 @@ public class TelaCadastroPlanoAlimentarController {
                 e.getMessage();
             }*/
 
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Cadastro de PLano");
+            alert.setHeaderText(null);
+            alert.setContentText("Seu plano foi cadastrado com sucesso!");
+            alert.showAndWait();
+
             this.limparCamposDeDados();
-            ((Stage)this.btnCancelarCadastrarPressed.getScene().getWindow()).close();
         }
     }
 

@@ -15,11 +15,10 @@ import java.time.LocalDate;
 
 public class TelaCadastrarAlimentosController {
 
-    private TelaCadastroPlanoAlimentarController planoAlimentarController;
-    @FXML private ComboBox<Refeicao> selectRefeicao;
     @FXML private TextField textCalorias;
     @FXML private TextField textNome;
     @FXML private TextField textQuantidade;
+    @FXML private ComboBox<Refeicao> selectRefeicao;
     @FXML private Button btnCancelarSalvarPressed;
 
     public void initialize(){
@@ -54,6 +53,5 @@ public class TelaCadastrarAlimentosController {
         return textNome.getText().isBlank() || textQuantidade.getText().isBlank() &&
                 textCalorias.getText().isBlank();
     }
-
 }
 

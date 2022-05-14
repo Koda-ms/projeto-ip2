@@ -11,34 +11,43 @@ import java.io.IOException;
 public class GerenciadorTelas {
     private static GerenciadorTelas instance;
     private Stage primaryStage;
+
     private Scene principalAdmScene;
-    private TelaAdmController admController;
-    private Scene meusDadosScene;
-    private TelaInformacaoPessoalClienteController informacaoPessoalClienteController;
-    private Scene informacoesPessoaisScene;
-    private TelaDeInformacoesPessoaisAdmController informacoesPessoaisController;
+    private TelaPrincipalAdmController admController;
 
-    private Scene listaDeClientesScene;
-    private TelaDeListarClientesController listarClientesController;
+    private Scene dadosClienteScene;
+    private TelaInfoPessoalClienteController infoPessoalClienteController;
 
-    private Scene listarDadosScene;
-    private TelaDeListarDadosController listarDadosController;
+    private Scene infoPessoalAdmScene;
+    private TelaInfoPessoalAdmController infoPessoalAdmController;
+
+    private Scene listarPlanosScene;
+    private TelaListarPlanosController listarPlanosController;
+
     private Scene cadastroScene;
+    private TelaCadastroUsuarioController cadastro;
+
     private Scene principalClienteScene;
+    private TelaPrincipalClienteController principalCliente;
+
     private Scene loginScene;
-    private TelaDeCadastroController cadastro;
-    private TelaDeLoginController login;
-    private TelaPrincipalDoClienteController principalCliente;
+    private TelaLoginController login;
+
     private Scene popupScene;
     private PopupCadastroPlanosController cadastroPlanosController;
+
     private Scene planoAlimentarScene;
     private TelaCadastroPlanoAlimentarController cadastroPlanoAlimentarController;
+
     private Scene addAlimentoScene;
     private TelaCadastrarAlimentosController cadastrarAlimentosController;
+
     private Scene planoTreinoScene;
     private TelaCadastroPlanoTreinoController cadastroPlanoTreinoController;
-    private Scene addTreino;
+
+    private Scene addTreinoScene;
     private TelaCadastrarTreinoController cadastrarTreinoController;
+
     private Scene addExercicioScene;
     private TelaCadastrarExercicioController cadastrarExercicioController;
 
@@ -56,42 +65,37 @@ public class GerenciadorTelas {
     private void initialize() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader = new FXMLLoader(Main.class.getResource("TelaDeInformacoesPessoais.fxml"));
-            this.informacoesPessoaisScene = new Scene(fxmlLoader.load());
-            this.informacoesPessoaisController = fxmlLoader.getController();
+            fxmlLoader = new FXMLLoader(Main.class.getResource("TelaInfoPessoalAdm.fxml"));
+            this.infoPessoalAdmScene = new Scene(fxmlLoader.load());
+            this.infoPessoalAdmController = fxmlLoader.getController();
 
             fxmlLoader = new FXMLLoader(Main.class.
-                    getResource("TelaDeListarClientes.fxml"));
-            this.listaDeClientesScene = new Scene(fxmlLoader.load());
-            this.listarClientesController = fxmlLoader.getController();
-
-            fxmlLoader = new FXMLLoader(Main.class.
-                    getResource("TelaAdm.fxml"));
+                    getResource("TelaPrincipalAdm.fxml"));
             this.principalAdmScene = new Scene(fxmlLoader.load());
             this.admController = fxmlLoader.getController();
 
             fxmlLoader = new FXMLLoader(Main.class.
-                    getResource("TelaInformacaoPessoal.fxml"));
-            this.meusDadosScene = new Scene(fxmlLoader.load());
-            this.informacaoPessoalClienteController = fxmlLoader.getController();
+                    getResource("TelaInfoPessoalCliente.fxml"));
+            this.dadosClienteScene = new Scene(fxmlLoader.load());
+            this.infoPessoalClienteController = fxmlLoader.getController();
 
             fxmlLoader = new FXMLLoader(Main.class.
-                    getResource("TelaDeListarDados.fxml"));
-            this.listarDadosScene = new Scene(fxmlLoader.load());
-            this.listarDadosController = fxmlLoader.getController();
+                    getResource("TelaListarPlanos.fxml"));
+            this.listarPlanosScene = new Scene(fxmlLoader.load());
+            this.listarPlanosController = fxmlLoader.getController();
 
             fxmlLoader = new FXMLLoader(Main.class.
-                    getResource("TelaDeLogin.fxml"));
+                    getResource("TelaLogin.fxml"));
             this.loginScene = new Scene(fxmlLoader.load());
             this.login = fxmlLoader.getController();
 
             fxmlLoader = new FXMLLoader(Main.class.
-                    getResource("TelaDeCadastro.fxml"));
+                    getResource("TelaCadastroUsuario.fxml"));
             this.cadastroScene = new Scene(fxmlLoader.load());
             this.cadastro = fxmlLoader.getController();
 
             fxmlLoader = new FXMLLoader(Main.class.
-                   getResource("TelaPrincipalDoCliente.fxml"));
+                   getResource("TelaPrincipalCliente.fxml"));
             this.principalClienteScene = new Scene(fxmlLoader.load());
             this.principalCliente = fxmlLoader.getController();
 
@@ -117,7 +121,7 @@ public class GerenciadorTelas {
 
             fxmlLoader = new FXMLLoader(Main.class.
                     getResource("TelaCadastrarTreino.fxml"));
-            this.addTreino = new Scene(fxmlLoader.load());
+            this.addTreinoScene = new Scene(fxmlLoader.load());
             this.cadastrarTreinoController = fxmlLoader.getController();
 
             fxmlLoader = new FXMLLoader(Main.class.
@@ -132,16 +136,16 @@ public class GerenciadorTelas {
 
     public void trocarTela(String tela){
         switch(tela){
-            case "TelaDeInformacoesPessoais": primaryStage.setScene(informacoesPessoaisScene); break;
-            case "TelaDeListarClientes": primaryStage.setScene(listaDeClientesScene); break;
-            case "TelaDeListarDados": primaryStage.setScene(listarDadosScene); break;
+            case "TelaLogin": primaryStage.setScene(loginScene); break;
+            case "TelaCadastro": primaryStage.setScene(cadastroScene); break;
+            case "TelaInfoPessoalAdm": primaryStage.setScene(infoPessoalAdmScene); break;
+            case "TelaDadosCliente": primaryStage.setScene(dadosClienteScene); break;
+            case "TelaListarPlanos": primaryStage.setScene(listarPlanosScene); break;
             case "telaPrincipalAdm": primaryStage.setScene(principalAdmScene);
-            case "TelaDeLogin": primaryStage.setScene(loginScene); break;
-            case "TelaDeCadastro": primaryStage.setScene(cadastroScene); break;
-            case "TelaPrincipalDoCliente": primaryStage.setScene(principalClienteScene); break;
+            case "TelaPrincipalCliente": primaryStage.setScene(principalClienteScene); break;
             case "planoAlimentar": primaryStage.setScene(planoAlimentarScene);break;
             case "planoTreino": primaryStage.setScene(planoTreinoScene); break;
-            case "MeusDadosTela": primaryStage.setScene(meusDadosScene); break;
+            case "TelaCadastroTreino": primaryStage.setScene(addTreinoScene); break;
         }
     }
 
@@ -165,28 +169,20 @@ public class GerenciadorTelas {
         return principalClienteScene;
     }
 
-    public Scene getInformacoesPessoaisScene() {
-        return informacoesPessoaisScene;
+    public Scene getInfoPessoalAdmScene() {
+        return infoPessoalAdmScene;
     }
 
-    public TelaDeInformacoesPessoaisAdmController getInformacoesPessoaisController() {
-        return informacoesPessoaisController;
+    public TelaInfoPessoalAdmController getInfoPessoalAdmController() {
+        return infoPessoalAdmController;
     }
 
-    public Scene getListaDeClientesScene() {
-        return listaDeClientesScene;
+    public Scene getListarPlanosScene() {
+        return listarPlanosScene;
     }
 
-    public TelaDeListarClientesController getListarClientesController() {
-        return listarClientesController;
-    }
-
-    public Scene getListarDadosScene() {
-        return listarDadosScene;
-    }
-
-    public TelaDeListarDadosController getListarDadosController() {
-        return listarDadosController;
+    public TelaListarPlanosController getListarPlanosController() {
+        return listarPlanosController;
     }
     public Scene getPopupScene() {
         return popupScene;
@@ -202,8 +198,8 @@ public class GerenciadorTelas {
         return planoTreinoScene;
     }
 
-    public Scene getAddTreino() {
-        return addTreino;
+    public Scene getAddTreinoScene() {
+        return addTreinoScene;
     }
 
     public Scene getAddExercicioScene() { return addExercicioScene; }
@@ -212,15 +208,15 @@ public class GerenciadorTelas {
         return primaryStage;
     }
 
-    public TelaPrincipalDoClienteController getTelaDoCliente() {
+    public TelaPrincipalClienteController getTelaDoCliente() {
         return principalCliente;
     }
 
-    public TelaDeCadastroController getCadastro() {
+    public TelaCadastroUsuarioController getCadastro() {
         return cadastro;
     }
 
-    public TelaDeLoginController getLogin() {
+    public TelaLoginController getLogin() {
         return login;
     }
 
@@ -228,7 +224,7 @@ public class GerenciadorTelas {
         return principalAdmScene;
     }
 
-    public TelaAdmController getAdmController() {
+    public TelaPrincipalAdmController getAdmController() {
         return admController;
     }
 
@@ -260,16 +256,16 @@ public class GerenciadorTelas {
         return cadastrarExercicioController;
     }
 
-    public TelaPrincipalDoClienteController getPrincipalCliente() {
+    public TelaPrincipalClienteController getPrincipalCliente() {
         return principalCliente;
     }
 
-    public Scene getMeusDadosScene() {
-        return meusDadosScene;
+    public Scene getDadosClienteScene() {
+        return dadosClienteScene;
     }
 
-    public TelaInformacaoPessoalClienteController getInformacaoPessoalClienteController() {
-        return informacaoPessoalClienteController;
+    public TelaInfoPessoalClienteController getInfoPessoalClienteController() {
+        return infoPessoalClienteController;
     }
 }
 

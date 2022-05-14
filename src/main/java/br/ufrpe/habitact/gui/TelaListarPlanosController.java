@@ -16,20 +16,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class TelaDeListarDadosController {
-    @FXML
-    private TableView<ModeloListarPlanoAlimentar> tblPlanoAlimentar;
+public class TelaListarPlanosController {
+    @FXML private TableView<ModeloListarPlanoAlimentar> tblPlanoAlimentar;
 
-    @FXML
-    private TableView<ModeloListarPlanoTreino> tblPlanoTreino;
+    @FXML private TableView<ModeloListarPlanoTreino> tblPlanoTreino;
 //    @FXML private TableColumn<ModeloListarPlanoAlimentar, String> clientesColuna;
 //    @FXML private TableColumn<ModeloListarPlanoAlimentar, String> dtFimColuna;
 //    @FXML private TableColumn<ModeloListarPlanoAlimentar, String> dtInicioColuna;
@@ -48,7 +43,6 @@ public class TelaDeListarDadosController {
             e.printStackTrace();
         }
     }
-
 
     public void updateListaPlanoAlimentar(){
         Usuario c1 = new Cliente("Apolo","apolo.com","apolo", LocalDate.of(2000,06,03),
@@ -90,13 +84,15 @@ public class TelaDeListarDadosController {
     }
 
     public void updateListaPlanoTreino() throws ObjetoDuplicadoException {
-        Usuario c1 = new Cliente("Apolo","apolo.com","apolo", LocalDate.of(2000,06,03),
-                "Masculine",114.00,1.79, true);
+        Usuario c1 = new Cliente("Apolo","apolo.com","apolo",
+                LocalDate.of(2000,06,03), "Masculine",114.00,
+                1.79, true);
         Fachada.getInstance().cadastrarUsuario(c1);
         PlanoTreino pt1;
         {
             try {
-                pt1 = new PlanoTreino((Cliente) Fachada.getInstance().buscarUsuario("Apolo").get(0), LocalDate.of(2022,3,4),
+                pt1 = new PlanoTreino((Cliente) Fachada.getInstance().buscarUsuario("Apolo").get(0),
+                        LocalDate.of(2022,3,4),
                         LocalDate.of(2022,3,9), ObjetivoTreino.GANHAR_MASSA);
             } catch (ObjetoNaoExisteException e) {
                 throw new RuntimeException(e);
@@ -141,6 +137,6 @@ public class TelaDeListarDadosController {
 
     @FXML
     void btnVoltarPressed(ActionEvent event) {
-        GerenciadorTelas.getInstance().trocarTela("TelaPrincipalDoCliente");
+        GerenciadorTelas.getInstance().trocarTela("TelaPrincipalCliente");
     }
 }

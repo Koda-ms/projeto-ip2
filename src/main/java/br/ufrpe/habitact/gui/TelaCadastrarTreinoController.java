@@ -29,7 +29,6 @@ public class TelaCadastrarTreinoController {
 
     @FXML private Button btnCancelarSalvarPressed;
     @FXML private ComboBox<CategoriaTreino> optCategoria;
-
     @FXML private TableView<ModeloTreino> tblExercicio;
     @FXML private TableColumn<ModeloTreino, Boolean> colunaCheck;
     @FXML private TableColumn<ModeloTreino, String> colunaNomeExercicio;

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="paneTelaLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.habitact.gui.TelaDeLoginController">
+<Pane fx:id="paneTelaLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.habitact.gui.TelaLoginController">
    <children>
       <Label fx:id="labelHabitAct" alignment="CENTER" layoutX="249.0" layoutY="168.0" text="HabitAct">
          <font>
@@ -16,7 +16,7 @@
       </Label>
       <TextField fx:id="emailTxtField" layoutX="230.0" layoutY="238.0" promptText="Email" />
       <PasswordField fx:id="senhaField" layoutX="230.0" layoutY="277.0" promptText="Senha" />
-      <Button fx:id="cadastrarButton" layoutX="303.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnCadastro" text="Cadastro" />
-      <Button fx:id="logarButton" layoutX="234.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnLogar" text="Logar" />
+      <Button layoutX="303.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnCadastro" text="Cadastro" />
+      <Button layoutX="234.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnLogar" text="Logar" />
    </children>
 </Pane>

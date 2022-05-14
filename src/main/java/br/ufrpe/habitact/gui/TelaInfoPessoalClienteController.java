@@ -4,7 +4,7 @@ import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class TelaInformacaoPessoalClienteController {
+public class TelaInfoPessoalClienteController {
     @FXML TextField nome;
     @FXML TextField email;
     @FXML PasswordField senha;
@@ -57,7 +57,7 @@ public class TelaInformacaoPessoalClienteController {
 
     @FXML
     public void btnVoltarTelaPressed() {
-       GerenciadorTelas.getInstance().trocarTela("TelaPrincipalDoCliente");
+       GerenciadorTelas.getInstance().trocarTela("TelaPrincipalCliente");
     }
 
     private void ativarEdicaoDados(boolean edicao) {

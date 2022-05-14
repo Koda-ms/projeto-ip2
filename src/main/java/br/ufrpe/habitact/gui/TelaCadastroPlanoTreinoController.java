@@ -26,7 +26,6 @@ public class TelaCadastroPlanoTreinoController {
     @FXML private DatePicker dtFim;
     @FXML private DatePicker dtInicio;
     @FXML private TextField textOutro;
-    @FXML private Button btnCancelarCadastrarPressed;
     @FXML private ComboBox<ObjetivoTreino> objetivoTreino;
     @FXML private TableView<ModeloPlanoTreinoCliente> tblTreino;
     @FXML private TableColumn<ModeloPlanoTreinoCliente, Boolean> colunaCheck;
@@ -59,13 +58,7 @@ public class TelaCadastroPlanoTreinoController {
     //Direcionar para uma tela de diálogo que aparecerá sobre a tela atual
     @FXML
     void btnAddTreino(ActionEvent event) {
-        Stage dialog = new Stage();
-        dialog.setScene(GerenciadorTelas.getInstance().getAddTreino());
-        dialog.setResizable(false);
-        dialog.setTitle("Cadastrar Treino");
-        dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
-        dialog.initModality(Modality.APPLICATION_MODAL);
-        dialog.showAndWait();
+        GerenciadorTelas.getInstance().trocarTela("TelaCadastroTreino");
     }
 
     @FXML
@@ -84,8 +77,13 @@ public class TelaCadastroPlanoTreinoController {
                 e.getMessage();
             }*/
 
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Cadastro de PLano");
+            alert.setHeaderText(null);
+            alert.setContentText("Seu plano foi cadastrado com sucesso!");
+            alert.showAndWait();
+
             this.limparCamposDeDados();
-            ((Stage)this.btnCancelarCadastrarPressed.getScene().getWindow()).close();
         }
     }
 

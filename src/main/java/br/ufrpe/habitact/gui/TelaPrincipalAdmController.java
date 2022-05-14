@@ -1,8 +1,5 @@
 package br.ufrpe.habitact.gui;
 
-import br.ufrpe.habitact.excecoes.MaisDeUmPlanoNoMesmoPeriodoException;
-import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
-import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.gui.modelos.ModeloCliente;
 import br.ufrpe.habitact.gui.modelos.ModeloPlanoAlimentar;
 import br.ufrpe.habitact.gui.modelos.ModeloPlanoTreino;
@@ -16,20 +13,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.time.LocalDate;
 import java.util.List;
 
-import static br.ufrpe.habitact.negocio.beans.enums.ObjetivoAlimentar.MELHORAR_ALIMENTACAO;
-import static br.ufrpe.habitact.negocio.beans.enums.ObjetivoTreino.PERDER_MASSA;
-
-public class TelaAdmController {
+public class TelaPrincipalAdmController {
 
     @FXML private TableColumn<ModeloPlanoAlimentar, String> colunaClientePlanoAlimentar;
     @FXML private TableColumn<ModeloPlanoAlimentar, String> colunaDtInicioPlanoAlimentar;
@@ -110,6 +102,11 @@ public class TelaAdmController {
 
     @FXML
     void btnSairPressed(ActionEvent event) {
-        GerenciadorTelas.getInstance().trocarTela("TelaDeLogin");
+        GerenciadorTelas.getInstance().trocarTela("TelaLogin");
+    }
+
+    @FXML
+    void btnMeusDadosPressed(ActionEvent event) {
+        GerenciadorTelas.getInstance().trocarTela("TelaInfoPessoalAdm");
     }
 }

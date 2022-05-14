@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.habitact.gui.TelaPrincipalClienteController">
+   <children>
+      <Label fx:id="objetivosDaSemanaLabel" layoutX="29.0" layoutY="50.0" text="Objetivos da semana">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Circle fx:id="segundaCircle" fill="DODGERBLUE" layoutX="42.0" layoutY="99.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="tercaCircle" fill="DODGERBLUE" layoutX="68.0" layoutY="98.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="quartaCircle" fill="DODGERBLUE" layoutX="94.0" layoutY="98.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="quintaCircle" fill="DODGERBLUE" layoutX="120.0" layoutY="99.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="sextaCircle" fill="DODGERBLUE" layoutX="146.0" layoutY="99.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="SabadoCircle" fill="DODGERBLUE" layoutX="172.0" layoutY="99.0" onMouseClicked="#detalhesObjetivos" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="domingoCircle" fill="DODGERBLUE" layoutX="198.0" layoutY="99.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="segundaLabel" layoutX="39.0" layoutY="89.0" text="S" />
+      <Label fx:id="tercaLabel" layoutX="65.0" layoutY="88.0" text="T" />
+      <Label fx:id="quartaLabel" layoutX="90.0" layoutY="88.0" text="Q" />
+      <Label fx:id="quintaLabel" layoutX="116.0" layoutY="88.0" text="Q" />
+      <Label fx:id="sextaLabel" layoutX="142.0" layoutY="88.0" text="S" />
+      <Label fx:id="sabadoLabel" layoutX="169.0" layoutY="90.0" text="S" />
+      <Label fx:id="domingoLabel" layoutX="195.0" layoutY="89.0" onMouseClicked="#detalhesObjetivos" text="D" />
+      <Separator layoutX="14.0" layoutY="127.0" prefHeight="3.0" prefWidth="583.0" />
+      <Label layoutX="26.0" layoutY="159.0" text="Cardápio">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <VBox layoutX="79.0" layoutY="213.0">
+         <children>
+            <TitledPane animated="false" prefHeight="26.0" prefWidth="377.0" text="Café da manhã">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="200.0" />
+              </content>
+            </TitledPane>
+            <TitledPane animated="false" prefHeight="26.0" prefWidth="377.0" text="Almoço">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="200.0" />
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" prefHeight="26.0" prefWidth="377.0" text="Lanche">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="200.0" />
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" prefHeight="26.0" prefWidth="377.0" text="Jantar">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="200.0" />
+               </content>
+            </TitledPane>
+         </children>
+      </VBox>
+      <Separator layoutX="14.0" layoutY="390.0" prefHeight="3.0" prefWidth="583.0" />
+      <TitledPane animated="false" layoutX="81.0" layoutY="417.0" prefHeight="26.0" prefWidth="373.0" text="Exercícios">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        </content>
+      </TitledPane>
+    <Button layoutX="367.0" layoutY="14.0" minWidth="37.0" mnemonicParsing="false" onAction="#btnListarPLanosPressed" prefHeight="25.0" text="Listar Planos" />
+      <Button layoutX="552.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnSair" text="Sair">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button layoutX="460.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnMeusDados" text="Meus Dados" />
+   </children>
+</Pane>

@@ -10,17 +10,17 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="573.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.habitact.gui.TelaDeInformacoesPessoaisAdmController">
+<AnchorPane prefHeight="573.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.habitact.gui.TelaInfoPessoalAdmController">
    <children>
-      <Button layoutX="443.0" layoutY="329.0" mnemonicParsing="false" text="Editar dados" AnchorPane.leftAnchor="443.0" />
-      <Button layoutX="551.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnSalvarPressed" text="Salvar" />
+      <Button layoutX="448.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnEditarDadosPressed" text="Editar Dados" AnchorPane.leftAnchor="448.0" />
+      <Button layoutX="546.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnSalvarPressed" text="Salvar" />
       <Button layoutX="542.0" layoutY="11.0" mnemonicParsing="false" onAction="#btnVoltarPressed" text="Voltar" />
       <Label layoutX="33.0" layoutY="14.0" text="Informações pessoais">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Separator layoutX="3.0" layoutY="48.0" prefHeight="2.0" prefWidth="587.0" />
+      <Separator layoutX="12.0" layoutY="48.0" prefHeight="2.0" prefWidth="587.0" />
       <GridPane layoutX="35.0" layoutY="85.0" prefHeight="226.0" prefWidth="485.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -43,17 +43,17 @@
             <TextField fx:id="txtID" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Button layoutX="403.0" layoutY="525.0" mnemonicParsing="false" onAction="#btnEditarSenhaPressed" text="Editar senha" />
+      <Button layoutX="484.0" layoutY="525.0" mnemonicParsing="false" onAction="#btnAlterarSenhaPressed" text="Alterar" />
       <Separator layoutX="12.0" layoutY="361.0" prefHeight="2.0" prefWidth="587.0" />
       <TextField layoutX="156.0" layoutY="416.0" />
       <TextField layoutX="156.0" layoutY="466.0" />
+      <Button layoutX="546.0" layoutY="525.0" mnemonicParsing="false" onAction="#btnSalvarSenhaPressed" text="Salvar" />
       <Label layoutX="33.0" layoutY="374.0" text="Alterar senha">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Button layoutX="500.0" layoutY="525.0" mnemonicParsing="false" onAction="#btnSalvarSenhaPressed" text="Salvar senha" />
       <Label layoutX="36.0" layoutY="420.0" text="Nova senha:" />
-      <Label layoutX="33.0" layoutY="471.0" text="Confirmar senha" />
+      <Label layoutX="35.0" layoutY="471.0" text="Confirmar senha:" />
    </children>
 </AnchorPane>

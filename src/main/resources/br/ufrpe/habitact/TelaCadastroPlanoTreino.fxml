@@ -35,7 +35,7 @@
       <ComboBox fx:id="objetivoTreino" layoutX="190.0" layoutY="132.0" prefHeight="25.0" prefWidth="330.0" promptText="Escolha uma opção" />
       <Separator layoutX="13.0" layoutY="220.0" prefHeight="5.0" prefWidth="585.0" />
       <Separator layoutX="13.0" layoutY="270.0" prefHeight="5.0" prefWidth="585.0" />
-      <Button fx:id="btnCancelarCadastrarPressed" layoutX="494.0" layoutY="504.0" mnemonicParsing="false" onAction="#btnCadastrarPressed" prefHeight="25.0" prefWidth="81.0" text="Cadastrar" />
+      <Button layoutX="494.0" layoutY="504.0" mnemonicParsing="false" onAction="#btnCadastrarPressed" prefHeight="25.0" prefWidth="81.0" text="Cadastrar" />
       <Label layoutX="39.0" layoutY="236.0" prefHeight="17.0" prefWidth="224.0" text="Catálogo de Treinos">
          <font>
             <Font name="Calibri" size="20.0" />

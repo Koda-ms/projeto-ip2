@@ -141,7 +141,7 @@ public class GerenciadorTelas {
             case "TelaInfoPessoalAdm": primaryStage.setScene(infoPessoalAdmScene); break;
             case "TelaDadosCliente": primaryStage.setScene(dadosClienteScene); break;
             case "TelaListarPlanos": primaryStage.setScene(listarPlanosScene); break;
-            case "telaPrincipalAdm": primaryStage.setScene(principalAdmScene);
+            case "telaPrincipalAdm": primaryStage.setScene(principalAdmScene); break;
             case "TelaPrincipalCliente": primaryStage.setScene(principalClienteScene); break;
             case "planoAlimentar": primaryStage.setScene(planoAlimentarScene);break;
             case "planoTreino": primaryStage.setScene(planoTreinoScene); break;

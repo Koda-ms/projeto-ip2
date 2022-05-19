@@ -65,4 +65,26 @@ public class ControladorUsuario {
 		return repositorioUsuario.listar();
 	}
 
+	public List<Cliente> listarClientes(){
+		List<Usuario> us = repositorioUsuario.listar();
+		List<Cliente> clientes = new ArrayList<>();
+		for(Usuario u: us){
+			if (u instanceof Cliente){
+				clientes.add((Cliente) u);
+			}
+		}
+		return clientes;
+	}
+
+	public List<Administrador> listarAdms(){
+		List<Usuario> us = repositorioUsuario.listar();
+		List<Administrador> adms = new ArrayList<>();
+		for(Usuario u: us){
+			if (u instanceof Administrador){
+				adms.add((Administrador) u);
+			}
+		}
+		return adms;
+	}
+
 }

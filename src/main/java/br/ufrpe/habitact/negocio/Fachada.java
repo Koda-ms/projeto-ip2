@@ -198,4 +198,12 @@ public class Fachada {
 	public List<Usuario> listarUsuarios() {
 		return usuarios.listarUsuarios();
 	}
+
+	public List<Cliente> listarClientes() {
+		return usuarios.listarClientes();
+	}
+
+	public List<Administrador> listarAdms() {
+		return usuarios.listarAdms();
+	}
 }

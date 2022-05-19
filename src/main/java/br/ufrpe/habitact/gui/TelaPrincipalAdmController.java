@@ -58,11 +58,11 @@ public class TelaPrincipalAdmController {
 
     public void updateListaClientes() {
         ObservableList<ModeloCliente> result = FXCollections.observableArrayList();
-        List<Usuario> listaUsuarios = Fachada.getInstance().listarUsuarios();
-        for(Usuario u: listaUsuarios){
-            if (u instanceof Cliente){
-                result.add(new ModeloCliente((Cliente) u));
-            }
+        List<Cliente> clientes = Fachada.getInstance().listarClientes();
+        for(Cliente c: clientes){
+            System.out.println();
+            System.out.println(c.getNome());
+            result.add(new ModeloCliente(c));
         }
         tableClientes.setItems(result);
     }
@@ -84,6 +84,7 @@ public class TelaPrincipalAdmController {
         }
         tablePlanosTreinos.setItems(result);
     }
+
     @FXML
     void btnCadastrarPressed(ActionEvent event) {
         Stage dialog = new Stage();
@@ -95,10 +96,10 @@ public class TelaPrincipalAdmController {
         dialog.showAndWait();
     }
 
-    @FXML
+    /*@FXML
     void btnRelatorioPressed(ActionEvent event) {
         GerenciadorTelas.getInstance().trocarTela("popupGraficos");
-    }
+    }*/
 
     @FXML
     void btnSairPressed(ActionEvent event) {

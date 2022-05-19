@@ -4,6 +4,8 @@ import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.gui.modelos.ModeloPlanoAlimentarCliente;
 import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Alimento;
+import br.ufrpe.habitact.negocio.beans.Cliente;
+import br.ufrpe.habitact.negocio.beans.Usuario;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoAlimentar;
 import br.ufrpe.habitact.negocio.beans.enums.Refeicao;
 import javafx.collections.FXCollections;
@@ -26,6 +28,7 @@ public class TelaCadastroPlanoAlimentarController {
     @FXML private DatePicker dtFim;
     @FXML private DatePicker dtInicio;
     @FXML private TextField textOutro;
+    @FXML private ComboBox<String> cliente;
     @FXML private ComboBox<Refeicao> refeicao;
     @FXML private ComboBox<ObjetivoAlimentar> objetivo;
     @FXML private TableView<ModeloPlanoAlimentarCliente> tblAlimentos;
@@ -38,6 +41,7 @@ public class TelaCadastroPlanoAlimentarController {
         //Adiciona os valores dos enuns ObjetivoAlimentar e Refeicao em cada ComboBox
         this.objetivo.getItems().addAll(ObjetivoAlimentar.values());
         this.refeicao.getItems().addAll(Refeicao.values());
+        this.adicionarClientesComboBox();
 
         //Setando as colunas da TableView
         this.colunaCheck.setCellValueFactory(new PropertyValueFactory<>("check"));
@@ -143,6 +147,13 @@ public class TelaCadastroPlanoAlimentarController {
             result.add(new ModeloPlanoAlimentarCliente(a));
         }
         tblAlimentos.setItems(result);
+    }
+
+    private void adicionarClientesComboBox(){
+        List<Cliente> clientes = Fachada.getInstance().listarClientes();
+        for (Cliente c: clientes) {
+            this.cliente.getItems().add(c.getNome());
+        }
     }
 
     private void limparCamposDeDados() {

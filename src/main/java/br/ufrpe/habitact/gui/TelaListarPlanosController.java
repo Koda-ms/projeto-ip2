@@ -34,15 +34,15 @@ public class TelaListarPlanosController {
 //    @FXML private TableColumn<ModeloListarPlanoTreino, String> dtInicioColunaTreino;
 //    @FXML private TableColumn<ModeloListarPlanoTreino, String> objetivoTreinoColuna;
 
-    @FXML
-    private void initialize(){
-        updateListaPlanoAlimentar();
-        try {
-            updateListaPlanoTreino();
-        } catch (ObjetoDuplicadoException e) {
-            e.printStackTrace();
-        }
-    }
+//    @FXML
+//    private void initialize(){
+//        updateListaPlanoAlimentar();
+//        try {
+//            updateListaPlanoTreino();
+//        } catch (ObjetoDuplicadoException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public void updateListaPlanoAlimentar(){
         Usuario c1 = new Cliente("Apolo","apolo.com","apolo", LocalDate.of(2000,06,03),
@@ -100,7 +100,7 @@ public class TelaListarPlanosController {
         }
 
         /*
-        * PlanoAlimentar p2 = new PlanoAlimentar();
+         PlanoAlimentar p2 = new PlanoAlimentar();
         p1.setDataInicio(LocalDate.of(2004, 07, 22));
         p1.setDataFim(LocalDate.of(2005, 07, 22));
         p1.setObjetivoAlimentar(ObjetivoAlimentar.SUPLEMENTACAO_ALIMENTAR);
@@ -109,7 +109,7 @@ public class TelaListarPlanosController {
         p1.setDataInicio(LocalDate.of(2010, 05, 13));
         p1.setDataFim(LocalDate.of(2011, 05, 13));
         p1.setObjetivoAlimentar(ObjetivoAlimentar.SUPLEMENTACAO_ALIMENTAR);
-        * */
+        */
 
 
         try {

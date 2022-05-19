@@ -12,7 +12,6 @@
 
 <AnchorPane prefHeight="573.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.habitact.gui.TelaInfoPessoalAdmController">
    <children>
-      <Button layoutX="448.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnEditarDadosPressed" text="Editar Dados" AnchorPane.leftAnchor="448.0" />
       <Button layoutX="546.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnSalvarPressed" text="Salvar" />
       <Button layoutX="542.0" layoutY="11.0" mnemonicParsing="false" onAction="#btnVoltarPressed" text="Voltar" />
       <Label layoutX="33.0" layoutY="14.0" text="Informações pessoais">
@@ -35,7 +34,7 @@
          <children>
             <Label text="Nome:" />
             <Label text="Email:" GridPane.rowIndex="1" />
-            <Label text="Data de nascimento:" GridPane.rowIndex="2" />
+            <Label text="Data de Nascimento:" GridPane.rowIndex="2" />
             <TextField fx:id="txtNome" GridPane.columnIndex="1" />
             <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="txtDataNascimento" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -43,17 +42,16 @@
             <TextField fx:id="txtID" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Button layoutX="484.0" layoutY="525.0" mnemonicParsing="false" onAction="#btnAlterarSenhaPressed" text="Alterar" />
       <Separator layoutX="12.0" layoutY="361.0" prefHeight="2.0" prefWidth="587.0" />
-      <TextField layoutX="156.0" layoutY="416.0" />
-      <TextField layoutX="156.0" layoutY="466.0" />
+      <TextField fx:id="txtSenhaAtual" layoutX="156.0" layoutY="416.0" />
+      <TextField fx:id="txtNovaSenha" layoutX="156.0" layoutY="466.0" />
       <Button layoutX="546.0" layoutY="525.0" mnemonicParsing="false" onAction="#btnSalvarSenhaPressed" text="Salvar" />
       <Label layoutX="33.0" layoutY="374.0" text="Alterar senha">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="36.0" layoutY="420.0" text="Nova senha:" />
-      <Label layoutX="35.0" layoutY="471.0" text="Confirmar senha:" />
+      <Label layoutX="36.0" layoutY="420.0" text="Senha Atual:" />
+      <Label layoutX="35.0" layoutY="471.0" text="Nova Senha:" />
    </children>
 </AnchorPane>

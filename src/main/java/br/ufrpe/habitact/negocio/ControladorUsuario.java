@@ -45,11 +45,15 @@ public class ControladorUsuario {
 		return u;
 	}
 
-	public void alterarDados(Usuario usuarioAntigo, Usuario usuarioNovo, String senha)
-			throws SenhaIncorretaException, ObjetoNaoExisteException {
-		if (usuarioAntigo.getSenha().equals(senha)) {
-			this.repositorioUsuario.atualizar(usuarioAntigo, usuarioNovo);
-		} else {
+	public void alterarDados(Usuario usuarioAntigo, Usuario usuarioNovo)
+			throws ObjetoNaoExisteException {
+		this.repositorioUsuario.atualizar(usuarioAntigo, usuarioNovo);
+	}
+
+	public void alterarSenha(Usuario u, String senhaAntiga, String senhaNova) throws SenhaIncorretaException{
+		if (u.getSenha().equals(senhaAntiga)){
+			u.setSenha(senhaNova);
+		} else{
 			throw new SenhaIncorretaException("Senha Incorreta");
 		}
 	}

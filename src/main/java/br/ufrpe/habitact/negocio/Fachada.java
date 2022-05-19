@@ -186,11 +186,6 @@ public class Fachada {
 		return usuarios.autenticarUsuario(email, senha);
 	}
 
-	public void alterarDados(Usuario usuarioAntigo, Usuario usuarioNovo, String senha)
-			throws SenhaIncorretaException, ObjetoNaoExisteException {
-		usuarios.alterarDados(usuarioAntigo, usuarioNovo, senha);
-	}
-
 	public List<Usuario> buscarUsuario(String nome) throws ObjetoNaoExisteException {
 		return usuarios.buscarUsuario(nome);
 	}
@@ -205,5 +200,13 @@ public class Fachada {
 
 	public List<Administrador> listarAdms() {
 		return usuarios.listarAdms();
+	}
+
+	public void alterarDados(Usuario usuarioAntigo, Usuario usuarioNovo) throws ObjetoNaoExisteException {
+		usuarios.alterarDados(usuarioAntigo, usuarioNovo);
+	}
+
+	public void alterarSenha(Usuario u, String senhaAntiga, String senhaNova) throws SenhaIncorretaException {
+		usuarios.alterarSenha(u, senhaAntiga, senhaNova);
 	}
 }

@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
@@ -16,15 +17,16 @@
                <children>
                   <TextField fx:id="nomeCliente" layoutX="228.0" layoutY="53.0" promptText="Nome" />
                    <DatePicker fx:id="dataNascimentoCliente" layoutX="228.0" layoutY="89.0" prefHeight="25.0" prefWidth="148.0" promptText="Data de nascimento" />
-                   <TextField fx:id="genero" layoutX="228.0" layoutY="122.0" promptText="Gênero" />
-                  <TextField fx:id="peso" layoutX="228.0" layoutY="155.0" promptText="Peso em kg" />
-                   <TextField fx:id="altura" layoutX="228.0" layoutY="191.0" promptText="Altura em metros" />
+                  <TextField fx:id="peso" layoutX="228.0" layoutY="130.0" promptText="Peso em kg" />
+                   <TextField fx:id="altura" layoutX="228.0" layoutY="168.0" promptText="Altura em metros" />
                   <TextField fx:id="emailCliente" layoutX="228.0" layoutY="226.0" promptText="Email" />
                   <PasswordField fx:id="senhaCliente" layoutX="228.0" layoutY="259.0" promptText="Senha" />
                   <PasswordField fx:id="confirmacaoSenhaCliente" layoutX="228.0" layoutY="295.0" promptText="Confirmação de senha" />
                    <Button layoutX="269.0" layoutY="338.0" mnemonicParsing="false" onAction="#CadastrarUsuarioBtn" text="Cadastrar" />
 
-                  <Button layoutX="531.0" layoutY="438.0" mnemonicParsing="false" onAction="#btnVoltarCliente" text="Voltar" />
+                  <Button layoutX="532.0" layoutY="438.0" mnemonicParsing="false" onAction="#btnVoltarCliente" text="Voltar" />
+                  <RadioButton layoutX="249.0" layoutY="200.0" mnemonicParsing="false" text="F" />
+                  <RadioButton layoutX="306.0" layoutY="200.0" mnemonicParsing="false" text="M" />
                </children></AnchorPane>
       </content>
     </Tab>

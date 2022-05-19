@@ -27,6 +27,8 @@ public class TelaCadastroUsuarioController {
     @FXML private DatePicker dataNascimentoAdministrador;
     @FXML private AnchorPane tabAdministrador;
     @FXML private AnchorPane tabUsuario;
+    @FXML private RadioButton femininoBtn;
+    @FXML private RadioButton masculinoBtn;
     private static String Id = "0";
 
 
@@ -37,13 +39,24 @@ public class TelaCadastroUsuarioController {
         }
         else{
             try{
-                Fachada.getInstance().cadastrarUsuario(new Cliente(nomeCliente.getText(), emailCliente.getText(),
-                        senhaCliente.getText(), dataNascimentoCliente.getValue(), genero.getText(),
-                        Double.parseDouble(peso.getText()), Double.parseDouble(altura.getText()),
-                        false));
-                gerarAlertaDeCadastro();
-                for (Usuario u : Fachada.getInstance().listarUsuarios()){
-                    System.out.println(u.getNome());
+                if(femininoBtn.isSelected()) {
+                    Fachada.getInstance().cadastrarUsuario(new Cliente(nomeCliente.getText(), emailCliente.getText(),
+                            senhaCliente.getText(), dataNascimentoCliente.getValue(), "Feminino",
+                            Double.parseDouble(peso.getText()), Double.parseDouble(altura.getText()),
+                            false));
+                    gerarAlertaDeCadastro();
+                    for (Usuario u : Fachada.getInstance().listarUsuarios()) {
+                        System.out.println(u.getNome());
+                    }
+                }else if(masculinoBtn.isSelected()){
+                    Fachada.getInstance().cadastrarUsuario(new Cliente(nomeCliente.getText(), emailCliente.getText(),
+                            senhaCliente.getText(), dataNascimentoCliente.getValue(), "Masculino",
+                            Double.parseDouble(peso.getText()), Double.parseDouble(altura.getText()),
+                            false));
+                    gerarAlertaDeCadastro();
+                    for (Usuario u : Fachada.getInstance().listarUsuarios()) {
+                        System.out.println(u.getNome());
+                    }
                 }
             } catch (ObjetoDuplicadoException exception) {
                 exception.printStackTrace();

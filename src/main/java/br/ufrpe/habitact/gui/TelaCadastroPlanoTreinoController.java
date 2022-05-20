@@ -1,11 +1,15 @@
 package br.ufrpe.habitact.gui;
 
+import br.ufrpe.habitact.excecoes.MaisDeUmPlanoNoMesmoPeriodoException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.gui.modelos.ModeloPlanoTreinoCliente;
 import br.ufrpe.habitact.negocio.Fachada;
+import br.ufrpe.habitact.negocio.beans.Cliente;
+import br.ufrpe.habitact.negocio.beans.PlanoTreino;
 import br.ufrpe.habitact.negocio.beans.Treino;
 import br.ufrpe.habitact.negocio.beans.enums.CategoriaTreino;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoTreino;
+import br.ufrpe.habitact.sessao.Sessao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -49,8 +54,7 @@ public class TelaCadastroPlanoTreinoController {
 
     @FXML
     void optOutrosSelecionada(ActionEvent event) {
-        //TODO Habilita o campo Outro para digitação. Configuração abaixo não está funcionando para essa tela
-        if(objetivoTreino.getValue().getObjetivo().equalsIgnoreCase("")){
+        if(this.objetivoTreino.getValue().getObjetivo().equalsIgnoreCase("Outro")){
             this.textOutro.setDisable(false); //TODO Como seria pra armazenar esse valor em Objetivo?
         }
     }
@@ -67,15 +71,14 @@ public class TelaCadastroPlanoTreinoController {
             GerenciadorTelas.getInstance().alertaCamposVazios();
         } else {
 
-            //TODO colocação do USUARIO no Construtor abaixo. Verificar se correta
-            /*PlanoTreino p = new PlanoTreino(usuario, dtInicio.getValue(), dtFim.getValue(),
-                  objetivoTreino.getValue());
+            PlanoTreino p = new PlanoTreino((Cliente) Sessao.getInstance().getUsuario(), dtInicio.getValue(),
+                    dtFim.getValue(), objetivoTreino.getValue());
 
             try {
                 Fachada.getInstance().cadastrarPlanoTreino(p);
             }catch (MaisDeUmPlanoNoMesmoPeriodoException | ObjetoDuplicadoException e) {
                 e.getMessage();
-            }*/
+            }
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Cadastro de PLano");

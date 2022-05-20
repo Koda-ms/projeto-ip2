@@ -1,11 +1,15 @@
 package br.ufrpe.habitact.gui;
 
+import br.ufrpe.habitact.excecoes.MaisDeUmPlanoNoMesmoPeriodoException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.gui.modelos.ModeloPlanoAlimentarCliente;
 import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Alimento;
+import br.ufrpe.habitact.negocio.beans.Cliente;
+import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoAlimentar;
 import br.ufrpe.habitact.negocio.beans.enums.Refeicao;
+import br.ufrpe.habitact.sessao.Sessao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,12 +18,14 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TelaCadastroPlanoAlimentarController {
 
@@ -49,11 +55,21 @@ public class TelaCadastroPlanoAlimentarController {
 
     }
 
-    //Habilita o campo Outro para digitação
+    //Habilita o campo "Outro" para digitação
     @FXML
     void optOutrosSelecionado(ActionEvent event) {
-        if(objetivo.getValue().getObjetivo().equalsIgnoreCase("")){
+        if(objetivo.getValue().getObjetivo().equalsIgnoreCase("Outro")){
             this.textOutro.setDisable(false);
+        }
+    }
+
+    @FXML
+    void optRefeicaoSelecionada(ActionEvent event) {
+        Alimento a = new Alimento();
+        a.getRefeicao().getRefeicao();
+        if(refeicao.getValue().getRefeicao().equalsIgnoreCase("Almoço")){
+            /*this.tblAlimentos.getItems().stream().filter(comida -> comida.equals(a.getRefeicao()
+                    .equalsIgnoreCase("Almoço")));*/
         }
     }
 
@@ -74,16 +90,14 @@ public class TelaCadastroPlanoAlimentarController {
         if (verificarCamposVazios()) {
             GerenciadorTelas.getInstance().alertaCamposVazios();
         } else {
-
-            //TODO Criar atributo static para usuário ser cadastrado junto. Mas, precisa saber em qual tela...
-            /*PlanoAlimentar p = new PlanoAlimentar(usuario, dtInicio.getValue(), dtFim.getValue(),
-                  objetivo.getValue());
+            PlanoAlimentar p = new PlanoAlimentar((Cliente) Sessao.getInstance().getUsuario(), dtInicio.getValue(),
+                    dtFim.getValue(), objetivo.getValue());
 
             try {
                 Fachada.getInstance().cadastrarPlanoAlimentar(p);
             } catch (ObjetoDuplicadoException | MaisDeUmPlanoNoMesmoPeriodoException e) {
                 e.getMessage();
-            }*/
+            }
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Cadastro de PLano");
@@ -97,37 +111,17 @@ public class TelaCadastroPlanoAlimentarController {
 
     @FXML
     void btnVoltarTela(ActionEvent event) {
-        //TODO está voltando para a tela de Login
         GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
     }
 
     private void updateCatalogoAlimentos() {
-        //Instancia treinos para Controlador ALimento
-        ArrayList<Alimento> listaAlimentos = new ArrayList<>();
-
         Alimento a1 = new Alimento(Refeicao.CAFÉ_DA_MANHÃ, "Pão Integral", 25, 137);
         Alimento a2 = new Alimento(Refeicao.ALMOÇO, "Feijão", 100, 79);
         Alimento a3 = new Alimento(Refeicao.ALMOÇO, "Arroz", 100, 129);
         Alimento a4 = new Alimento(Refeicao.LANCHE, "Sorvete", 60, 95);
         Alimento a5 = new Alimento(Refeicao.JANTAR, "Ovo", 30, 74);
-        /*listaAlimentos.add(a1);
-        listaAlimentos.add(a2);
-        listaAlimentos.add(a3);
-        listaAlimentos.add(a4);
-        listaAlimentos.add(a5);*/
 
         try {
-            /*for(Alimento alimento : listaAlimentos){
-                if(refeicao.getValue().getRefeicao().equalsIgnoreCase("Café da manhã")){
-                    Fachada.getInstance().adicionarAlimento(alimento);
-                } else if (refeicao.getValue().getRefeicao().equalsIgnoreCase("Almoço")){
-                    Fachada.getInstance().adicionarAlimento(alimento);
-                } else if (refeicao.getValue().getRefeicao().equalsIgnoreCase("Lanche")){
-                    Fachada.getInstance().adicionarAlimento(alimento);
-                } else {
-                    Fachada.getInstance().adicionarAlimento(alimento);
-                }
-            }*/
             Fachada.getInstance().adicionarAlimento(a1);
             Fachada.getInstance().adicionarAlimento(a2);
             Fachada.getInstance().adicionarAlimento(a3);

@@ -5,23 +5,31 @@ import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.gui.GerenciadorTelas;
 import br.ufrpe.habitact.gui.modelos.ModeloPlanoTreinoCliente;
 import br.ufrpe.habitact.gui.modelos.ModeloRefeicao;
+import br.ufrpe.habitact.gui.modelos.ModeloTreinoGui;
 import br.ufrpe.habitact.negocio.Fachada;
-import br.ufrpe.habitact.negocio.beans.Alimento;
-import br.ufrpe.habitact.negocio.beans.Cliente;
-import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
-import br.ufrpe.habitact.negocio.beans.PlanoTreino;
+import br.ufrpe.habitact.negocio.beans.*;
 import br.ufrpe.habitact.negocio.beans.enums.Refeicao;
 import br.ufrpe.habitact.sessao.Sessao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.stage.Modality;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -38,19 +46,51 @@ public class TelaPrincipalClienteController {
     @FXML private Button meusDadosBtn;
     @FXML private Label nomeLabel;
     @FXML private AnchorPane root;
-    @FXML private TableView<ModeloPlanoTreinoCliente> tblExercicios;
+    @FXML private TableView<ModeloTreinoGui> tblExercicios;
     @FXML private TableView<ModeloRefeicao> tblRefeicoes;
     @FXML private Button voltarBtn;
+    @FXML private TableColumn<ModeloTreinoGui, Boolean> colCheck;
+    @FXML private TableColumn<ModeloTreinoGui, String> colModalidade;
 
+    @FXML
     public void initialize(){
+        Cliente c1 = Sessao.getInstance().getCliente();
+
+        this.colCheck.setCellValueFactory(new PropertyValueFactory<>("Check"));
+        this.colModalidade.setCellValueFactory(new PropertyValueFactory<>("Modalidade"));
+
+        this.colCheck.setCellFactory(CheckBoxTableCell.forTableColumn(colCheck));
+        this.updateTabelaTreino();
         this.diaDaSemanaLabel.setText(String.valueOf(LocalDate.now().getDayOfWeek()));
-        this.nomeLabel.setText("Ola, " + Sessao.getInstance().getUsuario().getNome());
+        //this.nomeLabel.setText("Ola, " + c1.getNome());
+        //this.imcEAguaLabel.setText("Seu imc é: " + Sessao.getInstance().getUsuario());
 
         this.colCafeDaManha.setCellValueFactory(new PropertyValueFactory<>("Café"));
         this.colAlmoco.setCellValueFactory(new PropertyValueFactory<>("almoço"));
         this.colLanche.setCellValueFactory(new PropertyValueFactory<>("Lanhce"));
         this.colJantar.setCellValueFactory(new PropertyValueFactory<>("Jantar"));
         this.updateTabelaRefeicao();
+
+    }
+
+    public void updateTabelaTreino() {
+        ObservableList<ModeloTreinoGui> result = FXCollections.observableArrayList();
+        List<Treino> listTreino = Fachada.getInstance().listarTreino();
+        for (Treino a : listTreino) {
+            result.add(new ModeloTreinoGui(a));
+        }
+        tblExercicios.setItems(result);
+    }
+
+    @FXML
+    void btnAddAlimento(ActionEvent event) {
+        Stage dialog = new Stage();
+        dialog.setScene(GerenciadorTelas.getInstance().getAddAlimentoScene());
+        dialog.setResizable(false);
+        dialog.setTitle("Cadastrar Alimentos");
+        dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.showAndWait();
     }
 
     private void updateTabelaRefeicao() {

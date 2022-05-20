@@ -14,7 +14,6 @@ public class TelaCadastroUsuarioController {
 
     @FXML private TextField peso;
     @FXML private TextField altura;
-    @FXML private TextField genero;
     @FXML private TextField emailCliente;
     @FXML private TextField emailAdministrador;
     @FXML private TextField nomeAdministrador;
@@ -45,18 +44,12 @@ public class TelaCadastroUsuarioController {
                             Double.parseDouble(peso.getText()), Double.parseDouble(altura.getText()),
                             false));
                     gerarAlertaDeCadastro();
-                    for (Usuario u : Fachada.getInstance().listarUsuarios()) {
-                        System.out.println(u.getNome());
-                    }
                 }else if(masculinoBtn.isSelected() && !femininoBtn.isSelected()){
                     Fachada.getInstance().cadastrarUsuario(new Cliente(nomeCliente.getText(), emailCliente.getText(),
                             senhaCliente.getText(), dataNascimentoCliente.getValue(), "Masculino",
                             Double.parseDouble(peso.getText()), Double.parseDouble(altura.getText()),
                             false));
                     gerarAlertaDeCadastro();
-                    for (Usuario u : Fachada.getInstance().listarUsuarios()) {
-                        System.out.println(u.getNome());
-                    }
                 }
             } catch (ObjetoDuplicadoException exception) {
                 exception.printStackTrace();
@@ -107,7 +100,6 @@ public class TelaCadastroUsuarioController {
     }
 
     private void limparCamposDeDados() {
-        this.genero.setText("");
         this.emailCliente.setText("");
         this.emailAdministrador.setText("");
         this.senhaCliente.setText("");
@@ -123,7 +115,7 @@ public class TelaCadastroUsuarioController {
     }
 
     private boolean verificarCamposVaziosUsuario() {
-        return genero.getText().isBlank() || nomeCliente.getText().isBlank() ||
+        return  nomeCliente.getText().isBlank() ||
                 dataNascimentoCliente.getValue() == null || peso.getText().isBlank() || altura.getText().isBlank() ||
                 emailCliente.getText().isBlank() || senhaCliente.getText().isBlank() || confirmacaoSenhaCliente.getText().isBlank();
     }

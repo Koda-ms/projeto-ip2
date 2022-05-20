@@ -11,7 +11,7 @@
       <Button fx:id="meusDadosBtn" layoutX="431.0" layoutY="15.0" mnemonicParsing="false" onAction="#MeusDados" prefHeight="25.0" prefWidth="84.0" text="Meus dados" />
       <Button fx:id="voltarBtn" layoutX="544.0" layoutY="17.0" mnemonicParsing="false" onAction="#VoltarBtn" text="Voltar" />
       <Label fx:id="diaDaSemanaLabel" layoutX="31.0" layoutY="19.0" text="Dia da semana" />
-      <Label fx:id="nomeLabel" layoutX="31.0" layoutY="34.0" text="Ola, fulano" />
+      <Label fx:id="nomeLabel" layoutX="31.0" layoutY="42.0" text="Ola, fulano" />
       <Label fx:id="imcEAguaLabel" layoutX="31.0" layoutY="61.0" text="O seu imc é tal | Você deve beber x litros de água" />
       <TableView fx:id="tblRefeicoes" layoutX="22.0" layoutY="123.0" prefHeight="325.0" prefWidth="295.0">
         <columns>
@@ -23,7 +23,8 @@
       </TableView>
       <TableView fx:id="tblExercicios" layoutX="372.0" layoutY="123.0" prefHeight="325.0" prefWidth="200.0">
         <columns>
-          <TableColumn fx:id="exercicios" prefWidth="75.0" text="Treino" />
+          <TableColumn fx:id="colCheck" prefWidth="23.0" />
+            <TableColumn fx:id="colModalidade" prefWidth="175.0" text="Treino" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

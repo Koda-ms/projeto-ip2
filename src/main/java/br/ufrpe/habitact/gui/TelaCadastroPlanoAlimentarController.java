@@ -32,12 +32,12 @@ public class TelaCadastroPlanoAlimentarController {
     @FXML private DatePicker dtFim;
     @FXML private DatePicker dtInicio;
     @FXML private TextField textOutro;
-    @FXML private Label labelRefeicao;
     @FXML private Button btnNovoAlimento;
     @FXML private ComboBox<String> cliente;
-    @FXML private ComboBox<Refeicao> refeicao;
+    @FXML private RadioButton radAddCatalogo;
     @FXML private ComboBox<ObjetivoAlimentar> objetivo;
     @FXML private TableView<ModeloCatalogoAlimentar> tblAlimentos;
+    @FXML private TableColumn<ModeloCatalogoAlimentar, String> colRefeicao;
     @FXML private TableColumn<ModeloCatalogoAlimentar, Boolean> colunaCheck;
     @FXML private TableColumn<ModeloCatalogoAlimentar, Double> colQtdAlimento;
     @FXML private TableColumn<ModeloCatalogoAlimentar, Double> colCaloriasAlimento;
@@ -47,13 +47,13 @@ public class TelaCadastroPlanoAlimentarController {
     public void initialize() {
         //Adiciona os valores dos enuns ObjetivoAlimentar e Refeicao em cada ComboBox
         this.objetivo.getItems().addAll(ObjetivoAlimentar.values());
-        this.refeicao.getItems().addAll(Refeicao.values());
         this.addClientesComboBox();
 
         //Setando as colunas da TableView
         this.colunaCheck.setCellValueFactory(new PropertyValueFactory<>("check"));
         this.colunaCheck.setCellFactory(CheckBoxTableCell.forTableColumn(colunaCheck));
         this.colNomeAlimento.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        this.colRefeicao.setCellValueFactory(new PropertyValueFactory<>("refeicao"));
         this.colQtdAlimento.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
         this.colCaloriasAlimento.setCellValueFactory(new PropertyValueFactory<>("calorias"));
         this.updateCatalogoAlimentos();
@@ -91,19 +91,8 @@ public class TelaCadastroPlanoAlimentarController {
             e.getMessage();
         }
         System.out.println(p);
-        this.labelRefeicao.setDisable(false);
-        this.refeicao.setDisable(false);
         this.tblAlimentos.setDisable(false);
         this.btnNovoAlimento.setDisable(false);
-    }
-
-    @FXML
-    void optRefeicaoSelecionada(ActionEvent event) {
-        Alimento a = new Alimento();
-        if(refeicao.getValue().getRefeicao().equalsIgnoreCase("Almoço")){
-            /*this.tblAlimentos.getItems().stream().filter(comida -> comida.equals(a.getRefeicao()
-                    .equalsIgnoreCase("Almoço")));*/
-        }
     }
 
     //Direcionar para uma tela de diálogo que aparecerá sobre a tela atual
@@ -140,27 +129,6 @@ public class TelaCadastroPlanoAlimentarController {
     }
 
     public void updateCatalogoAlimentos() {
-//        Alimento a1 = new Alimento(Refeicao.CAFÉ_DA_MANHÃ, "Pão Integral", 25, 137);
-//        Alimento a2 = new Alimento(Refeicao.ALMOÇO, "Feijão", 100, 79);
-//        Alimento a3 = new Alimento(Refeicao.ALMOÇO, "Arroz", 100, 129);
-//        Alimento a4 = new Alimento(Refeicao.LANCHE, "Sorvete", 60, 95);
-//        Alimento a5 = new Alimento(Refeicao.JANTAR, "Ovo", 30, 74);
-//
-//        try {
-//            Fachada.getInstance().adicionarAlimento(a1);
-//            Fachada.getInstance().adicionarAlimento(a2);
-//            Fachada.getInstance().adicionarAlimento(a3);
-//            Fachada.getInstance().adicionarAlimento(a4);
-//            Fachada.getInstance().adicionarAlimento(a5);
-//        } catch (ObjetoDuplicadoException e) {
-//            e.printStackTrace();
-//        }
-
-//        tblAlimentos.getItems().clear();
-//        for (Alimento a : listAlimentos){
-//            ModeloPlanoAlimentarCliente planoACModelo = new ModeloPlanoAlimentarCliente(a.getNome(), a.getQtdGrama(), a.getCalorias());
-//            tblAlimentos.getItems().add(planoACModelo);
-//        }
 
         ObservableList<ModeloCatalogoAlimentar> result = FXCollections.observableArrayList();
         List<Alimento> listAlimentos = Fachada.getInstance().listarAlimento();
@@ -174,14 +142,15 @@ public class TelaCadastroPlanoAlimentarController {
         this.textOutro.setText("");
         this.dtInicio.setValue(null);
         this.dtFim.setValue(null);
-        this.refeicao.getSelectionModel().clearSelection();
+        this.tblAlimentos.getItems().clear();
+        this.radAddCatalogo.setSelected(false);
+        this.cliente.getSelectionModel().clearSelection();
         this.objetivo.getSelectionModel().clearSelection();
         this.tblAlimentos.getSelectionModel().clearSelection();
     }
 
     private boolean verificarCamposVazios() {
         return dtInicio.getValue() == null || dtFim.getValue() == null ||
-                refeicao.getValue() == null || objetivo.getValue() == null &&
-                textOutro.getText().isBlank();
+                objetivo.getValue() == null && textOutro.getText().isBlank();
     }
 }

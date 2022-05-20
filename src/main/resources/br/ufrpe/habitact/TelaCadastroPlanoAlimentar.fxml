@@ -43,22 +43,17 @@
             <Font name="Calibri" size="20.0" />
          </font>
       </Label>
-      <ComboBox fx:id="refeicao" disable="true" layoutX="227.0" layoutY="280.0" onAction="#optRefeicaoSelecionada" prefHeight="25.0" prefWidth="167.0" promptText="Selecione" />
-      <Label fx:id="labelRefeicao" disable="true" layoutX="43.0" layoutY="282.0" prefHeight="17.0" prefWidth="114.0" text="Refeição:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
       <Button fx:id="btnNovoAlimento" disable="true" layoutX="43.0" layoutY="483.0" mnemonicParsing="false" onAction="#btnAddAlimento" prefHeight="25.0" prefWidth="114.0" text="Novo alimento" />
-      <TableView fx:id="tblAlimentos" disable="true" layoutX="42.0" layoutY="314.0" prefHeight="158.0" prefWidth="528.0">
+      <TableView fx:id="tblAlimentos" disable="true" layoutX="42.0" layoutY="283.0" prefHeight="189.0" prefWidth="528.0">
          <columns>
             <TableColumn fx:id="colunaCheck" prefWidth="28.0" />
-            <TableColumn fx:id="colNomeAlimento" prefWidth="178.0" text="Nome" />
-            <TableColumn fx:id="colQtdAlimento" prefWidth="163.0" text="Quantidade (grama)" />
-            <TableColumn fx:id="colCaloriasAlimento" prefWidth="158.0" text="Calorias (kcal)" />
+            <TableColumn fx:id="colRefeicao" prefWidth="137.0" text="Refeição" />
+            <TableColumn fx:id="colNomeAlimento" prefWidth="140.0" text="Nome" />
+            <TableColumn fx:id="colQtdAlimento" prefWidth="125.0" text="Quantidade (grama)" />
+            <TableColumn fx:id="colCaloriasAlimento" prefWidth="97.0" text="Calorias (kcal)" />
          </columns>
       </TableView>
-      <RadioButton layoutX="508.0" layoutY="229.0" mnemonicParsing="false" onMouseClicked="#optAdicionarClicked" text="Adicionar" />
+      <RadioButton fx:id="radAddCatalogo" layoutX="221.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#optAdicionarClicked" prefHeight="5.0" prefWidth="0.0" />
       <Label layoutX="31.0" layoutY="70.0" text="Cliente:">
          <font>
             <Font size="14.0" />

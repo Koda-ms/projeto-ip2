@@ -27,6 +27,11 @@ public class PopupCadastroPlanosController {
         } else{
             GerenciadorTelas.getInstance().trocarTela("planoTreino");
         }
+        this.limparCamposDeDados();
         ((Stage)this.btnCancelarOkPressed.getScene().getWindow()).close();
+    }
+
+    private void limparCamposDeDados() {
+        this.combo.getSelectionModel().clearSelection();
     }
 }

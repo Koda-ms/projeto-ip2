@@ -21,7 +21,7 @@
             <TableColumn fx:id="colJantar" prefWidth="78.0" text="Jantar" />
         </columns>
       </TableView>
-      <TableView fx:id="tblExercicios" layoutX="372.0" layoutY="123.0" prefHeight="325.0" prefWidth="200.0">
+      <TableView fx:id="tblExercicios" editable="true" layoutX="372.0" layoutY="123.0" prefHeight="325.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="colCheck" prefWidth="23.0" />
             <TableColumn fx:id="colModalidade" prefWidth="175.0" text="Treino" />

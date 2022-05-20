@@ -142,7 +142,7 @@ public class GerenciadorTelas {
             case "TelaDadosCliente": primaryStage.setScene(dadosClienteScene); break;
             case "TelaListarPlanos": primaryStage.setScene(listarPlanosScene); break;
             case "telaPrincipalAdm": primaryStage.setScene(principalAdmScene); break;
-            case "TelaPrincipalCliente": primaryStage.setScene(principalClienteScene); break;
+            case "TelaPrincipalCliente": setPrincipalClienteScene(); break;
             case "planoAlimentar": primaryStage.setScene(planoAlimentarScene);break;
             case "planoTreino": primaryStage.setScene(planoTreinoScene); break;
             case "TelaCadastroTreino": primaryStage.setScene(addTreinoScene); break;
@@ -167,6 +167,11 @@ public class GerenciadorTelas {
 
     public Scene getPrincipalClienteScene() {
         return principalClienteScene;
+    }
+
+    public void setPrincipalClienteScene() {
+        principalCliente.updateTabelaTreino();
+        primaryStage.setScene(principalClienteScene);
     }
 
     public Scene getInfoPessoalAdmScene() {

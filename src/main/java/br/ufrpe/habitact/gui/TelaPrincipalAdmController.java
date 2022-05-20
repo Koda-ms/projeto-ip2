@@ -60,8 +60,8 @@ public class TelaPrincipalAdmController {
         ObservableList<ModeloCliente> result = FXCollections.observableArrayList();
         List<Cliente> clientes = Fachada.getInstance().listarClientes();
         for(Cliente c: clientes){
-            System.out.println();
-            System.out.println(c.getNome());
+//            System.out.println();
+//            System.out.println(c.getNome());
             result.add(new ModeloCliente(c));
         }
         tableClientes.setItems(result);

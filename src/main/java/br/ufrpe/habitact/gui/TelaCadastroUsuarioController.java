@@ -27,7 +27,7 @@ public class TelaCadastroUsuarioController {
     @FXML private DatePicker dataNascimentoAdministrador;
     @FXML private AnchorPane tabAdministrador;
     @FXML private AnchorPane tabUsuario;
-    private static String Id = "0";
+    private static String Id = "1";
 
 
     @FXML

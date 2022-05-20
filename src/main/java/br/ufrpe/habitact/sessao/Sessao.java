@@ -1,5 +1,7 @@
 package br.ufrpe.habitact.sessao;
 
+import br.ufrpe.habitact.negocio.beans.Administrador;
+import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.Usuario;
 
 public class Sessao {

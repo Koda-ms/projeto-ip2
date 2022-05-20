@@ -2,6 +2,7 @@ package br.ufrpe.habitact.negocio.beans;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 public class Cliente extends Usuario {
 	private String genero;
@@ -22,6 +23,31 @@ public class Cliente extends Usuario {
 	}
 
 	public Cliente(){}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(altura, genero, idade, imc, peso);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (!(obj instanceof Cliente))
+			return false;
+		Cliente other = (Cliente) obj;
+		return Double.doubleToLongBits(altura) == Double.doubleToLongBits(other.altura)
+				&& Objects.equals(genero, other.genero) && idade == other.idade
+				&& Double.doubleToLongBits(imc) == Double.doubleToLongBits(other.imc)
+				&& Double.doubleToLongBits(peso) == Double.doubleToLongBits(other.peso);
+	}
 
 	private void calcularIMC(double peso, double altura) {
 		this.imc = peso / (altura * altura);

@@ -138,10 +138,10 @@ public class GerenciadorTelas {
         switch(tela){
             case "TelaLogin": primaryStage.setScene(loginScene); break;
             case "TelaCadastro": primaryStage.setScene(cadastroScene); break;
-            case "TelaInfoPessoalAdm": primaryStage.setScene(infoPessoalAdmScene); break;
+            case "TelaInfoPessoalAdm": setInfoPessoalAdmScene(); break;
             case "TelaDadosCliente": primaryStage.setScene(dadosClienteScene); break;
             case "TelaListarPlanos": primaryStage.setScene(listarPlanosScene); break;
-            case "telaPrincipalAdm": admScene(); break;
+            case "telaPrincipalAdm": setAdmScene(); break;
             case "TelaPrincipalCliente": primaryStage.setScene(principalClienteScene); break;
             case "planoAlimentar": primaryStage.setScene(planoAlimentarScene);break;
             case "planoTreino": primaryStage.setScene(planoTreinoScene); break;
@@ -153,15 +153,20 @@ public class GerenciadorTelas {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erro no Cadastro");
         alert.setHeaderText("Campo vazio");
-        alert.setContentText("Verifique o(s) campo(s) vazio(s) do seu cadastro");
+        alert.setContentText("Verifique o(s) campo(s) vazio(s)");
         alert.showAndWait();
     }
 
-    public void admScene(){
+    public void setAdmScene(){
         admController.updateListaClientes();
         admController.updateListaPlanoAlimentar();
         admController.updateListaPlanoTreino();
         primaryStage.setScene(principalAdmScene);
+    }
+
+    public void setInfoPessoalAdmScene(){
+        infoPessoalAdmController.setInformacoes();
+        primaryStage.setScene(infoPessoalAdmScene);
     }
 
     public Scene getCadastroScene() {

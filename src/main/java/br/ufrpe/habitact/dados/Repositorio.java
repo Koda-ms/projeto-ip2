@@ -30,10 +30,10 @@ public class Repositorio<T> implements IRepositorio<T> {
 
 	@Override
 	public void atualizar(T elem1, T elem2) throws ObjetoNaoExisteException {
-		if (this.elementos.contains(elem1)) {
-            this.elementos.set(this.elementos.indexOf(elem1), elem2);
+		if (this.elementos.contains(elem2)) {
+			throw new ObjetoNaoExisteException("Usuários tem o mesmo e-mail");
         } else {
-            throw new ObjetoNaoExisteException("Elemento não pode ser atualizado, pois não existe no repositório");
+			this.elementos.set(this.elementos.indexOf(elem1), elem2);
         }	
 	}
 

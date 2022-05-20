@@ -71,7 +71,7 @@ public class TelaCadastroPlanoTreinoController {
             GerenciadorTelas.getInstance().alertaCamposVazios();
         } else {
 
-            PlanoTreino p = new PlanoTreino((Cliente) Sessao.getInstance().getUsuario(), dtInicio.getValue(),
+            PlanoTreino p = new PlanoTreino(new Cliente(), dtInicio.getValue(),
                     dtFim.getValue(), objetivoTreino.getValue());
 
             try {

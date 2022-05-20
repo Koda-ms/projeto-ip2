@@ -5,13 +5,13 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class ModeloPlanoAlimentarCliente {
+public class ModeloCatalogoAlimentar {
     private SimpleBooleanProperty check;
     private SimpleStringProperty nome;
     private SimpleDoubleProperty quantidade;
     private SimpleDoubleProperty calorias;
 
-    public ModeloPlanoAlimentarCliente(Alimento alimento){
+    public ModeloCatalogoAlimentar(Alimento alimento){
         this.check = new SimpleBooleanProperty(false);
         this.nome = new SimpleStringProperty(alimento.getNome());
         this.quantidade = new SimpleDoubleProperty(alimento.getQtdGrama());

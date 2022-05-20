@@ -66,6 +66,17 @@ public class PlanoAlimentar {
 				&& Objects.equals(dataInicio, other.dataInicio) && objetivoAlimentar == other.objetivoAlimentar;
 	}
 
+	@Override
+	public String toString() {
+		return "PlanoAlimentar{" +
+				"cliente=" + cliente +
+				", alimentos=" + alimentos +
+				", dataInicio=" + dataInicio +
+				", dataFim=" + dataFim +
+				", objetivoAlimentar=" + objetivoAlimentar +
+				'}';
+	}
+
 	public Cliente getCliente() {
 		return cliente;
 	}

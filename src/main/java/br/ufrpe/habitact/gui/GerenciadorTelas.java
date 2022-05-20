@@ -1,6 +1,7 @@
 package br.ufrpe.habitact.gui;
 
 import br.ufrpe.habitact.Main;
+import br.ufrpe.habitact.negocio.Fachada;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -141,9 +142,9 @@ public class GerenciadorTelas {
             case "TelaInfoPessoalAdm": primaryStage.setScene(infoPessoalAdmScene); break;
             case "TelaDadosCliente": primaryStage.setScene(dadosClienteScene); break;
             case "TelaListarPlanos": primaryStage.setScene(listarPlanosScene); break;
-            case "telaPrincipalAdm": primaryStage.setScene(principalAdmScene); break;
+            case "telaPrincipalAdm": setPrincipalAdmScene(); break;
             case "TelaPrincipalCliente": primaryStage.setScene(principalClienteScene); break;
-            case "planoAlimentar": primaryStage.setScene(planoAlimentarScene);break;
+            case "planoAlimentar": setPlanoAlimentarScene(); break;
             case "planoTreino": primaryStage.setScene(planoTreinoScene); break;
             case "TelaCadastroTreino": primaryStage.setScene(addTreinoScene); break;
         }
@@ -192,6 +193,11 @@ public class GerenciadorTelas {
         return planoAlimentarScene;
     }
 
+    public void setPlanoAlimentarScene() {
+        cadastroPlanoAlimentarController.updateCatalogoAlimentos();
+        primaryStage.setScene(planoAlimentarScene);
+    }
+
     public Scene getAddAlimentoScene() { return addAlimentoScene; }
 
     public Scene getPlanoTreinoScene() {
@@ -222,6 +228,13 @@ public class GerenciadorTelas {
 
     public Scene getPrincipalAdmScene() {
         return principalAdmScene;
+    }
+
+    public void setPrincipalAdmScene(){
+        admController.updateListaClientes();
+        admController.updateListaPlanoAlimentar();
+        admController.updateListaPlanoTreino();
+        primaryStage.setScene(principalAdmScene);
     }
 
     public TelaPrincipalAdmController getAdmController() {

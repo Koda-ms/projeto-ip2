@@ -58,11 +58,9 @@ public class TelaPrincipalAdmController {
 
     public void updateListaClientes() {
         ObservableList<ModeloCliente> result = FXCollections.observableArrayList();
-        List<Usuario> listaUsuarios = Fachada.getInstance().listarUsuarios();
-        for(Usuario u: listaUsuarios){
-            if (u instanceof Cliente){
-                result.add(new ModeloCliente((Cliente) u));
-            }
+        List<Cliente> clientes = Fachada.getInstance().listarClientes();
+        for(Cliente c: clientes){
+            result.add(new ModeloCliente(c));
         }
         tableClientes.setItems(result);
     }

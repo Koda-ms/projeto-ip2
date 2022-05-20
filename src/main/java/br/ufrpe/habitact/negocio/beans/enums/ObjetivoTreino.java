@@ -2,7 +2,7 @@ package br.ufrpe.habitact.negocio.beans.enums;
 
 public enum ObjetivoTreino {
 	PERDER_MASSA("Perder Massa"), GANHAR_MASSA("Ganhar Massa"), FORTALECER_MUSCULOS("Fortalecer Músculos"),
-	MELHORAR_CONDICIONAMENTO("Melhorar Condicionamento Físico"), OUTROS("");
+	MELHORAR_CONDICIONAMENTO("Melhorar Condicionamento Físico"), OUTRO("Outro");
 
 	private String objetivo;
 

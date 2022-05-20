@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class TelaCadastrarExercicioController {
@@ -29,8 +30,8 @@ public class TelaCadastrarExercicioController {
     }
 
     @FXML
-    void optOutrosSelecionado(ActionEvent event) {
-        if (selectExercicio.getValue().getNome().equalsIgnoreCase("")){
+    void optOutrosSelecionada(ActionEvent event) {
+        if(this.selectExercicio.getValue().getNome().equalsIgnoreCase("Outro")){
             this.textOutro.setDisable(false);
         }
     }

@@ -7,8 +7,8 @@ public enum TipoExercicio {
 	CICLISMO ("Ciclismo"), 
 	MUSCULACAO ("Musculação"), 
 	JIU_JITSU ("Jiu-Jitsu"),
-	TENIS_DE_MESA ("Tenis de Mesa"), 
-	OUTROS ("");
+	TENIS_DE_MESA ("Tenis de Mesa"),
+	OUTRO("Outro");
 	
     private String tipo;
 

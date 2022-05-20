@@ -44,99 +44,99 @@ public class TelaListarPlanosController {
 //        }
 //    }
 
-    public void updateListaPlanoAlimentar(){
-        Usuario c1 = new Cliente("Apolo","apolo.com","apolo", LocalDate.of(2000,06,03),
-                "Masculine",114.00,1.79, true);
-        PlanoAlimentar p1 = new PlanoAlimentar();
-        p1.setCliente((Cliente) c1);
-        p1.setDataInicio(LocalDate.of(2002, 02, 3));
-        p1.setDataFim(LocalDate.of(2003, 02, 3));
-        p1.setObjetivoAlimentar(ObjetivoAlimentar.SUPLEMENTACAO_ALIMENTAR);
-
-        PlanoAlimentar p2 = new PlanoAlimentar();
-        p2.setCliente((Cliente) c1);
-        p2.setDataInicio(LocalDate.of(2004, 07, 22));
-        p2.setDataFim(LocalDate.of(2005, 07, 22));
-        p2.setObjetivoAlimentar(ObjetivoAlimentar.SUPLEMENTACAO_ALIMENTAR);
-
-        PlanoAlimentar p3 = new PlanoAlimentar();
-        p3.setCliente((Cliente) c1);
-        p3.setDataInicio(LocalDate.of(2010, 05, 13));
-        p3.setDataFim(LocalDate.of(2011, 05, 13));
-        p3.setObjetivoAlimentar(ObjetivoAlimentar.SUPLEMENTACAO_ALIMENTAR);
-
-
-        try {
-            Fachada.getInstance().cadastrarPlanoAlimentar(p1);
-            Fachada.getInstance().cadastrarPlanoAlimentar(p2);
-            Fachada.getInstance().cadastrarPlanoAlimentar(p3);
-        } catch (ObjetoDuplicadoException | MaisDeUmPlanoNoMesmoPeriodoException e) {
-            e.printStackTrace();
-        }
-
-        ObservableList<ModeloListarPlanoAlimentar> result = FXCollections.observableArrayList();
-        List<PlanoAlimentar> listaPlanos = Fachada.getInstance().listarPlanoAlimentar();
-        for (PlanoAlimentar p: listaPlanos){
-            result.add(new ModeloListarPlanoAlimentar(p));
-        }
-        tblPlanoAlimentar.setItems(result);
-
-    }
-
-    public void updateListaPlanoTreino() throws ObjetoDuplicadoException {
-        Usuario c1 = new Cliente("Apolo","apolo.com","apolo",
-                LocalDate.of(2000,06,03), "Masculine",114.00,
-                1.79, true);
-        Fachada.getInstance().cadastrarUsuario(c1);
-        PlanoTreino pt1;
-        {
-            try {
-                pt1 = new PlanoTreino((Cliente) Fachada.getInstance().buscarUsuario("Apolo").get(0),
-                        LocalDate.of(2022,3,4),
-                        LocalDate.of(2022,3,9), ObjetivoTreino.GANHAR_MASSA);
-            } catch (ObjetoNaoExisteException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        /*
-         PlanoAlimentar p2 = new PlanoAlimentar();
-        p1.setDataInicio(LocalDate.of(2004, 07, 22));
-        p1.setDataFim(LocalDate.of(2005, 07, 22));
-        p1.setObjetivoAlimentar(ObjetivoAlimentar.SUPLEMENTACAO_ALIMENTAR);
-
-        PlanoAlimentar p3 = new PlanoAlimentar();
-        p1.setDataInicio(LocalDate.of(2010, 05, 13));
-        p1.setDataFim(LocalDate.of(2011, 05, 13));
-        p1.setObjetivoAlimentar(ObjetivoAlimentar.SUPLEMENTACAO_ALIMENTAR);
-        */
-
-
-        try {
-            Fachada.getInstance().cadastrarPlanoTreino(pt1);
-           // Fachada.getInstance().cadastrarPlanoAlimentar(p2);
-            //Fachada.getInstance().cadastrarPlanoAlimentar(p3);
-        } catch (ObjetoDuplicadoException | MaisDeUmPlanoNoMesmoPeriodoException e) {
-            e.printStackTrace();
-        }
-
-        ObservableList<ModeloListarPlanoTreino> result = FXCollections.observableArrayList();
-        List<PlanoTreino> listaPlanos = Fachada.getInstance().listarPlanoTreino();
-        for (PlanoTreino p: listaPlanos){
-            result.add(new ModeloListarPlanoTreino(p));
-        }
-        tblPlanoTreino.setItems(result);
-    }
-
-    @FXML
-    int totalDePlanos(ActionEvent event) {
-        int pA = Fachada.getInstance().listarPlanoAlimentar().size();
-        int pT = Fachada.getInstance().listarPlanoTreino().size();
-        return pA + pT;
-    }
-
-    @FXML
-    void btnVoltarPressed(ActionEvent event) {
-        GerenciadorTelas.getInstance().trocarTela("TelaPrincipalCliente");
-    }
+//    public void updateListaPlanoAlimentar(){
+//        Usuario c1 = new Cliente("Apolo","apolo.com","apolo", LocalDate.of(2000,06,03),
+//                "Masculine",114.00,1.79, true);
+//        PlanoAlimentar p1 = new PlanoAlimentar();
+//        p1.setCliente((Cliente) c1);
+//        p1.setDataInicio(LocalDate.of(2002, 02, 3));
+//        p1.setDataFim(LocalDate.of(2003, 02, 3));
+//        p1.setObjetivoAlimentar(ObjetivoAlimentar.SUPLEMENTACAO_ALIMENTAR);
+//
+//        PlanoAlimentar p2 = new PlanoAlimentar();
+//        p2.setCliente((Cliente) c1);
+//        p2.setDataInicio(LocalDate.of(2004, 07, 22));
+//        p2.setDataFim(LocalDate.of(2005, 07, 22));
+//        p2.setObjetivoAlimentar(ObjetivoAlimentar.SUPLEMENTACAO_ALIMENTAR);
+//
+//        PlanoAlimentar p3 = new PlanoAlimentar();
+//        p3.setCliente((Cliente) c1);
+//        p3.setDataInicio(LocalDate.of(2010, 05, 13));
+//        p3.setDataFim(LocalDate.of(2011, 05, 13));
+//        p3.setObjetivoAlimentar(ObjetivoAlimentar.SUPLEMENTACAO_ALIMENTAR);
+//
+//
+//        try {
+//            Fachada.getInstance().cadastrarPlanoAlimentar(p1);
+//            Fachada.getInstance().cadastrarPlanoAlimentar(p2);
+//            Fachada.getInstance().cadastrarPlanoAlimentar(p3);
+//        } catch (ObjetoDuplicadoException | MaisDeUmPlanoNoMesmoPeriodoException e) {
+//            e.printStackTrace();
+//        }
+//
+//        ObservableList<ModeloListarPlanoAlimentar> result = FXCollections.observableArrayList();
+//        List<PlanoAlimentar> listaPlanos = Fachada.getInstance().listarPlanoAlimentar();
+//        for (PlanoAlimentar p: listaPlanos){
+//            result.add(new ModeloListarPlanoAlimentar(p));
+//        }
+//        tblPlanoAlimentar.setItems(result);
+//
+//    }
+//
+//    public void updateListaPlanoTreino() throws ObjetoDuplicadoException {
+//        Usuario c1 = new Cliente("Apolo","apolo.com","apolo",
+//                LocalDate.of(2000,06,03), "Masculine",114.00,
+//                1.79, true);
+//        Fachada.getInstance().cadastrarUsuario(c1);
+//        PlanoTreino pt1;
+//        {
+//            try {
+//                pt1 = new PlanoTreino((Cliente) Fachada.getInstance().buscarUsuario("Apolo").get(0),
+//                        LocalDate.of(2022,3,4),
+//                        LocalDate.of(2022,3,9), ObjetivoTreino.GANHAR_MASSA);
+//            } catch (ObjetoNaoExisteException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+//
+//        /*
+//         PlanoAlimentar p2 = new PlanoAlimentar();
+//        p1.setDataInicio(LocalDate.of(2004, 07, 22));
+//        p1.setDataFim(LocalDate.of(2005, 07, 22));
+//        p1.setObjetivoAlimentar(ObjetivoAlimentar.SUPLEMENTACAO_ALIMENTAR);
+//
+//        PlanoAlimentar p3 = new PlanoAlimentar();
+//        p1.setDataInicio(LocalDate.of(2010, 05, 13));
+//        p1.setDataFim(LocalDate.of(2011, 05, 13));
+//        p1.setObjetivoAlimentar(ObjetivoAlimentar.SUPLEMENTACAO_ALIMENTAR);
+//        */
+//
+//
+//        try {
+//            Fachada.getInstance().cadastrarPlanoTreino(pt1);
+//           // Fachada.getInstance().cadastrarPlanoAlimentar(p2);
+//            //Fachada.getInstance().cadastrarPlanoAlimentar(p3);
+//        } catch (ObjetoDuplicadoException | MaisDeUmPlanoNoMesmoPeriodoException e) {
+//            e.printStackTrace();
+//        }
+//
+//        ObservableList<ModeloListarPlanoTreino> result = FXCollections.observableArrayList();
+//        List<PlanoTreino> listaPlanos = Fachada.getInstance().listarPlanoTreino();
+//        for (PlanoTreino p: listaPlanos){
+//            result.add(new ModeloListarPlanoTreino(p));
+//        }
+//        tblPlanoTreino.setItems(result);
+//    }
+//
+//    @FXML
+//    int totalDePlanos(ActionEvent event) {
+//        int pA = Fachada.getInstance().listarPlanoAlimentar().size();
+//        int pT = Fachada.getInstance().listarPlanoTreino().size();
+//        return pA + pT;
+//    }
+//
+//    @FXML
+//    void btnVoltarPressed(ActionEvent event) {
+//        GerenciadorTelas.getInstance().trocarTela("TelaPrincipalCliente");
+//    }
 }

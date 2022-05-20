@@ -13,25 +13,15 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.time.format.DateTimeFormatter;
+
 public class TelaInfoPessoalAdmController {
-
-    @FXML
-    private DatePicker dtPickerNascimento;
-
-    @FXML
-    private TextField txtEmail;
-
-    @FXML
-    private TextField txtID;
-
-    @FXML
-    private TextField txtNome;
-
-    @FXML
-    private PasswordField passNovaSenha;
-
-    @FXML
-    private PasswordField passSenhaAtual;
+    @FXML private DatePicker dtPickerNascimento;
+    @FXML private TextField txtEmail;
+    @FXML private TextField txtID;
+    @FXML private TextField txtNome;
+    @FXML private PasswordField passNovaSenha;
+    @FXML private PasswordField passSenhaAtual;
 
     public void setInformacoes(){
         Administrador adm = (Administrador) Sessao.getInstance().getUsuario();
@@ -43,15 +33,42 @@ public class TelaInfoPessoalAdmController {
 
     @FXML
     void btnSalvarPressed(ActionEvent event) {
-        Usuario u = new Administrador(txtNome.getText(), txtEmail.getText(),
-                Sessao.getInstance().getUsuario().getSenha(), dtPickerNascimento.getValue(), txtID.getText());
-        try {
-            Fachada.getInstance().alterarDados(Sessao.getInstance().getUsuario(), u);
-            Sessao.getInstance().setUsuario(u);
-            gerarAlertaDados();
-        } catch (ObjetoNaoExisteException e){
-            gerarAlertaNenhum();
+        if (verificarCamposVazios()){
+            GerenciadorTelas.getInstance().alertaCamposVazios();
+        } else {
+            try {
+                Usuario u = new Administrador(txtNome.getText(), txtEmail.getText(),
+                        Sessao.getInstance().getUsuario().getSenha(), dtPickerNascimento.getValue(), txtID.getText());
+                Fachada.getInstance().alterarDados(Sessao.getInstance().getUsuario(), u);
+                Sessao.getInstance().setUsuario(u);
+                gerarAlertaDados();
+            } catch (ObjetoNaoExisteException e) {
+                gerarAlertaNenhum();
+            }
         }
+
+    }
+
+    @FXML
+    void btnSalvarSenhaPressed(ActionEvent event) {
+        if (verificarCamposSenhaVazios()){
+            GerenciadorTelas.getInstance().alertaCamposVazios();
+        } else {
+            try{
+                Fachada.getInstance().alterarSenha(Sessao.getInstance().getUsuario(), passSenhaAtual.getText(),
+                        passNovaSenha.getText() );
+                limparCampos();
+                gerarAlertaDados();
+            } catch (SenhaIncorretaException e) {
+                gerarAlertaSenha();
+                limparCampos();
+            }
+        }
+    }
+
+    @FXML
+    void btnVoltarPressed(ActionEvent event) {
+        GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
     }
 
     private void gerarAlertaNenhum(){
@@ -75,34 +92,17 @@ public class TelaInfoPessoalAdmController {
         alerta.showAndWait();
     }
 
-    @FXML
-    void btnSalvarSenhaPressed(ActionEvent event) {
-        if (verificarCamposVazios()){
-            GerenciadorTelas.getInstance().alertaCamposVazios();
-        } else {
-            try{
-                Fachada.getInstance().alterarSenha(Sessao.getInstance().getUsuario(), passSenhaAtual.getText(),
-                        passNovaSenha.getText() );
-                limparCampos();
-                gerarAlertaDados();
-            } catch (SenhaIncorretaException e) {
-                gerarAlertaSenha();
-            }
-        }
-    }
-
     private void limparCampos(){
         passSenhaAtual.setText("");
         passNovaSenha.setText("");
     }
 
-    @FXML
-    void btnVoltarPressed(ActionEvent event) {
-        GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
+    private boolean verificarCamposSenhaVazios() {
+        return passSenhaAtual.getText().equals("") && passNovaSenha.getText().equals("");
     }
 
-    private boolean verificarCamposVazios() {
-        return passSenhaAtual == null && passNovaSenha == null;
+    private boolean verificarCamposVazios(){
+        return (txtNome.getText().equals("") && txtEmail.getText().equals("") && txtID.getText().equals(""));
     }
 
 }

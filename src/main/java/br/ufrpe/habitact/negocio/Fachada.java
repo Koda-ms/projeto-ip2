@@ -178,7 +178,7 @@ public class Fachada {
 		return treinos.listarTreino();
 	}
 
-	public void cadastrarUsuario(Usuario u) throws ObjetoDuplicadoException {
+	public void cadastrarUsuario(Usuario u) throws ObjetoDuplicadoException, EmailDuplicadoException {
 		usuarios.cadastrarUsuario(u);
 	}
 

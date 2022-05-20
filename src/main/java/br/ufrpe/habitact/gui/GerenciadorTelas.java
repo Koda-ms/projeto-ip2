@@ -79,10 +79,10 @@ public class GerenciadorTelas {
             this.dadosClienteScene = new Scene(fxmlLoader.load());
             this.infoPessoalClienteController = fxmlLoader.getController();
 
-            fxmlLoader = new FXMLLoader(Main.class.
-                    getResource("TelaListarPlanos.fxml"));
-            this.listarPlanosScene = new Scene(fxmlLoader.load());
-            this.listarPlanosController = fxmlLoader.getController();
+//            fxmlLoader = new FXMLLoader(Main.class.
+//                    getResource("TelaListarPlanos.fxml"));
+//            this.listarPlanosScene = new Scene(fxmlLoader.load());
+//            this.listarPlanosController = fxmlLoader.getController();
 
             fxmlLoader = new FXMLLoader(Main.class.
                     getResource("TelaLogin.fxml"));
@@ -139,7 +139,7 @@ public class GerenciadorTelas {
             case "TelaLogin": primaryStage.setScene(loginScene); break;
             case "TelaCadastro": primaryStage.setScene(cadastroScene); break;
             case "TelaInfoPessoalAdm": setInfoPessoalAdmScene(); break;
-            case "TelaDadosCliente": primaryStage.setScene(dadosClienteScene); break;
+            case "TelaDadosCliente": setInfoPessoalClienteScene(); break;
             case "TelaListarPlanos": primaryStage.setScene(listarPlanosScene); break;
             case "telaPrincipalAdm": setAdmScene(); break;
             case "TelaPrincipalCliente": primaryStage.setScene(principalClienteScene); break;
@@ -167,6 +167,11 @@ public class GerenciadorTelas {
     public void setInfoPessoalAdmScene(){
         infoPessoalAdmController.setInformacoes();
         primaryStage.setScene(infoPessoalAdmScene);
+    }
+
+    public void setInfoPessoalClienteScene(){
+        infoPessoalClienteController.setInformacoes();
+        primaryStage.setScene(dadosClienteScene);
     }
 
     public Scene getCadastroScene() {

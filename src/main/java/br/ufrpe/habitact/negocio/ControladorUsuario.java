@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import br.ufrpe.habitact.dados.IRepositorio;
 import br.ufrpe.habitact.dados.Repositorio;
+import br.ufrpe.habitact.excecoes.EmailDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.excecoes.SenhaIncorretaException;
@@ -31,7 +32,12 @@ public class ControladorUsuario {
         return instance;
     }
 
-	public void cadastrarUsuario(Usuario u) throws ObjetoDuplicadoException {
+	public void cadastrarUsuario(Usuario u) throws ObjetoDuplicadoException, EmailDuplicadoException {
+		for (Usuario usuario : listarUsuarios()){
+			if (usuario.getEmail().equals(u.getEmail())){
+				throw new EmailDuplicadoException("Email já cadastrado");
+			}
+		}
 		this.repositorioUsuario.inserir(u);
 	}
 	

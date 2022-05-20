@@ -31,7 +31,7 @@ public class Repositorio<T> implements IRepositorio<T> {
 	@Override
 	public void atualizar(T elem1, T elem2) throws ObjetoNaoExisteException {
 		if (this.elementos.contains(elem2)) {
-			throw new ObjetoNaoExisteException("Usuários tem o mesmo e-mail");
+			throw new ObjetoNaoExisteException("Nenhum dado foi atualizado");
         } else {
 			this.elementos.set(this.elementos.indexOf(elem1), elem2);
         }	

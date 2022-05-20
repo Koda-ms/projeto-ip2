@@ -13,7 +13,7 @@ public class Cliente extends Usuario {
 
 
 	public Cliente(String nome, String email, String senha, LocalDate dtNascimento, String genero, double peso,
-				   double altura, boolean jaFazExercicio) {
+				   double altura) {
 		super(nome, email, senha, dtNascimento);
 		this.genero = genero;
 		this.peso = peso;
@@ -23,9 +23,7 @@ public class Cliente extends Usuario {
 	}
 
 	public Cliente(){}
-	
-	
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

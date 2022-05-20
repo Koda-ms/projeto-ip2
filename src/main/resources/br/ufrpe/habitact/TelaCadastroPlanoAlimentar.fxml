@@ -42,7 +42,7 @@
             <Font name="Calibri" size="20.0" />
          </font>
       </Label>
-      <ComboBox fx:id="refeicao" layoutX="227.0" layoutY="280.0" prefHeight="25.0" prefWidth="167.0" promptText="Selecione" />
+      <ComboBox fx:id="refeicao" layoutX="227.0" layoutY="280.0" onAction="#optRefeicaoSelecionada" prefHeight="25.0" prefWidth="167.0" promptText="Selecione" />
       <Label layoutX="43.0" layoutY="282.0" prefHeight="17.0" prefWidth="114.0" text="Refeição:">
          <font>
             <Font size="14.0" />

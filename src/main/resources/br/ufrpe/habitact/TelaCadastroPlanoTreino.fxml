@@ -32,7 +32,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="objetivoTreino" layoutX="190.0" layoutY="132.0" prefHeight="25.0" prefWidth="330.0" promptText="Escolha uma opção" />
+      <ComboBox fx:id="objetivoTreino" layoutX="190.0" layoutY="132.0" onAction="#optOutrosSelecionada" prefHeight="25.0" prefWidth="330.0" promptText="Escolha uma opção" />
       <Separator layoutX="13.0" layoutY="220.0" prefHeight="5.0" prefWidth="585.0" />
       <Separator layoutX="13.0" layoutY="270.0" prefHeight="5.0" prefWidth="585.0" />
       <Button layoutX="494.0" layoutY="504.0" mnemonicParsing="false" onAction="#btnCadastrarPressed" prefHeight="25.0" prefWidth="81.0" text="Cadastrar" />
@@ -51,6 +51,6 @@
             <TableColumn fx:id="colunaDuracao" prefWidth="134.0" text="Duração (min)" />
          </columns>
       </TableView>
-      <TextField fx:id="textOutro" disable="true" layoutX="189.0" layoutY="174.0" onAction="#optOutrosSelecionada" prefHeight="25.0" prefWidth="330.0" promptText="Outro" />
+      <TextField fx:id="textOutro" disable="true" layoutX="189.0" layoutY="174.0" prefHeight="25.0" prefWidth="330.0" />
    </children>
 </Pane>

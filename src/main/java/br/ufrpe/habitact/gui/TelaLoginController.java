@@ -6,6 +6,7 @@ import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Administrador;
 import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.Usuario;
+import br.ufrpe.habitact.sessao.Sessao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -18,11 +19,9 @@ import java.time.LocalDate;
 public class TelaLoginController {
     @FXML TextField emailTxtField;
     @FXML PasswordField senhaField;
-    private static Usuario usuario;
 
     @FXML
     public void btnLogar(ActionEvent event) {
-
         Usuario u = Fachada.getInstance().autenticarUsuario(emailTxtField.getText(), senhaField.getText());
         if (u == null){
             this.gerarAlertaDeUsuario();
@@ -33,7 +32,7 @@ public class TelaLoginController {
             else if(u instanceof Administrador){
                 GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
             }
-            usuario = u;
+            Sessao.getInstance().setUsuario(u);
         }
         this.limparCamposDeDados();
     }
@@ -48,10 +47,6 @@ public class TelaLoginController {
     @FXML
     public void btnCadastro(ActionEvent event){
         GerenciadorTelas.getInstance().trocarTela("TelaCadastro");
-    }
-
-    public static Usuario getUsuario() {
-        return usuario;
     }
 
     private void limparCamposDeDados() {

@@ -5,35 +5,53 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 public class TelaInfoPessoalAdmController {
-   //atributos
-    @FXML private TextField txtDataNascimento;
-    @FXML private TextField txtEmail;
-    @FXML private TextField txtID;
-    @FXML private TextField txtNome;
 
-    @FXML
-    void btnEditarDadosPressed(ActionEvent event) {
+ @FXML
+ private TextField txtDataNascimento;
 
-    }
+ @FXML
+ private TextField txtEmail;
 
-    @FXML
-    void btnSalvarPressed(ActionEvent event) {
+ @FXML
+ private TextField txtID;
 
-    }
+ @FXML
+ private TextField txtNome;
 
-    @FXML
-    void btnAlterarSenhaPressed(ActionEvent event) {
+ @FXML
+ private TextField txtNovaSenha;
 
-    }
+ @FXML
+ private TextField txtSenhaAtual;
 
-    @FXML
-    void btnSalvarSenhaPressed(ActionEvent event) {
+ @FXML
+ public void initialize(){
 
-    }
+ }
 
-    @FXML
-    void btnVoltarPressed(ActionEvent event) {
-      GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
-    }
+ @FXML
+ void btnSalvarPressed(ActionEvent event) {
+
+ }
+
+ @FXML
+ void btnSalvarSenhaPressed(ActionEvent event) {
+
+ }
+
+ @FXML
+ void btnAlterarSenhaPressed(ActionEvent event){
+
+ }
+
+ @FXML
+ void btnEditarDadosPressed(ActionEvent event){
+
+ }
+
+ @FXML
+ void btnVoltarPressed(ActionEvent event) {
+  GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
+ }
 
 }

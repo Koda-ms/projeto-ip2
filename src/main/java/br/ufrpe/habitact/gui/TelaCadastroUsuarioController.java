@@ -39,7 +39,7 @@ public class TelaCadastroUsuarioController {
         }
         else{
             try{
-                if(femininoBtn.isSelected()) {
+                if(femininoBtn.isSelected() && !masculinoBtn.isSelected()) {
                     Fachada.getInstance().cadastrarUsuario(new Cliente(nomeCliente.getText(), emailCliente.getText(),
                             senhaCliente.getText(), dataNascimentoCliente.getValue(), "Feminino",
                             Double.parseDouble(peso.getText()), Double.parseDouble(altura.getText()),
@@ -48,7 +48,7 @@ public class TelaCadastroUsuarioController {
                     for (Usuario u : Fachada.getInstance().listarUsuarios()) {
                         System.out.println(u.getNome());
                     }
-                }else if(masculinoBtn.isSelected()){
+                }else if(masculinoBtn.isSelected() && !femininoBtn.isSelected()){
                     Fachada.getInstance().cadastrarUsuario(new Cliente(nomeCliente.getText(), emailCliente.getText(),
                             senhaCliente.getText(), dataNascimentoCliente.getValue(), "Masculino",
                             Double.parseDouble(peso.getText()), Double.parseDouble(altura.getText()),

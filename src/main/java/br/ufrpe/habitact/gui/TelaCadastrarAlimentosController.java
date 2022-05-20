@@ -36,8 +36,6 @@ public class TelaCadastrarAlimentosController {
             Fachada.getInstance().adicionarAlimento(alimento);
             //this.planoAlimentarController.updateCatalogoAlimentos(Fachada.getInstance().listarAlimento()); //O atributo retorna null
             this.limparCamposDeDados();
-
-            //Para fechar a tela
             ((Stage)this.btnCancelarSalvarPressed.getScene().getWindow()).close();
         }
     }

@@ -99,6 +99,11 @@ public class TelaCadastrarTreinoController {
         tblExercicio.setItems(result);
     }
 
+    @FXML
+    void btnVoltarPressed(ActionEvent event) {
+        GerenciadorTelas.getInstance().trocarTela("planoTreino");
+    }
+
     private void limparCamposDeDados() {
         this.optCategoria.getSelectionModel().clearSelection();
         this.tblExercicio.getSelectionModel().clearSelection();

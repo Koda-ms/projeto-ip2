@@ -2,6 +2,7 @@ package br.ufrpe.habitact.gui;
 
 import br.ufrpe.habitact.Main;
 import br.ufrpe.habitact.negocio.Fachada;
+import br.ufrpe.habitact.sessao.Sessao;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -148,6 +149,10 @@ public class GerenciadorTelas {
             case "planoTreino": primaryStage.setScene(planoTreinoScene); break;
             case "TelaCadastroTreino": primaryStage.setScene(addTreinoScene); break;
         }
+    }
+
+    public void updateTabelaAlimentos(){
+        cadastroPlanoAlimentarController.updateCatalogoAlimentos();
     }
 
     public void alertaCamposVazios(){

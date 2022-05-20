@@ -34,7 +34,6 @@ public class TelaCadastrarAlimentosController {
         if (verificarCamposVazios()) {
             GerenciadorTelas.getInstance().alertaCamposVazios();
         } else{
-            //TODO Configurar parte para armazenar os alimentos cadastrados pelo usuário
             Alimento alimento = new Alimento(selectRefeicao.getValue(), textNome.getText(),
                     Double.parseDouble(textQuantidade.getText()), Double.parseDouble(textCalorias.getText()));
 
@@ -49,11 +48,9 @@ public class TelaCadastrarAlimentosController {
             }
             System.out.println(Sessao.getInstance().getPlanoAlimentar());
 
-            //planoAlimentarController.updateCatalogoAlimentos(Fachada.getInstance().listarAlimento()); //O atributo retorna null
-
             this.limparCamposDeDados();
             ((Stage)this.btnCancelarSalvarPressed.getScene().getWindow()).close();
-
+            GerenciadorTelas.getInstance().updateTabelaAlimentos();
         }
     }
 

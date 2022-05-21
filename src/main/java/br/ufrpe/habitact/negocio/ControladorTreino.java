@@ -31,7 +31,7 @@ public class ControladorTreino {
         return instance;
     }
 
-    public void inserirExercicio(Treino treino, Exercicio novoExercicio) throws ObjetoDuplicadoException, ObjetoNaoExisteException{
+    public void inserirExercicioNoTreino(Treino treino, Exercicio novoExercicio) throws ObjetoDuplicadoException, ObjetoNaoExisteException{
         Treino treinoAntigo = treino;
         treino.inserirExercicio(novoExercicio);
         this.repositorioTreino.atualizar(treinoAntigo, treino);

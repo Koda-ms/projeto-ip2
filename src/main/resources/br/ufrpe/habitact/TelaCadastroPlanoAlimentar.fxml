@@ -8,7 +8,6 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -21,20 +20,19 @@
          </font>
       </Label>
       <Button layoutX="516.0" layoutY="17.0" mnemonicParsing="false" onAction="#btnVoltarTela" prefHeight="25.0" prefWidth="55.0" text="Voltar" />
-      <Label layoutX="31.0" layoutY="106.0" prefHeight="17.0" prefWidth="114.0" text="Período:">
+      <Label layoutX="31.0" layoutY="115.0" prefHeight="17.0" prefWidth="114.0" text="Período:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <DatePicker fx:id="dtInicio" layoutX="180.0" layoutY="104.0" prefHeight="25.0" prefWidth="151.0" promptText="Inicio" />
-      <DatePicker fx:id="dtFim" layoutX="366.0" layoutY="104.0" prefHeight="25.0" prefWidth="150.0" promptText="Fim" />
-      <Label layoutX="31.0" layoutY="140.0" prefHeight="20.0" prefWidth="159.0" text="Objetivo:">
+      <DatePicker fx:id="dtInicio" layoutX="180.0" layoutY="113.0" prefHeight="25.0" prefWidth="151.0" promptText="Inicio" />
+      <DatePicker fx:id="dtFim" layoutX="366.0" layoutY="113.0" prefHeight="25.0" prefWidth="150.0" promptText="Fim" />
+      <Label layoutX="31.0" layoutY="155.0" prefHeight="20.0" prefWidth="159.0" text="Objetivo:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="objetivo" layoutX="180.0" layoutY="138.0" onAction="#optOutrosSelecionado" prefHeight="25.0" prefWidth="330.0" promptText="Escolha uma opção" />
-      <TextField fx:id="textOutro" disable="true" layoutX="180.0" layoutY="177.0" prefHeight="17.0" prefWidth="330.0" />
+      <ComboBox fx:id="objetivo" layoutX="180.0" layoutY="153.0" prefHeight="25.0" prefWidth="339.0" promptText="Escolha uma opção" />
       <Separator layoutX="8.0" layoutY="210.0" prefHeight="5.0" prefWidth="585.0" />
       <Separator layoutX="8.0" layoutY="260.0" prefHeight="5.0" prefWidth="585.0" />
       <Button layoutX="490.0" layoutY="495.0" mnemonicParsing="false" onAction="#btnCadastrarPressed" prefHeight="25.0" prefWidth="81.0" text="Cadastrar" />
@@ -54,11 +52,11 @@
          </columns>
       </TableView>
       <RadioButton fx:id="radAddCatalogo" layoutX="221.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#optAdicionarClicked" prefHeight="5.0" prefWidth="0.0" />
-      <Label layoutX="31.0" layoutY="70.0" text="Cliente:">
+      <Label layoutX="31.0" layoutY="74.0" text="Cliente:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cliente" layoutX="180.0" layoutY="68.0" prefWidth="150.0" promptText="Selecione" />
+      <ComboBox fx:id="cliente" layoutX="180.0" layoutY="72.0" prefWidth="150.0" promptText="Selecione" />
    </children>
 </Pane>

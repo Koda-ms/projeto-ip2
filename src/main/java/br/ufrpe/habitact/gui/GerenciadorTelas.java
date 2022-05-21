@@ -1,8 +1,6 @@
 package br.ufrpe.habitact.gui;
 
 import br.ufrpe.habitact.Main;
-import br.ufrpe.habitact.negocio.Fachada;
-import br.ufrpe.habitact.sessao.Sessao;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -156,6 +154,10 @@ public class GerenciadorTelas {
     }
     public void updateTabelaExercicios(){cadastrarTreinoController.updateCatalogoExercicios();}
     public void updateTabelaTreinos(){cadastroPlanoTreinoController.updateCatalogoTreino();}
+    public void updateComboBoxClientes(){
+        cadastroPlanoTreinoController.addClientesComboBoxPTreino();
+        cadastroPlanoAlimentarController.addClientesComboBoxPAlimentar();
+    }
 
     public void alertaCamposVazios(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -201,6 +203,7 @@ public class GerenciadorTelas {
     }
 
     public void setPlanoAlimentarScene() {
+        cadastroPlanoAlimentarController.addClientesComboBoxPAlimentar();
         cadastroPlanoAlimentarController.updateCatalogoAlimentos();
         primaryStage.setScene(planoAlimentarScene);
     }
@@ -212,6 +215,7 @@ public class GerenciadorTelas {
     }
 
     public void setPlanoTreinoScene() {
+        cadastroPlanoTreinoController.addClientesComboBoxPTreino();
         cadastroPlanoTreinoController.updateCatalogoTreino();
         primaryStage.setScene(planoTreinoScene);
     }

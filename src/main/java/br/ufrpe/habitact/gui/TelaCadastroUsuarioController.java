@@ -42,6 +42,7 @@ public class TelaCadastroUsuarioController {
                         Double.parseDouble(peso.getText()), Double.parseDouble(altura.getText()),
                         false));
                 gerarAlertaDeCadastro();
+                //TODO remover depois
                 for (Usuario u : Fachada.getInstance().listarUsuarios()){
                     System.out.println(u.getNome());
                 }
@@ -49,6 +50,7 @@ public class TelaCadastroUsuarioController {
                 exception.printStackTrace();
             }
             this.limparCamposDeDados();
+            GerenciadorTelas.getInstance().updateComboBoxClientes();
         }
     }
 

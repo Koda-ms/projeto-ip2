@@ -1,6 +1,5 @@
 package br.ufrpe.habitact.gui;
 
-import br.ufrpe.habitact.dados.IRepositorio;
 import br.ufrpe.habitact.excecoes.MaisDeUmPlanoNoMesmoPeriodoException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.gui.modelos.ModeloCatalogoAlimentar;
@@ -9,7 +8,6 @@ import br.ufrpe.habitact.negocio.beans.Alimento;
 import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoAlimentar;
-import br.ufrpe.habitact.negocio.beans.enums.Refeicao;
 import br.ufrpe.habitact.sessao.Sessao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,13 +23,11 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class TelaCadastroPlanoAlimentarController {
 
     @FXML private DatePicker dtFim;
     @FXML private DatePicker dtInicio;
-    @FXML private TextField textOutro;
     @FXML private Button btnNovoAlimento;
     @FXML private ComboBox<String> cliente;
     @FXML private RadioButton radAddCatalogo;
@@ -47,7 +43,7 @@ public class TelaCadastroPlanoAlimentarController {
     public void initialize() {
         //Adiciona os valores dos enuns ObjetivoAlimentar e Refeicao em cada ComboBox
         this.objetivo.getItems().addAll(ObjetivoAlimentar.values());
-        this.addClientesComboBox();
+        this.addClientesComboBoxPAlimentar();
 
         //Setando as colunas da TableView
         this.colunaCheck.setCellValueFactory(new PropertyValueFactory<>("check"));
@@ -60,21 +56,14 @@ public class TelaCadastroPlanoAlimentarController {
 
     }
 
-    private void addClientesComboBox() {
+    public void addClientesComboBoxPAlimentar() {
+        ObservableList<String> observableClientes = FXCollections.observableArrayList();
         List<Cliente> listClientes = new ArrayList<>(Fachada.getInstance().listarClientes());
-        List<Cliente> clientes = listClientes.stream().filter(cliente -> cliente.getNome()
-                .equals(cliente.getNome())).toList();
-        for(Cliente c : clientes){
-            this.cliente.getItems().addAll(c.getNome());
-        }
-    }
 
-    //Habilita o campo "Outro" para digitação
-    @FXML
-    void optOutrosSelecionado(ActionEvent event) {
-        if(objetivo.getValue().getObjetivo().equalsIgnoreCase("Outro")){
-            this.textOutro.setDisable(false);
+        for(Cliente c : listClientes){
+            observableClientes.add(c.getNome());
         }
+        this.cliente.setItems(observableClientes);
     }
 
     @FXML
@@ -120,6 +109,7 @@ public class TelaCadastroPlanoAlimentarController {
             alert.showAndWait();
 
             this.limparCamposDeDados();
+            GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
         }
     }
 
@@ -139,7 +129,6 @@ public class TelaCadastroPlanoAlimentarController {
     }
 
     private void limparCamposDeDados() {
-        this.textOutro.setText("");
         this.dtInicio.setValue(null);
         this.dtFim.setValue(null);
         this.tblAlimentos.getItems().clear();
@@ -151,6 +140,6 @@ public class TelaCadastroPlanoAlimentarController {
 
     private boolean verificarCamposVazios() {
         return dtInicio.getValue() == null || dtFim.getValue() == null ||
-                objetivo.getValue() == null && textOutro.getText().isBlank();
+                objetivo.getValue() == null;
     }
 }

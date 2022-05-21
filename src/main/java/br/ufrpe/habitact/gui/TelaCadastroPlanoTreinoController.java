@@ -7,22 +7,17 @@ import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.PlanoTreino;
 import br.ufrpe.habitact.negocio.beans.Treino;
-import br.ufrpe.habitact.negocio.beans.enums.CategoriaTreino;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoTreino;
 import br.ufrpe.habitact.sessao.Sessao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,10 +25,9 @@ public class TelaCadastroPlanoTreinoController {
 
     @FXML private DatePicker dtFim;
     @FXML private DatePicker dtInicio;
-    @FXML private TextField textOutro;
     @FXML private Button btnNovoTreino;
     @FXML private RadioButton radAddTreino;
-    @FXML private ComboBox<String> cliente;
+    @FXML private ComboBox<String> cliente2;
     @FXML private ComboBox<ObjetivoTreino> objetivoTreino;
     @FXML private TableView<ModeloPlanoTreinoCliente> tblTreino;
     @FXML private TableColumn<ModeloPlanoTreinoCliente, Boolean> colunaCheck;
@@ -46,7 +40,8 @@ public class TelaCadastroPlanoTreinoController {
     public void initialize() {
         //Adiciona os valores do enum ObjetivoTreino no ComboBox
         this.objetivoTreino.getItems().addAll(ObjetivoTreino.values());
-        this.addClientesComboBox();
+        //TODO remover depois
+        this.addClientesComboBoxPTreino();
         //Setando as colunas da TableView
         this.colunaCheck.setCellValueFactory(new PropertyValueFactory<>("check"));
         this.colunaCheck.setCellFactory(CheckBoxTableCell.forTableColumn(colunaCheck));
@@ -54,23 +49,18 @@ public class TelaCadastroPlanoTreinoController {
         this.colunaDuracao.setCellValueFactory(new PropertyValueFactory<>("duracao"));
         this.colunaCalorias.setCellValueFactory(new PropertyValueFactory<>("calorias"));
         this.colunaCategoriaTreino.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+        //TODO remover depois
         this.updateCatalogoTreino();
     }
 
-    private void addClientesComboBox() {
+    public void addClientesComboBoxPTreino() {
+        ObservableList<String> observableClientes = FXCollections.observableArrayList();
         List<Cliente> listClientes = new ArrayList<>(Fachada.getInstance().listarClientes());
-        List<Cliente> clientes = listClientes.stream().filter(cliente -> cliente.getNome()
-                .equals(cliente.getNome())).toList();
-        for(Cliente c : clientes){
-            this.cliente.getItems().addAll(c.getNome());
-        }
-    }
 
-    @FXML
-    void optOutrosSelecionada(ActionEvent event) {
-        if(this.objetivoTreino.getValue().getObjetivo().equalsIgnoreCase("Outro")){
-            this.textOutro.setDisable(false); //TODO Como seria pra armazenar esse valor em Objetivo?
+        for(Cliente c : listClientes){
+            observableClientes.add(c.getNome());
         }
+        this.cliente2.setItems(observableClientes);
     }
 
     @FXML
@@ -109,6 +99,7 @@ public class TelaCadastroPlanoTreinoController {
             alert.showAndWait();
 
             this.limparCamposDeDados();
+            GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
         }
     }
 
@@ -128,19 +119,18 @@ public class TelaCadastroPlanoTreinoController {
     }
 
     private void limparCamposDeDados() {
-        this.textOutro.setText("");
         this.dtInicio.setValue(null);
         this.dtFim.setValue(null);
         this.tblTreino.getItems().clear();
         this.radAddTreino.setSelected(false);
-        this.cliente.getSelectionModel().clearSelection();
+        this.cliente2.getSelectionModel().clearSelection();
         this.objetivoTreino.getSelectionModel().clearSelection();
         this.tblTreino.getSelectionModel().clearSelection();
     }
 
     private boolean verificarCamposVazios() {
         return dtInicio.getValue() == null || dtFim.getValue() == null ||
-                objetivoTreino.getValue() == null && textOutro.getText().isBlank();
+                objetivoTreino.getValue() == null;
     }
 }
 

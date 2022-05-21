@@ -153,9 +153,9 @@ public class Fachada {
 		treinos.inserirTreino(treino);
 	}
 
-	public void inserirExercicio(Treino treino, Exercicio novoExercicio)
+	public void inserirExercicioNoTreino(Treino treino, Exercicio novoExercicio)
 			throws ObjetoDuplicadoException, ObjetoNaoExisteException {
-		treinos.inserirExercicio(treino, novoExercicio);
+		treinos.inserirExercicioNoTreino(treino, novoExercicio);
 	}
 
 	public void removerExercicio(Treino treino, Exercicio exercicioAlvo) throws ObjetoNaoExisteException {

@@ -43,7 +43,7 @@ public class TelaCadastroPlanoAlimentarController {
     @FXML private TableColumn<ModeloCatalogoAlimentar, Double> colCaloriasAlimento;
     @FXML private TableColumn<ModeloCatalogoAlimentar, String> colNomeAlimento;
 
-
+    @FXML
     public void initialize() {
         //Adiciona os valores dos enuns ObjetivoAlimentar e Refeicao em cada ComboBox
         this.objetivo.getItems().addAll(ObjetivoAlimentar.values());
@@ -90,6 +90,7 @@ public class TelaCadastroPlanoAlimentarController {
         } catch (ObjetoDuplicadoException | MaisDeUmPlanoNoMesmoPeriodoException e) {
             e.getMessage();
         }
+
         System.out.println(p);
         this.tblAlimentos.setDisable(false);
         this.btnNovoAlimento.setDisable(false);
@@ -112,7 +113,6 @@ public class TelaCadastroPlanoAlimentarController {
         if (verificarCamposVazios()) {
             GerenciadorTelas.getInstance().alertaCamposVazios();
         } else {
-
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Cadastro de PLano");
             alert.setHeaderText(null);

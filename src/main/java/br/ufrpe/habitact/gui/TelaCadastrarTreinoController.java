@@ -1,6 +1,8 @@
 package br.ufrpe.habitact.gui;
 
+import br.ufrpe.habitact.excecoes.MaisDeUmTreinoNoMesmoDiaException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
+import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.gui.modelos.ModeloTreino;
 import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Exercicio;
@@ -8,17 +10,16 @@ import br.ufrpe.habitact.negocio.beans.Treino;
 import br.ufrpe.habitact.negocio.beans.enums.CategoriaTreino;
 import br.ufrpe.habitact.negocio.beans.enums.RitmoDoExercicio;
 import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
+import br.ufrpe.habitact.sessao.Sessao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -26,14 +27,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TelaCadastrarTreinoController {
-
+    @FXML private DatePicker dtTreino;
+    @FXML private Button btnNovoExercicio;
+    @FXML private RadioButton radAddExercicio;
     @FXML private Button btnCancelarSalvarPressed;
     @FXML private ComboBox<CategoriaTreino> optCategoria;
     @FXML private TableView<ModeloTreino> tblExercicio;
     @FXML private TableColumn<ModeloTreino, Boolean> colunaCheck;
     @FXML private TableColumn<ModeloTreino, String> colunaNomeExercicio;
     @FXML private TableColumn<ModeloTreino, String> colunaRitmo;
-    @FXML private TableColumn<ModeloTreino, Double> colunaCalorias; //Atributo que aparecerá na TableView da tela CadastrarPlanoTreio
 
     public void initialize(){
         //Add valores ao ComboBox
@@ -44,6 +46,21 @@ public class TelaCadastrarTreinoController {
         this.colunaNomeExercicio.setCellValueFactory(new PropertyValueFactory<>("nome"));
         this.colunaRitmo.setCellValueFactory(new PropertyValueFactory<>("ritmo"));
         this.updateCatalogoExercicios();
+    }
+
+    @FXML
+    void optRadioClicked(MouseEvent event) {
+        Treino t = new Treino(Fachada.getInstance().listarExercicios(), optCategoria.getValue(), dtTreino.getValue());
+        Sessao.getInstance().setTreino(t);
+
+        try {
+            Fachada.getInstance().inserirTreino(t);
+            Fachada.getInstance().inserirTreinoNoPlano(Sessao.getInstance().getPlanoTreino(), t);
+        } catch (ObjetoDuplicadoException | MaisDeUmTreinoNoMesmoDiaException | ObjetoNaoExisteException e) {
+            e.getMessage();
+        }
+        this.tblExercicio.setDisable(false);
+        this.btnNovoExercicio.setDisable(false);
     }
 
     @FXML
@@ -62,35 +79,14 @@ public class TelaCadastrarTreinoController {
         if (verificarCamposVazios()) {
             GerenciadorTelas.getInstance().alertaCamposVazios();
         } else{
-            //TODO Configurar parte para armazenar os treinos cadastrados pelo usuário
-            Treino t = new Treino((ArrayList<Exercicio>) Fachada.getInstance().listarExercicios(), optCategoria.getValue());
-
-            try {
-                Fachada.getInstance().inserirTreino(t);
-            } catch (ObjetoDuplicadoException e) {
-                e.getMessage();
-            }
             this.limparCamposDeDados();
-            ((Stage)this.btnCancelarSalvarPressed.getScene().getWindow()).close();
+            GerenciadorTelas.getInstance().updateTabelaTreinos();
         }
-
     }
 
-    private void updateCatalogoExercicios(){
-        //Instancia exercícios para o Controlador de Exercício
-        ArrayList<Exercicio> listaExercicios = new ArrayList<>();
-        Exercicio ex1 = new Exercicio(TipoExercicio.CAMINHADA, RitmoDoExercicio.BAIXO, 10, 3, 2);
-        Exercicio ex2 = new Exercicio(TipoExercicio.CORRIDA, RitmoDoExercicio.MEDIO, 60, 1, 1);
-        Exercicio ex3 = new Exercicio(TipoExercicio.JIU_JITSU, RitmoDoExercicio.ALTO, 15, 2, 3);
-        //Add o exercícios ao ControladorExercicio
-        try {
-            Fachada.getInstance().inserirExercicios(ex1);
-            Fachada.getInstance().inserirExercicios(ex2);
-            Fachada.getInstance().inserirExercicios(ex3);
-        } catch (ObjetoDuplicadoException e) {
-            e.printStackTrace();
-        }
-        //Lista os exercícios adicionados na tabela Catálogo de Exercícios
+    //Lista os exercícios adicionados na tabela Catálogo de Exercícios
+    public void updateCatalogoExercicios(){
+
         ObservableList<ModeloTreino> result = FXCollections.observableArrayList();
         List<Exercicio> listaExerc = Fachada.getInstance().listarExercicios();
         for (Exercicio ex : listaExerc){
@@ -105,6 +101,9 @@ public class TelaCadastrarTreinoController {
     }
 
     private void limparCamposDeDados() {
+        this.dtTreino.setValue(null);
+        this.tblExercicio.getItems().clear();
+        this.radAddExercicio.setSelected(false);
         this.optCategoria.getSelectionModel().clearSelection();
         this.tblExercicio.getSelectionModel().clearSelection();
     }

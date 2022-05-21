@@ -31,6 +31,9 @@ public class TelaCadastroPlanoTreinoController {
     @FXML private DatePicker dtFim;
     @FXML private DatePicker dtInicio;
     @FXML private TextField textOutro;
+    @FXML private Button btnNovoTreino;
+    @FXML private RadioButton radAddTreino;
+    @FXML private ComboBox<String> cliente;
     @FXML private ComboBox<ObjetivoTreino> objetivoTreino;
     @FXML private TableView<ModeloPlanoTreinoCliente> tblTreino;
     @FXML private TableColumn<ModeloPlanoTreinoCliente, Boolean> colunaCheck;
@@ -39,9 +42,11 @@ public class TelaCadastroPlanoTreinoController {
     @FXML private TableColumn<ModeloPlanoTreinoCliente, String> coluanDiaTreino;
     @FXML private TableColumn<ModeloPlanoTreinoCliente, String> colunaCategoriaTreino;
 
+    @FXML
     public void initialize() {
         //Adiciona os valores do enum ObjetivoTreino no ComboBox
         this.objetivoTreino.getItems().addAll(ObjetivoTreino.values());
+        this.addClientesComboBox();
         //Setando as colunas da TableView
         this.colunaCheck.setCellValueFactory(new PropertyValueFactory<>("check"));
         this.colunaCheck.setCellFactory(CheckBoxTableCell.forTableColumn(colunaCheck));
@@ -52,11 +57,38 @@ public class TelaCadastroPlanoTreinoController {
         this.updateCatalogoTreino();
     }
 
+    private void addClientesComboBox() {
+        List<Cliente> listClientes = new ArrayList<>(Fachada.getInstance().listarClientes());
+        List<Cliente> clientes = listClientes.stream().filter(cliente -> cliente.getNome()
+                .equals(cliente.getNome())).toList();
+        for(Cliente c : clientes){
+            this.cliente.getItems().addAll(c.getNome());
+        }
+    }
+
     @FXML
     void optOutrosSelecionada(ActionEvent event) {
         if(this.objetivoTreino.getValue().getObjetivo().equalsIgnoreCase("Outro")){
             this.textOutro.setDisable(false); //TODO Como seria pra armazenar esse valor em Objetivo?
         }
+    }
+
+    @FXML
+    void optRadioClicked(MouseEvent event) {
+
+        //TODO pegar o Cliente selecionado no ComboBox
+        PlanoTreino p = new PlanoTreino(new Cliente(), dtInicio.getValue(), dtFim.getValue(), objetivoTreino.getValue());
+        Sessao.getInstance().setPlanoTreino(p);
+
+        try {
+            Fachada.getInstance().cadastrarPlanoTreino(p);
+        }catch (MaisDeUmPlanoNoMesmoPeriodoException | ObjetoDuplicadoException e) {
+            e.getMessage();
+        }
+
+        this.btnNovoTreino.setDisable(false);
+        this.tblTreino.setDisable(false);
+        this.radAddTreino.setDisable(false);
     }
 
     //Direcionar para uma tela de diálogo que aparecerá sobre a tela atual
@@ -70,16 +102,6 @@ public class TelaCadastroPlanoTreinoController {
         if (verificarCamposVazios()) {
             GerenciadorTelas.getInstance().alertaCamposVazios();
         } else {
-
-            PlanoTreino p = new PlanoTreino(new Cliente(), dtInicio.getValue(),
-                    dtFim.getValue(), objetivoTreino.getValue());
-
-            try {
-                Fachada.getInstance().cadastrarPlanoTreino(p);
-            }catch (MaisDeUmPlanoNoMesmoPeriodoException | ObjetoDuplicadoException e) {
-                e.getMessage();
-            }
-
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Cadastro de PLano");
             alert.setHeaderText(null);
@@ -95,35 +117,7 @@ public class TelaCadastroPlanoTreinoController {
         GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
     }
 
-    private void updateCatalogoTreino() {
-        //Instancia treinos para o Controlador de Treinos
-        ArrayList<Treino> listaTreinos = new ArrayList<>();
-        //TODO não conseguindo setar um ArrayList<Exercicio> manualmente
-        Treino t1 = new Treino();
-        t1.setDiaFeito(LocalDate.of(2022, 5, 1));
-        t1.setModalidade(CategoriaTreino.ANAEROBICO);
-        t1.setQueimaCaloricaTotal(80);
-        t1.setDuracao(30);
-        Treino t2 = new Treino();
-        t2.setDiaFeito(LocalDate.of(2022, 5, 7));
-        t2.setModalidade(CategoriaTreino.AEROBICO);
-        t2.setQueimaCaloricaTotal(170);
-        t2.setDuracao(25);
-        Treino t3 = new Treino();
-        t3.setDiaFeito(LocalDate.of(2022, 4, 20));
-        t3.setModalidade(CategoriaTreino.AEROBICO);
-        t3.setQueimaCaloricaTotal(200);
-        t3.setDuracao(50);
-
-        try {
-            Fachada.getInstance().inserirTreino(t1);
-            Fachada.getInstance().inserirTreino(t2);
-            Fachada.getInstance().inserirTreino(t3);
-        } catch (ObjetoDuplicadoException e) {
-           e.printStackTrace();
-        }
-        /*Treino t1 = new Treino((ArrayList<Exercicio>) Fachada.getInstance().listarExercicios(),
-                    CategoriaTreino.AEROBICO);*/
+    public void updateCatalogoTreino() {
 
         ObservableList<ModeloPlanoTreinoCliente> result = FXCollections.observableArrayList();
         List<Treino> listaDeTreinos = Fachada.getInstance().listarTreino();
@@ -137,6 +131,9 @@ public class TelaCadastroPlanoTreinoController {
         this.textOutro.setText("");
         this.dtInicio.setValue(null);
         this.dtFim.setValue(null);
+        this.tblTreino.getItems().clear();
+        this.radAddTreino.setSelected(false);
+        this.cliente.getSelectionModel().clearSelection();
         this.objetivoTreino.getSelectionModel().clearSelection();
         this.tblTreino.getSelectionModel().clearSelection();
     }

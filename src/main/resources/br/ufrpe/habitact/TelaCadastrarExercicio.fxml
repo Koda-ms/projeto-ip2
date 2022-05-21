@@ -69,12 +69,12 @@
                         <Insets left="30.0" />
                     </GridPane.margin>
                 </Label>
-                <TextField fx:id="textSerie" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <TextField fx:id="textSerie" alignment="CENTER_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <GridPane.margin>
                         <Insets right="230.0" />
                     </GridPane.margin>
                 </TextField>
-                <TextField fx:id="textRepeticao" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                <TextField fx:id="textRepeticao" alignment="CENTER_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4">
                     <GridPane.margin>
                         <Insets right="230.0" />
                     </GridPane.margin>

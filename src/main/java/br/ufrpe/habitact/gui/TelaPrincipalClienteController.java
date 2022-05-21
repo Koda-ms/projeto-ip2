@@ -17,10 +17,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -46,21 +43,42 @@ public class TelaPrincipalClienteController {
     @FXML private Button meusDadosBtn;
     @FXML private Label nomeLabel;
     @FXML private AnchorPane root;
-    @FXML private TableView<ModeloTreinoGui> tblExercicios;
+    //@FXML private TableView<ModeloTreinoGui> tblExercicios;
     @FXML private TableView<ModeloRefeicao> tblRefeicoes;
     @FXML private Button voltarBtn;
     @FXML private TableColumn<ModeloTreinoGui, Boolean> colCheck;
     @FXML private TableColumn<ModeloTreinoGui, String> colModalidade;
+    @FXML private TitledPane titledAerobico;
+    @FXML private TitledPane titledAnaerobico;
+    @FXML private Label aaa;
+    @FXML private Label bbb;
+    @FXML private Label lblAerobico;
+    @FXML private Label lblAnaerobico;
+
+
 
     @FXML
     public void initialize(){
         Cliente c1 = Sessao.getInstance().getCliente();
 
-        this.colCheck.setCellValueFactory(new PropertyValueFactory<>("Check"));
-        this.colModalidade.setCellValueFactory(new PropertyValueFactory<>("Modalidade"));
+        String ExercicioAerobico = new String();
+        String ExercicioAnaerobico = new String();
+        List<Exercicio> listExercicio = Fachada.getInstance().listarExercicios();
 
-        this.colCheck.setCellFactory(CheckBoxTableCell.forTableColumn(colCheck));
-        this.updateTabelaTreino();
+        for(Exercicio e : listExercicio){
+            if(e.toString().equals("Musculação")){
+                ExercicioAnaerobico = ExercicioAerobico + e.toString() + "\n";
+            }else{
+                ExercicioAerobico = ExercicioAnaerobico + e.toString() + "\n";
+            }
+        }
+        this.lblAerobico.setText(ExercicioAerobico);
+        this.lblAnaerobico.setText(ExercicioAnaerobico);
+        //this.colCheck.setCellValueFactory(new PropertyValueFactory<>("Check"));
+        //this.colModalidade.setCellValueFactory(new PropertyValueFactory<>("Modalidade"));
+
+        //this.colCheck.setCellFactory(CheckBoxTableCell.forTableColumn(colCheck));
+        //this.updateTabelaTreino();
         this.diaDaSemanaLabel.setText(String.valueOf(LocalDate.now().getDayOfWeek()));
         //this.nomeLabel.setText("Ola, " + c1.getNome());
         //this.imcEAguaLabel.setText("Seu imc é: " + Sessao.getInstance().getUsuario());
@@ -73,14 +91,14 @@ public class TelaPrincipalClienteController {
 
     }
 
-    public void updateTabelaTreino() {
-        ObservableList<ModeloTreinoGui> result = FXCollections.observableArrayList();
-        List<Treino> listTreino = Fachada.getInstance().listarTreino();
-        for (Treino a : listTreino) {
-            result.add(new ModeloTreinoGui(a));
-        }
-        tblExercicios.setItems(result);
-    }
+//    public void updateTabelaTreino() {
+//        ObservableList<ModeloTreinoGui> result = FXCollections.observableArrayList();
+//        List<Treino> listTreino = Fachada.getInstance().listarTreino();
+//        for (Treino a : listTreino) {
+//            result.add(new ModeloTreinoGui(a));
+//        }
+//        tblExercicios.setItems(result);
+//    }
 
     @FXML
     void btnAddAlimento(ActionEvent event) {

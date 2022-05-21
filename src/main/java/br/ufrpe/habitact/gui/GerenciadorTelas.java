@@ -170,7 +170,7 @@ public class GerenciadorTelas {
     }
 
     public void setPrincipalClienteScene() {
-        principalCliente.updateTabelaTreino();
+        //principalCliente.updateTabelaTreino();
         primaryStage.setScene(principalClienteScene);
     }
 

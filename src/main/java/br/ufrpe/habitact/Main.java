@@ -8,7 +8,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage){
-        primaryStage.setScene(GerenciadorTelas.getInstance().getLoginScene());
+        primaryStage.setScene(GerenciadorTelas.getInstance().getPrincipalClienteScene());
         primaryStage.setTitle("Projeto HabitAct");
         primaryStage.setWidth(640);
         primaryStage.setHeight(610);

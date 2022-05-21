@@ -146,14 +146,16 @@ public class GerenciadorTelas {
             case "telaPrincipalAdm": setPrincipalAdmScene(); break;
             case "TelaPrincipalCliente": primaryStage.setScene(principalClienteScene); break;
             case "planoAlimentar": setPlanoAlimentarScene(); break;
-            case "planoTreino": primaryStage.setScene(planoTreinoScene); break;
-            case "TelaCadastroTreino": primaryStage.setScene(addTreinoScene); break;
+            case "planoTreino": setPlanoTreinoScene(); break;
+            case "TelaCadastroTreino": setAddTreinoScene(); break;
         }
     }
 
     public void updateTabelaAlimentos(){
         cadastroPlanoAlimentarController.updateCatalogoAlimentos();
     }
+    public void updateTabelaExercicios(){cadastrarTreinoController.updateCatalogoExercicios();}
+    public void updateTabelaTreinos(){cadastroPlanoTreinoController.updateCatalogoTreino();}
 
     public void alertaCamposVazios(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -209,8 +211,18 @@ public class GerenciadorTelas {
         return planoTreinoScene;
     }
 
+    public void setPlanoTreinoScene() {
+        cadastroPlanoTreinoController.updateCatalogoTreino();
+        primaryStage.setScene(planoTreinoScene);
+    }
+
     public Scene getAddTreinoScene() {
         return addTreinoScene;
+    }
+
+    public void setAddTreinoScene() {
+        cadastrarTreinoController.updateCatalogoExercicios();
+        primaryStage.setScene(addTreinoScene);
     }
 
     public Scene getAddExercicioScene() { return addExercicioScene; }

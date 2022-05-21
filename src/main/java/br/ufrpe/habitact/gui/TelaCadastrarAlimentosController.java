@@ -36,7 +36,6 @@ public class TelaCadastrarAlimentosController {
         } else{
             Alimento alimento = new Alimento(selectRefeicao.getValue(), textNome.getText(),
                     Double.parseDouble(textQuantidade.getText()), Double.parseDouble(textCalorias.getText()));
-
             Fachada.getInstance().adicionarAlimento(alimento);
 
             System.out.println(alimento);

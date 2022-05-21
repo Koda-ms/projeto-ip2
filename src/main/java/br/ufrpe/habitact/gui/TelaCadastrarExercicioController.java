@@ -44,8 +44,6 @@ public class TelaCadastrarExercicioController {
             } catch (ObjetoDuplicadoException | ObjetoNaoExisteException e) {
                 e.getMessage();
             }
-            //TODO Remover depois
-            System.out.println(ex);
 
             this.limparCamposDeDados();
             ((Stage)this.btnCancelarSalvarPressed.getScene().getWindow()).close();

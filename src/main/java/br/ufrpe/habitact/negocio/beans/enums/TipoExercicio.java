@@ -4,11 +4,13 @@ public enum TipoExercicio {
 	CAMINHADA ("Caminhada"), 
 	CORRIDA ("Corrida"), 
 	NATACAO ("Natação"),
+	HIDROGINASTICA("Hidroginástica"),
 	CICLISMO ("Ciclismo"), 
 	MUSCULACAO ("Musculação"), 
 	JIU_JITSU ("Jiu-Jitsu"),
 	TENIS_DE_MESA ("Tenis de Mesa"),
-	OUTRO("Outro");
+	YOGA("Yoga"),
+	PILATES ("Pilates");
 	
     private String tipo;
 

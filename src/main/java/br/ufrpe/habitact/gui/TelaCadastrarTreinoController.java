@@ -81,6 +81,7 @@ public class TelaCadastrarTreinoController {
         } else{
             this.limparCamposDeDados();
             GerenciadorTelas.getInstance().updateTabelaTreinos();
+            GerenciadorTelas.getInstance().trocarTela("planoTreino");
         }
     }
 

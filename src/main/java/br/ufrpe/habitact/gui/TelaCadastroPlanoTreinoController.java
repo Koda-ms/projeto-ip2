@@ -18,7 +18,10 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class TelaCadastroPlanoTreinoController {
@@ -40,8 +43,7 @@ public class TelaCadastroPlanoTreinoController {
     public void initialize() {
         //Adiciona os valores do enum ObjetivoTreino no ComboBox
         this.objetivoTreino.getItems().addAll(ObjetivoTreino.values());
-        //TODO remover depois
-        this.addClientesComboBoxPTreino();
+
         //Setando as colunas da TableView
         this.colunaCheck.setCellValueFactory(new PropertyValueFactory<>("check"));
         this.colunaCheck.setCellFactory(CheckBoxTableCell.forTableColumn(colunaCheck));
@@ -49,8 +51,6 @@ public class TelaCadastroPlanoTreinoController {
         this.colunaDuracao.setCellValueFactory(new PropertyValueFactory<>("duracao"));
         this.colunaCalorias.setCellValueFactory(new PropertyValueFactory<>("calorias"));
         this.colunaCategoriaTreino.setCellValueFactory(new PropertyValueFactory<>("categoria"));
-        //TODO remover depois
-        this.updateCatalogoTreino();
     }
 
     public void addClientesComboBoxPTreino() {
@@ -66,12 +66,17 @@ public class TelaCadastroPlanoTreinoController {
     @FXML
     void optRadioClicked(MouseEvent event) {
 
-        //TODO pegar o Cliente selecionado no ComboBox
-        PlanoTreino p = new PlanoTreino(new Cliente(), dtInicio.getValue(), dtFim.getValue(), objetivoTreino.getValue());
-        Sessao.getInstance().setPlanoTreino(p);
+        List<Cliente> listClientes = new ArrayList<>(Fachada.getInstance().listarClientes());
+        PlanoTreino planoT = null;
+        for(Cliente c : listClientes){
+            if(this.cliente2.getValue().equals(c.getNome())){
+                planoT = new PlanoTreino(c, dtInicio.getValue(), dtFim.getValue(), objetivoTreino.getValue());
+            }
+        }
 
+        Sessao.getInstance().setPlanoTreino(planoT);
         try {
-            Fachada.getInstance().cadastrarPlanoTreino(p);
+            Fachada.getInstance().cadastrarPlanoTreino(planoT);
         }catch (MaisDeUmPlanoNoMesmoPeriodoException | ObjetoDuplicadoException e) {
             e.getMessage();
         }

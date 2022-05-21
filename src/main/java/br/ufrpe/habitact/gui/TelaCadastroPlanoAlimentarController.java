@@ -7,6 +7,7 @@ import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Alimento;
 import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
+import br.ufrpe.habitact.negocio.beans.PlanoTreino;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoAlimentar;
 import br.ufrpe.habitact.sessao.Sessao;
 import javafx.collections.FXCollections;
@@ -41,9 +42,8 @@ public class TelaCadastroPlanoAlimentarController {
 
     @FXML
     public void initialize() {
-        //Adiciona os valores dos enuns ObjetivoAlimentar e Refeicao em cada ComboBox
+        //Adiciona os valores do enum ObjetivoAlimentar na ComboBox
         this.objetivo.getItems().addAll(ObjetivoAlimentar.values());
-        this.addClientesComboBoxPAlimentar();
 
         //Setando as colunas da TableView
         this.colunaCheck.setCellValueFactory(new PropertyValueFactory<>("check"));
@@ -52,8 +52,6 @@ public class TelaCadastroPlanoAlimentarController {
         this.colRefeicao.setCellValueFactory(new PropertyValueFactory<>("refeicao"));
         this.colQtdAlimento.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
         this.colCaloriasAlimento.setCellValueFactory(new PropertyValueFactory<>("calorias"));
-        this.updateCatalogoAlimentos();
-
     }
 
     public void addClientesComboBoxPAlimentar() {
@@ -69,18 +67,21 @@ public class TelaCadastroPlanoAlimentarController {
     @FXML
     void optAdicionarClicked(MouseEvent event) {
 
-        //TODO pegar o Cliente selecionado no ComboBox
-        PlanoAlimentar p = new PlanoAlimentar(new Cliente(), dtInicio.getValue(),
-                dtFim.getValue(), objetivo.getValue());
-        Sessao.getInstance().setPlanoAlimentar(p);
+        List<Cliente> listClientes = new ArrayList<>(Fachada.getInstance().listarClientes());
+        PlanoAlimentar planoA = null;
+        for(Cliente c : listClientes) {
+            if (this.cliente.getValue().equals(c.getNome())) {
+                planoA = new PlanoAlimentar(c, dtInicio.getValue(), dtFim.getValue(), objetivo.getValue());
+            }
+        }
 
+        Sessao.getInstance().setPlanoAlimentar(planoA);
         try {
-            Fachada.getInstance().cadastrarPlanoAlimentar(p);
+            Fachada.getInstance().cadastrarPlanoAlimentar(planoA);
         } catch (ObjetoDuplicadoException | MaisDeUmPlanoNoMesmoPeriodoException e) {
             e.getMessage();
         }
 
-        System.out.println(p);
         this.tblAlimentos.setDisable(false);
         this.btnNovoAlimento.setDisable(false);
     }

@@ -10,9 +10,8 @@ public class Cliente extends Usuario {
 	private double imc;
 	private long idade;
 
-
 	public Cliente(String nome, String email, String senha, LocalDate dtNascimento, String genero, double peso,
-				   double altura, boolean jaFazExercicio) {
+				   double altura, boolean jaFazExercicio) { //TODO Verificar se atributo "jaFazExercicio" é ainda necessário
 		super(nome, email, senha, dtNascimento);
 		this.genero = genero;
 		this.peso = peso;

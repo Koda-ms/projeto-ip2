@@ -272,5 +272,9 @@ public class GerenciadorTelas {
     public TelaInfoPessoalClienteController getInfoPessoalClienteController() {
         return infoPessoalClienteController;
     }
+
+    public void updateTabelaRefeicoes(){
+        principalCliente.updateTabelaRefeicao();
+    }
 }
 

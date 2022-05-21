@@ -91,14 +91,6 @@ public class TelaPrincipalClienteController {
 
     }
 
-//    public void updateTabelaTreino() {
-//        ObservableList<ModeloTreinoGui> result = FXCollections.observableArrayList();
-//        List<Treino> listTreino = Fachada.getInstance().listarTreino();
-//        for (Treino a : listTreino) {
-//            result.add(new ModeloTreinoGui(a));
-//        }
-//        tblExercicios.setItems(result);
-//    }
 
     @FXML
     void btnAddAlimento(ActionEvent event) {
@@ -111,7 +103,16 @@ public class TelaPrincipalClienteController {
         dialog.showAndWait();
     }
 
-    private void updateTabelaRefeicao() {
+    //    public void updateTabelaTreino() {
+//        ObservableList<ModeloTreinoGui> result = FXCollections.observableArrayList();
+//        List<Treino> listTreino = Fachada.getInstance().listarTreino();
+//        for (Treino a : listTreino) {
+//            result.add(new ModeloTreinoGui(a));
+//        }
+//        tblExercicios.setItems(result);
+//    }
+
+    public void updateTabelaRefeicao() {
         ObservableList<ModeloRefeicao> resultado = FXCollections.observableArrayList();
 
         List<Alimento> listaDeRef = Fachada.getInstance().listarAlimento();
@@ -123,7 +124,7 @@ public class TelaPrincipalClienteController {
     }
 
     @FXML
-    private void updateRefeicao(){
+    public void updateRefeicao(){
         Alimento a1 = new Alimento();
         a1.setNome("");
     }

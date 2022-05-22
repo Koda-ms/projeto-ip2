@@ -7,8 +7,6 @@ import br.ufrpe.habitact.excecoes.MaisDeUmTreinoNoMesmoDiaException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.negocio.beans.*;
-import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
-import br.ufrpe.habitact.sessao.Sessao;
 
 import java.util.ArrayList;
 import java.util.List;

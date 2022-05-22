@@ -51,7 +51,7 @@
             <TableColumn fx:id="colCaloriasAlimento" prefWidth="97.0" text="Calorias (kcal)" />
          </columns>
       </TableView>
-      <RadioButton fx:id="radAddCatalogo" layoutX="221.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#optAdicionarClicked" prefHeight="5.0" prefWidth="0.0" />
+      <RadioButton fx:id="radAddCatalogo" layoutX="221.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#radAddClicked" prefHeight="5.0" prefWidth="0.0" />
       <Label layoutX="31.0" layoutY="74.0" text="Cliente:">
          <font>
             <Font size="14.0" />

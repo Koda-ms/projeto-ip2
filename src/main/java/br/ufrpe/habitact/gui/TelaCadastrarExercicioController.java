@@ -43,18 +43,9 @@ public class TelaCadastrarExercicioController {
                 Fachada.getInstance().inserirExercicioNoTreino(Sessao.getInstance().getTreino(), ex);
             } catch (ObjetoDuplicadoException | ObjetoNaoExisteException e) {
                 this.alertaErroCadastro(e.getMessage());
-
-                // Try/catch responsável por remover o Exercício que foi cadastrado igual a um Exercício anterior
-                try {
-                    Fachada.getInstance().removerExercicioDoTreino(Sessao.getInstance().getTreino(), ex);
-                    Fachada.getInstance().removerExercicios(ex);
-                } catch (ObjetoNaoExisteException exc) {
-                    this.alertaErroCadastro(exc.getMessage());
-                }
             }
 
             this.limparCamposDeDados();
-            //TODO: mesmo com a exceção sendo disparada a tela fechará devido o método abaixo. Verificar para que não.
             ((Stage)this.btnCancelarSalvarPressed.getScene().getWindow()).close();
             GerenciadorTelas.getInstance().updateTabelaExercicios();
         }

@@ -8,7 +8,6 @@ import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Alimento;
 import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
-import br.ufrpe.habitact.negocio.beans.PlanoTreino;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoAlimentar;
 import br.ufrpe.habitact.sessao.Sessao;
 import javafx.collections.FXCollections;
@@ -66,7 +65,7 @@ public class TelaCadastroPlanoAlimentarController {
     }
 
     @FXML
-    void optAdicionarClicked(MouseEvent event) {
+    void radAddClicked(MouseEvent event) {
 
         List<Cliente> listClientes = new ArrayList<>(Fachada.getInstance().listarClientes());
         PlanoAlimentar planoA = null;
@@ -86,12 +85,19 @@ public class TelaCadastroPlanoAlimentarController {
         } catch (ObjetoDuplicadoException | MaisDeUmPlanoNoMesmoPeriodoException e) {
             this.alertaErroCadastro(e.getMessage());
             this.radAddCatalogo.setSelected(false);
-            
-            // Try/catch responsável por remover o PlanoAlimentar que foi cadastrado no mesmo período que um PlanoAlimentar anterior
+
+            // Try/catch responsável por buscar o Plano A cadastrado com período igual a de um Plano anterior
+            // e, então, atualizá-lo com o novo Plano A de período diferente
             try {
-                Fachada.getInstance().removerPlanoALimentar(planoA);
-            } catch (ObjetoNaoExisteException ex) {
-                this.alertaErroCadastro(ex.getMessage());
+                List<PlanoAlimentar> planoProcurado;
+                for(Cliente c : listClientes) {
+                    if (this.cliente.getValue().equals(c.getNome())) {
+                        planoProcurado = Fachada.getInstance().buscarPlanoAlimentar(c);
+                        Fachada.getInstance().alterarPlanoAlimentar(planoProcurado.get(0), planoA);
+                    }
+                }
+            } catch (ObjetoNaoExisteException exc) {
+                this.alertaErroCadastro(exc.getMessage());
             }
         }
     }

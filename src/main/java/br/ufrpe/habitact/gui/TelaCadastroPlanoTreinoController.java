@@ -19,10 +19,7 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class TelaCadastroPlanoTreinoController {
@@ -84,13 +81,20 @@ public class TelaCadastroPlanoTreinoController {
             this.btnNovoTreino.setDisable(false);
             this.radAddTreino.setDisable(false);
 
-        }catch (MaisDeUmPlanoNoMesmoPeriodoException | ObjetoDuplicadoException e) {
+        } catch (ObjetoDuplicadoException | MaisDeUmPlanoNoMesmoPeriodoException e) {
             this.alertaErroCadastro(e.getMessage());
             this.radAddTreino.setSelected(false);
 
-            // Try/catch responsável por remover o PlanoTreino que foi cadastrado no mesmo período que um PlanoTreino anterior
+            // Try/catch responsável por buscar o Plano T cadastrado com período igual a de um Plano anterior
+            // e, então, atualizá-lo com o novo Plano T de período diferente
             try {
-                Fachada.getInstance().removerPlanoTreino(planoT);
+                List<PlanoTreino> planoProcurado;
+                for(Cliente c : listClientes) {
+                    if (this.cliente2.getValue().equals(c.getNome())) {
+                        planoProcurado = Fachada.getInstance().buscarPlanoTreino(c);
+                        Fachada.getInstance().alterarPlanoDeTreino(planoProcurado.get(0), planoT);
+                    }
+                }
             } catch (ObjetoNaoExisteException ex) {
                 this.alertaErroCadastro(ex.getMessage());
             }

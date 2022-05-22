@@ -79,10 +79,10 @@ public class TelaPrincipalClienteController {
         //this.nomeLabel.setText("Ola, " + c1.getNome());
         //this.imcEAguaLabel.setText("Seu imc é: " + Sessao.getInstance().getUsuario());
 
-        this.colCafeDaManha.setCellValueFactory(new PropertyValueFactory<>("Café"));
-        this.colAlmoco.setCellValueFactory(new PropertyValueFactory<>("almoço"));
-        this.colLanche.setCellValueFactory(new PropertyValueFactory<>("Lanhce"));
-        this.colJantar.setCellValueFactory(new PropertyValueFactory<>("Jantar"));
+        this.colCafeDaManha.setCellValueFactory(new PropertyValueFactory<>("cafe"));
+        this.colAlmoco.setCellValueFactory(new PropertyValueFactory<>("almoco"));
+        this.colLanche.setCellValueFactory(new PropertyValueFactory<>("lanche"));
+        this.colJantar.setCellValueFactory(new PropertyValueFactory<>("jantar"));
         this.updateTabelaRefeicao();
 
     }

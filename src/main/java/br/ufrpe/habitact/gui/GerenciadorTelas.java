@@ -149,6 +149,9 @@ public class GerenciadorTelas {
         cadastroPlanoTreinoController.addClientesComboBoxPTreino();
         cadastroPlanoAlimentarController.addClientesComboBoxPAlimentar();
     }
+    public void updateTabelaRefeicao(){
+        principalCliente.updateTabelaRefeicao();
+    }
 
     public void alertaCamposVazios(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -172,7 +175,7 @@ public class GerenciadorTelas {
 
     public void setPrincipalClienteScene() {
         //principalCliente.updateTabelaTreino();
-        updateTabelaRefeicoes();
+        principalCliente.updateTabelaRefeicao();
         primaryStage.setScene(principalClienteScene);
     }
 
@@ -293,8 +296,5 @@ public class GerenciadorTelas {
         return infoPessoalClienteController;
     }
 
-    public void updateTabelaRefeicoes(){
-        principalCliente.updateTabelaRefeicao();
-    }
 }
 

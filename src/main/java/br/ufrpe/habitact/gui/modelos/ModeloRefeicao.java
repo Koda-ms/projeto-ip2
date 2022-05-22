@@ -4,7 +4,7 @@ import br.ufrpe.habitact.negocio.beans.Alimento;
 import javafx.beans.property.SimpleStringProperty;
 
 public class ModeloRefeicao {
-    private SimpleStringProperty cafeDaManha;
+    private SimpleStringProperty cafe;
     private SimpleStringProperty almoco;
     private SimpleStringProperty lanche;
     private SimpleStringProperty jantar;
@@ -12,23 +12,23 @@ public class ModeloRefeicao {
     public ModeloRefeicao(Alimento alimento){
         String ref = alimento.getRefeicao().getRefeicao();
         switch(ref){
-            case "Café da manhã": this.cafeDaManha = new SimpleStringProperty(alimento.getNome()); break;
+            case "Café da manhã": this.cafe = new SimpleStringProperty(alimento.getNome()); break;
             case "Almoço": this.almoco = new SimpleStringProperty(alimento.getNome()); break;
             case "Lanche": this.lanche = new SimpleStringProperty(alimento.getNome()); break;
             case "Jantar": this.jantar = new SimpleStringProperty(alimento.getNome()); break;
         }
     }
 
-    public String getCafeDaManha() {
-        return cafeDaManha.get();
+    public String getCafe() {
+        return cafe.get();
     }
 
-    public SimpleStringProperty cafeDaManhaProperty() {
-        return cafeDaManha;
+    public SimpleStringProperty cafeProperty() {
+        return cafe;
     }
 
-    public void setCafeDaManha(String cafeDaManha) {
-        this.cafeDaManha.set(cafeDaManha);
+    public void setCafe(String cafe) {
+        this.cafe.set(cafe);
     }
 
     public String getAlmoco() {

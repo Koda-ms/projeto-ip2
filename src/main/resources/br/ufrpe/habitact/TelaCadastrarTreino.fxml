@@ -35,9 +35,13 @@
       <TableView fx:id="tblExercicio" disable="true" editable="true" layoutX="29.0" layoutY="298.0" prefHeight="182.0" prefWidth="554.0">
          <columns>
             <TableColumn fx:id="colunaCheck" maxWidth="40.0" minWidth="24.0" prefWidth="24.0" />
-            <TableColumn fx:id="colunaNomeExercicio" prefWidth="253.0" text="Nome" />
-            <TableColumn fx:id="colunaRitmo" prefWidth="276.0" text="Ritmo" />
+            <TableColumn fx:id="colunaNomeExercicio" prefWidth="179.0" text="Nome" />
+            <TableColumn fx:id="colunaRitmo" prefWidth="170.0" text="Ritmo" />
+            <TableColumn fx:id="colunaDuracao" prefWidth="180.0" text="Duração (min)" />
          </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
       <Button fx:id="btnCancelarSalvarPressed" layoutX="515.0" layoutY="501.0" mnemonicParsing="false" onAction="#btnSalvarPressed" prefHeight="25.0" prefWidth="68.0" text="Salvar" />
       <Button fx:id="btnNovoExercicio" disable="true" layoutX="28.0" layoutY="501.0" mnemonicParsing="false" onAction="#btnAddExercicioPressed" prefHeight="25.0" prefWidth="114.0" text="Novo exercício" />

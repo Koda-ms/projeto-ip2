@@ -54,6 +54,7 @@ public class TelaPrincipalClienteController {
 
 
 
+
     @FXML
     public void initialize(){
 
@@ -129,4 +130,14 @@ public class TelaPrincipalClienteController {
         GerenciadorTelas.getInstance().trocarTela("TelaLogin");
     }
 
+
+    public void setInformacoes(){
+        Cliente cliente = (Cliente) Sessao.getInstance().getUsuario();
+        txtNome.setText(cliente.getNome());
+        txtAltura.setText(Double.toString(cliente.getAltura()));
+        txtPeso.setText(Double.toString(cliente.getPeso()));
+        txtGenero.setText(cliente.getGenero());
+        txtEmail.setText(cliente.getEmail());
+        dtPickerNascimento.setValue(cliente.getDtNascimento());
+    }
 }

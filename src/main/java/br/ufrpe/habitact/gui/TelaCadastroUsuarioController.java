@@ -1,6 +1,5 @@
 package br.ufrpe.habitact.gui;
 
-import br.ufrpe.habitact.excecoes.EmailDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Administrador;
@@ -73,7 +72,7 @@ public class TelaCadastroUsuarioController {
                 for (Usuario u : Fachada.getInstance().listarUsuarios()){
                     System.out.println(u.getNome());
             }
-            } catch (ObjetoDuplicadoException | EmailDuplicadoException exception) {
+            } catch (ObjetoDuplicadoException exception) {
                 exception.printStackTrace();
             }
             this.limparCamposDeDados();

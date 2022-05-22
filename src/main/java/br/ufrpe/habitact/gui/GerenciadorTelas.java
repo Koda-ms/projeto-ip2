@@ -142,7 +142,7 @@ public class GerenciadorTelas {
             case "TelaDadosCliente": primaryStage.setScene(dadosClienteScene); break;
             case "TelaListarPlanos": primaryStage.setScene(listarPlanosScene); break;
             case "telaPrincipalAdm": setPrincipalAdmScene(); break;
-            case "TelaPrincipalCliente": primaryStage.setScene(principalClienteScene); break;
+            case "TelaPrincipalCliente": setPrincipalClienteScene(); break;            case "planoAlimentar": setPlanoAlimentarScene(); break;
             case "planoAlimentar": setPlanoAlimentarScene(); break;
             case "planoTreino": setPlanoTreinoScene(); break;
             case "TelaCadastroTreino": setAddTreinoScene(); break;
@@ -177,6 +177,12 @@ public class GerenciadorTelas {
 
     public Scene getPrincipalClienteScene() {
         return principalClienteScene;
+    }
+
+    public void setPrincipalClienteScene() {
+        //principalCliente.updateTabelaTreino();
+        updateTabelaRefeicoes();
+        primaryStage.setScene(principalClienteScene);
     }
 
     public Scene getInfoPessoalAdmScene() {
@@ -301,6 +307,10 @@ public class GerenciadorTelas {
 
     public TelaInfoPessoalClienteController getInfoPessoalClienteController() {
         return infoPessoalClienteController;
+    }
+
+    public void updateTabelaRefeicoes(){
+        principalCliente.updateTabelaRefeicao();
     }
 }
 

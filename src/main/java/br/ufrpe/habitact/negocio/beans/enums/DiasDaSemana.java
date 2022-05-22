@@ -1,28 +1,22 @@
 package br.ufrpe.habitact.negocio.beans.enums;
 
-public class DiasDaSemana {
-    public enum Refeicao {
-        SEGUNDA_FEIRA ("Segunda-feira"),
-        TERCA_FEIRA ("Terça-feira"),
-        QUARTA_FEIRA ("Quarta-feira"),
-        QUINTA_FEIRA ("Quinta-feira"),
-        SEXTA_FEIRA ("Sexta-feira"),
-        SABADO ("Sábado"),
-        DOMINGO ("Domingo");
+public enum DiasDaSemana {
+    SEGUNDA_FEIRA("Segunda-feira"),
+    TERCA_FEIRA("Terça-feira"),
+    QUARTA_FEIRA("Quarta-feira"),
+    QUINTA_FEIRA("Quinta-feira"),
+    SEXTA_FEIRA("Sexta-feira"),
+    SABADO("Sábado"),
+    DOMINGO("Domingo");
 
-        private String diaDaSemana;
+    private String diaDaSemana;
 
-        Refeicao(String diaDaSemana){
-            this.diaDaSemana = diaDaSemana;
-        }
+    DiasDaSemana(String dia) {
+        this.diaDaSemana = dia;
+    }
 
-        public String getRefeicao() {
-            return diaDaSemana;
-        }
-
-        @Override
-        public String toString() {
-            return this.diaDaSemana;
-        }
+    @Override
+    public String toString() {
+        return this.diaDaSemana;
     }
 }

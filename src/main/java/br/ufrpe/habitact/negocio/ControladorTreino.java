@@ -37,7 +37,7 @@ public class ControladorTreino {
         this.repositorioTreino.atualizar(treinoAntigo, treino);
     }
 
-    public void removerExercicio(Treino treino, Exercicio exercicioAlvo) throws ObjetoNaoExisteException{
+    public void removerExercicioDoTreino(Treino treino, Exercicio exercicioAlvo) throws ObjetoNaoExisteException{
         Treino treinoNovo = treino;
         treinoNovo.removerExercicio(exercicioAlvo);
         this.repositorioTreino.atualizar(treino, treinoNovo);

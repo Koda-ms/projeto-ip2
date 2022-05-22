@@ -16,12 +16,7 @@ import br.ufrpe.habitact.negocio.beans.Treino;
 import br.ufrpe.habitact.negocio.beans.Usuario;
 import br.ufrpe.habitact.negocio.beans.enums.CategoriaTreino;
 import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
-import br.ufrpe.habitact.excecoes.*;
 import br.ufrpe.habitact.negocio.beans.*;
-import br.ufrpe.habitact.negocio.beans.enums.CategoriaTreino;
-import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
-
-import java.util.List;
 
 public class Fachada {
 
@@ -158,8 +153,8 @@ public class Fachada {
 		treinos.inserirExercicioNoTreino(treino, novoExercicio);
 	}
 
-	public void removerExercicio(Treino treino, Exercicio exercicioAlvo) throws ObjetoNaoExisteException {
-		treinos.removerExercicio(treino, exercicioAlvo);
+	public void removerExercicioDoTreino(Treino treino, Exercicio exercicioAlvo) throws ObjetoNaoExisteException {
+		treinos.removerExercicioDoTreino(treino, exercicioAlvo);
 	}
 
 	public void removerTreino(Treino treino) throws ObjetoNaoExisteException {

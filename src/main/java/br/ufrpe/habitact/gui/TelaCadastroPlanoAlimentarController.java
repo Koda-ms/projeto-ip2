@@ -155,6 +155,8 @@ public class TelaCadastroPlanoAlimentarController {
         });
     }
 
+    //Evento que possibilita a seleção de linhas na tabela e consequentemente registra o valor.
+    //TODO: Encontrado bug na visualização da tabela quando mais de um objeto é selecionado
     public void events() {
         List<Alimento> listAlimentos = Fachada.getInstance().listarAlimento();
 

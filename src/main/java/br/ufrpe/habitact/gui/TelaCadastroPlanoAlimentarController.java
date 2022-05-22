@@ -2,6 +2,7 @@ package br.ufrpe.habitact.gui;
 
 import br.ufrpe.habitact.excecoes.MaisDeUmPlanoNoMesmoPeriodoException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
+import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.gui.modelos.ModeloCatalogoAlimentar;
 import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Alimento;
@@ -78,12 +79,21 @@ public class TelaCadastroPlanoAlimentarController {
         Sessao.getInstance().setPlanoAlimentar(planoA);
         try {
             Fachada.getInstance().cadastrarPlanoAlimentar(planoA);
-        } catch (ObjetoDuplicadoException | MaisDeUmPlanoNoMesmoPeriodoException e) {
-            e.getMessage();
-        }
 
-        this.tblAlimentos.setDisable(false);
-        this.btnNovoAlimento.setDisable(false);
+            this.tblAlimentos.setDisable(false);
+            this.btnNovoAlimento.setDisable(false);
+
+        } catch (ObjetoDuplicadoException | MaisDeUmPlanoNoMesmoPeriodoException e) {
+            this.alertaErroCadastro(e.getMessage());
+            this.radAddCatalogo.setSelected(false);
+            
+            // Try/catch responsável por remover o PlanoAlimentar que foi cadastrado no mesmo período que um PlanoAlimentar anterior
+            try {
+                Fachada.getInstance().removerPlanoALimentar(planoA);
+            } catch (ObjetoNaoExisteException ex) {
+                this.alertaErroCadastro(ex.getMessage());
+            }
+        }
     }
 
     //Direcionar para uma tela de diálogo que aparecerá sobre a tela atual
@@ -127,6 +137,14 @@ public class TelaCadastroPlanoAlimentarController {
             result.add(new ModeloCatalogoAlimentar(a));
         }
         tblAlimentos.setItems(result);
+    }
+
+    private void alertaErroCadastro(String motivo){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Erro de cadastro");
+        alerta.setHeaderText("Há um possível erro com seu cadastro");
+        alerta.setContentText(motivo);
+        alerta.showAndWait();
     }
 
     private void limparCamposDeDados() {

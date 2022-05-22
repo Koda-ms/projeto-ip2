@@ -2,6 +2,7 @@ package br.ufrpe.habitact.gui;
 
 import br.ufrpe.habitact.excecoes.MaisDeUmPlanoNoMesmoPeriodoException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
+import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.gui.modelos.ModeloPlanoTreinoCliente;
 import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Cliente;
@@ -51,6 +52,7 @@ public class TelaCadastroPlanoTreinoController {
         this.colunaDuracao.setCellValueFactory(new PropertyValueFactory<>("duracao"));
         this.colunaCalorias.setCellValueFactory(new PropertyValueFactory<>("calorias"));
         this.colunaCategoriaTreino.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+        this.tblTreino.setDisable(true);
     }
 
     public void addClientesComboBoxPTreino() {
@@ -77,13 +79,22 @@ public class TelaCadastroPlanoTreinoController {
         Sessao.getInstance().setPlanoTreino(planoT);
         try {
             Fachada.getInstance().cadastrarPlanoTreino(planoT);
-        }catch (MaisDeUmPlanoNoMesmoPeriodoException | ObjetoDuplicadoException e) {
-            e.getMessage();
-        }
 
-        this.btnNovoTreino.setDisable(false);
-        this.tblTreino.setDisable(false);
-        this.radAddTreino.setDisable(false);
+            this.tblTreino.setDisable(false);
+            this.btnNovoTreino.setDisable(false);
+            this.radAddTreino.setDisable(false);
+
+        }catch (MaisDeUmPlanoNoMesmoPeriodoException | ObjetoDuplicadoException e) {
+            this.alertaErroCadastro(e.getMessage());
+            this.radAddTreino.setSelected(false);
+
+            // Try/catch responsável por remover o PlanoTreino que foi cadastrado no mesmo período que um PlanoTreino anterior
+            try {
+                Fachada.getInstance().removerPlanoTreino(planoT);
+            } catch (ObjetoNaoExisteException ex) {
+                this.alertaErroCadastro(ex.getMessage());
+            }
+        }
     }
 
     //Direcionar para uma tela de diálogo que aparecerá sobre a tela atual
@@ -123,11 +134,21 @@ public class TelaCadastroPlanoTreinoController {
         tblTreino.setItems(result);
     }
 
+    private void alertaErroCadastro(String motivo){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Erro de cadastro");
+        alerta.setHeaderText("Há um possível erro com seu cadastro");
+        alerta.setContentText(motivo);
+        alerta.showAndWait();
+    }
+
     private void limparCamposDeDados() {
         this.dtInicio.setValue(null);
         this.dtFim.setValue(null);
+        this.tblTreino.setDisable(false);
         this.tblTreino.getItems().clear();
         this.radAddTreino.setSelected(false);
+        this.btnNovoTreino.setDisable(false);
         this.cliente2.getSelectionModel().clearSelection();
         this.objetivoTreino.getSelectionModel().clearSelection();
         this.tblTreino.getSelectionModel().clearSelection();

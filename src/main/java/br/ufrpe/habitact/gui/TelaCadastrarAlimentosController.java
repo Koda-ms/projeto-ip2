@@ -9,6 +9,7 @@ import br.ufrpe.habitact.negocio.beans.enums.Refeicao;
 import br.ufrpe.habitact.sessao.Sessao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -23,7 +24,6 @@ public class TelaCadastrarAlimentosController {
     @FXML private TextField textQuantidade;
     @FXML private ComboBox<Refeicao> selectRefeicao;
     @FXML private Button btnCancelarSalvarPressed;
-    //private static TelaCadastroPlanoAlimentarController planoAlimentarController;
 
     public void initialize(){
         selectRefeicao.getItems().addAll(Refeicao.values());
@@ -36,21 +36,26 @@ public class TelaCadastrarAlimentosController {
         } else{
             Alimento alimento = new Alimento(selectRefeicao.getValue(), textNome.getText(),
                     Double.parseDouble(textQuantidade.getText()), Double.parseDouble(textCalorias.getText()));
+
             Fachada.getInstance().adicionarAlimento(alimento);
-
-            System.out.println(alimento);
-
             try {
                 Fachada.getInstance().inserirAlimentoNoPlano(Sessao.getInstance().getPlanoAlimentar(), alimento);
             } catch (ObjetoNaoExisteException e) {
-                e.getMessage();
+               this.alertaErroCadastro(e.getMessage());
             }
-            System.out.println(Sessao.getInstance().getPlanoAlimentar());
 
             this.limparCamposDeDados();
             ((Stage)this.btnCancelarSalvarPressed.getScene().getWindow()).close();
             GerenciadorTelas.getInstance().updateTabelaAlimentos();
         }
+    }
+
+    private void alertaErroCadastro(String motivo){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Erro de cadastro");
+        alerta.setHeaderText("Há um possível erro com seu cadastro");
+        alerta.setContentText(motivo);
+        alerta.showAndWait();
     }
 
     private void limparCamposDeDados() {

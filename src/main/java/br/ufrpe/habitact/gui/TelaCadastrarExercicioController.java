@@ -9,10 +9,10 @@ import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
 import br.ufrpe.habitact.sessao.Sessao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class TelaCadastrarExercicioController {
@@ -42,13 +42,30 @@ public class TelaCadastrarExercicioController {
                 Fachada.getInstance().inserirExercicios(ex);
                 Fachada.getInstance().inserirExercicioNoTreino(Sessao.getInstance().getTreino(), ex);
             } catch (ObjetoDuplicadoException | ObjetoNaoExisteException e) {
-                e.getMessage();
+                this.alertaErroCadastro(e.getMessage());
+
+                // Try/catch responsável por remover o Exercício que foi cadastrado igual a um Exercício anterior
+                try {
+                    Fachada.getInstance().removerExercicioDoTreino(Sessao.getInstance().getTreino(), ex);
+                    Fachada.getInstance().removerExercicios(ex);
+                } catch (ObjetoNaoExisteException exc) {
+                    this.alertaErroCadastro(exc.getMessage());
+                }
             }
 
             this.limparCamposDeDados();
+            //TODO: mesmo com a exceção sendo disparada a tela fechará devido o método abaixo. Verificar para que não.
             ((Stage)this.btnCancelarSalvarPressed.getScene().getWindow()).close();
             GerenciadorTelas.getInstance().updateTabelaExercicios();
         }
+    }
+
+    private void alertaErroCadastro(String motivo){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Erro de cadastro");
+        alerta.setHeaderText("Há um possível erro com seu cadastro");
+        alerta.setContentText(motivo);
+        alerta.showAndWait();
     }
 
     private void limparCamposDeDados() {

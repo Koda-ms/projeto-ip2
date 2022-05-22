@@ -11,9 +11,14 @@ import br.ufrpe.habitact.negocio.beans.enums.CategoriaTreino;
 import br.ufrpe.habitact.negocio.beans.enums.RitmoDoExercicio;
 import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
 import br.ufrpe.habitact.sessao.Sessao;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ReadOnlyBooleanWrapper;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -22,18 +27,21 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TelaCadastrarTreinoController {
     @FXML private DatePicker dtTreino;
     @FXML private Button btnNovoExercicio;
     @FXML private RadioButton radAddExercicio;
-    @FXML private Button btnCancelarSalvarPressed;
     @FXML private ComboBox<CategoriaTreino> optCategoria;
     @FXML private TableView<ModeloTreino> tblExercicio;
     @FXML private TableColumn<ModeloTreino, Boolean> colunaCheck;
+    @FXML private TableColumn<ModeloTreino, Double> colunaDuracao;
     @FXML private TableColumn<ModeloTreino, String> colunaNomeExercicio;
     @FXML private TableColumn<ModeloTreino, String> colunaRitmo;
 
@@ -41,12 +49,53 @@ public class TelaCadastrarTreinoController {
         //Add valores ao ComboBox
         this.optCategoria.getItems().addAll(CategoriaTreino.values());
         //Setando as colunas da TableView
-        this.colunaCheck.setCellValueFactory(new PropertyValueFactory<>("check"));
-        this.colunaCheck.setCellFactory(CheckBoxTableCell.forTableColumn(colunaCheck));
         this.colunaNomeExercicio.setCellValueFactory(new PropertyValueFactory<>("nome"));
         this.colunaRitmo.setCellValueFactory(new PropertyValueFactory<>("ritmo"));
-        this.updateCatalogoExercicios();
+        this.colunaDuracao.setCellValueFactory(new PropertyValueFactory<>("duracao"));
+        this.colunaCheck.setCellValueFactory(new PropertyValueFactory<>("check"));
+        this.colunaCheck.setCellFactory(CheckBoxTableCell.forTableColumn(colunaCheck));
     }
+
+    private void initTableView(){
+
+//        this.colunaCheck.setCellFactory(new Callback<TableColumn<ModeloTreino, Boolean>, TableCell<ModeloTreino, Boolean>>() {
+//            @Override
+//            public TableCell<ModeloTreino, Boolean> call(TableColumn<ModeloTreino, Boolean> arg0) {
+//                return new CheckBoxTableCell<ModeloTreino, Boolean>();
+//            }
+//        });
+//
+//        // Header CheckBox
+//        CheckBox cb = new CheckBox();
+//        cb.setUserData(this.colunaCheck);
+//        cb.setOnAction(handleSelectAllCheckbox());
+//        this.colunaCheck.setGraphic(cb);
+//
+//        this.tblExercicio.getItems().clear();
+//        this.updateCatalogoExercicios();
+    }
+
+//    private EventHandler<ActionEvent> handleSelectAllCheckbox() {
+//
+//        return new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                CheckBox cb = (CheckBox) event.getSource();
+//                TableColumn column = (TableColumn) cb.getUserData();
+//                if (cb.isSelected()) {
+//                    for (ModeloTreino c : result) {
+//                        System.out.println("Nom: " + c.getNome() + " Selected: " + c.isCheck());
+//                        c.setCheck(true);
+//                    }
+//                } else {
+//                    for (ModeloTreino c : result) {
+//                        System.out.println("Nom: " + c.getNome() + " Selected: " + c.isCheck());
+//                        c.setCheck(false);
+//                    }
+//                }
+//            }
+//        };
+//    }
 
     @FXML
     void optRadioClicked(MouseEvent event) {
@@ -54,13 +103,25 @@ public class TelaCadastrarTreinoController {
         Sessao.getInstance().setTreino(t);
 
         try {
-            Fachada.getInstance().inserirTreino(t);
             Fachada.getInstance().inserirTreinoNoPlano(Sessao.getInstance().getPlanoTreino(), t);
-        } catch (ObjetoDuplicadoException | MaisDeUmTreinoNoMesmoDiaException | ObjetoNaoExisteException e) {
-            e.getMessage();
+            Fachada.getInstance().inserirTreino(t);
+
+            this.tblExercicio.setDisable(false);
+            this.btnNovoExercicio.setDisable(false);
+
+        } catch (MaisDeUmTreinoNoMesmoDiaException | ObjetoDuplicadoException | ObjetoNaoExisteException e) {
+            this.alertaErroCadastro(e.getMessage());
+            this.radAddExercicio.setSelected(false);
+
+            // Try/catch responsável por remover o Treino que foi cadastrado com a mesma data de um Treino anterior
+            try {
+                Fachada.getInstance().removerTreinoNoPlano(Sessao.getInstance().getPlanoTreino(), t);
+                Fachada.getInstance().removerTreino(t);
+            } catch (ObjetoNaoExisteException ex) {
+                this.alertaErroCadastro(ex.getMessage());
+            }
+
         }
-        this.tblExercicio.setDisable(false);
-        this.btnNovoExercicio.setDisable(false);
     }
 
     @FXML
@@ -87,7 +148,6 @@ public class TelaCadastrarTreinoController {
 
     //Lista os exercícios adicionados na tabela Catálogo de Exercícios
     public void updateCatalogoExercicios(){
-
         ObservableList<ModeloTreino> result = FXCollections.observableArrayList();
         List<Exercicio> listaExerc = Fachada.getInstance().listarExercicios();
         for (Exercicio ex : listaExerc){
@@ -101,8 +161,17 @@ public class TelaCadastrarTreinoController {
         GerenciadorTelas.getInstance().trocarTela("planoTreino");
     }
 
+    private void alertaErroCadastro(String motivo){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Erro de cadastro");
+        alerta.setHeaderText("Há um possível erro com seu cadastro");
+        alerta.setContentText(motivo);
+        alerta.showAndWait();
+    }
+
     private void limparCamposDeDados() {
         this.dtTreino.setValue(null);
+        this.tblExercicio.setDisable(true);
         this.tblExercicio.getItems().clear();
         this.radAddExercicio.setSelected(false);
         this.optCategoria.getSelectionModel().clearSelection();

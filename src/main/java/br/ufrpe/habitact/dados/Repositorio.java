@@ -19,7 +19,7 @@ public class Repositorio<T> implements IRepositorio<T> {
 		if (!this.elementos.contains(elem)) {
             this.elementos.add(elem);
         } else {
-            throw new ObjetoDuplicadoException("Elemento já existe no repositório");
+            throw new ObjetoDuplicadoException("Elemento já existe, por favor, cadastre outro.");
         }
 	}
 
@@ -30,7 +30,7 @@ public class Repositorio<T> implements IRepositorio<T> {
 
 	@Override
 	public void atualizar(T elem1, T elem2) throws ObjetoNaoExisteException {
-		if (this.elementos.contains(elem2)) {
+		if (this.elementos.contains(elem1)) {
 			this.elementos.set(this.elementos.indexOf(elem1), elem2);
         } else {
 			throw new ObjetoNaoExisteException("Nenhum dado foi atualizado.");
@@ -42,7 +42,7 @@ public class Repositorio<T> implements IRepositorio<T> {
 		if (this.elementos.contains(elem)) {
             this.elementos.remove(this.elementos.indexOf(elem));
         } else {
-            throw new ObjetoNaoExisteException("Elemento não pode ser removido, pois não existe no repositório");
+            throw new ObjetoNaoExisteException("Elemento não pode ser removido, pois não consta no sistema.");
         }
 		
 	}

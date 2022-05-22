@@ -17,10 +17,10 @@ public class Usuario {
 	}
 
 	public Usuario(){}
-
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(email);
+		return Objects.hash(dtNascimento, email, nome, senha);
 	}
 
 	@Override
@@ -30,9 +30,10 @@ public class Usuario {
 		if (!(obj instanceof Usuario))
 			return false;
 		Usuario other = (Usuario) obj;
-		return Objects.equals(email, other.email);
+		return Objects.equals(dtNascimento, other.dtNascimento) && Objects.equals(email, other.email)
+				&& Objects.equals(nome, other.nome) && Objects.equals(senha, other.senha);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Usuario [nome=" + nome + ", email=" + email + ", senha=" + senha + ", dtNascimento=" + dtNascimento

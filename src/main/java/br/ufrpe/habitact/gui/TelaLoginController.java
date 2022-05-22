@@ -22,7 +22,6 @@ public class TelaLoginController {
 
     @FXML
     public void btnLogar(ActionEvent event) {
-
         Usuario u = Fachada.getInstance().autenticarUsuario(emailTxtField.getText(), senhaField.getText());
         if (u == null){
             this.gerarAlertaDeUsuario();

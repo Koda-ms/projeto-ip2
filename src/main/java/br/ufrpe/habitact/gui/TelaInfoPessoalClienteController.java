@@ -1,82 +1,123 @@
 package br.ufrpe.habitact.gui;
 
 import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
+import br.ufrpe.habitact.excecoes.SenhaIncorretaException;
+import br.ufrpe.habitact.negocio.Fachada;
+import br.ufrpe.habitact.negocio.beans.Administrador;
+import br.ufrpe.habitact.negocio.beans.Cliente;
+import br.ufrpe.habitact.negocio.beans.Usuario;
+import br.ufrpe.habitact.sessao.Sessao;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 public class TelaInfoPessoalClienteController {
-    @FXML TextField nome;
-    @FXML TextField email;
-    @FXML PasswordField senha;
-    @FXML DatePicker nascimento;
-    @FXML PasswordField btnActualPassword;
-    @FXML PasswordField newPassword;
-    @FXML Button editar;
-    @FXML Button salvarDados;
-    @FXML Button voltar;
-    @FXML Button salvarSenha;
+    @FXML private DatePicker dtPickerNascimento;
+    @FXML private PasswordField passNovaSenha;
+    @FXML private PasswordField passSenhaAtual;
+    @FXML private TextField txtAltura;
+    @FXML private TextField txtEmail;
+    @FXML private TextField txtGenero;
+    @FXML private TextField txtNome;
+    @FXML private TextField txtPeso;
 
-    private void initialize() {
-//        Usuario user /* pegar instância de usuario logada no momento */;
-//
-//        nome.setText(user.getNome());
-//        email.setText(user.getEmail());
-//        nascimento.getEditor().setText(user.getDtNascimento());
-    }
-
-//    @FXML
-//    public void btnEditarDadosPressed() {
-//        this.ativarEdicaoDados(true);
-//    }
-
-    @FXML
-    public void btnSalvarDadosPressed() throws ObjetoNaoExisteException{
-//            Usuario user =  /*pegar instância de usuario logada no momento*/;
-//            user.setNome(nome.getText());
-//            user.setEmail(email.getText());
-//            user.setDtNascimento(nascimento.getText());
-//            if(!user){
-//                throw new ObjetoNaoExisteException("Não foi possivel alterar os dados do usuario");
-//            }
-//            else {
-//                this.ativarEdicaoDados(false);
-//                this.senha.setText("");
-//            }
+    public void setInformacoes(){
+        Cliente cliente = (Cliente) Sessao.getInstance().getUsuario();
+        txtNome.setText(cliente.getNome());
+        txtAltura.setText(Double.toString(cliente.getAltura()));
+        txtPeso.setText(Double.toString(cliente.getPeso()));
+        txtGenero.setText(cliente.getGenero());
+        txtEmail.setText(cliente.getEmail());
+        dtPickerNascimento.setValue(cliente.getDtNascimento());
     }
 
     @FXML
-    public void btnSalvarSenhaPressed() {
-        if (senha.getText().equals(newPassword.getText())) {
-            //Usuario user = /*pegar instância de usuario logada no momento*/;
-            this.newPassword.setText("");
+    void btnSalvarPressed(ActionEvent event) {
+        if (verificarCamposVazios()){
+            GerenciadorTelas.getInstance().alertaCamposVazios();
         } else {
-            this.gerarAlertaErroAutenticacao("As senhas não batem!");
+            try {
+                Usuario u = new Cliente(txtNome.getText(), txtEmail.getText(),
+                        Sessao.getInstance().getUsuario().getSenha(), dtPickerNascimento.getValue(), txtGenero.getText(),
+                        Double.parseDouble(txtPeso.getText()), Double.parseDouble(txtAltura.getText()));
+                Fachada.getInstance().alterarDados(Sessao.getInstance().getUsuario(), u);
+                Sessao.getInstance().setUsuario(u);
+                gerarAlertaDados();
+            } catch (ObjetoNaoExisteException e) {
+                gerarAlertaNenhum();
+            } catch (Exception e){
+                gerarAlertaPesoAltura();
+            }
         }
-        this.btnActualPassword.setText("");
     }
 
     @FXML
-    public void btnVoltarTelaPressed() {
-       GerenciadorTelas.getInstance().trocarTela("TelaPrincipalCliente");
+    void btnSalvarSenhaPressed(ActionEvent event) {
+        if (verificarCamposSenhaVazios()){
+            GerenciadorTelas.getInstance().alertaCamposVazios();
+        } else {
+            try{
+                Fachada.getInstance().alterarSenha(Sessao.getInstance().getUsuario(), passSenhaAtual.getText(),
+                        passNovaSenha.getText() );
+                limparCampos();
+                gerarAlertaDados();
+            } catch (SenhaIncorretaException e) {
+                gerarAlertaSenha();
+                limparCampos();
+            }
+        }
     }
 
-    private void ativarEdicaoDados(boolean edicao) {
-        nome.setEditable(edicao);
-        nome.setDisable(!edicao);
-        senha.setEditable(edicao);
-        senha.setDisable(!edicao);
-        email.setEditable(edicao);
-        email.setDisable(!edicao);
-        nascimento.setEditable(edicao);
-        nascimento.setDisable(!edicao);
+    @FXML
+    void btnVoltarPressed(ActionEvent event) {
+        GerenciadorTelas.getInstance().trocarTela("TelaPrincipalCliente");
     }
 
-    private void gerarAlertaErroAutenticacao(String justificativa) {
+    private void gerarAlertaNenhum(){
         Alert alerta = new Alert(Alert.AlertType.ERROR);
-        alerta.setTitle("Erro de Autenticação");
-        alerta.setHeaderText("Parece que tivemos um erro com sua tentativa de alteração de dados");
-        alerta.setContentText(justificativa);
+        alerta.setTitle("Nenhum dado foi modificado");
+        alerta.setHeaderText("Nenhum dado foi modificado");
         alerta.showAndWait();
+    }
+
+    private void gerarAlertaPesoAltura(){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Peso e/ou Altura");
+        alerta.setHeaderText("O peso e/ou altura estão em formato incorreto");
+        alerta.setContentText("O formato padrão é \"x.xx...\" ou apenas \"x\", sendo x um número inteiro." +
+                "\n\nExemplos: 1.79 / 115 / 98.25");
+        alerta.showAndWait();
+    }
+
+    private void gerarAlertaDados(){
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("Dados Modificados");
+        alerta.setHeaderText("Dados modificados com sucesso!");
+        alerta.showAndWait();
+    }
+
+    private void gerarAlertaSenha(){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Senha Incorreta");
+        alerta.setHeaderText("Senha Atual Incorreta");
+        alerta.showAndWait();
+    }
+
+    private void limparCampos(){
+        passSenhaAtual.setText("");
+        passNovaSenha.setText("");
+    }
+
+    private boolean verificarCamposSenhaVazios() {
+        return passSenhaAtual.getText().equals("") && passNovaSenha.getText().equals("");
+    }
+
+    private boolean verificarCamposVazios(){
+        return txtNome.getText().equals("") && txtEmail.getText().equals("") && txtGenero.getText().equals("")
+                && txtPeso.getText().equals("") && txtAltura.getText().equals("");
     }
 
 }

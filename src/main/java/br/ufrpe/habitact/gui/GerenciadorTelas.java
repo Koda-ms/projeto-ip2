@@ -205,6 +205,7 @@ public class GerenciadorTelas {
     public void setPlanoAlimentarScene() {
         cadastroPlanoAlimentarController.addClientesComboBoxPAlimentar();
         cadastroPlanoAlimentarController.updateCatalogoAlimentos();
+        cadastroPlanoAlimentarController.events();
         primaryStage.setScene(planoAlimentarScene);
     }
 

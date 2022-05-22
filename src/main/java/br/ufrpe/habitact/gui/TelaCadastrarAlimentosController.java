@@ -38,11 +38,11 @@ public class TelaCadastrarAlimentosController {
                     Double.parseDouble(textQuantidade.getText()), Double.parseDouble(textCalorias.getText()));
 
             Fachada.getInstance().adicionarAlimento(alimento);
-            try {
-                Fachada.getInstance().inserirAlimentoNoPlano(Sessao.getInstance().getPlanoAlimentar(), alimento);
-            } catch (ObjetoNaoExisteException e) {
-               this.alertaErroCadastro(e.getMessage());
-            }
+//            try {
+//                Fachada.getInstance().inserirAlimentoNoPlano(Sessao.getInstance().getPlanoAlimentar(), alimento);
+//            } catch (ObjetoNaoExisteException e) {
+//               this.alertaErroCadastro(e.getMessage());
+//            }
 
             this.limparCamposDeDados();
             ((Stage)this.btnCancelarSalvarPressed.getScene().getWindow()).close();

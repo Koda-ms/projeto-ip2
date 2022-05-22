@@ -4,6 +4,7 @@ import br.ufrpe.habitact.excecoes.MaisDeUmPlanoNoMesmoPeriodoException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.gui.modelos.ModeloCatalogoAlimentar;
+import br.ufrpe.habitact.gui.modelos.ModeloPlanoAlimentar;
 import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Alimento;
 import br.ufrpe.habitact.negocio.beans.Cliente;
@@ -13,6 +14,7 @@ import br.ufrpe.habitact.sessao.Sessao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -21,6 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,18 +43,20 @@ public class TelaCadastroPlanoAlimentarController {
     @FXML private TableColumn<ModeloCatalogoAlimentar, Double> colCaloriasAlimento;
     @FXML private TableColumn<ModeloCatalogoAlimentar, String> colNomeAlimento;
 
+    private ObservableList<ModeloCatalogoAlimentar> result = FXCollections.observableArrayList();
     @FXML
     public void initialize() {
         //Adiciona os valores do enum ObjetivoAlimentar na ComboBox
         this.objetivo.getItems().addAll(ObjetivoAlimentar.values());
 
         //Setando as colunas da TableView
-        this.colunaCheck.setCellValueFactory(new PropertyValueFactory<>("check"));
-        this.colunaCheck.setCellFactory(CheckBoxTableCell.forTableColumn(colunaCheck));
         this.colNomeAlimento.setCellValueFactory(new PropertyValueFactory<>("nome"));
         this.colRefeicao.setCellValueFactory(new PropertyValueFactory<>("refeicao"));
         this.colQtdAlimento.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
         this.colCaloriasAlimento.setCellValueFactory(new PropertyValueFactory<>("calorias"));
+        this.colunaCheck.setCellValueFactory(new PropertyValueFactory<>("check"));
+        this.colunaCheck.setCellFactory(CheckBoxTableCell.forTableColumn(colunaCheck));
+        this.events();
     }
 
     public void addClientesComboBoxPAlimentar() {
@@ -125,6 +130,8 @@ public class TelaCadastroPlanoAlimentarController {
             alert.setContentText("Seu plano foi cadastrado com sucesso!");
             alert.showAndWait();
 
+            //TODO: Remover depois
+            System.out.println(Sessao.getInstance().getPlanoAlimentar());
             this.limparCamposDeDados();
             GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
         }
@@ -137,12 +144,33 @@ public class TelaCadastroPlanoAlimentarController {
 
     public void updateCatalogoAlimentos() {
 
-        ObservableList<ModeloCatalogoAlimentar> result = FXCollections.observableArrayList();
         List<Alimento> listAlimentos = Fachada.getInstance().listarAlimento();
         for (Alimento a : listAlimentos) {
             result.add(new ModeloCatalogoAlimentar(a));
         }
         tblAlimentos.setItems(result);
+
+        tblAlimentos.setOnMouseClicked(e ->{
+            events();
+        });
+    }
+
+    public void events() {
+        List<Alimento> listAlimentos = Fachada.getInstance().listarAlimento();
+
+        for (ModeloCatalogoAlimentar tabelaAlimento : tblAlimentos.getSelectionModel().getSelectedItems()){
+            for(Alimento a : listAlimentos){
+                if(tabelaAlimento.getNome().equals(a.getNome())){
+                    try {
+                        Fachada.getInstance().inserirAlimentoNoPlano(Sessao.getInstance().getPlanoAlimentar(), a);
+                    } catch ( ObjetoDuplicadoException | ObjetoNaoExisteException e) {
+                       this.alertaErroCadastro(e.getMessage());
+                    }
+                }
+                //TODO: Remover depois
+                System.out.println(a);
+            }
+        }
     }
 
     private void alertaErroCadastro(String motivo){

@@ -46,7 +46,7 @@ public class TelaCadastroUsuarioController {
                 for (Usuario u : Fachada.getInstance().listarUsuarios()){
                     System.out.println(u.getNome());
                 }
-            } catch (ObjetoDuplicadoException exception) {
+            } catch (ObjetoDuplicadoException | EmailDuplicadoException exception) {
                 exception.printStackTrace();
 //            } catch (EmailDuplicadoException ex) {
 //                ex.printStackTrace();
@@ -73,7 +73,7 @@ public class TelaCadastroUsuarioController {
                 for (Usuario u : Fachada.getInstance().listarUsuarios()){
                     System.out.println(u.getNome());
             }
-            } catch (ObjetoDuplicadoException exception) {
+            } catch (ObjetoDuplicadoException | EmailDuplicadoException exception) {
                 exception.printStackTrace();
             }
             this.limparCamposDeDados();

@@ -56,7 +56,6 @@ public class TelaPrincipalClienteController {
 
     @FXML
     public void initialize(){
-        Cliente c1 = Sessao.getInstance().getCliente();
 
         String ExercicioAerobico = new String();
         String ExercicioAnaerobico = new String();

@@ -21,9 +21,6 @@ public class GerenciadorTelas {
     private Scene infoPessoalAdmScene;
     private TelaInfoPessoalAdmController infoPessoalAdmController;
 
-    private Scene listarPlanosScene;
-    private TelaListarPlanosController listarPlanosController;
-
     private Scene cadastroScene;
     private TelaCadastroUsuarioController cadastro;
 
@@ -78,11 +75,6 @@ public class GerenciadorTelas {
                     getResource("TelaInfoPessoalCliente.fxml"));
             this.dadosClienteScene = new Scene(fxmlLoader.load());
             this.infoPessoalClienteController = fxmlLoader.getController();
-
-            fxmlLoader = new FXMLLoader(Main.class.
-                    getResource("TelaListarPlanos.fxml"));
-            this.listarPlanosScene = new Scene(fxmlLoader.load());
-            this.listarPlanosController = fxmlLoader.getController();
 
             fxmlLoader = new FXMLLoader(Main.class.
                     getResource("TelaLogin.fxml"));
@@ -140,7 +132,6 @@ public class GerenciadorTelas {
             case "TelaCadastro": primaryStage.setScene(cadastroScene); break;
             case "TelaInfoPessoalAdm": primaryStage.setScene(infoPessoalAdmScene); break;
             case "TelaDadosCliente": primaryStage.setScene(dadosClienteScene); break;
-            case "TelaListarPlanos": primaryStage.setScene(listarPlanosScene); break;
             case "telaPrincipalAdm": setPrincipalAdmScene(); break;
             case "TelaPrincipalCliente": setPrincipalClienteScene(); break;
             case "planoAlimentar": setPlanoAlimentarScene(); break;
@@ -193,13 +184,6 @@ public class GerenciadorTelas {
         return infoPessoalAdmController;
     }
 
-    public Scene getListarPlanosScene() {
-        return listarPlanosScene;
-    }
-
-    public TelaListarPlanosController getListarPlanosController() {
-        return listarPlanosController;
-    }
     public Scene getPopupScene() {
         return popupScene;
     }

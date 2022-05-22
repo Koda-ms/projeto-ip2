@@ -2,11 +2,7 @@ package br.ufrpe.habitact.negocio;
 
 import java.util.List;
 
-import br.ufrpe.habitact.excecoes.MaisDeUmPlanoNoMesmoPeriodoException;
-import br.ufrpe.habitact.excecoes.MaisDeUmTreinoNoMesmoDiaException;
-import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
-import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
-import br.ufrpe.habitact.excecoes.SenhaIncorretaException;
+import br.ufrpe.habitact.excecoes.*;
 import br.ufrpe.habitact.negocio.beans.Alimento;
 import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.Exercicio;
@@ -82,23 +78,19 @@ public class Fachada {
 		return exercicios.listarExercicios();
 	}
 
-	public void cadastrarPlanoAlimentar(PlanoAlimentar planoAlimentar)
-			throws ObjetoDuplicadoException, MaisDeUmPlanoNoMesmoPeriodoException {
+	public void cadastrarPlanoAlimentar(PlanoAlimentar planoAlimentar) throws ObjetoDuplicadoException, MaisDeUmPlanoNoMesmoPeriodoException {
 		planosAlimentares.cadastrarPlanoAlimentar(planoAlimentar);
 	}
 
-	public void inserirAlimentoNoPlano(PlanoAlimentar planoAlimentar, Alimento novoAlimento)
-			throws ObjetoDuplicadoException, ObjetoNaoExisteException {
+	public void inserirAlimentoNoPlano(PlanoAlimentar planoAlimentar, Alimento novoAlimento) throws ObjetoDuplicadoException, ObjetoNaoExisteException {
 		planosAlimentares.inserirAlimentoNoPlano(planoAlimentar, novoAlimento);
 	}
 
-	public void removerAlimentoNoPlano(PlanoAlimentar planoAlimentar, Alimento alimentoAlvo)
-			throws ObjetoNaoExisteException {
+	public void removerAlimentoNoPlano(PlanoAlimentar planoAlimentar, Alimento alimentoAlvo) throws ObjetoNaoExisteException {
 		planosAlimentares.removerAlimentoNoPlano(planoAlimentar, alimentoAlvo);
 	}
 
-	public void alterarPlanoAlimentar(PlanoAlimentar planoAlimentarAnterior, PlanoAlimentar planoAlimentarAtual)
-			throws ObjetoNaoExisteException {
+	public void alterarPlanoAlimentar(PlanoAlimentar planoAlimentarAnterior, PlanoAlimentar planoAlimentarAtual) throws ObjetoNaoExisteException {
 		planosAlimentares.alterarPlanoAlimentar(planoAlimentarAnterior, planoAlimentarAtual);
 	}
 
@@ -114,42 +106,43 @@ public class Fachada {
 		return planosAlimentares.listarPlanoAlimentar();
 	}
 
-	public void cadastrarPlanoTreino(PlanoTreino planoTreino)
-			throws ObjetoDuplicadoException, MaisDeUmPlanoNoMesmoPeriodoException {
-		planosTreinos.cadastrarPlanoTreino(planoTreino);
+	public void cadastrarUsuario(Usuario u) throws ObjetoDuplicadoException, EmailDuplicadoException {
+		usuarios.cadastrarUsuario(u);
 	}
 
-	public void inserirTreinoNoPlano(PlanoTreino planoTreino, Treino novoTreino)
-			throws ObjetoDuplicadoException, ObjetoNaoExisteException, MaisDeUmTreinoNoMesmoDiaException {
-		planosTreinos.inserirTreinoNoPlano(planoTreino, novoTreino);
+	public Usuario autenticarUsuario(String email, String senha) {
+		return usuarios.autenticarUsuario(email, senha);
 	}
 
-	public void removerTreinoNoPlano(PlanoTreino planoTreino, Treino treinoAlvo) throws ObjetoNaoExisteException {
-		planosTreinos.removerTreinoNoPlano(planoTreino, treinoAlvo);
+	public void alterarDados(Usuario usuarioAntigo, Usuario usuarioNovo) throws ObjetoNaoExisteException {
+		usuarios.alterarDados(usuarioAntigo, usuarioNovo);
 	}
 
-	public void alterarPlanoDeTreino(PlanoTreino planoAntigo, PlanoTreino planoNovo) throws ObjetoNaoExisteException {
-		planosTreinos.alterarPlanoDeTreino(planoAntigo, planoNovo);
+	public void alterarSenha(Usuario u, String senhaAntiga, String senhaNova) throws SenhaIncorretaException {
+		usuarios.alterarSenha(u, senhaAntiga, senhaNova);
 	}
 
-	public List<PlanoTreino> buscarPlanoTreino(Cliente cliente) throws ObjetoNaoExisteException {
-		return planosTreinos.buscarPlanoTreino(cliente);
+	public List<Usuario> buscarUsuario(String nome) throws ObjetoNaoExisteException {
+		return usuarios.buscarUsuario(nome);
 	}
 
-	public void removerPlanoTreino(PlanoTreino treino) throws ObjetoNaoExisteException {
-		planosTreinos.removerPlanoTreino(treino);
+	public List<Usuario> listarUsuarios() {
+		return usuarios.listarUsuarios();
 	}
 
-	public List<PlanoTreino> listarPlanoTreino() {
-		return planosTreinos.listarPlanoTreino();
+	public List<Cliente> listarClientes() {
+		return usuarios.listarClientes();
+	}
+
+	public List<Administrador> listarAdms() {
+		return usuarios.listarAdms();
 	}
 
 	public void inserirTreino(Treino treino) throws ObjetoDuplicadoException {
 		treinos.inserirTreino(treino);
 	}
 
-	public void inserirExercicioNoTreino(Treino treino, Exercicio novoExercicio)
-			throws ObjetoDuplicadoException, ObjetoNaoExisteException {
+	public void inserirExercicioNoTreino(Treino treino, Exercicio novoExercicio) throws ObjetoDuplicadoException, ObjetoNaoExisteException {
 		treinos.inserirExercicioNoTreino(treino, novoExercicio);
 	}
 
@@ -173,32 +166,31 @@ public class Fachada {
 		return treinos.listarTreino();
 	}
 
-	public void cadastrarUsuario(Usuario u) throws ObjetoDuplicadoException {
-		usuarios.cadastrarUsuario(u);
+	public void cadastrarPlanoTreino(PlanoTreino planoTreino) throws ObjetoDuplicadoException, MaisDeUmPlanoNoMesmoPeriodoException {
+		planosTreinos.cadastrarPlanoTreino(planoTreino);
 	}
 
-	public Usuario autenticarUsuario(String email, String senha) {
-		return usuarios.autenticarUsuario(email, senha);
+	public void inserirTreinoNoPlano(PlanoTreino planoTreino, Treino novoTreino) throws ObjetoDuplicadoException, ObjetoNaoExisteException, MaisDeUmTreinoNoMesmoDiaException {
+		planosTreinos.inserirTreinoNoPlano(planoTreino, novoTreino);
 	}
 
-	public void alterarDados(Usuario usuarioAntigo, Usuario usuarioNovo, String senha)
-			throws SenhaIncorretaException, ObjetoNaoExisteException {
-		usuarios.alterarDados(usuarioAntigo, usuarioNovo, senha);
+	public void removerTreinoNoPlano(PlanoTreino planoTreino, Treino treinoAlvo) throws ObjetoNaoExisteException {
+		planosTreinos.removerTreinoNoPlano(planoTreino, treinoAlvo);
 	}
 
-	public List<Usuario> buscarUsuario(String nome) throws ObjetoNaoExisteException {
-		return usuarios.buscarUsuario(nome);
+	public void alterarPlanoDeTreino(PlanoTreino planoAntigo, PlanoTreino planoNovo) throws ObjetoNaoExisteException {
+		planosTreinos.alterarPlanoDeTreino(planoAntigo, planoNovo);
 	}
 
-	public List<Usuario> listarUsuarios() {
-		return usuarios.listarUsuarios();
+	public List<PlanoTreino> buscarPlanoTreino(Cliente cliente) throws ObjetoNaoExisteException {
+		return planosTreinos.buscarPlanoTreino(cliente);
 	}
 
-	public List<Cliente> listarClientes() {
-		return usuarios.listarClientes();
+	public void removerPlanoTreino(PlanoTreino treino) throws ObjetoNaoExisteException {
+		planosTreinos.removerPlanoTreino(treino);
 	}
 
-	public List<Administrador> listarAdms() {
-		return usuarios.listarAdms();
+	public List<PlanoTreino> listarPlanoTreino() {
+		return planosTreinos.listarPlanoTreino();
 	}
 }

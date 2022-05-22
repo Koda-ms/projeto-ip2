@@ -1,5 +1,6 @@
 package br.ufrpe.habitact.gui;
 
+import br.ufrpe.habitact.excecoes.EmailDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Administrador;
@@ -47,8 +48,8 @@ public class TelaCadastroUsuarioController {
                 }
             } catch (ObjetoDuplicadoException exception) {
                 exception.printStackTrace();
-            } catch (EmailDuplicadoException ex) {
-                ex.printStackTrace();
+//            } catch (EmailDuplicadoException ex) {
+//                ex.printStackTrace();
             }
             this.limparCamposDeDados();
             GerenciadorTelas.getInstance().updateComboBoxClientes();

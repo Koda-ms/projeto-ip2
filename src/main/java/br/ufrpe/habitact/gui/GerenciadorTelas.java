@@ -142,7 +142,7 @@ public class GerenciadorTelas {
             case "TelaDadosCliente": primaryStage.setScene(dadosClienteScene); break;
             case "TelaListarPlanos": primaryStage.setScene(listarPlanosScene); break;
             case "telaPrincipalAdm": setPrincipalAdmScene(); break;
-            case "TelaPrincipalCliente": setPrincipalClienteScene(); break;            case "planoAlimentar": setPlanoAlimentarScene(); break;
+            case "TelaPrincipalCliente": setPrincipalClienteScene(); break;
             case "planoAlimentar": setPlanoAlimentarScene(); break;
             case "planoTreino": setPlanoTreinoScene(); break;
             case "TelaCadastroTreino": setAddTreinoScene(); break;

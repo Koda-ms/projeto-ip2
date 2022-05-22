@@ -35,11 +35,10 @@ import java.util.List;
 public class TelaPrincipalClienteController {
     @FXML private TableColumn<ModeloRefeicao, String> colAlmoco;;
     @FXML private TableColumn<ModeloRefeicao, String> colCafeDaManha;
-    @FXML private Label diaDaSemanaLabel;
-    @FXML private TableColumn<ModeloRefeicao, String> exercicios;
-    @FXML private Label imcEAguaLabel;
     @FXML private TableColumn<ModeloRefeicao, String> colJantar;
     @FXML private TableColumn<ModeloRefeicao, String> colLanche;
+    @FXML private Label diaDaSemanaLabel;
+    @FXML private Label imcEAguaLabel;
     @FXML private Button meusDadosBtn;
     @FXML private Label nomeLabel;
     @FXML private AnchorPane root;
@@ -50,8 +49,6 @@ public class TelaPrincipalClienteController {
     @FXML private TableColumn<ModeloTreinoGui, String> colModalidade;
     @FXML private TitledPane titledAerobico;
     @FXML private TitledPane titledAnaerobico;
-    @FXML private Label aaa;
-    @FXML private Label bbb;
     @FXML private Label lblAerobico;
     @FXML private Label lblAnaerobico;
 
@@ -121,12 +118,6 @@ public class TelaPrincipalClienteController {
         }
 
         tblRefeicoes.setItems(resultado);
-    }
-
-    @FXML
-    public void updateRefeicao(){
-        Alimento a1 = new Alimento();
-        a1.setNome("");
     }
 
     @FXML 

@@ -171,6 +171,7 @@ public class GerenciadorTelas {
 
     public void setPrincipalClienteScene() {
         //principalCliente.updateTabelaTreino();
+        updateTabelaRefeicoes();
         primaryStage.setScene(principalClienteScene);
     }
 

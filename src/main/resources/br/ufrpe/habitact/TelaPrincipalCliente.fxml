@@ -16,10 +16,10 @@
       <Label fx:id="imcEAguaLabel" layoutX="31.0" layoutY="61.0" text="O seu imc é tal | Você deve beber x litros de água" />
       <TableView fx:id="tblRefeicoes" layoutX="22.0" layoutY="123.0" prefHeight="325.0" prefWidth="295.0">
         <columns>
-          <TableColumn fx:id="colCafeDaManha" prefWidth="75.0" text="Café" />
-            <TableColumn fx:id="colAlmoco" prefWidth="75.0" text="almoço" />
-            <TableColumn fx:id="colLanche" prefWidth="72.0" text="Lanche" />
-            <TableColumn fx:id="colJantar" prefWidth="78.0" text="Jantar" />
+          <TableColumn fx:id="colCafeDaManha" editable="false" prefWidth="75.0" sortable="false" text="Café" />
+            <TableColumn fx:id="colAlmoco" editable="false" prefWidth="75.0" sortable="false" text="Almoço" />
+            <TableColumn fx:id="colLanche" editable="false" prefWidth="72.0" sortable="false" text="Lanche" />
+            <TableColumn fx:id="colJantar" editable="false" prefWidth="78.0" sortable="false" text="Jantar" />
         </columns>
       </TableView>
       <TitledPane fx:id="titledAerobico" animated="false" layoutX="390.0" layoutY="123.0" prefHeight="165.0" prefWidth="202.0" text="Aeróbico">

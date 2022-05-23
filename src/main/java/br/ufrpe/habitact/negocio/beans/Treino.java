@@ -30,44 +30,19 @@ public class Treino {
 
 	public double duracaoTotal() {
 		double soma = 0;
-		for (Exercicio e : exercicios) {
+		for (Exercicio e : this.exercicios) {
 			soma = soma + e.getDuracaoExercicio();
 		}
+		this.duracao = soma;
 		return soma;
 	}
 
 	//Queima calórica KCAL/MINUTO
 	public double estimarQtdDeCaloriasGastas() {
-		DecimalFormat formato = new DecimalFormat("#.##");
-		switch (Sessao.getInstance().getExercicio().getNome().getNome()){
-			case "Caminhada": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
-					getDuracaoExercicio() * 5.5));
-
-			case "Corrida": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
-					getDuracaoExercicio() * 10));
-
-			case "Natação": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
-					getDuracaoExercicio() * 9));
-
-			case "Jiu-Jitsu": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
-					getDuracaoExercicio() * 12));
-
-			case "Pilates": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
-					getDuracaoExercicio() * 3.8));
-
-			case "Tenis de Mesa": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().
-					getExercicio().getDuracaoExercicio() * 8));
-
-			case "Hidroginástica":
-			case "Ciclismo":
-				return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
-						getDuracaoExercicio() * 6));
-
-			case "Musculação":
-			case "Yoga":
-				return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().getDuracaoExercicio() * 5));
-
-			default: System.out.println("Para outros tipos de treinos, por favor, procure um especialista.");
+		DecimalFormat formato = new DecimalFormat("##.##");
+		switch (this.modalidade.getCategoria()){
+			case "Aeróbico": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = this.duracao * 0.5));
+			case "Anaeróbico": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = this.duracao * 0.2));
 		}
 		return Double.parseDouble(formato.format(this.queimaCaloricaTotal));
 	}

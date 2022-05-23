@@ -32,7 +32,7 @@ public class Cliente extends Usuario {
 	}
 	
 	public double quantidadeDeAguaParaBeber(double peso) {
-		DecimalFormat formato = new DecimalFormat("#.##");
+		DecimalFormat formato = new DecimalFormat("#,##");
 		return Double.parseDouble(formato.format(this.peso * 0.05));
 	}
 

@@ -6,6 +6,7 @@ import br.ufrpe.habitact.negocio.beans.enums.CategoriaTreino;
 import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
 import br.ufrpe.habitact.sessao.Sessao;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,23 +38,38 @@ public class Treino {
 
 	//Queima calórica KCAL/MINUTO
 	public double estimarQtdDeCaloriasGastas() {
-
+		DecimalFormat formato = new DecimalFormat("#.##");
 		switch (Sessao.getInstance().getExercicio().getNome().getNome()){
-			case "Caminhada": return this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().getDuracaoExercicio() * 5.5;
-			case "Corrida": return this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().getDuracaoExercicio() * 10;
-			case "Natação": return this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().getDuracaoExercicio() * 9;
-			case "Jiu-Jitsu": return this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().getDuracaoExercicio() * 12;
-			case "Pilates": return this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().getDuracaoExercicio() * 3.8;
-			case "Tenis de Mesa": return this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().getDuracaoExercicio() * 8;
+			case "Caminhada": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
+					getDuracaoExercicio() * 5.5));
+
+			case "Corrida": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
+					getDuracaoExercicio() * 10));
+
+			case "Natação": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
+					getDuracaoExercicio() * 9));
+
+			case "Jiu-Jitsu": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
+					getDuracaoExercicio() * 12));
+
+			case "Pilates": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
+					getDuracaoExercicio() * 3.8));
+
+			case "Tenis de Mesa": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().
+					getExercicio().getDuracaoExercicio() * 8));
+
 			case "Hidroginástica":
 			case "Ciclismo":
-				return this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().getDuracaoExercicio() * 6;
+				return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
+						getDuracaoExercicio() * 6));
+
 			case "Musculação":
 			case "Yoga":
-				return this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().getDuracaoExercicio() * 5;
+				return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().getDuracaoExercicio() * 5));
+
 			default: System.out.println("Para outros tipos de treinos, por favor, procure um especialista.");
 		}
-		return this.queimaCaloricaTotal;
+		return Double.parseDouble(formato.format(this.queimaCaloricaTotal));
 	}
 
 	@Override

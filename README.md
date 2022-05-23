@@ -11,7 +11,6 @@ Ideias de projeto podem vir de:
 
 * João Victor Carvalho Gomes Cordeiro - joaovictorcordeiro00@gmail.com
 * Julyanne Maria dos Santos Correia - julyanne.es@gmail.com
-* Lays Carolina Madeiro Rodrigues - layscarolinam@gmail.com
 * Matheus Nolêto de Sampaio Gominho Rosa - matheusgominho@gmail.com
 * Vinicius Augusto Andrade Albuquerque (Apolo) - vinicius.cius@gmail.com
 
@@ -20,24 +19,20 @@ Ideias de projeto podem vir de:
 O projeto é uma aplicação voltada para profissionais de Eduacação Física e Nutrição e seus clientes. Este será capaz de acompanhar a
 rotina do Cliente referente à prática de exercícios e alimentação diária, conforme o registro dos personais e nutricionistas no sistema.
 
-Os serviços como: sistema de login e cadastro dos usuários, sistema de monitoramento de planos alimentares e planos de treino, sistema de gerenciamento do
-Administrador, solicitação de relatórios, serão os serviços necessários.
+Os serviços como: sistema de login e cadastro dos usuários, sistema de monitoramento de planos alimentares e planos de treino para os clientes e sistema de cadastro de treinos e alimentação para os Administrador serão os serviços disponibilizados.
 
-Referente aos relatórios, tanto o Cliente quanto o Administrador poderão solicitar. Nesse sentido, o relátório do
-Cliente conterá seus dados pessoais e planos cadastrados para ele. Já o do Administrador terá uma relação de clientes, planos de treino e planos alimentares cadastrados.
+O administrador terá uma relação de clientes, de planos de treino e de planos alimentares cadastrados, o qual poderá monitorar e adicionar planos para os clientes. Assim sendo o aplicativo cumpre o papel de um gerenciador de planos alimentares e planos de treino.
 
-Em suma, na aplicação, os clientes poderão acompanhar os planos criados pelos administradores para eles e gerar relatórios. Referindo-se ao Administrador, ele poderá criar os planos para os clientes e gerar relatórios.
+Em suma, na aplicação, os clientes poderão acompanhar os planos criados para eles feitos pelos administradores. Referindo-se ao Administrador, ele poderá criar os planos para os clientes e acompanhá-los.
 
 ## Requisitos do projeto
 
 * **REQ1** - O sistema deverá realizar login e cadastro para Clientes e Administradores.
-* **REQ2** - O sistema coletará dados pessoais dos Clientes (nome, peso, altura, data de nascimento, gênero, se já
-  pratica exercícios).
+* **REQ2** - O sistema coletará dados pessoais dos Clientes (nome, peso, altura, data de nascimento, gênero).
 * **REQ3** - O sistema poderá determinar o IMC dos Clientes.
 * **REQ4** - O sistema sugerirá quantidade de água ideal para beber.
-* **REQ5** - O sistema deverá sugerir plano alimentar baseado em calorias diárias.
-* **REQ6** - O sistema deverá sugerir exercícios físicos e sua duração (em horas/minutos);
-* **REQ7** - O sistema deve gerar relatórios para o Cliente contendo dados sobre plano alimentar e de exercícios.
-* **REQ8** - O sistema deve gerar relatórios para o Administrador contendo informações sobre quantidade de pessoas cadastradas, média étaria e gênero delas.
-* **REQ9** - O sistema tem que permitir ao Administrador acesso às informações geradas pelo mesmo, além de dados básicos
+* **REQ5** - O sistema deverá mostrar o plano alimentar baseado em calorias diárias.
+* **REQ6** - O sistema deverá mostrar os exercícios físicos e sua duração (em horas/minutos);
+* **REQ7** - O sistema deve mostrar na tela para o Cliente dados sobre plano alimentar e de exercícios.
+* **REQ8** - O sistema tem que permitir ao Administrador acesso às informações geradas pelo mesmo, além de dados básicos
   sobre os usuários.

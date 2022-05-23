@@ -64,13 +64,6 @@ public class TelaInfoPessoalAdmController {
         GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
     }
 
-    private void gerarAlertaNenhum(){
-        Alert alerta = new Alert(Alert.AlertType.ERROR);
-        alerta.setTitle("Nenhum dado foi modificado");
-        alerta.setHeaderText("Nenhum dado foi modificado");
-        alerta.showAndWait();
-    }
-
     private void gerarAlertaDados(){
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Dados Modificados");

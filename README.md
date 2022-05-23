@@ -22,7 +22,7 @@ rotina do Cliente referente à prática de exercícios e alimentação diária, 
 
 Os serviços como: sistema de login e cadastro dos usuários, sistema de monitoramento de planos alimentares e planos de treino para os clientes e sistema de cadastro de treinos e alimentação para os Administradores serão os serviços disponibilizados.
 
-O Aadministrador terá uma relação de clientes, de planos de treino e de planos alimentares cadastrados, o qual poderá monitorar e adicionar planos para os clientes. Assim sendo, o aplicativo cumpre o papel de um gerenciador de planos alimentares e planos de treino.
+O Administrador terá uma relação de clientes, de planos de treino e de planos alimentares cadastrados, o qual poderá monitorar e adicionar planos para os clientes. Assim sendo, o aplicativo cumpre o papel de um gerenciador de planos alimentares e planos de treino.
 
 Em suma, na aplicação, os clientes poderão acompanhar os planos criados para eles feitos pelos administradores. Referindo-se ao Administrador, ele poderá criar os planos para os clientes e acompanhá-los.
 

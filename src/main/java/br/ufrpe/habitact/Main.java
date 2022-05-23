@@ -1,5 +1,6 @@
 package br.ufrpe.habitact;
 
+import br.ufrpe.habitact.dados.base.BaseDados;
 import br.ufrpe.habitact.gui.GerenciadorTelas;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -14,7 +15,7 @@ public class Main extends Application {
         primaryStage.setHeight(610);
         GerenciadorTelas.getInstance().setPrimaryStage(primaryStage);
         primaryStage.show();
-
+        new BaseDados();
     }
 
     public static void main(String[] args) {

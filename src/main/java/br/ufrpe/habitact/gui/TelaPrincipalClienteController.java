@@ -148,7 +148,6 @@ public class TelaPrincipalClienteController {
     public void setInformacoes(){
         Cliente cliente = (Cliente) Sessao.getInstance().getUsuario();
         DecimalFormat formato = new DecimalFormat("##,##");
-
         this.txtUsuario.setText("Olá, " + cliente.getNome());
         this.txtImcAgua.setText("Seu IMC é: " + Double.valueOf(formato.format(cliente.getImc())) + " \nVocê deve consumir " +
                 cliente.quantidadeDeAguaParaBeber(cliente.getPeso()) + " litros de água diariamente");

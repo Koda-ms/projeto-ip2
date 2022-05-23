@@ -95,6 +95,7 @@ public class TelaPrincipalAdmController {
 
     @FXML
     void btnSairPressed(ActionEvent event) {
+        System.out.println("botão");
         GerenciadorTelas.getInstance().trocarTela("TelaLogin");
     }
 

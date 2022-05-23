@@ -19,9 +19,9 @@ Ideias de projeto podem vir de:
 O projeto é uma aplicação voltada para profissionais de Eduacação Física e Nutrição e seus clientes. Este será capaz de acompanhar a
 rotina do Cliente referente à prática de exercícios e alimentação diária, conforme o registro dos personais e nutricionistas no sistema.
 
-Os serviços como: sistema de login e cadastro dos usuários, sistema de monitoramento de planos alimentares e planos de treino para os clientes e sistema de cadastro de treinos e alimentação para os Administrador serão os serviços disponibilizados.
+Os serviços como: sistema de login e cadastro dos usuários, sistema de monitoramento de planos alimentares e planos de treino para os clientes e sistema de cadastro de treinos e alimentação para os Administradores serão os serviços disponibilizados.
 
-O administrador terá uma relação de clientes, de planos de treino e de planos alimentares cadastrados, o qual poderá monitorar e adicionar planos para os clientes. Assim sendo o aplicativo cumpre o papel de um gerenciador de planos alimentares e planos de treino.
+O Aadministrador terá uma relação de clientes, de planos de treino e de planos alimentares cadastrados, o qual poderá monitorar e adicionar planos para os clientes. Assim sendo, o aplicativo cumpre o papel de um gerenciador de planos alimentares e planos de treino.
 
 Em suma, na aplicação, os clientes poderão acompanhar os planos criados para eles feitos pelos administradores. Referindo-se ao Administrador, ele poderá criar os planos para os clientes e acompanhá-los.
 
@@ -32,7 +32,7 @@ Em suma, na aplicação, os clientes poderão acompanhar os planos criados para 
 * **REQ3** - O sistema poderá determinar o IMC dos Clientes.
 * **REQ4** - O sistema sugerirá quantidade de água ideal para beber.
 * **REQ5** - O sistema deverá mostrar o plano alimentar baseado em calorias diárias.
-* **REQ6** - O sistema deverá mostrar os exercícios físicos e sua duração (em horas/minutos);
-* **REQ7** - O sistema deve mostrar na tela para o Cliente dados sobre plano alimentar e de exercícios.
+* **REQ6** - O sistema deverá mostrar os exercícios físicos e sua duração (em minutos);
+* **REQ7** - O sistema deve mostrar na tela para o Cliente dados sobre o plano alimentar e os exercícios.
 * **REQ8** - O sistema tem que permitir ao Administrador acesso às informações geradas pelo mesmo, além de dados básicos
   sobre os usuários.

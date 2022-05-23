@@ -12,8 +12,7 @@
       <Button fx:id="meusDadosBtn" layoutX="431.0" layoutY="15.0" mnemonicParsing="false" onAction="#MeusDados" prefHeight="25.0" prefWidth="84.0" text="Meus dados" />
       <Button fx:id="voltarBtn" layoutX="544.0" layoutY="17.0" mnemonicParsing="false" onAction="#VoltarBtn" text="Voltar" />
       <Label fx:id="diaDaSemanaLabel" layoutX="31.0" layoutY="19.0" text="Dia da semana" />
-      <Label fx:id="nomeLabel" layoutX="31.0" layoutY="42.0" text="Ola, fulano" />
-      <Label fx:id="imcEAguaLabel" layoutX="31.0" layoutY="61.0" text="O seu imc é tal | Você deve beber x litros de água" />
+      <Label fx:id="txtImcAgua" layoutX="31.0" layoutY="61.0" text="O seu imc é tal | Você deve beber x litros de água" />
       <TableView fx:id="tblRefeicoes" layoutX="22.0" layoutY="123.0" prefHeight="325.0" prefWidth="295.0">
         <columns>
           <TableColumn fx:id="colCafeDaManha" editable="false" prefWidth="75.0" sortable="false" text="Café" />
@@ -39,5 +38,7 @@
             </AnchorPane>
         </content>
       </TitledPane>
+      <Label fx:id="txtUsuario" layoutX="31.0" layoutY="42.0" text="Ola, Fulano" />
+      <Label layoutX="56.0" layoutY="42.0" />
    </children>
 </AnchorPane>

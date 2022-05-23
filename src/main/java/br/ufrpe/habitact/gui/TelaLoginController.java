@@ -27,12 +27,13 @@ public class TelaLoginController {
             this.gerarAlertaDeUsuario();
         } else {
             if(u instanceof Cliente){
+                Sessao.getInstance().setUsuario(u);
                 GerenciadorTelas.getInstance().trocarTela("TelaPrincipalCliente");
             }
             else if(u instanceof Administrador){
+                Sessao.getInstance().setUsuario(u);
                 GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
             }
-            Sessao.getInstance().setUsuario(u);
         }
         this.limparCamposDeDados();
     }

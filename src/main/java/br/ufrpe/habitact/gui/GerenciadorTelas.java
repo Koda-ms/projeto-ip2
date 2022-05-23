@@ -185,8 +185,10 @@ public class GerenciadorTelas {
 
     public void setPrincipalClienteScene() {
         //principalCliente.updateTabelaTreino();
-        principalCliente.updateTabelaRefeicao();
         primaryStage.setScene(principalClienteScene);
+        principalCliente.setInformacoes();
+        principalCliente.updateTabelaRefeicao();
+        principalCliente.setTreinos();
     }
 
     public Scene getInfoPessoalAdmScene() {

@@ -38,9 +38,9 @@ public class TelaPrincipalClienteController {
     @FXML private TableColumn<ModeloRefeicao, String> colJantar;
     @FXML private TableColumn<ModeloRefeicao, String> colLanche;
     @FXML private Label diaDaSemanaLabel;
-    @FXML private Label imcEAguaLabel;
+    @FXML private Label txtImcAgua;
     @FXML private Button meusDadosBtn;
-    @FXML private Label nomeLabel;
+    @FXML private Label txtUsuario;
     @FXML private AnchorPane root;
     //@FXML private TableView<ModeloTreinoGui> tblExercicios;
     @FXML private TableView<ModeloRefeicao> tblRefeicoes;
@@ -57,20 +57,6 @@ public class TelaPrincipalClienteController {
 
     @FXML
     public void initialize(){
-
-        String ExercicioAerobico = new String();
-        String ExercicioAnaerobico = new String();
-        List<Exercicio> listExercicio = Fachada.getInstance().listarExercicios();
-
-        for(Exercicio e : listExercicio){
-            if(e.toString().equals("Musculação")){
-                ExercicioAnaerobico = ExercicioAerobico + e.toString() + "\n";
-            }else{
-                ExercicioAerobico = ExercicioAnaerobico + e.toString() + "\n";
-            }
-        }
-        this.lblAerobico.setText(ExercicioAerobico);
-        this.lblAnaerobico.setText(ExercicioAnaerobico);
         //this.colCheck.setCellValueFactory(new PropertyValueFactory<>("Check"));
         //this.colModalidade.setCellValueFactory(new PropertyValueFactory<>("Modalidade"));
 
@@ -131,13 +117,26 @@ public class TelaPrincipalClienteController {
     }
 
 
-    /*public void setInformacoes(){
+    public void setInformacoes(){
         Cliente cliente = (Cliente) Sessao.getInstance().getUsuario();
-        txtNome.setText(cliente.getNome());
-        txtAltura.setText(Double.toString(cliente.getAltura()));
-        txtPeso.setText(Double.toString(cliente.getPeso()));
-        txtGenero.setText(cliente.getGenero());
-        txtEmail.setText(cliente.getEmail());
-        dtPickerNascimento.setValue(cliente.getDtNascimento());
-    }*/
+        txtUsuario.setText("Ola, " + cliente.getNome());
+        txtImcAgua.setText("Seu imc é: " + cliente.getImc() + " Você deve consumir " + cliente.quantidadeDeAguaParaBeber(cliente.getPeso()) + " Litros de água hoje");
+    }
+
+    public void setTreinos(){
+        Cliente cliente = (Cliente) Sessao.getInstance().getUsuario();
+        String ExercicioAerobico = new String();
+        String ExercicioAnaerobico = new String();
+        List<Exercicio> listExercicio = Fachada.getInstance().listarExercicios();
+
+        for(Exercicio e : listExercicio){
+            if(e.getNome().equals("Musculação")){
+                ExercicioAnaerobico = ExercicioAerobico + e.getNome() + "\n";
+            }else{
+                ExercicioAerobico = ExercicioAnaerobico + e.getNome() + "\n";
+            }
+        }
+        titledAerobico.setContent(new Label(ExercicioAerobico));
+        titledAnaerobico.setContent(new Label(ExercicioAnaerobico));
+    }
 }

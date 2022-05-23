@@ -1,9 +1,13 @@
 package br.ufrpe.habitact.gui;
 
 import br.ufrpe.habitact.Main;
+import br.ufrpe.habitact.gui.modelos.ModeloExercicioCliente;
+import br.ufrpe.habitact.negocio.beans.Exercicio;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -184,11 +188,11 @@ public class GerenciadorTelas {
     }
 
     public void setPrincipalClienteScene() {
-        //principalCliente.updateTabelaTreino();
-        primaryStage.setScene(principalClienteScene);
-        principalCliente.setInformacoes();
         principalCliente.updateTabelaRefeicao();
-        principalCliente.setTreinos();
+        principalCliente.updateTabelaExercicioAnaerobico();
+        principalCliente.updateTabelaExercicioAerobico();
+        principalCliente.setInformacoes();
+        primaryStage.setScene(principalClienteScene);
     }
 
     public Scene getInfoPessoalAdmScene() {

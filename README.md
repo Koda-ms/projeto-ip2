@@ -11,6 +11,7 @@ Ideias de projeto podem vir de:
 
 * João Victor Carvalho Gomes Cordeiro - joaovictorcordeiro00@gmail.com
 * Julyanne Maria dos Santos Correia - julyanne.es@gmail.com
+* Lays Carolina Madeiro Rodrigues - layscarolinam@gmail.com
 * Matheus Nolêto de Sampaio Gominho Rosa - matheusgominho@gmail.com
 * Vinicius Augusto Andrade Albuquerque (Apolo) - vinicius.cius@gmail.com
 

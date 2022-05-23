@@ -130,8 +130,6 @@ public class TelaCadastroPlanoAlimentarController {
             alert.setContentText("Seu plano foi cadastrado com sucesso!");
             alert.showAndWait();
 
-            //TODO: Remover depois
-            System.out.println(Sessao.getInstance().getPlanoAlimentar());
             this.limparCamposDeDados();
             GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
         }
@@ -169,8 +167,6 @@ public class TelaCadastroPlanoAlimentarController {
                        this.alertaErroCadastro(e.getMessage());
                     }
                 }
-                //TODO: Remover depois
-                System.out.println(a);
             }
         }
     }

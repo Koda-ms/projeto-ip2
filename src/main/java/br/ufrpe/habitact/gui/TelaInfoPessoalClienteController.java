@@ -1,9 +1,7 @@
 package br.ufrpe.habitact.gui;
 
-import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.excecoes.SenhaIncorretaException;
 import br.ufrpe.habitact.negocio.Fachada;
-import br.ufrpe.habitact.negocio.beans.Administrador;
 import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.Usuario;
 import br.ufrpe.habitact.sessao.Sessao;

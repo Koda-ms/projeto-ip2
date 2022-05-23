@@ -56,47 +56,6 @@ public class TelaCadastrarTreinoController {
         this.colunaCheck.setCellFactory(CheckBoxTableCell.forTableColumn(colunaCheck));
     }
 
-    private void initTableView(){
-
-//        this.colunaCheck.setCellFactory(new Callback<TableColumn<ModeloTreino, Boolean>, TableCell<ModeloTreino, Boolean>>() {
-//            @Override
-//            public TableCell<ModeloTreino, Boolean> call(TableColumn<ModeloTreino, Boolean> arg0) {
-//                return new CheckBoxTableCell<ModeloTreino, Boolean>();
-//            }
-//        });
-//
-//        // Header CheckBox
-//        CheckBox cb = new CheckBox();
-//        cb.setUserData(this.colunaCheck);
-//        cb.setOnAction(handleSelectAllCheckbox());
-//        this.colunaCheck.setGraphic(cb);
-//
-//        this.tblExercicio.getItems().clear();
-//        this.updateCatalogoExercicios();
-    }
-
-//    private EventHandler<ActionEvent> handleSelectAllCheckbox() {
-//
-//        return new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                CheckBox cb = (CheckBox) event.getSource();
-//                TableColumn column = (TableColumn) cb.getUserData();
-//                if (cb.isSelected()) {
-//                    for (ModeloTreino c : result) {
-//                        System.out.println("Nom: " + c.getNome() + " Selected: " + c.isCheck());
-//                        c.setCheck(true);
-//                    }
-//                } else {
-//                    for (ModeloTreino c : result) {
-//                        System.out.println("Nom: " + c.getNome() + " Selected: " + c.isCheck());
-//                        c.setCheck(false);
-//                    }
-//                }
-//            }
-//        };
-//    }
-
     @FXML
     void optRadioClicked(MouseEvent event) {
         Treino t = new Treino(Fachada.getInstance().listarExercicios(), optCategoria.getValue(), dtTreino.getValue());

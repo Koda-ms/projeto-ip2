@@ -1,6 +1,5 @@
 package br.ufrpe.habitact.gui;
 
-import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.excecoes.SenhaIncorretaException;
 import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Administrador;
@@ -12,8 +11,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
-import java.time.format.DateTimeFormatter;
 
 public class TelaInfoPessoalAdmController {
     @FXML private DatePicker dtPickerNascimento;

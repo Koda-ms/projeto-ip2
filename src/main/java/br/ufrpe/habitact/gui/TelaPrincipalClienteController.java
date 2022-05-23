@@ -10,14 +10,11 @@ import br.ufrpe.habitact.sessao.Sessao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -49,8 +46,6 @@ public class TelaPrincipalClienteController {
     @FXML
     public void initialize(){
         this.diaDaSemanaLabel.setText(String.valueOf(LocalDate.now().getDayOfWeek()));
-        //this.nomeLabel.setText("Ola, " + c1.getNome());
-        //this.imcEAguaLabel.setText("Seu imc é: " + Sessao.getInstance().getUsuario());
 
         //Tabela Exercícios
         this.colDuracao.setCellValueFactory(new PropertyValueFactory<>("duracao"));
@@ -126,14 +121,6 @@ public class TelaPrincipalClienteController {
         } catch (ObjetoNaoExisteException e) {
             throw new RuntimeException(e);
         }
-
-//        List<Exercicio> listExercicio = Fachada.getInstance().listarExercicios();
-//        for(Exercicio ex : listExercicio){
-//
-//
-//        }
-
-
     }
 
     public void updateTabelaExercicioAnaerobico() {
@@ -146,9 +133,7 @@ public class TelaPrincipalClienteController {
             for(PlanoTreino pT : listPTreino){
                 for (Treino t : pT.getTreinos()){
                     for(Exercicio ex : t.getExercicios()){
-                        System.out.println("\n..\n");
                         if(t.getModalidade().getCategoria().equalsIgnoreCase("Anaeróbico")){
-                            System.out.println("\n.......\n");
                             resultado.add(new ModeloExercicioCliente(ex));
                         }
                     }

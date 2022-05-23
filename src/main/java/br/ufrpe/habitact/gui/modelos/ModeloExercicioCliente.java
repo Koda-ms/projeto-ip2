@@ -5,41 +5,15 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class ModeloTreino {
-    private final SimpleBooleanProperty check;
-    private final SimpleStringProperty nome;
+public class ModeloExercicioCliente {
     private final SimpleStringProperty ritmo;
+    private final SimpleStringProperty exercicio;
     private final SimpleDoubleProperty duracao;
 
-    public ModeloTreino(Exercicio exercicio){
-        this.check = new SimpleBooleanProperty(false);
-        this.nome = new SimpleStringProperty(exercicio.getNome().getNome());
-        this.ritmo = new SimpleStringProperty(exercicio.getRitmo().getRitmo());
+    public ModeloExercicioCliente(Exercicio exercicio) {
         this.duracao = new SimpleDoubleProperty(exercicio.getDuracaoExercicio());
-    }
-
-    public boolean isCheck() {
-        return check.get();
-    }
-
-    public SimpleBooleanProperty checkProperty() {
-        return check;
-    }
-
-    public void setCheck(boolean check) {
-        this.check.set(check);
-    }
-
-    public String getNome() {
-        return nome.get();
-    }
-
-    public SimpleStringProperty nomeProperty() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome.set(nome);
+        this.ritmo = new SimpleStringProperty(exercicio.getRitmo().getRitmo());
+        this.exercicio = new SimpleStringProperty(exercicio.getNome().getNome());
     }
 
     public String getRitmo() {
@@ -52,6 +26,18 @@ public class ModeloTreino {
 
     public void setRitmo(String ritmo) {
         this.ritmo.set(ritmo);
+    }
+
+    public String getExercicio() {
+        return exercicio.get();
+    }
+
+    public SimpleStringProperty exercicioProperty() {
+        return exercicio;
+    }
+
+    public void setExercicio(String exercicio) {
+        this.exercicio.set(exercicio);
     }
 
     public double getDuracao() {

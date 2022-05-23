@@ -1,43 +1,166 @@
 package br.ufrpe.habitact.gui;
 
+
+import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
+import br.ufrpe.habitact.gui.modelos.ModeloRefeicao;
+import br.ufrpe.habitact.gui.modelos.ModeloExercicioCliente;
+import br.ufrpe.habitact.negocio.Fachada;
+import br.ufrpe.habitact.negocio.beans.*;
+import br.ufrpe.habitact.sessao.Sessao;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Circle;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.util.List;
 
 public class TelaPrincipalClienteController {
+    @FXML private TableView<ModeloRefeicao> tblRefeicoes;
+    @FXML private TableColumn<ModeloRefeicao, String> colAlmoco;;
+    @FXML private TableColumn<ModeloRefeicao, String> colCafeDaManha;
+    @FXML private TableColumn<ModeloRefeicao, String> colJantar;
+    @FXML private TableColumn<ModeloRefeicao, String> colLanche;
 
-    @FXML private Circle segundaCircle;
-    @FXML private Circle tercaCircle;
-    @FXML private Circle quartaCircle;
-    @FXML private Circle quintaCircle;
-    @FXML private Circle sextaCircle;
-    @FXML private Circle SabadoCircle;
-    @FXML private Circle domingoCircle;
-    @FXML private Label segundaLabel;
-    @FXML private Label tercaLabel;
-    @FXML private Label quartaLabel;
-    @FXML private Label quintaLabel;
-    @FXML private Label sextaLabel;
-    @FXML private Label sabadoLabel;
-    @FXML private Label domingoLabel;
-    @FXML private Label objetivosDaSemanaLabel;
+    @FXML private Label txtUsuario;
+    @FXML private Label txtImcAgua;
+    @FXML private Label diaDaSemanaLabel;
 
-    @FXML private void btnSair(ActionEvent event) {
-        GerenciadorTelas.getInstance().trocarTela("TelaLogin");
+    @FXML private TitledPane tblAnaerobico;
+    @FXML private TitledPane tblAerobico;
+    @FXML private TableView<ModeloExercicioCliente> tblExerciciosAnaerobico;
+    @FXML private TableView<ModeloExercicioCliente> tblExerciciosAerobico;
+    @FXML private TableColumn<ModeloExercicioCliente, String> colRitmo;
+    @FXML private TableColumn<ModeloExercicioCliente, Double> colDuracao;
+    @FXML private TableColumn<ModeloExercicioCliente, String> colExercicio;
+
+
+
+    @FXML
+    public void initialize(){
+        this.diaDaSemanaLabel.setText(String.valueOf(LocalDate.now().getDayOfWeek()));
+
+        //Tabela Exercícios
+        this.colDuracao.setCellValueFactory(new PropertyValueFactory<>("duracao"));
+        this.colExercicio.setCellValueFactory(new PropertyValueFactory<>("exercicio"));
+        this.colRitmo.setCellValueFactory(new PropertyValueFactory<>("ritmo"));
+        this.updateTabelaExercicioAerobico();
+        this.updateTabelaExercicioAnaerobico();
+
+        //Tabela Refeições
+        this.colCafeDaManha.setCellValueFactory(new PropertyValueFactory<>("cafe"));
+        this.colAlmoco.setCellValueFactory(new PropertyValueFactory<>("almoco"));
+        this.colLanche.setCellValueFactory(new PropertyValueFactory<>("lanche"));
+        this.colJantar.setCellValueFactory(new PropertyValueFactory<>("jantar"));
+        this.updateTabelaRefeicao();
+
     }
 
-    @FXML private void detalhesObjetivos(MouseEvent event) {
-        //TODO exibir os objetivos na tela
+
+    @FXML
+    void btnAddAlimento(ActionEvent event) {
+        Stage dialog = new Stage();
+        dialog.setScene(GerenciadorTelas.getInstance().getAddAlimentoScene());
+        dialog.setResizable(false);
+        dialog.setTitle("Cadastrar Alimentos");
+        dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.showAndWait();
     }
 
-    @FXML private void btnMeusDados(ActionEvent event) {
+    public void updateTabelaRefeicao() {
+        ObservableList<ModeloRefeicao> resultado = FXCollections.observableArrayList();
+
+        List<Alimento> listaDeRef = Fachada.getInstance().listarAlimento();
+        for(Alimento a : listaDeRef){
+            resultado.add(new ModeloRefeicao(a));
+        }
+
+        tblRefeicoes.setItems(resultado);
+    }
+
+
+    @FXML void tblAnaerobicoClicked(MouseEvent event) {
+        this.updateTabelaExercicioAnaerobico();
+        this.tblAnaerobico = new TitledPane();
+        this.tblAnaerobico.setContent(tblExerciciosAnaerobico);
+    }
+
+    @FXML void tblAerobicoClicked(MouseEvent event) {
+        this.updateTabelaExercicioAerobico();
+        this.tblAerobico = new TitledPane();
+        tblAerobico.setContent(tblExerciciosAerobico);
+    }
+
+    public void updateTabelaExercicioAerobico() {
+        ObservableList<ModeloExercicioCliente> resultado = FXCollections.observableArrayList();
+        Cliente c = (Cliente) Sessao.getInstance().getUsuario();
+
+        try {
+           List<PlanoTreino> listPTreino =  Fachada.getInstance().buscarPlanoTreino(c);
+
+           for(PlanoTreino pT : listPTreino){
+               for (Treino t : pT.getTreinos()){
+                   for(Exercicio ex : t.getExercicios()){
+                       System.out.println("\n***");
+                       if(t.getModalidade().getCategoria().equalsIgnoreCase("Aeróbico")){
+                           System.out.println("\n**********\n");
+                           resultado.add(new ModeloExercicioCliente(ex));
+                       }
+                   }
+               }
+           }
+            tblExerciciosAerobico.setItems(resultado);
+        } catch (ObjetoNaoExisteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateTabelaExercicioAnaerobico() {
+        ObservableList<ModeloExercicioCliente> resultado = FXCollections.observableArrayList();
+        Cliente c = (Cliente) Sessao.getInstance().getUsuario();
+
+        try {
+            List<PlanoTreino> listPTreino =  Fachada.getInstance().buscarPlanoTreino(c);
+
+            for(PlanoTreino pT : listPTreino){
+                for (Treino t : pT.getTreinos()){
+                    for(Exercicio ex : t.getExercicios()){
+                        if(t.getModalidade().getCategoria().equalsIgnoreCase("Anaeróbico")){
+                            resultado.add(new ModeloExercicioCliente(ex));
+                        }
+                    }
+                }
+            }
+            tblExerciciosAnaerobico.setItems(resultado);
+        } catch (ObjetoNaoExisteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void setInformacoes(){
+        Cliente cliente = (Cliente) Sessao.getInstance().getUsuario();
+        DecimalFormat formato = new DecimalFormat("##,##");
+
+        this.txtUsuario.setText("Olá, " + cliente.getNome());
+        this.txtImcAgua.setText("Seu IMC é: " + Double.valueOf(formato.format(cliente.getImc())) + " \nVocê deve consumir " +
+                cliente.quantidadeDeAguaParaBeber(cliente.getPeso()) + " litros de água diariamente");
+    }
+
+    @FXML
+    void MeusDados(ActionEvent event) {
         GerenciadorTelas.getInstance().trocarTela("TelaDadosCliente");
     }
 
     @FXML
-    void btnListarPLanosPressed(ActionEvent event) {
-        GerenciadorTelas.getInstance().trocarTela("TelaListarPlanos");
+    void VoltarBtn(ActionEvent event) {
+        GerenciadorTelas.getInstance().trocarTela("TelaLogin");
     }
 }

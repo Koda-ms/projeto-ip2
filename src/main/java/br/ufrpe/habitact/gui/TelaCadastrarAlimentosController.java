@@ -1,11 +1,15 @@
 package br.ufrpe.habitact.gui;
 
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
+import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Alimento;
+import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
 import br.ufrpe.habitact.negocio.beans.enums.Refeicao;
+import br.ufrpe.habitact.sessao.Sessao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -30,16 +34,28 @@ public class TelaCadastrarAlimentosController {
         if (verificarCamposVazios()) {
             GerenciadorTelas.getInstance().alertaCamposVazios();
         } else{
-            //TODO Configurar parte para armazenar os alimentos cadastrados pelo usuário
             Alimento alimento = new Alimento(selectRefeicao.getValue(), textNome.getText(),
                     Double.parseDouble(textQuantidade.getText()), Double.parseDouble(textCalorias.getText()));
-            Fachada.getInstance().adicionarAlimento(alimento);
-            //this.planoAlimentarController.updateCatalogoAlimentos(Fachada.getInstance().listarAlimento()); //O atributo retorna null
-            this.limparCamposDeDados();
 
-            //Para fechar a tela
+            Fachada.getInstance().adicionarAlimento(alimento);
+//            try {
+//                Fachada.getInstance().inserirAlimentoNoPlano(Sessao.getInstance().getPlanoAlimentar(), alimento);
+//            } catch (ObjetoNaoExisteException e) {
+//               this.alertaErroCadastro(e.getMessage());
+//            }
+
+            this.limparCamposDeDados();
             ((Stage)this.btnCancelarSalvarPressed.getScene().getWindow()).close();
+            GerenciadorTelas.getInstance().updateTabelaAlimentos();
         }
+    }
+
+    private void alertaErroCadastro(String motivo){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Erro de cadastro");
+        alerta.setHeaderText("Há um possível erro com seu cadastro");
+        alerta.setContentText(motivo);
+        alerta.showAndWait();
     }
 
     private void limparCamposDeDados() {

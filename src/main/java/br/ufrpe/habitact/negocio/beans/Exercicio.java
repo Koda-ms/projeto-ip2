@@ -37,6 +37,17 @@ public class Exercicio {
 		return nome == other.nome;
 	}
 
+	@Override
+	public String toString() {
+		return "Exercicio{" +
+				"nome=" + nome +
+				", ritmo=" + ritmo +
+				", duracaoExercicio=" + duracaoExercicio +
+				", repeticoes=" + repeticoes +
+				", series=" + series +
+				'}';
+	}
+
 	public TipoExercicio getNome() {
 		return nome;
 	}

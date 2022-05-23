@@ -24,8 +24,7 @@
             <TableColumn fx:id="colunaDtFimPlanoAlimentar" editable="false" prefWidth="82.0" resizable="false" text="Data Fim" />
         </columns>
       </TableView>
-      <Button layoutX="461.0" layoutY="492.0" mnemonicParsing="false" onAction="#btnCadastrarPressed" prefHeight="25.0" prefWidth="120.0" text="Cadastrar Planos" />
-      <Button layoutX="461.0" layoutY="528.0" mnemonicParsing="false" onAction="#btnRelatorioPressed" prefHeight="25.0" prefWidth="120.0" text="Gerar Relatórios" />
+      <Button layoutX="461.0" layoutY="509.0" mnemonicParsing="false" onAction="#btnCadastrarPressed" prefHeight="25.0" prefWidth="120.0" text="Cadastrar Planos" />
       <TableView fx:id="tableClientes" layoutX="356.0" layoutY="98.0" prefHeight="314.0" prefWidth="225.0">
          <columns>
             <TableColumn fx:id="colunaNomeClientes" editable="false" prefWidth="75.0" resizable="false" text="Nome" />
@@ -55,6 +54,6 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <Button layoutX="460.0" layoutY="455.0" mnemonicParsing="false" onAction="#btnMeusDadosPressed" prefHeight="25.0" prefWidth="120.0" text="Meus Dados" />
+      <Button layoutX="401.0" layoutY="24.0" mnemonicParsing="false" onAction="#btnMeusDadosPressed" prefHeight="25.0" prefWidth="120.0" text="Meus Dados" />
    </children>
 </Pane>

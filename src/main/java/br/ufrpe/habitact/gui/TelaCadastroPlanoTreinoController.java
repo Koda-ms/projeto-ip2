@@ -1,23 +1,24 @@
 package br.ufrpe.habitact.gui;
 
+import br.ufrpe.habitact.excecoes.MaisDeUmPlanoNoMesmoPeriodoException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
+import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.gui.modelos.ModeloPlanoTreinoCliente;
 import br.ufrpe.habitact.negocio.Fachada;
+import br.ufrpe.habitact.negocio.beans.Cliente;
+import br.ufrpe.habitact.negocio.beans.PlanoTreino;
 import br.ufrpe.habitact.negocio.beans.Treino;
-import br.ufrpe.habitact.negocio.beans.enums.CategoriaTreino;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoTreino;
+import br.ufrpe.habitact.sessao.Sessao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,9 @@ public class TelaCadastroPlanoTreinoController {
 
     @FXML private DatePicker dtFim;
     @FXML private DatePicker dtInicio;
-    @FXML private TextField textOutro;
+    @FXML private Button btnNovoTreino;
+    @FXML private RadioButton radAddTreino;
+    @FXML private ComboBox<String> cliente2;
     @FXML private ComboBox<ObjetivoTreino> objetivoTreino;
     @FXML private TableView<ModeloPlanoTreinoCliente> tblTreino;
     @FXML private TableColumn<ModeloPlanoTreinoCliente, Boolean> colunaCheck;
@@ -34,9 +37,11 @@ public class TelaCadastroPlanoTreinoController {
     @FXML private TableColumn<ModeloPlanoTreinoCliente, String> coluanDiaTreino;
     @FXML private TableColumn<ModeloPlanoTreinoCliente, String> colunaCategoriaTreino;
 
+    @FXML
     public void initialize() {
         //Adiciona os valores do enum ObjetivoTreino no ComboBox
         this.objetivoTreino.getItems().addAll(ObjetivoTreino.values());
+
         //Setando as colunas da TableView
         this.colunaCheck.setCellValueFactory(new PropertyValueFactory<>("check"));
         this.colunaCheck.setCellFactory(CheckBoxTableCell.forTableColumn(colunaCheck));
@@ -44,14 +49,55 @@ public class TelaCadastroPlanoTreinoController {
         this.colunaDuracao.setCellValueFactory(new PropertyValueFactory<>("duracao"));
         this.colunaCalorias.setCellValueFactory(new PropertyValueFactory<>("calorias"));
         this.colunaCategoriaTreino.setCellValueFactory(new PropertyValueFactory<>("categoria"));
-        this.updateCatalogoTreino();
+        this.tblTreino.setDisable(true);
+    }
+
+    public void addClientesComboBoxPTreino() {
+        ObservableList<String> observableClientes = FXCollections.observableArrayList();
+        List<Cliente> listClientes = new ArrayList<>(Fachada.getInstance().listarClientes());
+
+        for(Cliente c : listClientes){
+            observableClientes.add(c.getNome());
+        }
+        this.cliente2.setItems(observableClientes);
     }
 
     @FXML
-    void optOutrosSelecionada(ActionEvent event) {
-        //TODO Habilita o campo Outro para digitação. Configuração abaixo não está funcionando para essa tela
-        if(objetivoTreino.getValue().getObjetivo().equalsIgnoreCase("")){
-            this.textOutro.setDisable(false); //TODO Como seria pra armazenar esse valor em Objetivo?
+    void optRadioClicked(MouseEvent event) {
+
+        List<Cliente> listClientes = new ArrayList<>(Fachada.getInstance().listarClientes());
+        PlanoTreino planoT = null;
+        for(Cliente c : listClientes){
+            if(this.cliente2.getValue().equals(c.getNome())){
+                planoT = new PlanoTreino(c, dtInicio.getValue(), dtFim.getValue(), objetivoTreino.getValue());
+            }
+        }
+
+        Sessao.getInstance().setPlanoTreino(planoT);
+        try {
+            Fachada.getInstance().cadastrarPlanoTreino(planoT);
+
+            this.tblTreino.setDisable(false);
+            this.btnNovoTreino.setDisable(false);
+            this.radAddTreino.setDisable(false);
+
+        } catch (ObjetoDuplicadoException | MaisDeUmPlanoNoMesmoPeriodoException e) {
+            this.alertaErroCadastro(e.getMessage());
+            this.radAddTreino.setSelected(false);
+
+            // Try/catch responsável por buscar o Plano T cadastrado com período igual a de um Plano anterior
+            // e, então, atualizá-lo com o novo Plano T de período diferente
+            try {
+                List<PlanoTreino> planoProcurado;
+                for(Cliente c : listClientes) {
+                    if (this.cliente2.getValue().equals(c.getNome())) {
+                        planoProcurado = Fachada.getInstance().buscarPlanoTreino(c);
+                        Fachada.getInstance().alterarPlanoDeTreino(planoProcurado.get(0), planoT);
+                    }
+                }
+            } catch (ObjetoNaoExisteException ex) {
+                this.alertaErroCadastro(ex.getMessage());
+            }
         }
     }
 
@@ -66,17 +112,6 @@ public class TelaCadastroPlanoTreinoController {
         if (verificarCamposVazios()) {
             GerenciadorTelas.getInstance().alertaCamposVazios();
         } else {
-
-            //TODO colocação do USUARIO no Construtor abaixo. Verificar se correta
-            /*PlanoTreino p = new PlanoTreino(usuario, dtInicio.getValue(), dtFim.getValue(),
-                  objetivoTreino.getValue());
-
-            try {
-                Fachada.getInstance().cadastrarPlanoTreino(p);
-            }catch (MaisDeUmPlanoNoMesmoPeriodoException | ObjetoDuplicadoException e) {
-                e.getMessage();
-            }*/
-
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Cadastro de PLano");
             alert.setHeaderText(null);
@@ -84,6 +119,7 @@ public class TelaCadastroPlanoTreinoController {
             alert.showAndWait();
 
             this.limparCamposDeDados();
+            GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
         }
     }
 
@@ -92,35 +128,7 @@ public class TelaCadastroPlanoTreinoController {
         GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
     }
 
-    private void updateCatalogoTreino() {
-        //Instancia treinos para o Controlador de Treinos
-        ArrayList<Treino> listaTreinos = new ArrayList<>();
-        //TODO não conseguindo setar um ArrayList<Exercicio> manualmente
-        Treino t1 = new Treino();
-        t1.setDiaFeito(LocalDate.of(2022, 5, 1));
-        t1.setModalidade(CategoriaTreino.ANAEROBICO);
-        t1.setQueimaCaloricaTotal(80);
-        t1.setDuracao(30);
-        Treino t2 = new Treino();
-        t2.setDiaFeito(LocalDate.of(2022, 5, 7));
-        t2.setModalidade(CategoriaTreino.AEROBICO);
-        t2.setQueimaCaloricaTotal(170);
-        t2.setDuracao(25);
-        Treino t3 = new Treino();
-        t3.setDiaFeito(LocalDate.of(2022, 4, 20));
-        t3.setModalidade(CategoriaTreino.AEROBICO);
-        t3.setQueimaCaloricaTotal(200);
-        t3.setDuracao(50);
-
-        try {
-            Fachada.getInstance().inserirTreino(t1);
-            Fachada.getInstance().inserirTreino(t2);
-            Fachada.getInstance().inserirTreino(t3);
-        } catch (ObjetoDuplicadoException e) {
-           e.printStackTrace();
-        }
-        /*Treino t1 = new Treino((ArrayList<Exercicio>) Fachada.getInstance().listarExercicios(),
-                    CategoriaTreino.AEROBICO);*/
+    public void updateCatalogoTreino() {
 
         ObservableList<ModeloPlanoTreinoCliente> result = FXCollections.observableArrayList();
         List<Treino> listaDeTreinos = Fachada.getInstance().listarTreino();
@@ -130,17 +138,29 @@ public class TelaCadastroPlanoTreinoController {
         tblTreino.setItems(result);
     }
 
+    private void alertaErroCadastro(String motivo){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Erro de cadastro");
+        alerta.setHeaderText("Há um possível erro com seu cadastro");
+        alerta.setContentText(motivo);
+        alerta.showAndWait();
+    }
+
     private void limparCamposDeDados() {
-        this.textOutro.setText("");
         this.dtInicio.setValue(null);
         this.dtFim.setValue(null);
+        this.tblTreino.setDisable(false);
+        this.tblTreino.getItems().clear();
+        this.radAddTreino.setSelected(false);
+        this.btnNovoTreino.setDisable(false);
+        this.cliente2.getSelectionModel().clearSelection();
         this.objetivoTreino.getSelectionModel().clearSelection();
         this.tblTreino.getSelectionModel().clearSelection();
     }
 
     private boolean verificarCamposVazios() {
         return dtInicio.getValue() == null || dtFim.getValue() == null ||
-                objetivoTreino.getValue() == null && textOutro.getText().isBlank();
+                objetivoTreino.getValue() == null;
     }
 }
 

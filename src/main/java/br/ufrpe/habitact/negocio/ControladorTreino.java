@@ -31,13 +31,13 @@ public class ControladorTreino {
         return instance;
     }
 
-    public void inserirExercicio(Treino treino, Exercicio novoExercicio) throws ObjetoDuplicadoException, ObjetoNaoExisteException{
+    public void inserirExercicioNoTreino(Treino treino, Exercicio novoExercicio) throws ObjetoDuplicadoException, ObjetoNaoExisteException{
         Treino treinoAntigo = treino;
         treino.inserirExercicio(novoExercicio);
         this.repositorioTreino.atualizar(treinoAntigo, treino);
     }
 
-    public void removerExercicio(Treino treino, Exercicio exercicioAlvo) throws ObjetoNaoExisteException{
+    public void removerExercicioDoTreino(Treino treino, Exercicio exercicioAlvo) throws ObjetoNaoExisteException{
         Treino treinoNovo = treino;
         treinoNovo.removerExercicio(exercicioAlvo);
         this.repositorioTreino.atualizar(treino, treinoNovo);

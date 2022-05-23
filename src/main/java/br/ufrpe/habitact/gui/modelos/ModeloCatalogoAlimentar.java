@@ -5,17 +5,19 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class ModeloPlanoAlimentarCliente {
+public class ModeloCatalogoAlimentar {
     private SimpleBooleanProperty check;
     private SimpleStringProperty nome;
+    private SimpleStringProperty refeicao;
     private SimpleDoubleProperty quantidade;
     private SimpleDoubleProperty calorias;
 
-    public ModeloPlanoAlimentarCliente(Alimento alimento){
+    public ModeloCatalogoAlimentar(Alimento alimento){
         this.check = new SimpleBooleanProperty(false);
         this.nome = new SimpleStringProperty(alimento.getNome());
         this.quantidade = new SimpleDoubleProperty(alimento.getQtdGrama());
         this.calorias = new SimpleDoubleProperty(alimento.getCalorias());
+        this.refeicao = new SimpleStringProperty(alimento.getRefeicao().getRefeicao());
     }
 
     public boolean isCheck() {
@@ -40,6 +42,18 @@ public class ModeloPlanoAlimentarCliente {
 
     public void setNome(String nome) {
         this.nome.set(nome);
+    }
+
+    public String getRefeicao() {
+        return refeicao.get();
+    }
+
+    public SimpleStringProperty refeicaoProperty() {
+        return refeicao;
+    }
+
+    public void setRefeicao(String refeicao) {
+        this.refeicao.set(refeicao);
     }
 
     public double getQuantidade() {

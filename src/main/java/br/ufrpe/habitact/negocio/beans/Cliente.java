@@ -1,5 +1,6 @@
 package br.ufrpe.habitact.negocio.beans;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -10,9 +11,8 @@ public class Cliente extends Usuario {
 	private double imc;
 	private long idade;
 
-
 	public Cliente(String nome, String email, String senha, LocalDate dtNascimento, String genero, double peso,
-				   double altura, boolean jaFazExercicio) {
+				   double altura) {
 		super(nome, email, senha, dtNascimento);
 		this.genero = genero;
 		this.peso = peso;
@@ -32,7 +32,8 @@ public class Cliente extends Usuario {
 	}
 	
 	public double quantidadeDeAguaParaBeber(double peso) {
-		return this.peso * 0.05;
+		DecimalFormat formato = new DecimalFormat("#,##");
+		return Double.parseDouble(formato.format(this.peso * 0.05));
 	}
 
 	public String getGenero() {

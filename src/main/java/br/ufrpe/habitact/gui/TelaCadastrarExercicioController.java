@@ -1,12 +1,15 @@
 package br.ufrpe.habitact.gui;
 
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
+import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Exercicio;
 import br.ufrpe.habitact.negocio.beans.enums.RitmoDoExercicio;
 import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
+import br.ufrpe.habitact.sessao.Sessao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -16,7 +19,6 @@ public class TelaCadastrarExercicioController {
 
     @FXML private TextField textRepeticao;
     @FXML private TextField textSerie;
-    @FXML private TextField textOutro;
     @FXML private TextField textMinutos;
     @FXML private Button btnCancelarSalvarPressed;
     @FXML private ComboBox<TipoExercicio> selectExercicio;
@@ -25,38 +27,39 @@ public class TelaCadastrarExercicioController {
     public void initialize(){
         this.selectExercicio.getItems().addAll(TipoExercicio.values());
         this.selectRitmo.getItems().addAll(RitmoDoExercicio.values());
-
-    }
-
-    @FXML
-    void optOutrosSelecionado(ActionEvent event) {
-        if (selectExercicio.getValue().getNome().equalsIgnoreCase("")){
-            this.textOutro.setDisable(false);
-        }
     }
 
     @FXML void btnSalvarPressed(ActionEvent event) {
+
         if (verificarCamposVazios()) {
             GerenciadorTelas.getInstance().alertaCamposVazios();
         } else{
-
             Exercicio ex = new Exercicio(selectExercicio.getValue(), selectRitmo.getValue(), Integer.parseInt(textMinutos.getText()),
                     Integer.parseInt(textRepeticao.getText()),Integer.parseInt(textSerie.getText()));
+            Sessao.getInstance().setExercicio(ex);
+
             try {
                 Fachada.getInstance().inserirExercicios(ex);
-            } catch (ObjetoDuplicadoException e) {
-                e.getMessage();
+                Fachada.getInstance().inserirExercicioNoTreino(Sessao.getInstance().getTreino(), ex);
+            } catch (ObjetoDuplicadoException | ObjetoNaoExisteException e) {
+                this.alertaErroCadastro(e.getMessage());
             }
 
-
             this.limparCamposDeDados();
-            //Para fechar a tela
             ((Stage)this.btnCancelarSalvarPressed.getScene().getWindow()).close();
+            GerenciadorTelas.getInstance().updateTabelaExercicios();
         }
     }
 
+    private void alertaErroCadastro(String motivo){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Erro de cadastro");
+        alerta.setHeaderText("Há um possível erro com seu cadastro");
+        alerta.setContentText(motivo);
+        alerta.showAndWait();
+    }
+
     private void limparCamposDeDados() {
-        this.textOutro.setText("");
         this.textMinutos.setText("");
         this.textRepeticao.setText("");
         this.textSerie.setText("");
@@ -66,7 +69,7 @@ public class TelaCadastrarExercicioController {
 
     private boolean verificarCamposVazios() {
         return selectExercicio.getValue() == null || selectRitmo.getValue() == null ||
-                textOutro.getText().isBlank() || textMinutos.getText().isBlank();
+                textMinutos.getText().isBlank();
     }
 }
 

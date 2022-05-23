@@ -1,5 +1,6 @@
 package br.ufrpe.habitact.gui.modelos;
 
+import br.ufrpe.habitact.negocio.beans.Exercicio;
 import br.ufrpe.habitact.negocio.beans.Treino;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -17,8 +18,8 @@ public class ModeloPlanoTreinoCliente {
     public ModeloPlanoTreinoCliente(Treino treino){
         this.check = new SimpleBooleanProperty(false);
         this.categoria = new SimpleStringProperty(treino.getModalidade().getCategoria());
-        this.calorias = new SimpleDoubleProperty(treino.getQueimaCaloricaTotal());
-        this.duracao = new SimpleDoubleProperty(treino.getDuracao());
+        this.calorias = new SimpleDoubleProperty(treino.estimarQtdDeCaloriasGastas());
+        this.duracao = new SimpleDoubleProperty(treino.duracaoTotal());
         String dataFormatada = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(treino.getDiaFeito());
         this.data = new SimpleStringProperty(dataFormatada);
     }

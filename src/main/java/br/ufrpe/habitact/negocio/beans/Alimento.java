@@ -39,6 +39,16 @@ public class Alimento {
 				&& refeicao == other.refeicao;
 	}
 
+	@Override
+	public String toString() {
+		return "Alimento{" +
+				"refeicao=" + refeicao +
+				", nome='" + nome + '\'' +
+				", qtdGrama=" + qtdGrama +
+				", calorias=" + calorias +
+				'}';
+	}
+
 	public String getNome() {
 		return nome;
 	}

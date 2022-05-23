@@ -4,46 +4,72 @@ import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.negocio.beans.enums.CategoriaTreino;
 import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
+import br.ufrpe.habitact.sessao.Sessao;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Treino {
 	private LocalDate diaFeito;
-	private ArrayList<Exercicio> exercicios;
+	private List<Exercicio> exercicios;
 	private double duracao;
 	private double queimaCaloricaTotal;
 	private CategoriaTreino modalidade;
 
 	public Treino() {}
 
-	public Treino(ArrayList<Exercicio> exercicios, CategoriaTreino modalidade) {
+	public Treino(List<Exercicio> exercicios, CategoriaTreino modalidade, LocalDate diaFeito) {
+		this.diaFeito = diaFeito;
 		this.exercicios = new ArrayList<>();
 		this.duracaoTotal();
 		this.modalidade = modalidade;
 	}
 
-	public void duracaoTotal() {
+	public double duracaoTotal() {
 		double soma = 0;
 		for (Exercicio e : exercicios) {
 			soma = soma + e.getDuracaoExercicio();
 		}
-		this.duracao = soma;
+		return soma;
 	}
 
-	public void estimarQtdDeCaloriasGastas(TipoExercicio exercicio) {
-		//Queima calórica por MINUTO
-		switch (exercicio.getNome()){
-			case "Caminhada": this.queimaCaloricaTotal = this.duracao * 5.5; break;
-			case "Corrida": this.queimaCaloricaTotal = this.duracao * 10; break;
-			case "Natação": this.queimaCaloricaTotal = this.duracao * 9; break;
-			case "Ciclismo": this.queimaCaloricaTotal = this.duracao * 6; break;
-			case "Musculação": this.queimaCaloricaTotal = this.duracao * 5; break;
-			case "Jiu-Jitsu": this.queimaCaloricaTotal = this.duracao * 12; break;
-			case "Tenis de Mesa": this.queimaCaloricaTotal = this.duracao * 8; break;
+	//Queima calórica KCAL/MINUTO
+	public double estimarQtdDeCaloriasGastas() {
+		DecimalFormat formato = new DecimalFormat("#.##");
+		switch (Sessao.getInstance().getExercicio().getNome().getNome()){
+			case "Caminhada": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
+					getDuracaoExercicio() * 5.5));
+
+			case "Corrida": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
+					getDuracaoExercicio() * 10));
+
+			case "Natação": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
+					getDuracaoExercicio() * 9));
+
+			case "Jiu-Jitsu": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
+					getDuracaoExercicio() * 12));
+
+			case "Pilates": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
+					getDuracaoExercicio() * 3.8));
+
+			case "Tenis de Mesa": return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().
+					getExercicio().getDuracaoExercicio() * 8));
+
+			case "Hidroginástica":
+			case "Ciclismo":
+				return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().
+						getDuracaoExercicio() * 6));
+
+			case "Musculação":
+			case "Yoga":
+				return Double.parseDouble(formato.format(this.queimaCaloricaTotal = Sessao.getInstance().getExercicio().getDuracaoExercicio() * 5));
+
 			default: System.out.println("Para outros tipos de treinos, por favor, procure um especialista.");
 		}
+		return Double.parseDouble(formato.format(this.queimaCaloricaTotal));
 	}
 
 	@Override
@@ -62,7 +88,7 @@ public class Treino {
 				&& Objects.equals(exercicios, other.exercicios) && modalidade == other.modalidade;
 	}
 
-	public ArrayList<Exercicio> getExercicios() {
+	public List<Exercicio> getExercicios() {
 		return exercicios;
 	}
 

@@ -7,7 +7,6 @@ import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Cliente;
 import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
 import br.ufrpe.habitact.negocio.beans.PlanoTreino;
-import br.ufrpe.habitact.negocio.beans.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -58,11 +57,9 @@ public class TelaPrincipalAdmController {
 
     public void updateListaClientes() {
         ObservableList<ModeloCliente> result = FXCollections.observableArrayList();
-        List<Usuario> listaUsuarios = Fachada.getInstance().listarUsuarios();
-        for(Usuario u: listaUsuarios){
-            if (u instanceof Cliente){
-                result.add(new ModeloCliente((Cliente) u));
-            }
+        List<Cliente> clientes = Fachada.getInstance().listarClientes();
+        for(Cliente c: clientes){
+            result.add(new ModeloCliente(c));
         }
         tableClientes.setItems(result);
     }
@@ -96,12 +93,8 @@ public class TelaPrincipalAdmController {
     }
 
     @FXML
-    void btnRelatorioPressed(ActionEvent event) {
-        GerenciadorTelas.getInstance().trocarTela("popupGraficos");
-    }
-
-    @FXML
     void btnSairPressed(ActionEvent event) {
+        System.out.println("botão");
         GerenciadorTelas.getInstance().trocarTela("TelaLogin");
     }
 

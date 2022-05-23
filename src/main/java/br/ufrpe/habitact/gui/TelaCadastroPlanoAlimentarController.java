@@ -1,23 +1,30 @@
 package br.ufrpe.habitact.gui;
 
+import br.ufrpe.habitact.excecoes.MaisDeUmPlanoNoMesmoPeriodoException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
-import br.ufrpe.habitact.gui.modelos.ModeloPlanoAlimentarCliente;
+import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
+import br.ufrpe.habitact.gui.modelos.ModeloCatalogoAlimentar;
+import br.ufrpe.habitact.gui.modelos.ModeloPlanoAlimentar;
 import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Alimento;
+import br.ufrpe.habitact.negocio.beans.Cliente;
+import br.ufrpe.habitact.negocio.beans.PlanoAlimentar;
 import br.ufrpe.habitact.negocio.beans.enums.ObjetivoAlimentar;
-import br.ufrpe.habitact.negocio.beans.enums.Refeicao;
+import br.ufrpe.habitact.sessao.Sessao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,35 +32,78 @@ public class TelaCadastroPlanoAlimentarController {
 
     @FXML private DatePicker dtFim;
     @FXML private DatePicker dtInicio;
-    @FXML private TextField textOutro;
-    @FXML private ComboBox<Refeicao> refeicao;
+    @FXML private Button btnNovoAlimento;
+    @FXML private ComboBox<String> cliente;
+    @FXML private RadioButton radAddCatalogo;
     @FXML private ComboBox<ObjetivoAlimentar> objetivo;
-    @FXML private TableView<ModeloPlanoAlimentarCliente> tblAlimentos;
-    @FXML private TableColumn<ModeloPlanoAlimentarCliente, Boolean> colunaCheck;
-    @FXML private TableColumn<ModeloPlanoAlimentarCliente, Double> colQtdAlimento;
-    @FXML private TableColumn<ModeloPlanoAlimentarCliente, Double> colCaloriasAlimento;
-    @FXML private TableColumn<ModeloPlanoAlimentarCliente, String> colNomeAlimento;
+    @FXML private TableView<ModeloCatalogoAlimentar> tblAlimentos;
+    @FXML private TableColumn<ModeloCatalogoAlimentar, String> colRefeicao;
+    @FXML private TableColumn<ModeloCatalogoAlimentar, Boolean> colunaCheck;
+    @FXML private TableColumn<ModeloCatalogoAlimentar, Double> colQtdAlimento;
+    @FXML private TableColumn<ModeloCatalogoAlimentar, Double> colCaloriasAlimento;
+    @FXML private TableColumn<ModeloCatalogoAlimentar, String> colNomeAlimento;
 
+    private ObservableList<ModeloCatalogoAlimentar> result = FXCollections.observableArrayList();
+    @FXML
     public void initialize() {
-        //Adiciona os valores dos enuns ObjetivoAlimentar e Refeicao em cada ComboBox
+        //Adiciona os valores do enum ObjetivoAlimentar na ComboBox
         this.objetivo.getItems().addAll(ObjetivoAlimentar.values());
-        this.refeicao.getItems().addAll(Refeicao.values());
 
         //Setando as colunas da TableView
-        this.colunaCheck.setCellValueFactory(new PropertyValueFactory<>("check"));
-        this.colunaCheck.setCellFactory(CheckBoxTableCell.forTableColumn(colunaCheck));
         this.colNomeAlimento.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        this.colRefeicao.setCellValueFactory(new PropertyValueFactory<>("refeicao"));
         this.colQtdAlimento.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
         this.colCaloriasAlimento.setCellValueFactory(new PropertyValueFactory<>("calorias"));
-        this.updateCatalogoAlimentos();
-
+        this.colunaCheck.setCellValueFactory(new PropertyValueFactory<>("check"));
+        this.colunaCheck.setCellFactory(CheckBoxTableCell.forTableColumn(colunaCheck));
+        this.events();
     }
 
-    //Habilita o campo Outro para digitação
+    public void addClientesComboBoxPAlimentar() {
+        ObservableList<String> observableClientes = FXCollections.observableArrayList();
+        List<Cliente> listClientes = new ArrayList<>(Fachada.getInstance().listarClientes());
+
+        for(Cliente c : listClientes){
+            observableClientes.add(c.getNome());
+        }
+        this.cliente.setItems(observableClientes);
+    }
+
     @FXML
-    void optOutrosSelecionado(ActionEvent event) {
-        if(objetivo.getValue().getObjetivo().equalsIgnoreCase("")){
-            this.textOutro.setDisable(false);
+    void radAddClicked(MouseEvent event) {
+
+        List<Cliente> listClientes = new ArrayList<>(Fachada.getInstance().listarClientes());
+        PlanoAlimentar planoA = null;
+        for(Cliente c : listClientes) {
+            if (this.cliente.getValue().equals(c.getNome())) {
+                planoA = new PlanoAlimentar(c, dtInicio.getValue(), dtFim.getValue(), objetivo.getValue());
+            }
+        }
+
+        Sessao.getInstance().setPlanoAlimentar(planoA);
+        try {
+            Fachada.getInstance().cadastrarPlanoAlimentar(planoA);
+
+            this.tblAlimentos.setDisable(false);
+            this.btnNovoAlimento.setDisable(false);
+
+        } catch (ObjetoDuplicadoException | MaisDeUmPlanoNoMesmoPeriodoException e) {
+            this.alertaErroCadastro(e.getMessage());
+            this.radAddCatalogo.setSelected(false);
+
+            // Try/catch responsável por buscar o Plano A cadastrado com período igual a de um Plano anterior
+            // e, então, atualizá-lo com o novo Plano A de período diferente
+            try {
+                List<PlanoAlimentar> planoProcurado;
+                for(Cliente c : listClientes) {
+                    if (this.cliente.getValue().equals(c.getNome())) {
+                        planoProcurado = Fachada.getInstance().buscarPlanoAlimentar(c);
+                        Fachada.getInstance().alterarPlanoAlimentar(planoProcurado.get(0), planoA);
+                    }
+                }
+            } catch (ObjetoNaoExisteException exc) {
+                this.alertaErroCadastro(exc.getMessage());
+            }
         }
     }
 
@@ -74,17 +124,6 @@ public class TelaCadastroPlanoAlimentarController {
         if (verificarCamposVazios()) {
             GerenciadorTelas.getInstance().alertaCamposVazios();
         } else {
-
-            //TODO Criar atributo static para usuário ser cadastrado junto. Mas, precisa saber em qual tela...
-            /*PlanoAlimentar p = new PlanoAlimentar(usuario, dtInicio.getValue(), dtFim.getValue(),
-                  objetivo.getValue());
-
-            try {
-                Fachada.getInstance().cadastrarPlanoAlimentar(p);
-            } catch (ObjetoDuplicadoException | MaisDeUmPlanoNoMesmoPeriodoException e) {
-                e.getMessage();
-            }*/
-
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Cadastro de PLano");
             alert.setHeaderText(null);
@@ -92,71 +131,66 @@ public class TelaCadastroPlanoAlimentarController {
             alert.showAndWait();
 
             this.limparCamposDeDados();
+            GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
         }
     }
 
     @FXML
     void btnVoltarTela(ActionEvent event) {
-        //TODO está voltando para a tela de Login
         GerenciadorTelas.getInstance().trocarTela("telaPrincipalAdm");
     }
 
-    private void updateCatalogoAlimentos() {
-        //Instancia treinos para Controlador ALimento
-        ArrayList<Alimento> listaAlimentos = new ArrayList<>();
+    public void updateCatalogoAlimentos() {
 
-        Alimento a1 = new Alimento(Refeicao.CAFÉ_DA_MANHÃ, "Pão Integral", 25, 137);
-        Alimento a2 = new Alimento(Refeicao.ALMOÇO, "Feijão", 100, 79);
-        Alimento a3 = new Alimento(Refeicao.ALMOÇO, "Arroz", 100, 129);
-        Alimento a4 = new Alimento(Refeicao.LANCHE, "Sorvete", 60, 95);
-        Alimento a5 = new Alimento(Refeicao.JANTAR, "Ovo", 30, 74);
-        /*listaAlimentos.add(a1);
-        listaAlimentos.add(a2);
-        listaAlimentos.add(a3);
-        listaAlimentos.add(a4);
-        listaAlimentos.add(a5);*/
-
-        try {
-            /*for(Alimento alimento : listaAlimentos){
-                if(refeicao.getValue().getRefeicao().equalsIgnoreCase("Café da manhã")){
-                    Fachada.getInstance().adicionarAlimento(alimento);
-                } else if (refeicao.getValue().getRefeicao().equalsIgnoreCase("Almoço")){
-                    Fachada.getInstance().adicionarAlimento(alimento);
-                } else if (refeicao.getValue().getRefeicao().equalsIgnoreCase("Lanche")){
-                    Fachada.getInstance().adicionarAlimento(alimento);
-                } else {
-                    Fachada.getInstance().adicionarAlimento(alimento);
-                }
-            }*/
-            Fachada.getInstance().adicionarAlimento(a1);
-            Fachada.getInstance().adicionarAlimento(a2);
-            Fachada.getInstance().adicionarAlimento(a3);
-            Fachada.getInstance().adicionarAlimento(a4);
-            Fachada.getInstance().adicionarAlimento(a5);
-        } catch (ObjetoDuplicadoException e) {
-            e.printStackTrace();
-        }
-
-        ObservableList<ModeloPlanoAlimentarCliente> result = FXCollections.observableArrayList();
-        List<Alimento> listaDeAlimentos = Fachada.getInstance().listarAlimento();
-        for (Alimento a : listaDeAlimentos) {
-            result.add(new ModeloPlanoAlimentarCliente(a));
+        List<Alimento> listAlimentos = Fachada.getInstance().listarAlimento();
+        for (Alimento a : listAlimentos) {
+            result.add(new ModeloCatalogoAlimentar(a));
         }
         tblAlimentos.setItems(result);
+
+        tblAlimentos.setOnMouseClicked(e ->{
+            events();
+        });
+    }
+
+    //Evento que possibilita a seleção de linhas na tabela e consequentemente registra o valor.
+    //TODO: Encontrado bug na visualização da tabela quando mais de um objeto é selecionado
+    public void events() {
+        List<Alimento> listAlimentos = Fachada.getInstance().listarAlimento();
+
+        for (ModeloCatalogoAlimentar tabelaAlimento : tblAlimentos.getSelectionModel().getSelectedItems()){
+            for(Alimento a : listAlimentos){
+                if(tabelaAlimento.getNome().equals(a.getNome())){
+                    try {
+                        Fachada.getInstance().inserirAlimentoNoPlano(Sessao.getInstance().getPlanoAlimentar(), a);
+                    } catch ( ObjetoDuplicadoException | ObjetoNaoExisteException e) {
+                       this.alertaErroCadastro(e.getMessage());
+                    }
+                }
+            }
+        }
+    }
+
+    private void alertaErroCadastro(String motivo){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Erro de cadastro");
+        alerta.setHeaderText("Há um possível erro com seu cadastro");
+        alerta.setContentText(motivo);
+        alerta.showAndWait();
     }
 
     private void limparCamposDeDados() {
-        this.textOutro.setText("");
         this.dtInicio.setValue(null);
         this.dtFim.setValue(null);
-        this.refeicao.getSelectionModel().clearSelection();
+        this.tblAlimentos.getItems().clear();
+        this.radAddCatalogo.setSelected(false);
+        this.cliente.getSelectionModel().clearSelection();
         this.objetivo.getSelectionModel().clearSelection();
         this.tblAlimentos.getSelectionModel().clearSelection();
     }
 
     private boolean verificarCamposVazios() {
         return dtInicio.getValue() == null || dtFim.getValue() == null ||
-                refeicao.getValue() == null || objetivo.getValue() == null &&
-                textOutro.getText().isBlank();
+                objetivo.getValue() == null;
     }
 }

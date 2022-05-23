@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import br.ufrpe.habitact.dados.IRepositorio;
 import br.ufrpe.habitact.dados.Repositorio;
+import br.ufrpe.habitact.excecoes.EmailDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.excecoes.SenhaIncorretaException;
@@ -31,7 +32,12 @@ public class ControladorUsuario {
         return instance;
     }
 
-	public void cadastrarUsuario(Usuario u) throws ObjetoDuplicadoException {
+	public void cadastrarUsuario(Usuario u) throws ObjetoDuplicadoException, EmailDuplicadoException {
+		for (Usuario usuario : listarUsuarios()){
+			if (usuario.getEmail().equals(u.getEmail())){
+				throw new EmailDuplicadoException("Email já cadastrado no sistema");
+			}
+		}
 		this.repositorioUsuario.inserir(u);
 	}
 	
@@ -45,11 +51,14 @@ public class ControladorUsuario {
 		return u;
 	}
 
-	public void alterarDados(Usuario usuarioAntigo, Usuario usuarioNovo, String senha)
-			throws SenhaIncorretaException, ObjetoNaoExisteException {
-		if (usuarioAntigo.getSenha().equals(senha)) {
-			this.repositorioUsuario.atualizar(usuarioAntigo, usuarioNovo);
-		} else {
+	public void alterarDados(Usuario usuarioAntigo, Usuario usuarioNovo) {
+		this.repositorioUsuario.atualizar(usuarioAntigo, usuarioNovo);
+	}
+
+	public void alterarSenha(Usuario u, String senhaAntiga, String senhaNova) throws SenhaIncorretaException{
+		if (u.getSenha().equals(senhaAntiga)){
+			u.setSenha(senhaNova);
+		} else{
 			throw new SenhaIncorretaException("Senha Incorreta");
 		}
 	}
@@ -63,6 +72,28 @@ public class ControladorUsuario {
 
 	public List<Usuario> listarUsuarios() {
 		return repositorioUsuario.listar();
+	}
+
+	public List<Cliente> listarClientes(){
+		List<Usuario> us = repositorioUsuario.listar();
+		List<Cliente> clientes = new ArrayList<>();
+		for(Usuario u: us){
+			if (u instanceof Cliente){
+				clientes.add((Cliente) u);
+			}
+		}
+		return clientes;
+	}
+
+	public List<Administrador> listarAdms(){
+		List<Usuario> us = repositorioUsuario.listar();
+		List<Administrador> adms = new ArrayList<>();
+		for(Usuario u: us){
+			if (u instanceof Administrador){
+				adms.add((Administrador) u);
+			}
+		}
+		return adms;
 	}
 
 }

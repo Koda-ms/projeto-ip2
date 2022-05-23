@@ -1,9 +1,13 @@
 package br.ufrpe.habitact.gui;
 
 import br.ufrpe.habitact.Main;
+import br.ufrpe.habitact.gui.modelos.ModeloExercicioCliente;
+import br.ufrpe.habitact.negocio.beans.Exercicio;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,9 +24,6 @@ public class GerenciadorTelas {
 
     private Scene infoPessoalAdmScene;
     private TelaInfoPessoalAdmController infoPessoalAdmController;
-
-    private Scene listarPlanosScene;
-    private TelaListarPlanosController listarPlanosController;
 
     private Scene cadastroScene;
     private TelaCadastroUsuarioController cadastro;
@@ -80,11 +81,6 @@ public class GerenciadorTelas {
             this.infoPessoalClienteController = fxmlLoader.getController();
 
             fxmlLoader = new FXMLLoader(Main.class.
-                    getResource("TelaListarPlanos.fxml"));
-            this.listarPlanosScene = new Scene(fxmlLoader.load());
-            this.listarPlanosController = fxmlLoader.getController();
-
-            fxmlLoader = new FXMLLoader(Main.class.
                     getResource("TelaLogin.fxml"));
             this.loginScene = new Scene(fxmlLoader.load());
             this.login = fxmlLoader.getController();
@@ -138,15 +134,37 @@ public class GerenciadorTelas {
         switch(tela){
             case "TelaLogin": primaryStage.setScene(loginScene); break;
             case "TelaCadastro": primaryStage.setScene(cadastroScene); break;
-            case "TelaInfoPessoalAdm": primaryStage.setScene(infoPessoalAdmScene); break;
-            case "TelaDadosCliente": primaryStage.setScene(dadosClienteScene); break;
-            case "TelaListarPlanos": primaryStage.setScene(listarPlanosScene); break;
-            case "telaPrincipalAdm": primaryStage.setScene(principalAdmScene); break;
-            case "TelaPrincipalCliente": primaryStage.setScene(principalClienteScene); break;
-            case "planoAlimentar": primaryStage.setScene(planoAlimentarScene);break;
-            case "planoTreino": primaryStage.setScene(planoTreinoScene); break;
-            case "TelaCadastroTreino": primaryStage.setScene(addTreinoScene); break;
+            case "TelaInfoPessoalAdm": setInfoPessoalAdmScene(); break;
+            case "TelaDadosCliente": setInfoPessoalClienteScene(); break;
+            case "telaPrincipalAdm": setPrincipalAdmScene(); break;
+            case "TelaPrincipalCliente": setPrincipalClienteScene(); break;
+            case "planoAlimentar": setPlanoAlimentarScene(); break;
+            case "planoTreino": setPlanoTreinoScene(); break;
+            case "TelaCadastroTreino": setAddTreinoScene(); break;
         }
+    }
+
+    public void setInfoPessoalAdmScene(){
+        infoPessoalAdmController.setInformacoes();
+        primaryStage.setScene(infoPessoalAdmScene);
+    }
+
+    public void setInfoPessoalClienteScene(){
+        infoPessoalClienteController.setInformacoes();
+        primaryStage.setScene(dadosClienteScene);
+    }
+
+    public void updateTabelaAlimentos(){
+        cadastroPlanoAlimentarController.updateCatalogoAlimentos();
+    }
+    public void updateTabelaExercicios(){cadastrarTreinoController.updateCatalogoExercicios();}
+    public void updateTabelaTreinos(){cadastroPlanoTreinoController.updateCatalogoTreino();}
+    public void updateComboBoxClientes(){
+        cadastroPlanoTreinoController.addClientesComboBoxPTreino();
+        cadastroPlanoAlimentarController.addClientesComboBoxPAlimentar();
+    }
+    public void updateTabelaRefeicao(){
+        principalCliente.updateTabelaRefeicao();
     }
 
     public void alertaCamposVazios(){
@@ -169,6 +187,14 @@ public class GerenciadorTelas {
         return principalClienteScene;
     }
 
+    public void setPrincipalClienteScene() {
+        principalCliente.updateTabelaRefeicao();
+        principalCliente.updateTabelaExercicioAnaerobico();
+        principalCliente.updateTabelaExercicioAerobico();
+        principalCliente.setInformacoes();
+        primaryStage.setScene(principalClienteScene);
+    }
+
     public Scene getInfoPessoalAdmScene() {
         return infoPessoalAdmScene;
     }
@@ -177,13 +203,6 @@ public class GerenciadorTelas {
         return infoPessoalAdmController;
     }
 
-    public Scene getListarPlanosScene() {
-        return listarPlanosScene;
-    }
-
-    public TelaListarPlanosController getListarPlanosController() {
-        return listarPlanosController;
-    }
     public Scene getPopupScene() {
         return popupScene;
     }
@@ -192,14 +211,32 @@ public class GerenciadorTelas {
         return planoAlimentarScene;
     }
 
+    public void setPlanoAlimentarScene() {
+        cadastroPlanoAlimentarController.addClientesComboBoxPAlimentar();
+        cadastroPlanoAlimentarController.updateCatalogoAlimentos();
+        cadastroPlanoAlimentarController.events();
+        primaryStage.setScene(planoAlimentarScene);
+    }
+
     public Scene getAddAlimentoScene() { return addAlimentoScene; }
 
     public Scene getPlanoTreinoScene() {
         return planoTreinoScene;
     }
 
+    public void setPlanoTreinoScene() {
+        cadastroPlanoTreinoController.addClientesComboBoxPTreino();
+        cadastroPlanoTreinoController.updateCatalogoTreino();
+        primaryStage.setScene(planoTreinoScene);
+    }
+
     public Scene getAddTreinoScene() {
         return addTreinoScene;
+    }
+
+    public void setAddTreinoScene() {
+        cadastrarTreinoController.updateCatalogoExercicios();
+        primaryStage.setScene(addTreinoScene);
     }
 
     public Scene getAddExercicioScene() { return addExercicioScene; }
@@ -222,6 +259,13 @@ public class GerenciadorTelas {
 
     public Scene getPrincipalAdmScene() {
         return principalAdmScene;
+    }
+
+    public void setPrincipalAdmScene(){
+        admController.updateListaClientes();
+        admController.updateListaPlanoAlimentar();
+        admController.updateListaPlanoTreino();
+        primaryStage.setScene(principalAdmScene);
     }
 
     public TelaPrincipalAdmController getAdmController() {
@@ -267,5 +311,6 @@ public class GerenciadorTelas {
     public TelaInfoPessoalClienteController getInfoPessoalClienteController() {
         return infoPessoalClienteController;
     }
+
 }
 

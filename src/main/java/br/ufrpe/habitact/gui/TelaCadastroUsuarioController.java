@@ -1,5 +1,6 @@
 package br.ufrpe.habitact.gui;
 
+import br.ufrpe.habitact.excecoes.EmailDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.negocio.Fachada;
 import br.ufrpe.habitact.negocio.beans.Administrador;
@@ -27,7 +28,7 @@ public class TelaCadastroUsuarioController {
     @FXML private DatePicker dataNascimentoAdministrador;
     @FXML private AnchorPane tabAdministrador;
     @FXML private AnchorPane tabUsuario;
-    private static String Id = "0";
+    private static String Id = "1";
 
 
     @FXML
@@ -35,20 +36,22 @@ public class TelaCadastroUsuarioController {
         if(verificarCamposVaziosUsuario()){
             GerenciadorTelas.getInstance().alertaCamposVazios();
         }
+        else if (!senhaCliente.getText().equals(confirmacaoSenhaCliente.getText())){
+            gerarAlertaSenhas();
+        }
         else{
             try{
                 Fachada.getInstance().cadastrarUsuario(new Cliente(nomeCliente.getText(), emailCliente.getText(),
                         senhaCliente.getText(), dataNascimentoCliente.getValue(), genero.getText(),
-                        Double.parseDouble(peso.getText()), Double.parseDouble(altura.getText()),
-                        false));
+                        Double.parseDouble(peso.getText()), Double.parseDouble(altura.getText())));
                 gerarAlertaDeCadastro();
-                for (Usuario u : Fachada.getInstance().listarUsuarios()){
-                    System.out.println(u.getNome());
-                }
-            } catch (ObjetoDuplicadoException exception) {
-                exception.printStackTrace();
+                this.limparCamposDeDados();
+            } catch (ObjetoDuplicadoException | EmailDuplicadoException exception) {
+                gerarAlertaDuplicado(exception.getMessage());
+            } catch (Exception exception){
+                gerarAlertaPesoAltura();
             }
-            this.limparCamposDeDados();
+            GerenciadorTelas.getInstance().updateComboBoxClientes();
         }
     }
 
@@ -56,6 +59,9 @@ public class TelaCadastroUsuarioController {
     private void CadastrarAdministradorBtn(ActionEvent e){
         if(verificarCamposVaziosAdministrador()){
             GerenciadorTelas.getInstance().alertaCamposVazios();
+        }
+        else if (!senhaAdministrador.getText().equals(confirmacaoDeSenhaAdministrador.getText())){
+            gerarAlertaSenhas();
         }
         else{
             try {
@@ -66,13 +72,10 @@ public class TelaCadastroUsuarioController {
                 idSaver++;
                 Id = Integer.toString(idSaver);
                 gerarAlertaDeCadastro();
-                for (Usuario u : Fachada.getInstance().listarUsuarios()){
-                    System.out.println(u.getNome());
+                this.limparCamposDeDados();
+            } catch (ObjetoDuplicadoException | EmailDuplicadoException exception) {
+                gerarAlertaDuplicado(exception.getMessage());
             }
-            } catch (ObjetoDuplicadoException exception) {
-                exception.printStackTrace();
-            }
-            this.limparCamposDeDados();
         }
     }
 
@@ -87,9 +90,32 @@ public class TelaCadastroUsuarioController {
     }
 
     private void gerarAlertaDeCadastro(){
-        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Usuário cadastrado");
         alerta.setHeaderText("O usuário foi cadastrado");
+        alerta.showAndWait();
+    }
+
+    private void gerarAlertaDuplicado(String header){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Dados Duplicados");
+        alerta.setHeaderText(header);
+        alerta.showAndWait();
+    }
+
+    private void gerarAlertaSenhas(){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Senhas não correspondem");
+        alerta.setHeaderText("Senha e Confirmação de senha não são iguais");
+        alerta.showAndWait();
+    }
+
+    private void gerarAlertaPesoAltura(){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Peso e/ou Altura");
+        alerta.setHeaderText("O peso e/ou altura estão em formato incorreto");
+        alerta.setContentText("O formato padrão é \"x.xx...\" ou apenas \"x\", sendo x um número inteiro." +
+                "\n\nExemplos: 1.79 / 115 / 98.25");
         alerta.showAndWait();
     }
 

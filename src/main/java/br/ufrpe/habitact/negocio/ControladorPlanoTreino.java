@@ -7,7 +7,6 @@ import br.ufrpe.habitact.excecoes.MaisDeUmTreinoNoMesmoDiaException;
 import br.ufrpe.habitact.excecoes.ObjetoDuplicadoException;
 import br.ufrpe.habitact.excecoes.ObjetoNaoExisteException;
 import br.ufrpe.habitact.negocio.beans.*;
-import br.ufrpe.habitact.negocio.beans.enums.TipoExercicio;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +35,7 @@ public class ControladorPlanoTreino{
                     || p.getDataFim().equals(planoTreino.getDataFim())
                     || ((p.getDataFim().isBefore(planoTreino.getDataFim()))
                     && (p.getDataInicio().isAfter(planoTreino.getDataInicio()))))) {
-                throw new MaisDeUmPlanoNoMesmoPeriodoException("Cliente já tem um plano neste período");
+                throw new MaisDeUmPlanoNoMesmoPeriodoException("Cliente já possui um plano neste período.");
             }
         }
         this.repositorioPlanoTreino.inserir(planoTreino);
@@ -49,7 +48,7 @@ public class ControladorPlanoTreino{
             if(p.getCliente().equals(planoTreino.getCliente())){
                 for(Treino t : p.getTreinos()){
                     if(t.getDiaFeito().equals(novoTreino.getDiaFeito())){
-                        throw new MaisDeUmTreinoNoMesmoDiaException("Já há um treino no dia escolhido");
+                        throw new MaisDeUmTreinoNoMesmoDiaException("Já há um treino no dia escolhido. Por favor, selecione outra data.");
                     }
                 }
             }

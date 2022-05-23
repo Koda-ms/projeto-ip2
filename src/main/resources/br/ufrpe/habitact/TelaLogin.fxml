@@ -16,7 +16,7 @@
       </Label>
       <TextField fx:id="emailTxtField" layoutX="230.0" layoutY="238.0" promptText="Email" />
       <PasswordField fx:id="senhaField" layoutX="230.0" layoutY="277.0" promptText="Senha" />
-      <Button layoutX="303.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnCadastro" text="Cadastro" />
       <Button layoutX="234.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnLogar" text="Logar" />
+      <Button layoutX="303.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnCadastro" text="Cadastro" />
    </children>
 </Pane>

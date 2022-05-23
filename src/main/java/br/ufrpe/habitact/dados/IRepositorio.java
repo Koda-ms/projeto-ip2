@@ -10,7 +10,7 @@ public interface IRepositorio<T> {
 
 	public List<T> listar();
 
-	public void atualizar(T elem1, T elem2) throws ObjetoNaoExisteException;
+	public void atualizar(T elem1, T elem2);
 
 	public void remover(T elem) throws ObjetoNaoExisteException;
 }

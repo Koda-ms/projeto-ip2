@@ -7,24 +7,44 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
 <TabPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="611.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.habitact.gui.TelaCadastroUsuarioController">
   <tabs>
-    <Tab text="Usuário">
+    <Tab text="Cliente">
       <content>
         <AnchorPane fx:id="tabUsuario" minHeight="0.0" minWidth="0.0" prefHeight="573.0" prefWidth="611.0">
                <children>
-                  <TextField fx:id="nomeCliente" layoutX="228.0" layoutY="53.0" promptText="Nome" />
-                   <DatePicker fx:id="dataNascimentoCliente" layoutX="228.0" layoutY="89.0" prefHeight="25.0" prefWidth="148.0" promptText="Data de nascimento" />
-                   <TextField fx:id="genero" layoutX="228.0" layoutY="122.0" promptText="Gênero" />
-                  <TextField fx:id="peso" layoutX="228.0" layoutY="155.0" promptText="Peso em kg" />
-                   <TextField fx:id="altura" layoutX="228.0" layoutY="191.0" promptText="Altura em metros" />
-                  <TextField fx:id="emailCliente" layoutX="228.0" layoutY="226.0" promptText="Email" />
-                  <PasswordField fx:id="senhaCliente" layoutX="228.0" layoutY="259.0" promptText="Senha" />
-                  <PasswordField fx:id="confirmacaoSenhaCliente" layoutX="228.0" layoutY="295.0" promptText="Confirmação de senha" />
-                   <Button layoutX="269.0" layoutY="338.0" mnemonicParsing="false" onAction="#CadastrarUsuarioBtn" text="Cadastrar" />
+                   <Button layoutX="273.0" layoutY="459.0" mnemonicParsing="false" onAction="#CadastrarUsuarioBtn" text="Cadastrar" />
 
-                  <Button layoutX="531.0" layoutY="438.0" mnemonicParsing="false" onAction="#btnVoltarCliente" text="Voltar" />
+                  <Button layoutX="549.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnVoltarCliente" text="Voltar" />
+                  <GridPane layoutX="127.0" layoutY="64.0" prefHeight="369.0" prefWidth="358.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TextField fx:id="nomeCliente" promptText="Nome" />
+                         <DatePicker fx:id="dataNascimentoCliente" editable="false" prefHeight="25.0" prefWidth="148.0" promptText="Data de nascimento" GridPane.rowIndex="1" />
+                        <TextField fx:id="peso" promptText="Peso em kg" GridPane.rowIndex="2" />
+                         <TextField fx:id="altura" prefHeight="25.0" prefWidth="298.0" promptText="Altura em metros" GridPane.rowIndex="3" />
+                        <TextField fx:id="genero" promptText="Gênero" GridPane.rowIndex="4" />
+                        <TextField fx:id="emailCliente" promptText="E-mail" GridPane.rowIndex="5" />
+                        <PasswordField fx:id="senhaCliente" promptText="Senha" GridPane.rowIndex="6" />
+                        <PasswordField fx:id="confirmacaoSenhaCliente" promptText="Confirmação de senha" GridPane.rowIndex="7" />
+                     </children>
+                  </GridPane>
                </children></AnchorPane>
       </content>
     </Tab>
@@ -32,13 +52,27 @@
       <content>
         <AnchorPane fx:id="tabAdministrador" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                   <TextField fx:id="nomeAdministrador" layoutX="231.0" layoutY="65.0" promptText="Nome" />
-                  <TextField fx:id="emailAdministrador" layoutX="231.0" layoutY="110.0" promptText="Email" />
-                  <PasswordField fx:id="senhaAdministrador" layoutX="232.0" layoutY="159.0" promptText="Senha" />
-                  <PasswordField fx:id="confirmacaoDeSenhaAdministrador" layoutX="232.0" layoutY="207.0" promptText="Confirmação de senha" />
-                  <DatePicker fx:id="dataNascimentoAdministrador" layoutX="232.0" layoutY="253.0" prefHeight="25.0" prefWidth="150.0" promptText="Data de nascimento" />
-                   <Button layoutX="272.0" layoutY="302.0" mnemonicParsing="false" onAction="#CadastrarAdministradorBtn" text="Cadastrar" />
-                  <Button layoutX="545.0" layoutY="420.0" mnemonicParsing="false" onAction="#btnVoltarAdm" text="Voltar" />
+                   <Button layoutX="273.0" layoutY="433.0" mnemonicParsing="false" onAction="#CadastrarAdministradorBtn" text="Cadastrar" />
+                  <Button layoutX="549.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnVoltarAdm" text="Voltar" />
+                  <GridPane layoutX="127.0" layoutY="90.0" prefHeight="282.0" prefWidth="358.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                         <TextField fx:id="nomeAdministrador" promptText="Nome" />
+                        <TextField fx:id="emailAdministrador" promptText="E-mail" GridPane.rowIndex="2" />
+                        <PasswordField fx:id="senhaAdministrador" promptText="Senha" GridPane.rowIndex="3" />
+                        <PasswordField fx:id="confirmacaoDeSenhaAdministrador" promptText="Confirmação de senha" GridPane.rowIndex="4" />
+                        <DatePicker fx:id="dataNascimentoAdministrador" editable="false" prefHeight="25.0" prefWidth="150.0" promptText="Data de nascimento" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
                </children></AnchorPane>
       </content>
     </Tab>

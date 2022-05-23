@@ -92,7 +92,7 @@ public class PlanoTreino {
 
 	public void removerTreino(Treino treino) throws ObjetoNaoExisteException {
 		if(!this.treinos.contains(treino)){
-			throw new ObjetoNaoExisteException("Treino não existe no plano");
+			throw new ObjetoNaoExisteException("O treino não existe no plano para ser removido.");
 		}
 		else{
 			this.treinos.remove(treino);

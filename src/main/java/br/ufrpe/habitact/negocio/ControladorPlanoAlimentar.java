@@ -45,7 +45,7 @@ public class ControladorPlanoAlimentar {
 	public void inserirAlimentoNoPlano(PlanoAlimentar planoAlimentar, Alimento novoAlimento)
 			throws ObjetoDuplicadoException, ObjetoNaoExisteException {
 		PlanoAlimentar planoAntigo = planoAlimentar;
-		planoAlimentar.cadastrarAlimentos(novoAlimento);
+		planoAntigo.cadastrarAlimentos(novoAlimento);
 		repositorioPlanoAlimentar.atualizar(planoAntigo, planoAlimentar);
 	}
 

@@ -94,11 +94,6 @@ public class TelaPrincipalAdmController {
     }
 
     @FXML
-    void btnRelatorioPressed(ActionEvent event) {
-        GerenciadorTelas.getInstance().trocarTela("popupGraficos");
-    }
-
-    @FXML
     void btnSairPressed(ActionEvent event) {
         GerenciadorTelas.getInstance().trocarTela("TelaLogin");
     }

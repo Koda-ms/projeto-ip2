@@ -29,12 +29,8 @@ public class Repositorio<T> implements IRepositorio<T> {
 	}
 
 	@Override
-	public void atualizar(T elem1, T elem2) throws ObjetoNaoExisteException {
-		if (this.elementos.contains(elem1)) {
-			this.elementos.set(this.elementos.indexOf(elem1), elem2);
-        } else {
-			throw new ObjetoNaoExisteException("Nenhum dado foi atualizado.");
-        }	
+	public void atualizar(T elem1, T elem2) {
+		this.elementos.set(this.elementos.indexOf(elem1), elem2);
 	}
 
 	@Override

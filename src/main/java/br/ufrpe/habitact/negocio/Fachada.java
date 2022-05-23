@@ -114,7 +114,7 @@ public class Fachada {
 		return usuarios.autenticarUsuario(email, senha);
 	}
 
-	public void alterarDados(Usuario usuarioAntigo, Usuario usuarioNovo) throws ObjetoNaoExisteException {
+	public void alterarDados(Usuario usuarioAntigo, Usuario usuarioNovo) {
 		usuarios.alterarDados(usuarioAntigo, usuarioNovo);
 	}
 

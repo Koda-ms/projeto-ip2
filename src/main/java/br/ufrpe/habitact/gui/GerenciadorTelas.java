@@ -130,14 +130,24 @@ public class GerenciadorTelas {
         switch(tela){
             case "TelaLogin": primaryStage.setScene(loginScene); break;
             case "TelaCadastro": primaryStage.setScene(cadastroScene); break;
-            case "TelaInfoPessoalAdm": primaryStage.setScene(infoPessoalAdmScene); break;
-            case "TelaDadosCliente": primaryStage.setScene(dadosClienteScene); break;
+            case "TelaInfoPessoalAdm": setInfoPessoalAdmScene(); break;
+            case "TelaDadosCliente": setInfoPessoalClienteScene(); break;
             case "telaPrincipalAdm": setPrincipalAdmScene(); break;
             case "TelaPrincipalCliente": setPrincipalClienteScene(); break;
             case "planoAlimentar": setPlanoAlimentarScene(); break;
             case "planoTreino": setPlanoTreinoScene(); break;
             case "TelaCadastroTreino": setAddTreinoScene(); break;
         }
+    }
+
+    public void setInfoPessoalAdmScene(){
+        infoPessoalAdmController.setInformacoes();
+        primaryStage.setScene(infoPessoalAdmScene);
+    }
+
+    public void setInfoPessoalClienteScene(){
+        infoPessoalClienteController.setInformacoes();
+        primaryStage.setScene(dadosClienteScene);
     }
 
     public void updateTabelaAlimentos(){

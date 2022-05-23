@@ -46,8 +46,6 @@ public class TelaInfoPessoalClienteController {
                 Fachada.getInstance().alterarDados(Sessao.getInstance().getUsuario(), u);
                 Sessao.getInstance().setUsuario(u);
                 gerarAlertaDados();
-            } catch (ObjetoNaoExisteException e) {
-                gerarAlertaNenhum();
             } catch (Exception e){
                 gerarAlertaPesoAltura();
             }

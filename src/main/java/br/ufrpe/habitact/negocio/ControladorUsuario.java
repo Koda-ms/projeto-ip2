@@ -35,7 +35,7 @@ public class ControladorUsuario {
 	public void cadastrarUsuario(Usuario u) throws ObjetoDuplicadoException, EmailDuplicadoException {
 		for (Usuario usuario : listarUsuarios()){
 			if (usuario.getEmail().equals(u.getEmail())){
-				throw new EmailDuplicadoException("Email já cadastrado");
+				throw new EmailDuplicadoException("Email já cadastrado no sistema");
 			}
 		}
 		this.repositorioUsuario.inserir(u);
@@ -51,8 +51,7 @@ public class ControladorUsuario {
 		return u;
 	}
 
-	public void alterarDados(Usuario usuarioAntigo, Usuario usuarioNovo)
-			throws ObjetoNaoExisteException {
+	public void alterarDados(Usuario usuarioAntigo, Usuario usuarioNovo) {
 		this.repositorioUsuario.atualizar(usuarioAntigo, usuarioNovo);
 	}
 

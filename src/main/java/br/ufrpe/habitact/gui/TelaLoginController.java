@@ -39,8 +39,8 @@ public class TelaLoginController {
 
     private void gerarAlertaDeUsuario(){
         Alert alerta = new Alert(Alert.AlertType.ERROR);
-        alerta.setTitle("Usuário não cadastrado");
-        alerta.setHeaderText("Aparentemente o usuário não existe");
+        alerta.setTitle("Dados Incorretos");
+        alerta.setHeaderText("E-mail e/ou senha incorretos");
         alerta.showAndWait();
     }
 

@@ -36,15 +36,11 @@ public class TelaInfoPessoalAdmController {
         if (verificarCamposVazios()){
             GerenciadorTelas.getInstance().alertaCamposVazios();
         } else {
-            try {
-                Usuario u = new Administrador(txtNome.getText(), txtEmail.getText(),
-                        Sessao.getInstance().getUsuario().getSenha(), dtPickerNascimento.getValue(), txtID.getText());
-                Fachada.getInstance().alterarDados(Sessao.getInstance().getUsuario(), u);
-                Sessao.getInstance().setUsuario(u);
-                gerarAlertaDados();
-            } catch (ObjetoNaoExisteException e) {
-                gerarAlertaNenhum();
-            }
+            Usuario u = new Administrador(txtNome.getText(), txtEmail.getText(),
+                    Sessao.getInstance().getUsuario().getSenha(), dtPickerNascimento.getValue(), txtID.getText());
+            Fachada.getInstance().alterarDados(Sessao.getInstance().getUsuario(), u);
+            Sessao.getInstance().setUsuario(u);
+            gerarAlertaDados();
         }
 
     }

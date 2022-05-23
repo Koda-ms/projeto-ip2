@@ -131,7 +131,7 @@ public class TelaPrincipalClienteController {
     }
 
 
-    public void setInformacoes(){
+    /*public void setInformacoes(){
         Cliente cliente = (Cliente) Sessao.getInstance().getUsuario();
         txtNome.setText(cliente.getNome());
         txtAltura.setText(Double.toString(cliente.getAltura()));
@@ -139,5 +139,5 @@ public class TelaPrincipalClienteController {
         txtGenero.setText(cliente.getGenero());
         txtEmail.setText(cliente.getEmail());
         dtPickerNascimento.setValue(cliente.getDtNascimento());
-    }
+    }*/
 }

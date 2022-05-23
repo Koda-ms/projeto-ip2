@@ -129,7 +129,6 @@ public class TelaCadastroPlanoTreinoController {
     }
 
     public void updateCatalogoTreino() {
-
         ObservableList<ModeloPlanoTreinoCliente> result = FXCollections.observableArrayList();
         List<Treino> listaDeTreinos = Fachada.getInstance().listarTreino();
         for (Treino t : listaDeTreinos){
